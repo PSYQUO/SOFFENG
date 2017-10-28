@@ -1,0 +1,44 @@
+# ------------------ERROR REPORT------------------
+## QA REPORT
+
+Test ID: 1
+
+Date Tested: 2017-10-28 04:01:47.835
+
+Tested By: Jasper Pillejera
+
+Test Case Summary: Bug confirmation test case on creating an object of type User.
+
+Test Case Details: User.Role is private and object creation requires User.Role.
+
+Steps to reproduce error: 
+* Instantiate a User object with parameters: Jasper, Jasper, p@ssword, User.Role.OWNER
+
+Expected Output: Successful creation of a User object.
+
+Actual Output: **COMPILE TIME ERROR** - - Failed creation of User object.
+
+## DEV REPORT
+
+Date Fixed: 
+
+Fixed By: 
+
+Dev Comments: 
+
+## QA Confirmation
+
+Confirmed By: 
+
+QA Comments: 
+
+# ------------------ERROR SUMMARY------------------
+**TEST ID:** 1
+**DATE:** 2017-10-28 04:01:47.835
+**TESTER:** Jasper Pillejera
+**INPUT:** User u = new User ("Jasper", "Jasper", "p@ssword", User.Role.OWNER);
+**EXPECTED OUTPUT:** Successful creation of a User object.
+**ACTUAL OUTPUT:** COMPILE TIME ERROR
+**RESULT:** FAILED
+# ------------------END OF SUMMARY------------------
+

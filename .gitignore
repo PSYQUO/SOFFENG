@@ -9,6 +9,5 @@
 *.tar
 *.zip
 *build
-*src
 gradlew
 gradlew.bat
