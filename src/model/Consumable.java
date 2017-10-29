@@ -31,6 +31,10 @@ public class Consumable {
         this.meal = meal;
     }
 
+    public int getConsumableID(){
+        return consumableId;
+    }
+
     public String getName() {
         return name;
     }

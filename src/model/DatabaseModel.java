@@ -20,7 +20,7 @@ public class DatabaseModel
             ResultSet rs = dbc.executeQuery("select * from category");
             while(rs.next())
             {
-                Category c = new Category(Integer.valueOf(rs.getString(1)), rs.getString(2));
+                Category c = new Category(rs.getInt(1), rs.getString(2));
                 data.add(c);
             }
         }
@@ -57,7 +57,7 @@ public class DatabaseModel
             ResultSet rs = dbc.executeQuery("select * from role");
             while(rs.next())
             {
-                Role r = new Role(Integer.valueOf(rs.getString(1)), rs.getString(2));
+                Role r = new Role(rs.getInt(1), rs.getString(2));
                 data.add(r);
             }
         }
@@ -94,7 +94,7 @@ public class DatabaseModel
             ResultSet rs = dbc.executeQuery("select * from rawitem");
             while(rs.next())
             {
-                RawItem r = new RawItem(Integer.valueOf(rs.getString(1)), rs.getString(2), Integer.valueOf(rs.getString(4)), rs.getDouble(3));
+                RawItem r = new RawItem(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(3));
                 data.add(r);
             }
         }
@@ -131,7 +131,7 @@ public class DatabaseModel
             ResultSet rs = dbc.executeQuery("select * from user");
             while(rs.next())
             {
-                User u = new User(Integer.valueOf(rs.getString(1)), rs.getString(2), rs.getString(3), rs.getString(4), searchRole(Integer.valueOf(rs.getString(5))));
+                User u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), searchRole(rs.getInt(5)));
                 data.add(u);
             }
         }
@@ -171,7 +171,7 @@ public class DatabaseModel
             ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID=cc.Category_ID");
             while(rs.next())
             {
-                Consumable c = new Consumable(Integer.valueOf(rs.getString(1)), rs.getString(2), rs.getString(3), new Category(rs.getInt(6), rs.getString(8)), rs.getDouble(4), null, null);
+                Consumable c = new Consumable(rs.getInt(1), rs.getString(2), rs.getString(3), searchCategory(rs.getInt(6)), rs.getDouble(4), null, null);
                 data.add(c);
             }
         }
@@ -186,6 +186,19 @@ public class DatabaseModel
         return data;
     }
 
+    public Consumable searchConsumable(int id)
+    {
+        ArrayList<Consumable> data = getConsumables();
+        for(int i = 0; i < data.size(); i++)
+        {
+            if(id == data.get(i).getConsumableID())
+            {
+                return data.get(i);
+            }
+        }
+        return null;
+    }
+
     /**
      * TODO: NULLS
      */
@@ -198,7 +211,7 @@ public class DatabaseModel
             ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID=cc.Category_ID and cc.Category_Name='" + category + "'");
             while(rs.next())
             {
-                Consumable c = new Consumable(Integer.valueOf(rs.getString(1)), rs.getString(2), rs.getString(3), new Category(rs.getInt(6), rs.getString(8)), rs.getDouble(4), null, null);
+                Consumable c = new Consumable(rs.getInt(1), rs.getString(2), rs.getString(3), searchCategory(rs.getInt(6)), rs.getDouble(4), null, null);
                 data.add(c);
             }
         }
@@ -225,7 +238,7 @@ public class DatabaseModel
             ResultSet rs = dbc.executeQuery("select distinct * from lineitem l, consumable cc, category c where l.transaction_id=" + id + " and l.Consumable_ID=cc.Consumable_ID and cc.Category_ID=c.Category_ID;");
             while(rs.next())
             {
-                LineItem l = new LineItem(Integer.valueOf(rs.getString(1)), new Consumable(), Integer.valueOf(rs.getString(3)));
+                LineItem l = new LineItem(rs.getInt(1), searchConsumable(rs.getInt(2)), rs.getInt(3));
                 data.add(l);
             }
         }
@@ -240,16 +253,16 @@ public class DatabaseModel
         return data;
     }
 
-    public ArrayList<XRead> getXReadToday()
+    public ArrayList<XReading> getXReadToday()
     {
         dbc = DBConnection.getConnection();
-        ArrayList<XRead> data = new ArrayList<XRead>();
+        ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
             ResultSet rs = dbc.executeQuery("select u.*, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime=curdate() group by u.User_ID");
             while(rs.next())
             {
-                XRead x = new XRead(searchUser(Integer.valueOf(rs.getString(1))), rs.getDouble(8));
+                XReading x = new XReading(searchUser(rs.getInt(1)), rs.getDouble(8));
                 data.add(x);
             }
         }
