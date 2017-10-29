@@ -77,7 +77,7 @@ public class Transaction {
         return lineItems;
     }
 
-    private enum TransactionMode {
+    public enum TransactionMode {
         DINE_IN,
         TAKE_OUT,
         DELIVERY
