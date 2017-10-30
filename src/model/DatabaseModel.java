@@ -226,9 +226,6 @@ public class DatabaseModel
         return data;
     }
 
-    /**
-     * TODO: line 115 - new Consumable()
-     */
     public ArrayList<LineItem> getCartByTransID(int id)
     {
         dbc = DBConnection.getConnection();
