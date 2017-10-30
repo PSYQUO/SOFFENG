@@ -38,13 +38,22 @@ public class DatabaseModel
 
     public Category searchCategory(int id)
     {
-        ArrayList<Category> data = getCategories();
-        for(int i = 0; i < data.size(); i++)
+        dbc = DBConnection.getConnection();
+        try
         {
-            if(id == data.get(i).getCategoryId())
+            ResultSet rs = dbc.executeQuery("select * from category where category_id="+id);
+            while(rs.next())
             {
-                return data.get(i);
+                return new Category(rs.getInt(1), rs.getString(2));
             }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
         }
         return null;
     }
@@ -75,13 +84,22 @@ public class DatabaseModel
 
     public Role searchRole(int id)
     {
-        ArrayList<Role> data = getRoles();
-        for(int i = 0; i < data.size(); i++)
+        dbc = DBConnection.getConnection();
+        try
         {
-            if(id == data.get(i).getRoleID())
+            ResultSet rs = dbc.executeQuery("select * from role where role_id="+id);
+            while(rs.next())
             {
-                return data.get(i);
+                return new Role(rs.getInt(1), rs.getString(2));
             }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
         }
         return null;
     }
@@ -112,13 +130,22 @@ public class DatabaseModel
 
     public RawItem searchRawItem(int id)
     {
-        ArrayList<RawItem> data = getRawItems();
-        for(int i = 0; i < data.size(); i++)
+        dbc = DBConnection.getConnection();
+        try
         {
-            if(id == data.get(i).getRawItemID())
+            ResultSet rs = dbc.executeQuery("select * from rawitem where rawitem_id="+id);
+            while(rs.next())
             {
-                return data.get(i);
+                return new RawItem(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(3));
             }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
         }
         return null;
     }
@@ -149,13 +176,23 @@ public class DatabaseModel
 
     public User searchUser(int id)
     {
-        ArrayList<User> data = getUsers();
-        for(int i = 0; i < data.size(); i++)
+        dbc = DBConnection.getConnection();
+        ArrayList<User> data = new ArrayList<User>();
+        try
         {
-            if(id == data.get(i).getUserID())
+            ResultSet rs = dbc.executeQuery("select * from user where user_id="+id);
+            while(rs.next())
             {
-                return data.get(i);
+                return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), searchRole(rs.getInt(5)));
             }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
         }
         return null;
     }
@@ -187,15 +224,27 @@ public class DatabaseModel
         return data;
     }
 
+    /**
+     * TODO: NULLS
+     */
     public Consumable searchConsumable(int id)
     {
-        ArrayList<Consumable> data = getConsumables();
-        for(int i = 0; i < data.size(); i++)
+        dbc = DBConnection.getConnection();
+        try
         {
-            if(id == data.get(i).getConsumableID())
+            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID=cc.Category_ID and c.consumable_id="+id);
+            while(rs.next())
             {
-                return data.get(i);
+                return new Consumable(rs.getInt(1), rs.getString(2), rs.getString(3), searchCategory(rs.getInt(6)), rs.getDouble(4), null, null);
             }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
         }
         return null;
     }
@@ -203,7 +252,7 @@ public class DatabaseModel
     /**
      * TODO: NULLS
      */
-    public ArrayList<Consumable> getConsumableByCategory1(String category)
+    public ArrayList<Consumable> searchConsumableByCategory(String category)
     {
         dbc = DBConnection.getConnection();
         ArrayList<Consumable> data = new ArrayList<Consumable>();
@@ -227,17 +276,29 @@ public class DatabaseModel
         return data;
     }
 
-    public ArrayList<Consumable> getConsumableByCategory2(String category)
+    /**
+     * TODO: NULLS
+     */
+    public ArrayList<Consumable> searchConsumableByCategory(int id)
     {
         dbc = DBConnection.getConnection();
-        ArrayList<Consumable> c = getConsumables();
         ArrayList<Consumable> data = new ArrayList<Consumable>();
-        for(int i=0; i<c.size(); i++)
+        try
         {
-            if(c.get(i).getCategory().getCategoryName().equals(category))
+            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID=cc.Category_ID and cc.category_id="+id);
+            while(rs.next())
             {
-                data.add(c.get(i));
+                Consumable c = new Consumable(rs.getInt(1), rs.getString(2), rs.getString(3), searchCategory(rs.getInt(6)), rs.getDouble(4), null, null);
+                data.add(c);
             }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
         }
         return data;
     }
@@ -267,20 +328,6 @@ public class DatabaseModel
     }
 
     public ArrayList<LineItem> searchLineItems(int id)
-    {
-        ArrayList<LineItem> l = getLineItems();
-        ArrayList<LineItem> data = getLineItems();
-        for(int i = 0; i < l.size(); i++)
-        {
-            if(id == l.get(i).getTransID())
-            {
-                data.add(l.get(i));
-            }
-        }
-        return data;
-    }
-
-    public ArrayList<LineItem> getLineItemsByTransID(int id)
     {
         dbc = DBConnection.getConnection();
         ArrayList<LineItem> data = new ArrayList<LineItem>();
@@ -377,7 +424,7 @@ public class DatabaseModel
     }
 
     /**
-     * TODO: transaction mode line 391 null
+     * TODO: transaction mode line 438 null
      */
     public ArrayList<Transaction> getTransactions()
     {
@@ -403,15 +450,28 @@ public class DatabaseModel
         return data;
     }
 
+    /**
+     * TODO: transaction mode line 465 null
+     */
     public Transaction searchTransaction(int id)
     {
-        ArrayList<Transaction> data = getTransactions();
-        for(int i = 0; i < data.size(); i++)
+        dbc = DBConnection.getConnection();
+        ArrayList<Transaction> data = new ArrayList<Transaction>();
+        try
         {
-            if(id == data.get(i).getTransactionId())
+            ResultSet rs = dbc.executeQuery("select * from transaction where transaction_id="+id);
+            while(rs.next())
             {
-                return data.get(i);
+                return new Transaction(rs.getInt(1), null, searchUser(rs.getInt(3)), null, rs.getDouble(6), rs.getDouble(7), rs.getDouble(9), rs.getDouble(10), searchLineItems(rs.getInt(1)), rs.getInt(4));
             }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
         }
         return null;
     }
@@ -440,16 +500,26 @@ public class DatabaseModel
         return data;
     }
 
-    public ArrayList<Ingredient> searchIngredient(int id)
+    public ArrayList<Ingredient> searchIngredientByConsumable(int id)
     {
-        ArrayList<Ingredient> ing = getIngredients();
+        dbc = DBConnection.getConnection();
         ArrayList<Ingredient> data = new ArrayList<Ingredient>();
-        for(int i = 0; i < ing.size(); i++)
+        try
         {
-            if(id == ing.get(i).getRawItem().getRawItemID());
+            ResultSet rs = dbc.executeQuery("select * from ingredient where consumable_id="+id);
+            while(rs.next())
             {
-                data.add(ing.get(i));
+                Ingredient i = new Ingredient(searchRawItem(rs.getInt(1)), rs.getInt(2));
+                data.add(i);
             }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
         }
         return data;
     }
