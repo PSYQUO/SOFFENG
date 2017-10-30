@@ -2,6 +2,7 @@ package model;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class DatabaseModel
 {
@@ -202,7 +203,7 @@ public class DatabaseModel
     /**
      * TODO: NULLS
      */
-    public ArrayList<Consumable> getConsumableByCategory(String category)
+    public ArrayList<Consumable> getConsumableByCategory1(String category)
     {
         dbc = DBConnection.getConnection();
         ArrayList<Consumable> data = new ArrayList<Consumable>();
@@ -226,13 +227,66 @@ public class DatabaseModel
         return data;
     }
 
-    public ArrayList<LineItem> getCartByTransID(int id)
+    public ArrayList<Consumable> getConsumableByCategory2(String category)
+    {
+        dbc = DBConnection.getConnection();
+        ArrayList<Consumable> c = getConsumables();
+        ArrayList<Consumable> data = new ArrayList<Consumable>();
+        for(int i=0; i<c.size(); i++)
+        {
+            if(c.get(i).getCategory().getCategoryName().equals(category))
+            {
+                data.add(c.get(i));
+            }
+        }
+        return data;
+    }
+
+    public ArrayList<LineItem> getLineItems()
     {
         dbc = DBConnection.getConnection();
         ArrayList<LineItem> data = new ArrayList<LineItem>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select distinct * from lineitem l, consumable cc, category c where l.transaction_id=" + id + " and l.Consumable_ID=cc.Consumable_ID and cc.Category_ID=c.Category_ID;");
+            ResultSet rs = dbc.executeQuery("select * from lineitem l, consumable cc, category c where l.Consumable_ID=cc.Consumable_ID and cc.Category_ID=c.Category_ID;");
+            while(rs.next())
+            {
+                LineItem l = new LineItem(rs.getInt(1), searchConsumable(rs.getInt(2)), rs.getInt(3));
+                data.add(l);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
+        }
+        return data;
+    }
+
+    public ArrayList<LineItem> searchLineItems(int id)
+    {
+        ArrayList<LineItem> l = getLineItems();
+        ArrayList<LineItem> data = getLineItems();
+        for(int i = 0; i < l.size(); i++)
+        {
+            if(id == l.get(i).getTransID())
+            {
+                data.add(l.get(i));
+            }
+        }
+        return data;
+    }
+
+    public ArrayList<LineItem> getLineItemsByTransID(int id)
+    {
+        dbc = DBConnection.getConnection();
+        ArrayList<LineItem> data = new ArrayList<LineItem>();
+        try
+        {
+            ResultSet rs = dbc.executeQuery("select * from lineitem l, consumable cc, category c where l.transaction_id=" + id + " and l.Consumable_ID=cc.Consumable_ID and cc.Category_ID=c.Category_ID;");
             while(rs.next())
             {
                 LineItem l = new LineItem(rs.getInt(1), searchConsumable(rs.getInt(2)), rs.getInt(3));
@@ -270,6 +324,132 @@ public class DatabaseModel
         finally
         {
             dbc.closeConnection();
+        }
+        return data;
+    }
+
+    public ArrayList<XReading> getXReadDate(LocalDate date)
+    {
+        dbc = DBConnection.getConnection();
+        ArrayList<XReading> data = new ArrayList<XReading>();
+        try
+        {
+            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime=='"+date+"' group by u.User_ID");
+            while(rs.next())
+            {
+                XReading x = new XReading(searchUser(rs.getInt(1)), rs.getDouble(8));
+                data.add(x);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
+        }
+        return data;
+    }
+
+    public ArrayList<XReading> getXReadRangeDate(LocalDate dateStart, LocalDate dateEnd)
+    {
+        dbc = DBConnection.getConnection();
+        ArrayList<XReading> data = new ArrayList<XReading>();
+        try
+        {
+            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime>='"+dateStart+"' and t.Trans_DateTime<='"+dateEnd+"' group by u.User_ID;");
+            while(rs.next())
+            {
+                XReading x = new XReading(searchUser(rs.getInt(1)), rs.getDouble(8));
+                data.add(x);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
+        }
+        return data;
+    }
+
+    /**
+     * TODO: transaction mode line 391 null
+     */
+    public ArrayList<Transaction> getTransactions()
+    {
+        dbc = DBConnection.getConnection();
+        ArrayList<Transaction> data = new ArrayList<Transaction>();
+        try
+        {
+            ResultSet rs = dbc.executeQuery("select * from transaction");
+            while(rs.next())
+            {
+                Transaction t = new Transaction(rs.getInt(1), null, searchUser(rs.getInt(3)), null, rs.getDouble(6), rs.getDouble(7), rs.getDouble(9), rs.getDouble(10), searchLineItems(rs.getInt(1)), rs.getInt(4));
+                data.add(t);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
+        }
+        return data;
+    }
+
+    public Transaction searchTransaction(int id)
+    {
+        ArrayList<Transaction> data = getTransactions();
+        for(int i = 0; i < data.size(); i++)
+        {
+            if(id == data.get(i).getTransactionId())
+            {
+                return data.get(i);
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Ingredient> getIngredients()
+    {
+        dbc = DBConnection.getConnection();
+        ArrayList<Ingredient> data = new ArrayList<Ingredient>();
+        try
+        {
+            ResultSet rs = dbc.executeQuery("select * from ingredient");
+            while(rs.next())
+            {
+                Ingredient i = new Ingredient(searchRawItem(rs.getInt(1)), rs.getInt(2));
+                data.add(i);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
+        }
+        return data;
+    }
+
+    public ArrayList<Ingredient> searchIngredient(int id)
+    {
+        ArrayList<Ingredient> ing = getIngredients();
+        ArrayList<Ingredient> data = new ArrayList<Ingredient>();
+        for(int i = 0; i < ing.size(); i++)
+        {
+            if(id == ing.get(i).getRawItem().getRawItemID());
+            {
+                data.add(ing.get(i));
+            }
         }
         return data;
     }
