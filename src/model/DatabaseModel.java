@@ -545,4 +545,25 @@ public class DatabaseModel
         }
         return false;
     }
+
+    public boolean changeRole(User user, Role newRole)
+    {
+        try
+        {
+            dbc = DBConnection.getConnection();
+            if(dbc.executeUpdate("UPDATE user SET role_id="+newRole.getRoleID()+" WHERE User_ID="+user.getUserID())==1)
+            {
+                return true;
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
+        }
+        return false;
+    }
 }
