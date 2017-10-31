@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -522,5 +523,26 @@ public class DatabaseModel
             dbc.closeConnection();
         }
         return data;
+    }
+
+    public boolean changePassword(User user, String newPassword)
+    {
+        try
+        {
+            dbc = DBConnection.getConnection();
+            if(dbc.executeUpdate("UPDATE user SET User_Password="+newPassword+" WHERE User_ID="+user.getUserID())==1)
+            {
+                return true;
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
+        }
+        return false;
     }
 }
