@@ -530,7 +530,11 @@ public class DatabaseModel
         try
         {
             dbc = DBConnection.getConnection();
-            if(dbc.executeUpdate("UPDATE user SET User_Password="+newPassword+" WHERE User_ID="+user.getUserID())==1)
+            dbc.prepareStatement("UPDATE user SET User_Password= ? WHERE User_ID= ?");
+            dbc.setString(1, newPassword);
+            dbc.setInt(2, user.getUserID());
+
+            if(dbc.executeUpdate()==1)
             {
                 return true;
             }
@@ -551,7 +555,61 @@ public class DatabaseModel
         try
         {
             dbc = DBConnection.getConnection();
-            if(dbc.executeUpdate("UPDATE user SET role_id="+newRole.getRoleID()+" WHERE User_ID="+user.getUserID())==1)
+            dbc.prepareStatement("UPDATE user SET role_id= ? WHERE User_ID= ?");
+            dbc.setInt(1, newRole.getRoleID());
+            dbc.setInt(2, user.getUserID());
+
+            if(dbc.executeUpdate()==1)
+            {
+                return true;
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
+        }
+        return false;
+    }
+
+    public boolean addRawItem(RawItem newRawItem)
+    {
+        try
+        {
+            dbc = DBConnection.getConnection();
+            dbc.prepareStatement("INSERT INTO rawitem (RawItem_Name, RawItem_Price, RawItem_Quantity) VALUES (?, ?, ?)");
+            dbc.setString(1, newRawItem.getName());
+            dbc.setDouble(2, newRawItem.getPrice());
+            dbc.setInt(3, newRawItem.getQuantity());
+
+            if(dbc.executeUpdate()==1)
+            {
+                return true;
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            dbc.closeConnection();
+        }
+        return false;
+    }
+
+    public boolean deleteUser(User user)
+    {
+        try
+        {
+            dbc = DBConnection.getConnection();
+            dbc.prepareStatement("DELETE FROM user WHERE User_ID=?");
+            dbc.setInt(1, user.getUserID());
+
+            if(dbc.executeUpdate()==1)
             {
                 return true;
             }

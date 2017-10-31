@@ -9,6 +9,7 @@ public class DBConnection
 
     private Connection con;
     private Statement stmt;
+    private PreparedStatement pstmt;
 
     private DBConnection()
     {
@@ -38,6 +39,31 @@ public class DBConnection
         }
     }
 
+    public void setInt(int p, int x) throws SQLException
+    {
+        pstmt.setInt(p, x);
+    }
+    
+    public void setString(int p, String x) throws SQLException
+    {
+        pstmt.setString(p, x);
+    }
+
+    public void setDouble(int p, double x) throws SQLException
+    {
+        pstmt.setDouble(p, x);
+    }
+
+    public void prepareStatement(String query) throws SQLException
+    {
+        pstmt = con.prepareStatement(query);
+    }
+
+    public int executeUpdate() throws SQLException
+    {
+        return pstmt.executeUpdate();
+    }
+
     public int executeUpdate(String query) throws SQLException
     {
         return stmt.executeUpdate(query);
@@ -47,7 +73,7 @@ public class DBConnection
     {
         return stmt.executeQuery(query);
     }
-
+    
     public void closeConnection()
     {
         if(con == null)
