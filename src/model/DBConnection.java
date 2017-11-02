@@ -59,6 +59,11 @@ public class DBConnection
         pstmt = con.prepareStatement(query);
     }
 
+    public void closePS() throws SQLException
+    {
+        pstmt.close();
+    }
+
     public int executeUpdate() throws SQLException
     {
         return pstmt.executeUpdate();

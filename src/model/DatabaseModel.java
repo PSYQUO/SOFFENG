@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * 
+ */
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -30,10 +34,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -51,10 +51,6 @@ public class DatabaseModel
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return null;
     }
@@ -76,10 +72,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -97,10 +89,6 @@ public class DatabaseModel
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return null;
     }
@@ -122,10 +110,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -143,10 +127,6 @@ public class DatabaseModel
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return null;
     }
@@ -168,10 +148,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -190,10 +166,6 @@ public class DatabaseModel
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return null;
     }
@@ -218,10 +190,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -242,10 +210,6 @@ public class DatabaseModel
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return null;
     }
@@ -270,10 +234,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -297,10 +257,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -320,10 +276,6 @@ public class DatabaseModel
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return data;
     }
@@ -345,10 +297,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -368,10 +316,6 @@ public class DatabaseModel
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return data;
     }
@@ -393,10 +337,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -417,15 +357,11 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
     /**
-     * TODO: transaction mode line 438 null
+     * TODO: NULLS
      */
     public ArrayList<Transaction> getTransactions()
     {
@@ -444,15 +380,11 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
     /**
-     * TODO: transaction mode line 465 null
+     * TODO: NULLS
      */
     public Transaction searchTransaction(int id)
     {
@@ -469,10 +401,6 @@ public class DatabaseModel
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return null;
     }
@@ -494,10 +422,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -518,10 +442,6 @@ public class DatabaseModel
         {
             System.out.println(e);
         }
-        finally
-        {
-            dbc.closeConnection();
-        }
         return data;
     }
 
@@ -538,14 +458,11 @@ public class DatabaseModel
             {
                 return true;
             }
+            dbc.closePS();
         }
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return false;
     }
@@ -563,14 +480,11 @@ public class DatabaseModel
             {
                 return true;
             }
+            dbc.closePS();
         }
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return false;
     }
@@ -589,14 +503,98 @@ public class DatabaseModel
             {
                 return true;
             }
+            dbc.closePS();
         }
         catch(Exception e)
         {
             System.out.println(e);
         }
-        finally
+        return false;
+    }
+
+    public boolean deleteRawItem(RawItem rawItem)
+    {
+        try
         {
-            dbc.closeConnection();
+            dbc = DBConnection.getConnection();
+            dbc.prepareStatement("DELETE FROM rawitem WHERE rawitem_ID=?");
+            dbc.setInt(1, rawItem.getRawItemID());
+
+            if(dbc.executeUpdate()==1)
+            {
+                return true;
+            }
+            dbc.closePS();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public boolean addCategory(Category newCategory)
+    {
+        try
+        {
+            dbc = DBConnection.getConnection();
+            dbc.prepareStatement("INSERT INTO category (Category_Name) VALUES (?)");
+            dbc.setString(1, newCategory.getCategoryName());
+
+            if(dbc.executeUpdate()==1)
+            {
+                return true;
+            }
+            dbc.closePS();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public boolean deleteCategory(Category category)
+    {
+        try
+        {
+            dbc = DBConnection.getConnection();
+            dbc.prepareStatement("DELETE FROM category WHERE category_ID=?");
+            dbc.setInt(1, category.getCategoryId());
+
+            if(dbc.executeUpdate()==1)
+            {
+                return true;
+            }
+            dbc.closePS();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public boolean addUser(User newUser)
+    {
+        try
+        {
+            dbc = DBConnection.getConnection();
+            dbc.prepareStatement("INSERT INTO user (User_Username, User_Name, User_Password, Role) VALUES (?, ?, ?, ?)");
+            dbc.setString(1, newUser.getusername());
+            dbc.setString(2, newUser.getUserLoginName());
+            dbc.setString(3, newUser.getPassword());
+            dbc.setInt(4, newUser.getRole().getRoleID());
+
+            if(dbc.executeUpdate()==1)
+            {
+                return true;
+            }
+            dbc.closePS();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
         }
         return false;
     }
@@ -613,14 +611,11 @@ public class DatabaseModel
             {
                 return true;
             }
+            dbc.closePS();
         }
         catch(Exception e)
         {
             System.out.println(e);
-        }
-        finally
-        {
-            dbc.closeConnection();
         }
         return false;
     }
