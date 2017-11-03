@@ -13,14 +13,28 @@ import java.io.IOException;
 
 public abstract class Controller
 {
-    protected FXMLLoader loader;
     protected Parent root;
+    protected ViewManager viewManager;
 
-    public Controller(String fxmlpath) throws IOException
+    /**
+     *
+     * @param controller
+     * @param fxmlpath
+     * @throws IOException
+     */
+    protected void initialize(Controller controller, String fxmlpath) throws IOException
     {
-        loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxmlpath));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlpath + ".fxml"));
+        loader.setController(controller);
+
         root = loader.load();
+        root.getStylesheets().add(getClass().getResource(fxmlpath + ".css").toExternalForm());
+    }
+
+    public void setViewManager(ViewManager viewManager)
+    {
+        this.viewManager = viewManager;
     }
 
     public Parent getRoot()
