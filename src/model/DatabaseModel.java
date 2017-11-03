@@ -361,6 +361,29 @@ public class DatabaseModel
     }
 
     /**
+    * TODO: rs.getString(1) to date data type
+    */
+    public ArrayList<ZReading> getZReading()
+    {
+        dbc = DBConnection.getConnection();
+        ArrayList<ZReading> data = new ArrayList<ZReading>();
+        try
+        {
+            ResultSet rs = dbc.executeQuery("select trans_datetime ,sum(total) from transaction group by date(trans_datetime)");
+            while(rs.next())
+            {
+                ZReading z = new ZReading(rs.getString(1), rs.getDouble(2));
+                data.add(z);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return data;
+    }
+
+    /**
      * TODO: NULLS
      */
     public ArrayList<Transaction> getTransactions()
@@ -436,6 +459,26 @@ public class DatabaseModel
             {
                 Ingredient i = new Ingredient(searchRawItem(rs.getInt(1)), rs.getInt(2));
                 data.add(i);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return data;
+    }
+
+    public ArrayList<Col2> getMostandLeastSold()
+    {
+        dbc = DBConnection.getConnection();
+        ArrayList<Col2> data = new ArrayList<Col2>();
+        try
+        {
+            ResultSet rs = dbc.executeQuery("select c.consumable_name, sum(l.quantity) from lineitem l, consumable c where l.consumable_id=c.consumable_id group by l.quantity desc");
+            while(rs.next())
+            {
+                Col2 c = new Col2(rs.getString(1), rs.getString(2));
+                data.add(c);
             }
         }
         catch(Exception e)
@@ -619,4 +662,47 @@ public class DatabaseModel
         }
         return false;
     }
+
+    public boolean deleteConsumable(Consumable consumable)
+    {
+        try
+        {
+            dbc = DBConnection.getConnection();
+            dbc.prepareStatement("DELETE FROM consumable WHERE consumable_ID=?");
+            dbc.setInt(1, consumable.getConsumableID());
+
+            if(dbc.executeUpdate()==1)
+            {
+                return true;
+            }
+            dbc.closePS();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public boolean deleteIngredients(Consumable consumable)
+    {
+        try
+        {
+            dbc = DBConnection.getConnection();
+            dbc.prepareStatement("DELETE FROM ingredient WHERE consumable_ID=?");
+            dbc.setInt(1, consumable.getConsumableID());
+
+            if(dbc.executeUpdate()==1)
+            {
+                return true;
+            }
+            dbc.closePS();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
 }
