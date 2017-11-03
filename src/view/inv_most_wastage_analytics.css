@@ -1,0 +1,27 @@
+.dropDown {
+    -fx-background-color: rgb(52,152,219);
+}
+#background {
+    -fx-background-color: RGB(44, 64, 80);
+}
+.greenbutton {
+    -fx-background-color: rgb(46,204,113);
+}
+
+.redbutton {
+-fx-background-color: rgb(239, 83, 80);
+}
+
+#redBut{
+	-fx-background-image: url("resources/icons/del2.png");
+    -fx-background-size: 30%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#greenBut{
+	-fx-background-image: url("resources/icons/addStuff.png");
+    -fx-background-size: 30%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

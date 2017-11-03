@@ -57,7 +57,7 @@ public class User {
         this.role = role;
     }
 
-    private enum Role {
+    public enum Role {
         OWNER,
         SUPERVISOR,
         CASHIER
