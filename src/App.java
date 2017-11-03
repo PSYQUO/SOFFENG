@@ -1,3 +1,5 @@
+import controller.MainMenuController;
+import controller.NewOrderController;
 import controller.ViewManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,20 +15,22 @@ public class App extends Application
     }
 
     /**
-     * TODO: Is the Title of the Stage correct?
+     * TODO: Is the Title of the Stage correct? - patsy
+     * TODO: Might be a better way to decouple ViewManager and Controller classes - patsy
      */
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("view/mainmenu.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
+        MainMenuController mmc = new MainMenuController();
+        NewOrderController noc = new NewOrderController();
 
-        ViewManager viewManager = new ViewManager();
+        ViewManager vm = new ViewManager(mmc);
+        vm.addController(noc);
+
+        mmc.setViewManager(vm);
 
         primaryStage.setTitle("Tony Joe's POS System");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(vm.getScene());
         primaryStage.show();
     }
 }
