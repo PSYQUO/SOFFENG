@@ -2,22 +2,14 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 public class JoleneNewOrderController
 {
-	
-	@FXML
+    @FXML
     private ComboBox<String> comboName;
 
     @FXML
@@ -88,7 +80,7 @@ public class JoleneNewOrderController
 
     @FXML
     private Button button3;
-    
+
     @FXML
     private Button button4;
 
@@ -97,7 +89,7 @@ public class JoleneNewOrderController
 
     @FXML
     private Button button6;
-    
+
     @FXML
     private Button button7;
 
@@ -121,9 +113,10 @@ public class JoleneNewOrderController
 
     @FXML
     private Button buttonEnter;
-    
+
     @FXML
-    void initialize() {
+    void initialize()
+    {
         assert borderpaneNewOrder != null : "fx:id=\"borderpaneNewOrder\" was not injected: check your FXML file 'neworder.fxml'.";
         assert tabBudget != null : "fx:id=\"tabBudget\" was not injected: check your FXML file 'neworder.fxml'.";
         assert flowpaneBudget != null : "fx:id=\"flowpaneBudget\" was not injected: check your FXML file 'neworder.fxml'.";
@@ -159,49 +152,52 @@ public class JoleneNewOrderController
         assert buttonPeriod != null : "fx:id=\"buttonPeriod\" was not injected: check your FXML file 'neworder.fxml'.";
         assert buttonBackspace != null : "fx:id=\"buttonBackspace\" was not injected: check your FXML file 'neworder.fxml'.";
         assert buttonEnter != null : "fx:id=\"buttonEnter\" was not injected: check your FXML file 'neworder.fxml'.";
-        
+
         // TODO Fetch stuff from database, instantiate NewOrderButtons here
     }
-    
+
     /* 
      * OK button goes to Payment
      */
     @FXML
-    public void buttonOkOnAction(ActionEvent event) {
-    	borderpanePayment.setDisable(false);
-    	borderpanePayment.setVisible(true);
-    	borderpaneNewOrder.setDisable(true);
+    public void buttonOkOnAction(ActionEvent event)
+    {
+        borderpanePayment.setDisable(false);
+        borderpanePayment.setVisible(true);
+        borderpaneNewOrder.setDisable(true);
     }
-    
+
     /*
      * Enter button (payment) goes back to New Order
      */
     @FXML
-    public void buttonEnterOnAction(ActionEvent event) {
-    	borderpanePayment.setDisable(true);
-    	borderpanePayment.setVisible(false);
-    	borderpaneNewOrder.setDisable(false);
-    	spinnerCustNo.getEditor().clear(); // remove spinner content
-    	textfieldPayment.clear(); // remove textfield content
-    	
-    	// TODO at this point papasok na sa DB dapat
-    	
-    	// TODO Dapat after nito magpapakita yung "Transaction complete!"
+    public void buttonEnterOnAction(ActionEvent event)
+    {
+        borderpanePayment.setDisable(true);
+        borderpanePayment.setVisible(false);
+        borderpaneNewOrder.setDisable(false);
+        spinnerCustNo.getEditor().clear(); // remove spinner content
+        textfieldPayment.clear(); // remove textfield content
+
+        // TODO at this point papasok na sa DB dapat
+
+        // TODO Dapat after nito magpapakita yung "Transaction complete!"
     }
-    
+
     /*
      * Payment close button goes back to New Order
      */
     @FXML
-    public void buttonPaymentCloseOnAction(ActionEvent event) {
-    	borderpanePayment.setDisable(true);
-    	borderpanePayment.setVisible(false);
-    	borderpaneNewOrder.setDisable(false);
-    	spinnerCustNo.getEditor().clear(); // remove spinner content
-    	textfieldPayment.clear(); // remove textfield content
+    public void buttonPaymentCloseOnAction(ActionEvent event)
+    {
+        borderpanePayment.setDisable(true);
+        borderpanePayment.setVisible(false);
+        borderpaneNewOrder.setDisable(false);
+        spinnerCustNo.getEditor().clear(); // remove spinner content
+        textfieldPayment.clear(); // remove textfield content
     }
 
     // TODO add functionality to number buttons
-    
+
     // TODO add functionality to backspace button
 }
