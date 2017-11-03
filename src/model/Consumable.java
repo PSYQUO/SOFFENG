@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 
 public class Consumable {
-    public int consumableId;
+    public int consumableID;
     private String name;
     private String codeName;
     private Category category;
@@ -12,7 +12,7 @@ public class Consumable {
     private Meal meal;
 
     public Consumable(String name, String codeName, Category category, double price, List<RawItem> rawItem, Meal meal) {
-        this.consumableId = -1;
+        this.consumableID = -1;
         this.name = name;
         this.codeName = codeName;
         this.category = category;
@@ -21,8 +21,8 @@ public class Consumable {
         this.meal = meal;
     }
 
-    public Consumable(int consumableId, String name, String codeName, Category category, double price, List<RawItem> rawItem, Meal meal) {
-        this.consumableId = consumableId;
+    public Consumable(int consumableID, String name, String codeName, Category category, double price, List<RawItem> rawItem, Meal meal) {
+        this.consumableID = consumableID;
         this.name = name;
         this.codeName = codeName;
         this.category = category;
@@ -32,7 +32,7 @@ public class Consumable {
     }
 
     public int getConsumableID(){
-        return consumableId;
+        return consumableID;
     }
 
     public String getName() {

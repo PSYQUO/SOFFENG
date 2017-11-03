@@ -2,22 +2,37 @@ package model;
 
 import java.sql.*;
 
+/**
+ * DBConnection Singleton class
+ */
 public class DBConnection
 {
-
+    /**
+     * One global DBConnection object per application instance.
+     */
     private static final DBConnection dbc = new DBConnection();
+    private static Connection connection;
 
-    private Connection con;
-    private Statement stmt;
-    private PreparedStatement pstmt;
-
-    private DBConnection()
-    {
-    }
+    private Statement statement;
+    private PreparedStatement preparedStatement;
 
     public static DBConnection getConnection()
     {
         return dbc;
+    }
+
+    public static void closeConnection()
+    {
+        if(connection == null)
+            return;
+        try
+        {
+            connection.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public void setConnection(String db, String user, String pass)
@@ -30,8 +45,8 @@ public class DBConnection
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?useSSL=false", user, pass);
-            stmt = con.createStatement();
+            connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?useSSL=false", user, pass);
+            statement = connection.createStatement();
         }
         catch(Exception e)
         {
@@ -41,56 +56,41 @@ public class DBConnection
 
     public void setInt(int p, int x) throws SQLException
     {
-        pstmt.setInt(p, x);
+        preparedStatement.setInt(p, x);
     }
     
     public void setString(int p, String x) throws SQLException
     {
-        pstmt.setString(p, x);
+        preparedStatement.setString(p, x);
     }
 
     public void setDouble(int p, double x) throws SQLException
     {
-        pstmt.setDouble(p, x);
+        preparedStatement.setDouble(p, x);
     }
 
     public void prepareStatement(String query) throws SQLException
     {
-        pstmt = con.prepareStatement(query);
+        preparedStatement = connection.prepareStatement(query);
     }
 
-    public void closePS() throws SQLException
+    public void closePreparedStatement() throws SQLException
     {
-        pstmt.close();
+        preparedStatement.close();
     }
 
     public int executeUpdate() throws SQLException
     {
-        return pstmt.executeUpdate();
+        return preparedStatement.executeUpdate();
     }
 
     public int executeUpdate(String query) throws SQLException
     {
-        return stmt.executeUpdate(query);
+        return statement.executeUpdate(query);
     }
 
     public ResultSet executeQuery(String query) throws SQLException
     {
-        return stmt.executeQuery(query);
+        return statement.executeQuery(query);
     }
-    
-    public void closeConnection()
-    {
-        if(con == null)
-            return;
-        try
-        {
-            con.close();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
 }

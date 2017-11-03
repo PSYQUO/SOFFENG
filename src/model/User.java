@@ -1,22 +1,22 @@
 package model;
 
 public class User {
-    public int userId;
+    public int userID;
     private String username;
     private String userLoginName;
     private String password;
     private Role role;
 
     public User(String username, String userLoginName, String password, Role role) {
-        this.userId = -1;
+        this.userID = -1;
         this.username = username;
         this.userLoginName = userLoginName;
         this.password = password;
         this.role = role;
     }
 
-    public User(int userId, String username, String userLoginName, String password, Role role) {
-        this.userId = userId;
+    public User(int userID, String username, String userLoginName, String password, Role role) {
+        this.userID = userID;
         this.username = username;
         this.userLoginName = userLoginName;
         this.password = password;
@@ -24,7 +24,7 @@ public class User {
     }
 
     public int getUserID(){
-        return userId;
+        return userID;
     }
 
     public String getusername() {

@@ -2,10 +2,9 @@ import controller.MainMenuController;
 import controller.NewOrderController;
 import controller.ViewManager;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.DBConnection;
+import model.DatabaseModel;
 
 public class App extends Application
 {
@@ -32,5 +31,11 @@ public class App extends Application
         primaryStage.setTitle("Tony Joe's POS System");
         primaryStage.setScene(vm.getScene());
         primaryStage.show();
+    }
+
+    @Override
+    public void stop()
+    {
+        DBConnection.closeConnection();
     }
 }

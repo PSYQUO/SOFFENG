@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
-
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane id="background" prefHeight="400.0" prefWidth="600.0" />
-      <Label alignment="CENTER" layoutY="8.0" prefHeight="53.0" prefWidth="193.0" text="Inventory" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="comboName" layoutX="392.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="193.0" styleClass="dropDown" />
-      <Button id="greenBut" layoutX="193.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="83.0" styleClass="greenbutton" />
-      <Button id="redBut" fx:id="redbut" layoutX="284.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="83.0" styleClass="redbutton" />
-      <TableView layoutX="36.0" layoutY="70.0" prefHeight="307.0" prefWidth="527.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="113.33333587646484" text="C2" />
-            <TableColumn prefWidth="181.3333282470703" text="C3" />
-            <TableColumn prefWidth="155.99996948242188" text="C4" />
-        </columns>
-      </TableView>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <BorderPane id="background" prefHeight="400.0" prefWidth="600.0"/>
+        <Label alignment="CENTER" layoutY="8.0" prefHeight="53.0" prefWidth="193.0" text="Inventory" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="36.0"/>
+            </font>
+        </Label>
+        <ComboBox fx:id="comboName" layoutX="392.0" layoutY="14.0" maxHeight="1.7976931348623157E308"
+                  maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="193.0" styleClass="dropDown"/>
+        <Button id="greenBut" layoutX="193.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="83.0"
+                styleClass="greenbutton"/>
+        <Button id="redBut" fx:id="redbut" layoutX="284.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0"
+                prefWidth="83.0" styleClass="redbutton"/>
+        <TableView layoutX="36.0" layoutY="70.0" prefHeight="307.0" prefWidth="527.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="C1"/>
+                <TableColumn prefWidth="113.33333587646484" text="C2"/>
+                <TableColumn prefWidth="181.3333282470703" text="C3"/>
+                <TableColumn prefWidth="155.99996948242188" text="C4"/>
+            </columns>
+        </TableView>
+    </children>
 </AnchorPane>

@@ -1,19 +1,23 @@
 package model;
 
-public class XReading{
+public class XReading
+{
     private User user;
     private double total;
 
-    public XReading(User user, double total){
+    public XReading(User user, double total)
+    {
         this.user = user;
         this.total = total;
     }
 
-    public User getUser(){
+    public User getUser()
+    {
         return user;
     }
 
-    public double getTotal(){
+    public double getTotal()
+    {
         return total;
     }
 }

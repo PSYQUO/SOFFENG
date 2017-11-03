@@ -1,7 +1,7 @@
 package model;
 
 /**
- * TODO: Date to date data type
+ * TODO: String date to Date data type
  */
 
 import java.time.LocalDate;

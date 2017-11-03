@@ -1,16 +1,12 @@
 package model;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class DatabaseModel
 {
     private DBConnection dbc;
-
-    public DatabaseModel()
-    {
-    }
 
     public ArrayList<Category> getCategories()
     {
@@ -27,7 +23,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -37,7 +33,7 @@ public class DatabaseModel
         dbc = DBConnection.getConnection();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from category where category_id="+id);
+            ResultSet rs = dbc.executeQuery("select * from category where category_id=" + id);
             while(rs.next())
             {
                 return new Category(rs.getInt(1), rs.getString(2));
@@ -45,7 +41,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return null;
     }
@@ -65,7 +61,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -75,7 +71,7 @@ public class DatabaseModel
         dbc = DBConnection.getConnection();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from role where role_id="+id);
+            ResultSet rs = dbc.executeQuery("select * from role where role_id=" + id);
             while(rs.next())
             {
                 return new Role(rs.getInt(1), rs.getString(2));
@@ -83,7 +79,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return null;
     }
@@ -103,7 +99,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -113,7 +109,7 @@ public class DatabaseModel
         dbc = DBConnection.getConnection();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from rawitem where rawitem_id="+id);
+            ResultSet rs = dbc.executeQuery("select * from rawitem where rawitem_id=" + id);
             while(rs.next())
             {
                 return new RawItem(rs.getInt(1), rs.getString(2), rs.getInt(4), rs.getDouble(3));
@@ -121,7 +117,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return null;
     }
@@ -141,7 +137,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -152,7 +148,7 @@ public class DatabaseModel
         ArrayList<User> data = new ArrayList<User>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from user where user_id="+id);
+            ResultSet rs = dbc.executeQuery("select * from user where user_id=" + id);
             while(rs.next())
             {
                 return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), searchRole(rs.getInt(5)));
@@ -160,7 +156,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return null;
     }
@@ -183,7 +179,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -196,7 +192,7 @@ public class DatabaseModel
         dbc = DBConnection.getConnection();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID=cc.Category_ID and c.consumable_id="+id);
+            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID=cc.Category_ID and c.consumable_id=" + id);
             while(rs.next())
             {
                 return new Consumable(rs.getInt(1), rs.getString(2), rs.getString(3), searchCategory(rs.getInt(6)), rs.getDouble(4), null, null);
@@ -204,7 +200,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return null;
     }
@@ -227,7 +223,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -241,7 +237,7 @@ public class DatabaseModel
         ArrayList<Consumable> data = new ArrayList<Consumable>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID=cc.Category_ID and cc.category_id="+id);
+            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID=cc.Category_ID and cc.category_id=" + id);
             while(rs.next())
             {
                 Consumable c = new Consumable(rs.getInt(1), rs.getString(2), rs.getString(3), searchCategory(rs.getInt(6)), rs.getDouble(4), null, null);
@@ -250,7 +246,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -270,7 +266,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -290,7 +286,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -310,7 +306,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -321,7 +317,7 @@ public class DatabaseModel
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime=='"+date+"' group by u.User_ID");
+            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime=='" + date + "' group by u.User_ID");
             while(rs.next())
             {
                 XReading x = new XReading(searchUser(rs.getInt(1)), rs.getDouble(8));
@@ -330,7 +326,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -341,7 +337,7 @@ public class DatabaseModel
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime>='"+dateStart+"' and t.Trans_DateTime<='"+dateEnd+"' group by u.User_ID;");
+            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime>='" + dateStart + "' and t.Trans_DateTime<='" + dateEnd + "' group by u.User_ID;");
             while(rs.next())
             {
                 XReading x = new XReading(searchUser(rs.getInt(1)), rs.getDouble(8));
@@ -350,14 +346,14 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
 
     /**
-    * TODO: rs.getString(1) to date data type
-    */
+     * TODO: rs.getString(1) to Date data type
+     */
     public ArrayList<ZReading> getZReading()
     {
         dbc = DBConnection.getConnection();
@@ -373,7 +369,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -396,7 +392,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -410,7 +406,7 @@ public class DatabaseModel
         ArrayList<Transaction> data = new ArrayList<Transaction>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from transaction where transaction_id="+id);
+            ResultSet rs = dbc.executeQuery("select * from transaction where transaction_id=" + id);
             while(rs.next())
             {
                 return new Transaction(rs.getInt(1), null, searchUser(rs.getInt(3)), null, rs.getDouble(6), rs.getDouble(7), rs.getDouble(9), rs.getDouble(10), searchLineItems(rs.getInt(1)), rs.getInt(4));
@@ -418,7 +414,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return null;
     }
@@ -438,7 +434,7 @@ public class DatabaseModel
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            System.err.println(e);
         }
         return data;
     }
@@ -449,7 +445,7 @@ public class DatabaseModel
         ArrayList<Ingredient> data = new ArrayList<Ingredient>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from ingredient where consumable_id="+id);
+            ResultSet rs = dbc.executeQuery("select * from ingredient where consumable_id=" + id);
             while(rs.next())
             {
                 Ingredient i = new Ingredient(searchRawItem(rs.getInt(1)), rs.getInt(2));
@@ -492,11 +488,11 @@ public class DatabaseModel
             dbc.setString(1, newPassword);
             dbc.setInt(2, user.getUserID());
 
-            if(dbc.executeUpdate()==1)
+            if(dbc.executeUpdate() == 1)
             {
                 return true;
             }
-            dbc.closePS();
+            dbc.closePreparedStatement();
         }
         catch(Exception e)
         {
@@ -514,11 +510,11 @@ public class DatabaseModel
             dbc.setInt(1, newRole.getRoleID());
             dbc.setInt(2, user.getUserID());
 
-            if(dbc.executeUpdate()==1)
+            if(dbc.executeUpdate() == 1)
             {
                 return true;
             }
-            dbc.closePS();
+            dbc.closePreparedStatement();
         }
         catch(Exception e)
         {
@@ -537,11 +533,11 @@ public class DatabaseModel
             dbc.setDouble(2, newRawItem.getPrice());
             dbc.setInt(3, newRawItem.getQuantity());
 
-            if(dbc.executeUpdate()==1)
+            if(dbc.executeUpdate() == 1)
             {
                 return true;
             }
-            dbc.closePS();
+            dbc.closePreparedStatement();
         }
         catch(Exception e)
         {
@@ -558,11 +554,11 @@ public class DatabaseModel
             dbc.prepareStatement("DELETE FROM rawitem WHERE rawitem_ID=?");
             dbc.setInt(1, rawItem.getRawItemID());
 
-            if(dbc.executeUpdate()==1)
+            if(dbc.executeUpdate() == 1)
             {
                 return true;
             }
-            dbc.closePS();
+            dbc.closePreparedStatement();
         }
         catch(Exception e)
         {
@@ -579,11 +575,11 @@ public class DatabaseModel
             dbc.prepareStatement("INSERT INTO category (Category_Name) VALUES (?)");
             dbc.setString(1, newCategory.getCategoryName());
 
-            if(dbc.executeUpdate()==1)
+            if(dbc.executeUpdate() == 1)
             {
                 return true;
             }
-            dbc.closePS();
+            dbc.closePreparedStatement();
         }
         catch(Exception e)
         {
@@ -598,13 +594,13 @@ public class DatabaseModel
         {
             dbc = DBConnection.getConnection();
             dbc.prepareStatement("DELETE FROM category WHERE category_ID=?");
-            dbc.setInt(1, category.getCategoryId());
+            dbc.setInt(1, category.getCategoryID());
 
-            if(dbc.executeUpdate()==1)
+            if(dbc.executeUpdate() == 1)
             {
                 return true;
             }
-            dbc.closePS();
+            dbc.closePreparedStatement();
         }
         catch(Exception e)
         {
@@ -624,11 +620,11 @@ public class DatabaseModel
             dbc.setString(3, newUser.getPassword());
             dbc.setInt(4, newUser.getRole().getRoleID());
 
-            if(dbc.executeUpdate()==1)
+            if(dbc.executeUpdate() == 1)
             {
                 return true;
             }
-            dbc.closePS();
+            dbc.closePreparedStatement();
         }
         catch(Exception e)
         {
@@ -645,11 +641,11 @@ public class DatabaseModel
             dbc.prepareStatement("DELETE FROM user WHERE User_ID=?");
             dbc.setInt(1, user.getUserID());
 
-            if(dbc.executeUpdate()==1)
+            if(dbc.executeUpdate() == 1)
             {
                 return true;
             }
-            dbc.closePS();
+            dbc.closePreparedStatement();
         }
         catch(Exception e)
         {
@@ -666,11 +662,12 @@ public class DatabaseModel
             dbc.prepareStatement("DELETE FROM consumable WHERE consumable_ID=?");
             dbc.setInt(1, consumable.getConsumableID());
 
-            if(dbc.executeUpdate()==1)
+            if(dbc.executeUpdate() == 1)
             {
                 return true;
             }
-            dbc.closePS();
+
+            dbc.closePreparedStatement();
         }
         catch(Exception e)
         {
@@ -687,11 +684,11 @@ public class DatabaseModel
             dbc.prepareStatement("DELETE FROM ingredient WHERE consumable_ID=?");
             dbc.setInt(1, consumable.getConsumableID());
 
-            if(dbc.executeUpdate()==1)
+            if(dbc.executeUpdate() == 1)
             {
                 return true;
             }
-            dbc.closePS();
+            dbc.closePreparedStatement();
         }
         catch(Exception e)
         {
