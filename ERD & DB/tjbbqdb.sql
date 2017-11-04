@@ -54,7 +54,7 @@ CREATE TABLE `consumable` (
   `Consumable_CodeName` varchar(45) DEFAULT NULL,
   `Consumable_Price` float NOT NULL,
   `Meal_ID` int(11) DEFAULT NULL,
-  `Category_ID` varchar(45) DEFAULT NULL,
+  `Category_ID` varchar(45) NOT NULL,
   PRIMARY KEY (`Consumable_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -65,7 +65,7 @@ CREATE TABLE `consumable` (
 
 LOCK TABLES `consumable` WRITE;
 /*!40000 ALTER TABLE `consumable` DISABLE KEYS */;
-INSERT INTO `consumable` VALUES (1,'Crispy Pork Chop','',99,NULL,NULL),(2,'Juicy Fried Chicken','',99,NULL,'3'),(3,'Crispy Liempo','',99,NULL,'3'),(4,'Beef Nachos','',145,NULL,NULL),(5,'Chicken Croquettes','',145,NULL,NULL),(6,'Buffalo Wings','',145,NULL,NULL),(7,'Hungarian Sausage','',145,NULL,NULL),(8,'Hamburger','',125,NULL,NULL),(9,'Hamburger w/ Cheese','',140,NULL,NULL),(10,'Hungarian','',140,NULL,NULL),(11,'Sriracha BBQ Chicken Skewers','',50,NULL,NULL),(12,'Sriracha Pork BBQ Skewers','',50,NULL,NULL),(13,'Fries Ala Carte','',80,NULL,NULL),(14,'Twisty Fries','',95,NULL,NULL),(15,'Cross Fries','',95,NULL,NULL),(16,'Crispy Wedges','',95,NULL,NULL),(17,'Jalapeno Balls','',155,NULL,NULL),(18,'Mozarella Cheese Sticks','',175,NULL,NULL),(19,'Sizzling Sisig','',220,NULL,NULL),(20,'Beef Nachos','',145,NULL,NULL),(49,'Chicken Quarter',NULL,125,NULL,NULL),(50,'Pork BBQ 2 pcs',NULL,105,NULL,NULL),(51,'Liempo BBQ',NULL,125,NULL,NULL),(52,'Porkchop BBQ 2 pcs',NULL,125,NULL,NULL),(53,'BBQ Spareribs',NULL,145,NULL,NULL),(54,'Baby Back Ribs',NULL,185,NULL,NULL),(55,'Grilled Beefy Burger',NULL,105,NULL,NULL),(56,'Grilled Hungarian 2pcs',NULL,145,NULL,NULL),(57,'Grilled Beefy Belly',NULL,195,NULL,NULL),(58,'Grilled Bulalo Steak',NULL,195,NULL,NULL),(59,'Beef Baby Back Ribs',NULL,195,NULL,NULL),(60,'Grilled Bangus',NULL,115,NULL,NULL),(61,'Grilled Tuna Belly',NULL,195,NULL,NULL),(62,'Grilled Tuna Panga',NULL,310,NULL,NULL),(78,'Spaghetti w/ Meatballs',NULL,125,NULL,NULL),(79,'Spaghetti Carbonara',NULL,125,NULL,NULL),(80,'Plain',NULL,20,NULL,'6'),(81,'Garlic',NULL,25,NULL,'6'),(82,'Java',NULL,25,NULL,'6'),(83,'Halo Halo',NULL,70,NULL,'7'),(84,'Saba Con Hielo',NULL,60,NULL,'7'),(85,'Mais Con Hielo',NULL,60,NULL,'7'),(86,'Lemon Iced Tea',NULL,40,NULL,NULL),(87,'Raspberry Juice',NULL,40,NULL,NULL),(88,'Iced Tea Litro',NULL,125,NULL,NULL),(89,'Bottled Water',NULL,20,NULL,NULL),(90,'Coke',NULL,40,NULL,NULL),(91,'Pineapple Juice in Can',NULL,45,NULL,NULL),(92,'San Mig Pale',NULL,55,NULL,NULL),(93,'San Mig Light',NULL,55,NULL,NULL),(94,'Sprite',NULL,40,NULL,NULL);
+INSERT INTO `consumable` VALUES (1,'Crispy Pork Chop','',99,NULL,'3'),(2,'Juicy Fried Chicken','',99,NULL,'3'),(3,'Crispy Liempo','',99,NULL,'3'),(4,'Beef Nachos','',145,NULL,'2'),(5,'Chicken Croquettes','',145,NULL,'2'),(6,'Buffalo Wings','',145,NULL,'2'),(7,'Hungarian Sausage','',145,NULL,'1'),(8,'Hamburger','',125,NULL,'1'),(9,'Hamburger w/ Cheese','',140,NULL,'1'),(10,'Hungarian','',140,NULL,'1'),(11,'Sriracha BBQ Chicken Skewers','',50,NULL,'2'),(12,'Sriracha Pork BBQ Skewers','',50,NULL,'2'),(13,'Fries Ala Carte','',80,NULL,'2'),(14,'Twisty Fries','',95,NULL,'2'),(15,'Cross Fries','',95,NULL,'2'),(16,'Crispy Wedges','',95,NULL,'2'),(17,'Jalapeno Balls','',155,NULL,'2'),(18,'Mozarella Cheese Sticks','',175,NULL,'2'),(19,'Sizzling Sisig','',220,NULL,'2'),(20,'Beef Nachos','',145,NULL,'2'),(49,'Chicken Quarter',NULL,125,NULL,'4'),(50,'Pork BBQ 2 pcs',NULL,105,NULL,'4'),(51,'Liempo BBQ',NULL,125,NULL,'4'),(52,'Porkchop BBQ 2 pcs',NULL,125,NULL,'4'),(53,'BBQ Spareribs',NULL,145,NULL,'4'),(54,'Baby Back Ribs',NULL,185,NULL,'4'),(55,'Grilled Beefy Burger',NULL,105,NULL,'4'),(56,'Grilled Hungarian 2pcs',NULL,145,NULL,'4'),(57,'Grilled Beefy Belly',NULL,195,NULL,'4'),(58,'Grilled Bulalo Steak',NULL,195,NULL,'4'),(59,'Beef Baby Back Ribs',NULL,195,NULL,'4'),(60,'Grilled Bangus',NULL,115,NULL,'4'),(61,'Grilled Tuna Belly',NULL,195,NULL,'4'),(62,'Grilled Tuna Panga',NULL,310,NULL,'4'),(78,'Spaghetti w/ Meatballs',NULL,125,NULL,'5'),(79,'Spaghetti Carbonara',NULL,125,NULL,'5'),(80,'Plain',NULL,20,NULL,'6'),(81,'Garlic',NULL,25,NULL,'6'),(82,'Java',NULL,25,NULL,'6'),(83,'Halo Halo',NULL,70,NULL,'7'),(84,'Saba Con Hielo',NULL,60,NULL,'7'),(85,'Mais Con Hielo',NULL,60,NULL,'7'),(86,'Lemon Iced Tea',NULL,40,NULL,'8'),(87,'Raspberry Juice',NULL,40,NULL,'8'),(88,'Iced Tea Litro',NULL,125,NULL,'8'),(89,'Bottled Water',NULL,20,NULL,'8'),(90,'Coke',NULL,40,NULL,'8'),(91,'Pineapple Juice in Can',NULL,45,NULL,'8'),(92,'San Mig Pale',NULL,55,NULL,'8'),(93,'San Mig Light',NULL,55,NULL,'8'),(94,'Sprite',NULL,40,NULL,'8');
 /*!40000 ALTER TABLE `consumable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +83,7 @@ CREATE TABLE `incoming` (
   `RawItem_ID` int(11) NOT NULL,
   `In_ID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`In_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,6 +92,7 @@ CREATE TABLE `incoming` (
 
 LOCK TABLES `incoming` WRITE;
 /*!40000 ALTER TABLE `incoming` DISABLE KEYS */;
+INSERT INTO `incoming` VALUES ('2017-10-14 01:00:00',3,'Hello World',2,1);
 /*!40000 ALTER TABLE `incoming` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +166,7 @@ CREATE TABLE `lineitem` (
 
 LOCK TABLES `lineitem` WRITE;
 /*!40000 ALTER TABLE `lineitem` DISABLE KEYS */;
-INSERT INTO `lineitem` VALUES (0,2,4),(1,1,3),(2,1,3),(3,2,4),(0,3,1),(0,3,1),(0,3,1);
+INSERT INTO `lineitem` VALUES (0,2,4),(1,1,3),(2,1,3),(3,2,4),(0,3,1),(0,3,1),(0,3,1),(4,83,10),(5,84,20),(6,85,15);
 /*!40000 ALTER TABLE `lineitem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +204,9 @@ CREATE TABLE `outgoing` (
   `Out_DateTime` datetime NOT NULL,
   `Out_Quantity` int(11) NOT NULL,
   `Out_Remarks` varchar(255) DEFAULT NULL,
-  `RawItem_ID` int(11) NOT NULL
+  `RawItem_ID` int(11) NOT NULL,
+  `Out_ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`Out_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -274,18 +277,17 @@ DROP TABLE IF EXISTS `transaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaction` (
-  `Trans_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Trans_DateTime` datetime NOT NULL,
+  `Transaction_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Transaction_DateTime` datetime NOT NULL,
   `User_ID` int(11) NOT NULL,
   `Customer_Number` int(11) DEFAULT NULL,
   `Trans_Type` varchar(45) NOT NULL,
   `Cash` float NOT NULL,
   `Change` float DEFAULT NULL,
-  `Tax` float NOT NULL,
   `Subtotal` float NOT NULL,
   `Senior_Discount` float DEFAULT NULL,
   `Total` float NOT NULL,
-  PRIMARY KEY (`Trans_ID`)
+  PRIMARY KEY (`Transaction_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -295,7 +297,7 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (1,'2017-10-14 00:00:00',1,22,'dine-in',144,NULL,33,144,NULL,144),(2,'2017-10-14 00:00:00',1,23,'dine-in',3123,NULL,33,3123,NULL,3105),(3,'2017-12-14 00:00:00',1,24,'dine-in',1331,NULL,33,1331,NULL,1331),(4,'2017-12-14 00:00:00',6,1,'dine-in',2342,NULL,33,2342,NULL,2342),(5,'2018-01-02 00:00:00',6,2,'dine-in',2231,NULL,33,2231,NULL,2231),(6,'2018-01-02 00:00:00',6,3,'dine-in',3331,NULL,33,3331,NULL,3331),(7,'2018-01-02 00:00:00',6,4,'dine-in',604,NULL,33,604,NULL,604);
+INSERT INTO `transaction` VALUES (1,'2017-10-14 01:00:00',1,22,'dine-in',144,NULL,144,NULL,144),(2,'2017-10-14 00:00:00',1,23,'dine-in',3123,NULL,3123,NULL,3105),(3,'2017-12-14 00:00:00',1,24,'dine-in',1331,NULL,1331,NULL,1331),(4,'2017-12-14 00:00:00',6,1,'dine-in',2342,NULL,2342,NULL,2342),(5,'2018-01-02 00:00:00',6,2,'dine-in',2231,NULL,2231,NULL,2231),(6,'2018-01-02 00:00:00',6,3,'dine-in',3331,NULL,3331,NULL,3331),(7,'2018-01-02 00:00:00',6,4,'dine-in',604,NULL,604,NULL,604);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -311,7 +313,7 @@ CREATE TABLE `user` (
   `User_Username` varchar(45) NOT NULL,
   `User_Name` varchar(45) NOT NULL,
   `User_Password` varchar(45) NOT NULL,
-  `Role` int(11) NOT NULL,
+  `Role_ID` int(11) NOT NULL,
   PRIMARY KEY (`User_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -335,4 +337,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-29 23:22:59
+-- Dump completed on 2017-11-04 21:34:13
