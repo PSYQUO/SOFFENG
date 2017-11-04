@@ -1,3 +1,5 @@
+package receipt;
+
 public class Receipt{
     private Header header;
     private Footer footer;

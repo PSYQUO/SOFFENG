@@ -1,23 +1,27 @@
 package model;
 
 public class RawItem {
-    public int rawItemId;
+    public int rawItemID;
     private String name;
     private int quantity;
     private double price;
 
     public RawItem(String name, int quantity, double price) {
-        this.rawItemId = -1;
+        this.rawItemID = -1;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
     }
 
-    public RawItem(int rawItemId, String name, int quantity, double price) {
-        this.rawItemId = rawItemId;
+    public RawItem(int rawItemID, String name, int quantity, double price) {
+        this.rawItemID = rawItemID;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public int getRawItemID(){
+        return rawItemID;
     }
 
     public String getName() {

@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `tjbbqdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `tjbbqdb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: tjbbqdb
+-- Host: localhost    Database: tjbbqdb
 -- ------------------------------------------------------
--- Server version	5.7.16-log
+-- Server version	5.7.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `category` (
   `Category_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Cateogry_Name` varchar(45) NOT NULL,
+  `Category_Name` varchar(45) NOT NULL,
   PRIMARY KEY (`Category_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -65,7 +65,7 @@ CREATE TABLE `consumable` (
 
 LOCK TABLES `consumable` WRITE;
 /*!40000 ALTER TABLE `consumable` DISABLE KEYS */;
-INSERT INTO `consumable` VALUES (1,'Crispy Pork Chop','',99,NULL,NULL),(2,'Juicy Fried Chicken','',99,NULL,NULL),(3,'Crispy Liempo','',99,NULL,NULL),(4,'Beef Nachos','',145,NULL,NULL),(5,'Chicken Croquettes','',145,NULL,NULL),(6,'Buffalo Wings','',145,NULL,NULL),(7,'Hungarian Sausage','',145,NULL,NULL),(8,'Hamburger','',125,NULL,NULL),(9,'Hamburger w/ Cheese','',140,NULL,NULL),(10,'Hungarian','',140,NULL,NULL),(11,'Sriracha BBQ Chicken Skewers','',50,NULL,NULL),(12,'Sriracha Pork BBQ Skewers','',50,NULL,NULL),(13,'Fries Ala Carte','',80,NULL,NULL),(14,'Twisty Fries','',95,NULL,NULL),(15,'Cross Fries','',95,NULL,NULL),(16,'Crispy Wedges','',95,NULL,NULL),(17,'Jalapeno Balls','',155,NULL,NULL),(18,'Mozarella Cheese Sticks','',175,NULL,NULL),(19,'Sizzling Sisig','',220,NULL,NULL),(20,'Beef Nachos','',145,NULL,NULL),(49,'Chicken Quarter',NULL,125,NULL,NULL),(50,'Pork BBQ 2 pcs',NULL,105,NULL,NULL),(51,'Liempo BBQ',NULL,125,NULL,NULL),(52,'Porkchop BBQ 2 pcs',NULL,125,NULL,NULL),(53,'BBQ Spareribs',NULL,145,NULL,NULL),(54,'Baby Back Ribs',NULL,185,NULL,NULL),(55,'Grilled Beefy Burger',NULL,105,NULL,NULL),(56,'Grilled Hungarian 2pcs',NULL,145,NULL,NULL),(57,'Grilled Beefy Belly',NULL,195,NULL,NULL),(58,'Grilled Bulalo Steak',NULL,195,NULL,NULL),(59,'Beef Baby Back Ribs',NULL,195,NULL,NULL),(60,'Grilled Bangus',NULL,115,NULL,NULL),(61,'Grilled Tuna Belly',NULL,195,NULL,NULL),(62,'Grilled Tuna Panga',NULL,310,NULL,NULL),(78,'Spaghetti w/ Meatballs',NULL,125,NULL,NULL),(79,'Spaghetti Carbonara',NULL,125,NULL,NULL),(80,'Plain',NULL,20,NULL,'6'),(81,'Garlic',NULL,25,NULL,'6'),(82,'Java',NULL,25,NULL,'6'),(83,'Halo Halo',NULL,70,NULL,'7'),(84,'Saba Con Hielo',NULL,60,NULL,'7'),(85,'Mais Con Hielo',NULL,60,NULL,'7'),(86,'Lemon Iced Tea',NULL,40,NULL,NULL),(87,'Raspberry Juice',NULL,40,NULL,NULL),(88,'Iced Tea Litro',NULL,125,NULL,NULL),(89,'Bottled Water',NULL,20,NULL,NULL),(90,'Coke',NULL,40,NULL,NULL),(91,'Pineapple Juice in Can',NULL,45,NULL,NULL),(92,'San Mig Pale',NULL,55,NULL,NULL),(93,'San Mig Light',NULL,55,NULL,NULL),(94,'Sprite',NULL,40,NULL,NULL);
+INSERT INTO `consumable` VALUES (1,'Crispy Pork Chop','',99,NULL,NULL),(2,'Juicy Fried Chicken','',99,NULL,'3'),(3,'Crispy Liempo','',99,NULL,'3'),(4,'Beef Nachos','',145,NULL,NULL),(5,'Chicken Croquettes','',145,NULL,NULL),(6,'Buffalo Wings','',145,NULL,NULL),(7,'Hungarian Sausage','',145,NULL,NULL),(8,'Hamburger','',125,NULL,NULL),(9,'Hamburger w/ Cheese','',140,NULL,NULL),(10,'Hungarian','',140,NULL,NULL),(11,'Sriracha BBQ Chicken Skewers','',50,NULL,NULL),(12,'Sriracha Pork BBQ Skewers','',50,NULL,NULL),(13,'Fries Ala Carte','',80,NULL,NULL),(14,'Twisty Fries','',95,NULL,NULL),(15,'Cross Fries','',95,NULL,NULL),(16,'Crispy Wedges','',95,NULL,NULL),(17,'Jalapeno Balls','',155,NULL,NULL),(18,'Mozarella Cheese Sticks','',175,NULL,NULL),(19,'Sizzling Sisig','',220,NULL,NULL),(20,'Beef Nachos','',145,NULL,NULL),(49,'Chicken Quarter',NULL,125,NULL,NULL),(50,'Pork BBQ 2 pcs',NULL,105,NULL,NULL),(51,'Liempo BBQ',NULL,125,NULL,NULL),(52,'Porkchop BBQ 2 pcs',NULL,125,NULL,NULL),(53,'BBQ Spareribs',NULL,145,NULL,NULL),(54,'Baby Back Ribs',NULL,185,NULL,NULL),(55,'Grilled Beefy Burger',NULL,105,NULL,NULL),(56,'Grilled Hungarian 2pcs',NULL,145,NULL,NULL),(57,'Grilled Beefy Belly',NULL,195,NULL,NULL),(58,'Grilled Bulalo Steak',NULL,195,NULL,NULL),(59,'Beef Baby Back Ribs',NULL,195,NULL,NULL),(60,'Grilled Bangus',NULL,115,NULL,NULL),(61,'Grilled Tuna Belly',NULL,195,NULL,NULL),(62,'Grilled Tuna Panga',NULL,310,NULL,NULL),(78,'Spaghetti w/ Meatballs',NULL,125,NULL,NULL),(79,'Spaghetti Carbonara',NULL,125,NULL,NULL),(80,'Plain',NULL,20,NULL,'6'),(81,'Garlic',NULL,25,NULL,'6'),(82,'Java',NULL,25,NULL,'6'),(83,'Halo Halo',NULL,70,NULL,'7'),(84,'Saba Con Hielo',NULL,60,NULL,'7'),(85,'Mais Con Hielo',NULL,60,NULL,'7'),(86,'Lemon Iced Tea',NULL,40,NULL,NULL),(87,'Raspberry Juice',NULL,40,NULL,NULL),(88,'Iced Tea Litro',NULL,125,NULL,NULL),(89,'Bottled Water',NULL,20,NULL,NULL),(90,'Coke',NULL,40,NULL,NULL),(91,'Pineapple Juice in Can',NULL,45,NULL,NULL),(92,'San Mig Pale',NULL,55,NULL,NULL),(93,'San Mig Light',NULL,55,NULL,NULL),(94,'Sprite',NULL,40,NULL,NULL);
 /*!40000 ALTER TABLE `consumable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +80,9 @@ CREATE TABLE `incoming` (
   `In_DateTime` datetime NOT NULL,
   `In_Quantity` int(11) NOT NULL,
   `In_Remarks` varchar(255) DEFAULT NULL,
-  `RawItem_ID` int(11) NOT NULL
+  `RawItem_ID` int(11) NOT NULL,
+  `In_ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`In_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -94,6 +96,32 @@ LOCK TABLES `incoming` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `info`
+--
+
+DROP TABLE IF EXISTS `info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `info` (
+  `POS_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `address` varchar(225) NOT NULL,
+  `telephone` varchar(45) NOT NULL,
+  PRIMARY KEY (`POS_ID`),
+  UNIQUE KEY `telephone_UNIQUE` (`telephone`),
+  UNIQUE KEY `address_UNIQUE` (`address`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `info`
+--
+
+LOCK TABLES `info` WRITE;
+/*!40000 ALTER TABLE `info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ingredient`
 --
 
@@ -101,6 +129,7 @@ DROP TABLE IF EXISTS `ingredient`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ingredient` (
+  `Consumable_ID` int(11) NOT NULL,
   `RawItem_ID` int(11) NOT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -112,6 +141,7 @@ CREATE TABLE `ingredient` (
 
 LOCK TABLES `ingredient` WRITE;
 /*!40000 ALTER TABLE `ingredient` DISABLE KEYS */;
+INSERT INTO `ingredient` VALUES (2,3,2),(2,2,1),(2,3,2),(2,2,1),(2,3,2),(2,2,1);
 /*!40000 ALTER TABLE `ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,28 +193,6 @@ LOCK TABLES `meal` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `mealcontent`
---
-
-DROP TABLE IF EXISTS `mealcontent`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mealcontent` (
-  `Meal_ID` int(11) NOT NULL,
-  `Food_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mealcontent`
---
-
-LOCK TABLES `mealcontent` WRITE;
-/*!40000 ALTER TABLE `mealcontent` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mealcontent` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `outgoing`
 --
 
@@ -216,12 +224,12 @@ DROP TABLE IF EXISTS `rawitem`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `rawitem` (
-  `RawItem_ID` int(11) NOT NULL,
+  `RawItem_ID` int(11) NOT NULL AUTO_INCREMENT,
   `RawItem_Name` varchar(45) NOT NULL,
   `RawItem_Price` float NOT NULL,
   `RawItem_Quantity` varchar(45) NOT NULL,
   PRIMARY KEY (`RawItem_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +238,32 @@ CREATE TABLE `rawitem` (
 
 LOCK TABLES `rawitem` WRITE;
 /*!40000 ALTER TABLE `rawitem` DISABLE KEYS */;
+INSERT INTO `rawitem` VALUES (1,'Onion',333,'222'),(2,'Patty',444,'333'),(3,'Bun',12,'31234'),(4,'Cabbage',5,'195');
 /*!40000 ALTER TABLE `rawitem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role` (
+  `Role_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Role_Name` varchar(45) NOT NULL,
+  PRIMARY KEY (`Role_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'Owner'),(2,'Supervisor'),(3,'Cashier');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -262,7 +295,7 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (1,'2017-10-14 00:00:00',1,22,'dine-in',144,NULL,33,144,NULL,144),(2,'2017-10-14 00:00:00',1,23,'dine-in',3123,NULL,33,3123,NULL,3123),(3,'2017-12-14 00:00:00',1,24,'dine-in',1331,NULL,33,1331,NULL,1331),(4,'2017-12-14 00:00:00',6,1,'dine-in',2342,NULL,33,2342,NULL,2342),(5,'2018-01-02 00:00:00',6,2,'dine-in',2231,NULL,33,2231,NULL,2231),(6,'2018-01-02 00:00:00',6,3,'dine-in',3331,NULL,33,3331,NULL,3331),(7,'2018-01-02 00:00:00',6,4,'dine-in',604,NULL,33,604,NULL,604);
+INSERT INTO `transaction` VALUES (1,'2017-10-14 00:00:00',1,22,'dine-in',144,NULL,33,144,NULL,144),(2,'2017-10-14 00:00:00',1,23,'dine-in',3123,NULL,33,3123,NULL,3105),(3,'2017-12-14 00:00:00',1,24,'dine-in',1331,NULL,33,1331,NULL,1331),(4,'2017-12-14 00:00:00',6,1,'dine-in',2342,NULL,33,2342,NULL,2342),(5,'2018-01-02 00:00:00',6,2,'dine-in',2231,NULL,33,2231,NULL,2231),(6,'2018-01-02 00:00:00',6,3,'dine-in',3331,NULL,33,3331,NULL,3331),(7,'2018-01-02 00:00:00',6,4,'dine-in',604,NULL,33,604,NULL,604);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,7 +311,7 @@ CREATE TABLE `user` (
   `User_Username` varchar(45) NOT NULL,
   `User_Name` varchar(45) NOT NULL,
   `User_Password` varchar(45) NOT NULL,
-  `User_Role` varchar(45) NOT NULL,
+  `Role` int(11) NOT NULL,
   PRIMARY KEY (`User_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -289,7 +322,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'jordan','jose','1234','Owner'),(2,'jolene','jolene','1234','Supervisor'),(3,'gavin','mark','1234','Cashier'),(4,'jason','clark','1234','Owner'),(5,'carlo','gian','1234','Supervisor'),(6,'nixon','nixon','1234','Cashier'),(7,'allen','patrick','1234','Owner'),(8,'stephen','stephen','1234','Supervisor'),(9,'sing','nyles','1234','Cashier'),(10,'glen','jasper','1234','Owner');
+INSERT INTO `user` VALUES (1,'jordan','jose','1234',1),(2,'jolene','jolene','1234',2),(3,'gavin','mark','1234',3),(4,'jason','clark','1234',1),(5,'carlo','gian','1234',2),(6,'nixon','nixon','1234',3),(7,'allen','patrick','1234',1),(8,'stephen','stephen','1234',2),(9,'sing','nyles','1234',3),(10,'glen','jasper','1234',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -302,8 +335,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD:ERD & DB/tjbbqdb.sql
--- Dump completed on 2017-10-15 22:20:21
-=======
--- Dump completed on 2017-10-15 22:14:51
->>>>>>> 1593f62fab791c4a5fbf52e242b4b5d7d5be551a:tjbbqdb.sql
+-- Dump completed on 2017-10-29 23:22:59

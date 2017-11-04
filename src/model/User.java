@@ -1,26 +1,30 @@
 package model;
 
 public class User {
-    public int userId;
+    public int userID;
     private String username;
     private String userLoginName;
     private String password;
     private Role role;
 
-    public User(String username, String userLoginName, String password, model.User.Role role) {
-        this.userId = -1;
+    public User(String username, String userLoginName, String password, Role role) {
+        this.userID = -1;
         this.username = username;
         this.userLoginName = userLoginName;
         this.password = password;
         this.role = role;
     }
 
-    public User(int userId, String username, String userLoginName, String password, model.User.Role role) {
-        this.userId = userId;
+    public User(int userID, String username, String userLoginName, String password, Role role) {
+        this.userID = userID;
         this.username = username;
         this.userLoginName = userLoginName;
         this.password = password;
         this.role = role;
+    }
+
+    public int getUserID(){
+        return userID;
     }
 
     public String getusername() {
@@ -48,18 +52,8 @@ public class User {
         this.password = password;
     }
 
-    public model.User.Role getRole() {
+    public Role getRole()
+    {
         return role;
-    }
-
-    /* I think this must be logged or something. - Gian */
-    public void setRole(model.User.Role role) {
-        this.role = role;
-    }
-
-    public enum Role {
-        OWNER,
-        SUPERVISOR,
-        CASHIER
     }
 }

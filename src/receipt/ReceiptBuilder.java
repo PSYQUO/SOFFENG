@@ -1,3 +1,5 @@
+package receipt;
+
 public class ReceiptBuilder {
     private Receipt receipt;
     private Items items;
@@ -14,6 +16,7 @@ public class ReceiptBuilder {
 
     public ReceiptBuilder addItem(ReceiptItem item) {
         items.addItem(item);
+        return this;
     }
 
     // public ReceiptBuilder addPayment(double payment) {

@@ -1,3 +1,7 @@
+package receipt;
+
+import receipt.ReceiptItem;
+
 import java.util.*;
 
 public class Items {

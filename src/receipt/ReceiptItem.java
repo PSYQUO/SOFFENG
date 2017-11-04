@@ -1,3 +1,5 @@
+package receipt;
+
 public class ReceiptItem {
     private String name;
     private int qty;

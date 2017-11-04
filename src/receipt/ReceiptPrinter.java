@@ -1,3 +1,5 @@
+package receipt;
+
 public class ReceiptPrinter {
     
     public ReceiptPrinter() {

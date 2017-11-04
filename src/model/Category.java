@@ -1,20 +1,24 @@
 package model;
 
 public class Category {
-    public int categoryId;
+    public int categoryID;
     private String categoryName;
 
     public Category(String categoryName) {
-        this.categoryId = -1;
+        this.categoryID = -1;
         this.categoryName = categoryName;
     }
 
-    public Category(int categoryId, String categoryName) {
-        this.categoryId = categoryId;
+    public Category(int categoryID, String categoryName) {
+        this.categoryID = categoryID;
         this.categoryName = categoryName;
     }
 
     public String getCategoryName() {
         return categoryName;
+    }
+
+    public int getCategoryID() {
+        return categoryID;
     }
 }

@@ -1,4 +1,5 @@
 
+*.DS_Store
 *.bin
 *.class
 *.gradle
@@ -8,8 +9,10 @@
 *.properties
 *.tar
 *.zip
+*bin
 *build
 *out
-SOFENGG.iml
+compile-run.bat
 gradlew
 gradlew.bat
+SOFENGG.iml

@@ -1,3 +1,5 @@
+package receipt;
+
 import java.util.*;
 
 public class Footer{
