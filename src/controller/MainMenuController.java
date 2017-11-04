@@ -12,7 +12,7 @@ public class MainMenuController extends Controller
 
     public MainMenuController() throws IOException
     {
-        initialize(this, "/view/mainmenu");
+        initialize(this, "/view/main-menu");
 
         buttonNewOrder.setOnAction(e -> viewManager.switchViews("NewOrderController"));
     }
