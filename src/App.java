@@ -31,6 +31,7 @@ public class App extends Application
         vm.addController(noc);
 
         mmc.setViewManager(vm);
+        noc.setViewManager(vm);
 
         primaryStage.setTitle("Tony Joe's POS System");
         primaryStage.setScene(vm.getScene());

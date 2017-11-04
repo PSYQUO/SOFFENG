@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import model.Consumable;
 import model.DatabaseModel;
+import view.NewOrderButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class NewOrderController extends Controller
     private BorderPane borderpanePayment, borderpaneNewOrder;
 
     @FXML
-    private Button buttonOK, buttonEnter, buttonPaymentClose;
+    private Button buttonOK, buttonEnter, buttonPaymentClose, buttonNewOrderClose;
 
     @FXML
     private Spinner<Integer> spinnerCustNo;
@@ -28,7 +29,7 @@ public class NewOrderController extends Controller
     private TextField textfieldPayment;
 
     @FXML
-    private FlowPane flowpaneBudget, flowpaneCombo, flowpaneSandwitch, flowpaneExtras;
+    private FlowPane flowpaneBudget, flowpaneCombo, flowpaneSandwich, flowpaneExtras;
 
     public NewOrderController() throws IOException
     {
@@ -40,6 +41,14 @@ public class NewOrderController extends Controller
     {
         if(initialLoad)
         {
+            buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                if(viewManager == null)
+                    System.err.println("No ViewManager set in " + getClass().getSimpleName());
+                else
+                    viewManager.switchViews("MainMenuController");
+            });
+
             buttonOK.addEventHandler(ActionEvent.ACTION, e ->
             {
                 borderpanePayment.setDisable(false);
@@ -77,12 +86,28 @@ public class NewOrderController extends Controller
 
     private void loadMeals()
     {
-//        flowpaneBudget (Budget meals)
-//        flowpaneCombo (Combo meals)
-//        flowpaneSandwich (para sa Sandwich, Appetizer, Pasta 'to)
-//        flowpaneExtras (Extras)
+//      flowpaneBudget (Budget meals)
+//      flowpaneCombo (Combo meals)
+//      flowpaneSandwich (para sa Sandwich, Appetizer, Pasta 'to)
+//      flowpaneExtras (Extras)
 
         DatabaseModel dbm = new DatabaseModel();
         ArrayList<Consumable> consumablesList = dbm.getConsumables();
+
+        for(Consumable c : consumablesList)
+        {
+            NewOrderButton nob = new NewOrderButton(c.getName(), c.getPrice());
+
+            String category = c.getCategory().getCategoryName();
+
+            if(category.equals("Budget Meal"))
+                flowpaneBudget.getChildren().add(nob);
+            else if(category.equals("Combo Meal"))
+                flowpaneCombo.getChildren().add(nob);
+            else if(category.equals("Sandwich") || category.equals("Appetizer") || category.equals("Pasta"))
+                flowpaneSandwich.getChildren().add(nob);
+            else
+                flowpaneExtras.getChildren().add(nob);
+        }
     }
 }

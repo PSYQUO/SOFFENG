@@ -20,7 +20,13 @@ public class MainMenuController extends Controller
     {
         if(initialLoad)
         {
-            buttonNewOrder.setOnAction(e -> viewManager.switchViews("NewOrderController"));
+            buttonNewOrder.setOnAction(e ->
+            {
+                if(viewManager == null)
+                    System.err.println("No ViewManager set in " + getClass().getSimpleName());
+                else
+                    viewManager.switchViews("NewOrderController");
+            });
 
             initialLoad = false;
         }
