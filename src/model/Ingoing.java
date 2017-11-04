@@ -2,12 +2,12 @@ package model;
 
 import java.time.LocalDateTime;
 
-public class Incoming {
+public class Ingoing {
     private LocalDateTime inDate;
     private int quantity;
     private String remarks;
 
-    public Incoming(LocalDateTime inDate, int quantity, String remarks) {
+    public Ingoing(LocalDateTime inDate, int quantity, String remarks) {
         this.inDate = inDate;
         this.quantity = quantity;
         this.remarks = remarks;
