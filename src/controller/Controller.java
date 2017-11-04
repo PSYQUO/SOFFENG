@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
+import javax.swing.text.View;
 import java.io.IOException;
 
 /**
@@ -12,30 +13,68 @@ import java.io.IOException;
 
 public abstract class Controller
 {
-    protected boolean initialLoad = true;
+    private boolean initialLoad = true;
 
     private Parent root;
     protected ViewManager viewManager;
 
     /**
-     * The load() method should add action listeners to the view's elements and populate the view.
+     * The load method adds action listeners to the view's elements and populates the view.
      */
-    public abstract void load();
+    public abstract void load() throws ViewManagerException;
 
     /**
-     * Initializes the FXML class and sets its controller.
+     * The clear method clears the view's elements
+     */
+    public abstract void clear();
+
+    /**
+     * Initializes the FXML class without a .css stylesheet.
      * @param controller Controller to be added to the FXML class
      * @param fxmlpath Path to the FXML class
      * @throws IOException
      */
     protected void initialize(Controller controller, String fxmlpath) throws IOException
     {
+        initialize(controller, fxmlpath, false);
+    }
+
+    /**
+     * Initializes the FXML class and sets its controller.
+     * @param controller Controller to be added to the FXML class
+     * @param fxmlpath Path to the FXML class
+     * @param hasCSS If the view has a .css file with the same name
+     * @throws IOException
+     */
+    protected void initialize(Controller controller, String fxmlpath, boolean hasCSS) throws IOException
+    {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxmlpath + ".fxml"));
         loader.setController(controller);
 
         root = loader.load();
-        root.getStylesheets().add(getClass().getResource(fxmlpath + ".css").toExternalForm());
+
+        if(hasCSS)
+            root.getStylesheets().add(getClass().getResource(fxmlpath + ".css").toExternalForm());
+    }
+
+    /**
+     * Checks if its the controller's initial load.
+     * @param classname Class name of the controller.
+     * @return Returns true if it is the controller's initial load.
+     * @throws ViewManagerException
+     */
+    protected boolean checkInitialLoad(String classname) throws ViewManagerException
+    {
+        if(viewManager == null)
+            throw new ViewManagerException(classname);
+        else if(initialLoad)
+        {
+            initialLoad = false;
+            return true;
+        }
+
+        return false;
     }
 
     /**

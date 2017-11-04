@@ -1,6 +1,4 @@
-import controller.MainMenuController;
-import controller.NewOrderController;
-import controller.ViewManager;
+import controller.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.DBConnection;
@@ -26,12 +24,19 @@ public class App extends Application
         // Setup Controllers and ViewManager
         MainMenuController mmc = new MainMenuController();
         NewOrderController noc = new NewOrderController();
+        InventoryController ic = new InventoryController();
+        SettingsController sc = new SettingsController();
 
         ViewManager vm = new ViewManager(mmc);
-        vm.addController(noc);
 
-        mmc.setViewManager(vm);
+        vm.addController(noc);
         noc.setViewManager(vm);
+
+        vm.addController(ic);
+        ic.setViewManager(vm);
+
+        vm.addController(sc);
+        sc.setViewManager(vm);
 
         primaryStage.setTitle("Tony Joe's POS System");
         primaryStage.setScene(vm.getScene());

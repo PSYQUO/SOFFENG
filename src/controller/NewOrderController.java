@@ -33,21 +33,16 @@ public class NewOrderController extends Controller
 
     public NewOrderController() throws IOException
     {
-        initialize(this, "/view/new-order");
+        initialize(this, "/view/new-order", true);
     }
 
     @Override
-    public void load()
+    public void load() throws ViewManagerException
     {
-        if(initialLoad)
+        if(checkInitialLoad(getClass().getSimpleName()))
         {
             buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
-            {
-                if(viewManager == null)
-                    System.err.println("No ViewManager set in " + getClass().getSimpleName());
-                else
-                    viewManager.switchViews("MainMenuController");
-            });
+                    viewManager.switchViews("MainMenuController"));
 
             buttonOK.addEventHandler(ActionEvent.ACTION, e ->
             {
@@ -77,11 +72,16 @@ public class NewOrderController extends Controller
                 spinnerCustNo.getEditor().clear(); // remove spinner content
                 textfieldPayment.clear(); // remove textfield content
             });
-
-            initialLoad = false;
         }
 
+
         loadMeals();
+    }
+
+    @Override
+    public void clear()
+    {
+
     }
 
     private void loadMeals()
