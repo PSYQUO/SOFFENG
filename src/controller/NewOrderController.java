@@ -8,10 +8,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import model.Consumable;
+import model.Ingredient;
+import model.RawItem;
 import model.DatabaseModel;
 import view.NewOrderButton;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.ArrayList;
 
 public class NewOrderController extends Controller
@@ -97,6 +100,13 @@ public class NewOrderController extends Controller
         for(Consumable c : consumablesList)
         {
             NewOrderButton nob = new NewOrderButton(c.getName(), c.getPrice());
+            
+            /* Disables the button when there are not enough ingredients. */
+            List<Ingredient> ingredients = dbm.searchIngredientByConsumable(c.consumableID);
+            for (Ingredient i : ingredients) {
+                if (i.getRawItem().getQuantity() < i.getQuantity())
+                    nob.setDisable(true);
+            }
 
             String category = c.getCategory().getCategoryName();
 
