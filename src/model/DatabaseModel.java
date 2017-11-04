@@ -10,7 +10,7 @@ public class DatabaseModel
 
     public ArrayList<Category> getCategories()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<Category> data = new ArrayList<Category>();
         try
         {
@@ -30,7 +30,7 @@ public class DatabaseModel
 
     public Category searchCategory(int id)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         try
         {
             ResultSet rs = dbc.executeQuery("select * from category where category_id=" + id);
@@ -48,7 +48,7 @@ public class DatabaseModel
 
     public ArrayList<Role> getRoles()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<Role> data = new ArrayList<Role>();
         try
         {
@@ -68,7 +68,7 @@ public class DatabaseModel
 
     public Role searchRole(int id)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         try
         {
             ResultSet rs = dbc.executeQuery("select * from role where role_id=" + id);
@@ -86,7 +86,7 @@ public class DatabaseModel
 
     public ArrayList<RawItem> getRawItems()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<RawItem> data = new ArrayList<RawItem>();
         try
         {
@@ -106,7 +106,7 @@ public class DatabaseModel
 
     public RawItem searchRawItem(int id)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         try
         {
             ResultSet rs = dbc.executeQuery("select * from rawitem where rawitem_id=" + id);
@@ -124,7 +124,7 @@ public class DatabaseModel
 
     public ArrayList<User> getUsers()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<User> data = new ArrayList<User>();
         try
         {
@@ -144,7 +144,7 @@ public class DatabaseModel
 
     public User searchUser(int id)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<User> data = new ArrayList<User>();
         try
         {
@@ -166,7 +166,7 @@ public class DatabaseModel
      */
     public ArrayList<Consumable> getConsumables()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<Consumable> data = new ArrayList<Consumable>();
         try
         {
@@ -189,7 +189,7 @@ public class DatabaseModel
      */
     public Consumable searchConsumable(int id)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         try
         {
             ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID=cc.Category_ID and c.consumable_id=" + id);
@@ -210,7 +210,7 @@ public class DatabaseModel
      */
     public ArrayList<Consumable> searchConsumableByCategory(String category)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<Consumable> data = new ArrayList<Consumable>();
         try
         {
@@ -233,7 +233,7 @@ public class DatabaseModel
      */
     public ArrayList<Consumable> searchConsumableByCategory(int id)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<Consumable> data = new ArrayList<Consumable>();
         try
         {
@@ -253,7 +253,7 @@ public class DatabaseModel
 
     public ArrayList<LineItem> getLineItems()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<LineItem> data = new ArrayList<LineItem>();
         try
         {
@@ -273,7 +273,7 @@ public class DatabaseModel
 
     public ArrayList<LineItem> searchLineItems(int id)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<LineItem> data = new ArrayList<LineItem>();
         try
         {
@@ -293,7 +293,7 @@ public class DatabaseModel
 
     public ArrayList<XReading> getXReadToday()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
@@ -313,7 +313,7 @@ public class DatabaseModel
 
     public ArrayList<XReading> getXReadDate(LocalDate date)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
@@ -333,7 +333,7 @@ public class DatabaseModel
 
     public ArrayList<XReading> getXReadRangeDate(LocalDate dateStart, LocalDate dateEnd)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
@@ -356,7 +356,7 @@ public class DatabaseModel
      */
     public ArrayList<ZReading> getZReading()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<ZReading> data = new ArrayList<ZReading>();
         try
         {
@@ -379,7 +379,7 @@ public class DatabaseModel
      */
     public ArrayList<Transaction> getTransactions()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<Transaction> data = new ArrayList<Transaction>();
         try
         {
@@ -402,7 +402,7 @@ public class DatabaseModel
      */
     public Transaction searchTransaction(int id)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<Transaction> data = new ArrayList<Transaction>();
         try
         {
@@ -421,7 +421,7 @@ public class DatabaseModel
 
     public ArrayList<Ingredient> getIngredients()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<Ingredient> data = new ArrayList<Ingredient>();
         try
         {
@@ -441,7 +441,7 @@ public class DatabaseModel
 
     public ArrayList<Ingredient> searchIngredientByConsumable(int id)
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<Ingredient> data = new ArrayList<Ingredient>();
         try
         {
@@ -461,7 +461,7 @@ public class DatabaseModel
 
     public ArrayList<Col2> getMostandLeastSold()
     {
-        dbc = DBConnection.getConnection();
+        dbc = DBConnection.getInstance();
         ArrayList<Col2> data = new ArrayList<Col2>();
         try
         {
@@ -483,7 +483,7 @@ public class DatabaseModel
     {
         try
         {
-            dbc = DBConnection.getConnection();
+            dbc = DBConnection.getInstance();
             dbc.prepareStatement("UPDATE user SET User_Password= ? WHERE User_ID= ?");
             dbc.setString(1, newPassword);
             dbc.setInt(2, user.getUserID());
@@ -505,7 +505,7 @@ public class DatabaseModel
     {
         try
         {
-            dbc = DBConnection.getConnection();
+            dbc = DBConnection.getInstance();
             dbc.prepareStatement("UPDATE user SET role_id= ? WHERE User_ID= ?");
             dbc.setInt(1, newRole.getRoleID());
             dbc.setInt(2, user.getUserID());
@@ -527,7 +527,7 @@ public class DatabaseModel
     {
         try
         {
-            dbc = DBConnection.getConnection();
+            dbc = DBConnection.getInstance();
             dbc.prepareStatement("INSERT INTO rawitem (RawItem_Name, RawItem_Price, RawItem_Quantity) VALUES (?, ?, ?)");
             dbc.setString(1, newRawItem.getName());
             dbc.setDouble(2, newRawItem.getPrice());
@@ -550,7 +550,7 @@ public class DatabaseModel
     {
         try
         {
-            dbc = DBConnection.getConnection();
+            dbc = DBConnection.getInstance();
             dbc.prepareStatement("DELETE FROM rawitem WHERE rawitem_ID=?");
             dbc.setInt(1, rawItem.getRawItemID());
 
@@ -571,7 +571,7 @@ public class DatabaseModel
     {
         try
         {
-            dbc = DBConnection.getConnection();
+            dbc = DBConnection.getInstance();
             dbc.prepareStatement("INSERT INTO category (Category_Name) VALUES (?)");
             dbc.setString(1, newCategory.getCategoryName());
 
@@ -592,7 +592,7 @@ public class DatabaseModel
     {
         try
         {
-            dbc = DBConnection.getConnection();
+            dbc = DBConnection.getInstance();
             dbc.prepareStatement("DELETE FROM category WHERE category_ID=?");
             dbc.setInt(1, category.getCategoryID());
 
@@ -613,7 +613,7 @@ public class DatabaseModel
     {
         try
         {
-            dbc = DBConnection.getConnection();
+            dbc = DBConnection.getInstance();
             dbc.prepareStatement("INSERT INTO user (User_Username, User_Name, User_Password, Role) VALUES (?, ?, ?, ?)");
             dbc.setString(1, newUser.getusername());
             dbc.setString(2, newUser.getUserLoginName());
@@ -637,7 +637,7 @@ public class DatabaseModel
     {
         try
         {
-            dbc = DBConnection.getConnection();
+            dbc = DBConnection.getInstance();
             dbc.prepareStatement("DELETE FROM user WHERE User_ID=?");
             dbc.setInt(1, user.getUserID());
 
@@ -658,7 +658,7 @@ public class DatabaseModel
     {
         try
         {
-            dbc = DBConnection.getConnection();
+            dbc = DBConnection.getInstance();
             dbc.prepareStatement("DELETE FROM consumable WHERE consumable_ID=?");
             dbc.setInt(1, consumable.getConsumableID());
 
@@ -680,7 +680,7 @@ public class DatabaseModel
     {
         try
         {
-            dbc = DBConnection.getConnection();
+            dbc = DBConnection.getInstance();
             dbc.prepareStatement("DELETE FROM ingredient WHERE consumable_ID=?");
             dbc.setInt(1, consumable.getConsumableID());
 

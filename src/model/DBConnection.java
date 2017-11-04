@@ -11,28 +11,14 @@ public class DBConnection
      * One global DBConnection object per application instance.
      */
     private static final DBConnection dbc = new DBConnection();
-    private static Connection connection;
 
+    private Connection connection;
     private Statement statement;
     private PreparedStatement preparedStatement;
 
-    public static DBConnection getConnection()
+    public static DBConnection getInstance()
     {
         return dbc;
-    }
-
-    public static void closeConnection()
-    {
-        if(connection == null)
-            return;
-        try
-        {
-            connection.close();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
     public void setConnection(String db, String user, String pass)
@@ -47,6 +33,20 @@ public class DBConnection
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?useSSL=false", user, pass);
             statement = connection.createStatement();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void closeConnection()
+    {
+        if(connection == null)
+            return;
+        try
+        {
+            connection.close();
         }
         catch(Exception e)
         {

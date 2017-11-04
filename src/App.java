@@ -4,7 +4,6 @@ import controller.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.DBConnection;
-import model.DatabaseModel;
 
 public class App extends Application
 {
@@ -20,6 +19,11 @@ public class App extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+        // Setup DBConnection
+        DBConnection dbc = DBConnection.getInstance();
+        dbc.setConnection("tjbbqdb", "root", "password");
+
+        // Setup Controllers and ViewManager
         MainMenuController mmc = new MainMenuController();
         NewOrderController noc = new NewOrderController();
 
@@ -36,6 +40,7 @@ public class App extends Application
     @Override
     public void stop()
     {
-        DBConnection.closeConnection();
+        DBConnection dbc = DBConnection.getInstance();
+        dbc.closeConnection();
     }
 }
