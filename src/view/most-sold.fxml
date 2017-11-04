@@ -13,11 +13,11 @@
    <center>
       <AnchorPane id="background" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView id="tableForZReadings" layoutX="36.0" layoutY="6.0" prefHeight="307.0" prefWidth="527.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="5.0">
+            <TableView id="tableForMost" layoutX="36.0" layoutY="6.0" prefHeight="307.0" prefWidth="527.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="20.0">
                <columns>
-                  <TableColumn id="cashierCol" maxWidth="1.7976931348623157E308" prefWidth="700.0" text="Cashier" />
-                  <TableColumn id="shiftCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="200.0" text="Shift Time" />
-                  <TableColumn id="Xcol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="200.0" text="X - Readings" />
+                  <TableColumn id="colItem" maxWidth="1.7976931348623157E308" prefWidth="700.0" text="Item" />
+                  <TableColumn id="colPrice" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="200.0" text="Price" />
+                  <TableColumn id="colQuantity" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="200.0" text="Quantity" />
                </columns>
             </TableView>
          </children>
@@ -26,7 +26,7 @@
    <top>
       <HBox id="background" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="66.0" prefWidth="250.0" text="Z - Readings" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="66.0" prefWidth="333.0" text="Most Sold Items" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -34,13 +34,10 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
-            <Label id="dateSold" alignment="CENTER" prefHeight="66.0" prefWidth="150.0" text="- Date " textFill="WHITE">
+            <Label id="dateSold" alignment="CENTER" prefHeight="66.0" prefWidth="232.0" text="- Date Today" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
             </Label>
          </children>
          <BorderPane.margin>
@@ -48,15 +45,4 @@
          </BorderPane.margin>
       </HBox>
    </top>
-   <bottom>
-      <HBox id="background" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label id="totalZscore" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" text="Total" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-   </bottom>
 </BorderPane>
