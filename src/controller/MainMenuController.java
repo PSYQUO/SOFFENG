@@ -13,7 +13,17 @@ public class MainMenuController extends Controller
     public MainMenuController() throws IOException
     {
         initialize(this, "/view/main-menu");
+    }
 
-        buttonNewOrder.setOnAction(e -> viewManager.switchViews("NewOrderController"));
+    @Override
+    public void load()
+    {
+        if(initialLoad)
+        {
+            buttonNewOrder.setOnAction(e -> viewManager.switchViews("NewOrderController"));
+
+            initialLoad = false;
+        }
+
     }
 }

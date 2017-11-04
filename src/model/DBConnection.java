@@ -32,7 +32,6 @@ public class DBConnection
         {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?useSSL=false", user, pass);
-            statement = connection.createStatement();
         }
         catch(Exception e)
         {
@@ -86,11 +85,13 @@ public class DBConnection
 
     public int executeUpdate(String query) throws SQLException
     {
+        statement = connection.createStatement();
         return statement.executeUpdate(query);
     }
 
     public ResultSet executeQuery(String query) throws SQLException
     {
+        statement = connection.createStatement();
         return statement.executeQuery(query);
     }
 }

@@ -12,6 +12,7 @@
 *bin
 *build
 *out
+src/Test.java
 compile-run.bat
 gradlew
 gradlew.bat

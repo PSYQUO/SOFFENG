@@ -170,10 +170,16 @@ public class DatabaseModel
         ArrayList<Consumable> data = new ArrayList<Consumable>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID=cc.Category_ID");
+            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID = cc.Category_ID");
             while(rs.next())
             {
-                Consumable c = new Consumable(rs.getInt(1), rs.getString(2), rs.getString(3), searchCategory(rs.getInt(6)), rs.getDouble(4), null, null);
+                Consumable c = new Consumable(rs.getInt("Consumable_ID"),
+                        rs.getString("Consumable_Name"),
+                        rs.getString("Consumable_CodeName"),
+                        searchCategory(rs.getInt("Category_ID")),
+                        rs.getDouble("Consumable_Price"),
+                        null,
+                        null);
                 data.add(c);
             }
         }

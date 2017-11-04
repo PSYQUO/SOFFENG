@@ -12,8 +12,15 @@ import java.io.IOException;
 
 public abstract class Controller
 {
-    protected Parent root;
+    protected boolean initialLoad = true;
+
+    private Parent root;
     protected ViewManager viewManager;
+
+    /**
+     * The load() method should add action listeners to the view's elements and populate the view.
+     */
+    public abstract void load();
 
     /**
      * Initializes the FXML class and sets its controller.
@@ -40,6 +47,10 @@ public abstract class Controller
         this.viewManager = viewManager;
     }
 
+    /**
+     * getRoot method.
+     * @return The root of the controller's view.
+     */
     public Parent getRoot()
     {
         return root;
