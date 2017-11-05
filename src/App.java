@@ -12,8 +12,6 @@ public class App extends Application
     }
 
     /**
-     * TODO: Is the Title of the Stage correct? - patsy
-                I think it's good - gian
      * TODO: Might be a better way to decouple ViewManager and Controller classes - patsy
      */
     @Override
