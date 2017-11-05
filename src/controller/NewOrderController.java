@@ -6,14 +6,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import model.Consumable;
 import model.DatabaseModel;
-// import model.TransactionBuilder;
+import model.TransactionBuilder;
 import model.LineItem;
+import model.User;
 import view.NewOrderButton;
+import receipt.ReceiptItem;
 import receipt.ReceiptBuilder;
 
 import java.io.IOException;
@@ -40,10 +43,11 @@ public class NewOrderController extends Controller
     @FXML
     private VBox vboxReceipt;
 
-    // private ReceiptBuilder receiptBuilder;
-    // private TransactionBuilder transactionBuilder;
+    private ReceiptBuilder receiptBuilder;
+    private TransactionBuilder transactionBuilder;
 
     private int transactionId;
+    private User cashier;
     private List<LineItem> lineItems;
 
     public NewOrderController() throws IOException
@@ -56,6 +60,11 @@ public class NewOrderController extends Controller
     {
         if(checkInitialLoad(getClass().getSimpleName()))
         {
+            transactionId = 10;
+            cashier = new User("Bob", "bobthebuilder", "builder", null);
+            lineItems = new ArrayList<LineItem>();
+            transactionBuilder = new TransactionBuilder();
+
             buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
                     viewManager.switchViews("MainMenuController"));
 
@@ -126,7 +135,19 @@ public class NewOrderController extends Controller
                 }
                 if (!duplicate)
                     lineItems.add(new LineItem(transactionId, c, 1));
+                
+                receiptBuilder = new ReceiptBuilder();
+                for (LineItem li : lineItems) {
+                    receiptBuilder.addItem(new ReceiptItem(li.getConsumable().getName(), 
+                                                           li.getQuantity(), 
+                                                           li.getConsumable().getPrice() * li.getQuantity()));
+                }
+
+                TextArea receiptTextArea = new TextArea();
+                receiptTextArea.setText(receiptBuilder.preview());
                 // Label entry = new Label(c.getName() + "1" + c.getPrice());
+                vboxReceipt.getChildren().clear();
+                vboxReceipt.getChildren().add(receiptTextArea);
                 // vboxReceipt.getChildren().add(entry);
                 // receiptBuilder.addItem(new ReceiptItem(c.getName(), c.getQuantity(), c.getPrice()));
             });

@@ -457,11 +457,11 @@ public class DatabaseModel
                 TransactionBuilder builder = new TransactionBuilder(rs.getInt("transaction_id"));
                 builder.setTransactionDate(null)
                        .setCashier(searchUser(rs.getInt("user_id")))  
-                       .setTransactionMode(null)
+                       .setMode(null)
                        .setCashReceived(rs.getDouble("cash"))
                        .setTotal(rs.getDouble("total"))
                        .setLineItems(searchLineItems(rs.getInt("transaction_id")))
-                       .setCustNo(rs.getInt("customer_number")));
+                       .setCustNo(rs.getInt("customer_number"));
                 data.add(builder.build());
             }
         }
@@ -487,11 +487,11 @@ public class DatabaseModel
                 TransactionBuilder builder = new TransactionBuilder(rs.getInt("transaction_id"));
                 builder.setTransactionDate(null)
                        .setCashier(searchUser(rs.getInt("user_id")))  
-                       .setTransactionMode(null)
+                       .setMode(null)
                        .setCashReceived(rs.getDouble("cash"))
                        .setTotal(rs.getDouble("total"))
                        .setLineItems(searchLineItems(rs.getInt("transaction_id")))
-                       .setCustNo(rs.getInt("customer_number")));
+                       .setCustNo(rs.getInt("customer_number"));
 
                 return builder.build();
             }

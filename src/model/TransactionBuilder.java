@@ -18,7 +18,6 @@ public class TransactionBuilder {
 
     public TransactionBuilder(int transactionID) {
         transaction = new TransactionInBuilding(transactionID);
-        return this;
     }
 
     public TransactionBuilder setTransactionDate(LocalDateTime transactionDate) {
@@ -83,6 +82,7 @@ public class TransactionBuilder {
 
     public Transaction build() {
         if (transaction.getTotal() == -1) {
+            double total = 0;
             for (LineItem li : transaction.getLineItems())
                 total += li.getConsumable().getPrice();
             transaction.setTotal(total);

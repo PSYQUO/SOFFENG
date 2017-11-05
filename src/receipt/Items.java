@@ -10,6 +10,10 @@ public class Items {
     private double change;
     private ArrayList<ReceiptItem> items;
 
+    public Items() {
+        items = new ArrayList<ReceiptItem>();
+    }
+
     public String customerItems() {
         items = new ArrayList<ReceiptItem>();
 
@@ -21,11 +25,12 @@ public class Items {
     }
 
     public String kitchenItems() {
-        items = new ArrayList<ReceiptItem>();
+        // items = new ArrayList<ReceiptItem>();
 
         String text = "";
-        for (int i = 0; i < items.size(); i++) {
-            text = text + items.get(i);
+        for (ReceiptItem ri : items) {
+            // text += ri.getName() + "    " + ri.getQuantity() + "    " + ri.getPrice() + "\n";
+            text += ri.kitchenItem() + "\n";
         }
         return text;
     }

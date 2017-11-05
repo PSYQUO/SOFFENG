@@ -28,6 +28,10 @@ public class ReceiptBuilder {
         return this;
     }
 
+    public String preview() {
+        return items.kitchenItems();
+    }
+
     public Receipt build() {
         receipt.setItems(items);
         return receipt;
