@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `tjbbqdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `tjbbqdb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: tjbbqdb
+-- Host: 127.0.0.1    Database: tjbbqdb
 -- ------------------------------------------------------
--- Server version	5.7.19-log
+-- Server version	5.7.16-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +27,8 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `Category_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Category_Name` varchar(45) NOT NULL,
-  PRIMARY KEY (`Category_ID`)
+  PRIMARY KEY (`Category_ID`),
+  UNIQUE KEY `Category_Name_UNIQUE` (`Category_Name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -37,7 +38,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'Sandwiches'),(2,'Appetizer'),(3,'Budget Meal'),(4,'Combo Meal'),(5,'Pasta'),(6,'Rice'),(7,'Dessert'),(8,'Drinks'),(9,'Favorites'),(10,'Extras');
+INSERT INTO `category` VALUES (2,'Appetizer'),(3,'Budget Meal'),(4,'Combo Meal'),(7,'Dessert'),(8,'Drinks'),(10,'Extras'),(9,'Favorites'),(5,'Pasta'),(6,'Rice'),(1,'Sandwiches');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,12 +52,16 @@ DROP TABLE IF EXISTS `consumable`;
 CREATE TABLE `consumable` (
   `Consumable_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Consumable_Name` varchar(100) NOT NULL,
-  `Consumable_CodeName` varchar(45) DEFAULT NULL,
+  `Consumable_CodeName` varchar(15) DEFAULT NULL,
   `Consumable_Price` float NOT NULL,
   `Meal_ID` int(11) DEFAULT NULL,
-  `Category_ID` varchar(45) NOT NULL,
-  PRIMARY KEY (`Consumable_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+  `Category_ID` int(11) NOT NULL,
+  PRIMARY KEY (`Consumable_ID`),
+  UNIQUE KEY `Consumable_Name_UNIQUE` (`Consumable_Name`),
+  UNIQUE KEY `Consumable_CodeName_UNIQUE` (`Consumable_CodeName`),
+  KEY `Consumable_CategoryID_idx` (`Category_ID`),
+  CONSTRAINT `Consumable_CategoryID` FOREIGN KEY (`Category_ID`) REFERENCES `category` (`Category_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +70,7 @@ CREATE TABLE `consumable` (
 
 LOCK TABLES `consumable` WRITE;
 /*!40000 ALTER TABLE `consumable` DISABLE KEYS */;
-INSERT INTO `consumable` VALUES (1,'Crispy Pork Chop','',99,NULL,'3'),(2,'Juicy Fried Chicken','',99,NULL,'3'),(3,'Crispy Liempo','',99,NULL,'3'),(4,'Beef Nachos','',145,NULL,'2'),(5,'Chicken Croquettes','',145,NULL,'2'),(6,'Buffalo Wings','',145,NULL,'2'),(7,'Hungarian Sausage','',145,NULL,'1'),(8,'Hamburger','',125,NULL,'1'),(9,'Hamburger w/ Cheese','',140,NULL,'1'),(10,'Hungarian','',140,NULL,'1'),(11,'Sriracha BBQ Chicken Skewers','',50,NULL,'2'),(12,'Sriracha Pork BBQ Skewers','',50,NULL,'2'),(13,'Fries Ala Carte','',80,NULL,'2'),(14,'Twisty Fries','',95,NULL,'2'),(15,'Cross Fries','',95,NULL,'2'),(16,'Crispy Wedges','',95,NULL,'2'),(17,'Jalapeno Balls','',155,NULL,'2'),(18,'Mozarella Cheese Sticks','',175,NULL,'2'),(19,'Sizzling Sisig','',220,NULL,'2'),(20,'Beef Nachos','',145,NULL,'2'),(49,'Chicken Quarter',NULL,125,NULL,'4'),(50,'Pork BBQ 2 pcs',NULL,105,NULL,'4'),(51,'Liempo BBQ',NULL,125,NULL,'4'),(52,'Porkchop BBQ 2 pcs',NULL,125,NULL,'4'),(53,'BBQ Spareribs',NULL,145,NULL,'4'),(54,'Baby Back Ribs',NULL,185,NULL,'4'),(55,'Grilled Beefy Burger',NULL,105,NULL,'4'),(56,'Grilled Hungarian 2pcs',NULL,145,NULL,'4'),(57,'Grilled Beefy Belly',NULL,195,NULL,'4'),(58,'Grilled Bulalo Steak',NULL,195,NULL,'4'),(59,'Beef Baby Back Ribs',NULL,195,NULL,'4'),(60,'Grilled Bangus',NULL,115,NULL,'4'),(61,'Grilled Tuna Belly',NULL,195,NULL,'4'),(62,'Grilled Tuna Panga',NULL,310,NULL,'4'),(78,'Spaghetti w/ Meatballs',NULL,125,NULL,'5'),(79,'Spaghetti Carbonara',NULL,125,NULL,'5'),(80,'Plain',NULL,20,NULL,'6'),(81,'Garlic',NULL,25,NULL,'6'),(82,'Java',NULL,25,NULL,'6'),(83,'Halo Halo',NULL,70,NULL,'7'),(84,'Saba Con Hielo',NULL,60,NULL,'7'),(85,'Mais Con Hielo',NULL,60,NULL,'7'),(86,'Lemon Iced Tea',NULL,40,NULL,'8'),(87,'Raspberry Juice',NULL,40,NULL,'8'),(88,'Iced Tea Litro',NULL,125,NULL,'8'),(89,'Bottled Water',NULL,20,NULL,'8'),(90,'Coke',NULL,40,NULL,'8'),(91,'Pineapple Juice in Can',NULL,45,NULL,'8'),(92,'San Mig Pale',NULL,55,NULL,'8'),(93,'San Mig Light',NULL,55,NULL,'8'),(94,'Sprite',NULL,40,NULL,'8');
+INSERT INTO `consumable` VALUES (1,'Crispy Pork Chop Meal',NULL,99,NULL,3),(2,'Juicy Fried Chicken Meal',NULL,99,NULL,3),(3,'Crispy Liempo Meal',NULL,99,NULL,3),(4,'Beef Nachos w/ Fries',NULL,145,NULL,9),(5,'Chicken Croquettes w/ Fries',NULL,145,NULL,9),(6,'Buffalo Wings w/ Fries',NULL,145,NULL,9),(7,'Hungarian Sausage w/ Fries',NULL,145,NULL,9),(8,'Hamburger',NULL,125,NULL,1),(9,'Hamburger w/ Cheese',NULL,140,NULL,1),(10,'Hungarian',NULL,140,NULL,1),(11,'Sriracha BBQ Chicken Skewers',NULL,50,NULL,2),(12,'Sriracha Pork BBQ Skewers',NULL,50,NULL,2),(13,'Fries Ala Carte',NULL,80,NULL,2),(14,'Twisty Fries',NULL,95,NULL,2),(15,'Cross Fries',NULL,95,NULL,2),(16,'Crispy Wedges',NULL,95,NULL,2),(17,'Jalapeno Balls',NULL,155,NULL,2),(18,'Mozarella Cheese Sticks',NULL,175,NULL,2),(19,'Sizzling Sisig',NULL,220,NULL,2),(49,'Chicken Quarter',NULL,125,NULL,4),(50,'Pork BBQ 2 pcs',NULL,105,NULL,4),(51,'Liempo BBQ',NULL,125,NULL,4),(52,'Porkchop BBQ 2 pcs',NULL,125,NULL,4),(53,'BBQ Spareribs',NULL,145,NULL,4),(54,'Baby Back Ribs',NULL,185,NULL,4),(55,'Grilled Beefy Burger',NULL,105,NULL,4),(56,'Grilled Hungarian 2pcs',NULL,145,NULL,4),(57,'Grilled Beefy Belly',NULL,195,NULL,4),(58,'Grilled Bulalo Steak',NULL,195,NULL,4),(59,'Beef Baby Back Ribs',NULL,195,NULL,4),(60,'Grilled Bangus',NULL,115,NULL,4),(61,'Grilled Tuna Belly',NULL,195,NULL,4),(62,'Grilled Tuna Panga',NULL,310,NULL,4),(78,'Spaghetti w/ Meatballs',NULL,125,NULL,5),(79,'Spaghetti Carbonara',NULL,125,NULL,5),(80,'Plain',NULL,20,NULL,6),(81,'Garlic',NULL,25,NULL,6),(82,'Java',NULL,25,NULL,6),(83,'Halo Halo',NULL,70,NULL,7),(84,'Saba Con Hielo',NULL,60,NULL,7),(85,'Mais Con Hielo',NULL,60,NULL,7),(86,'Lemon Iced Tea',NULL,40,NULL,8),(87,'Raspberry Juice',NULL,40,NULL,8),(88,'Iced Tea Litro',NULL,125,NULL,8),(89,'Bottled Water',NULL,20,NULL,8),(90,'Coke',NULL,40,NULL,8),(91,'Pineapple Juice in Can',NULL,45,NULL,8),(92,'San Mig Pale',NULL,55,NULL,8),(93,'San Mig Light',NULL,55,NULL,8),(94,'Sprite',NULL,40,NULL,8),(95,'Chicken Quarter Meal',NULL,165,NULL,4),(96,'Pork BBQ 2 pcs Meal',NULL,145,NULL,4),(97,'Liempo BBQ Meal',NULL,165,NULL,4),(98,'Porkchop BBQ 2 pcs Meal',NULL,165,NULL,4),(99,'BBQ Spareribs Meal',NULL,185,NULL,4),(100,'Baby Back Ribs Meal',NULL,225,NULL,4),(101,'Grilled Beefy Burger Meal',NULL,145,NULL,4),(102,'Grilled Hungarian 2pcs Meal',NULL,185,NULL,4),(103,'Grilled Beefy Belly Meal',NULL,235,NULL,4),(104,'Grilled Bulalo Steak Meal',NULL,235,NULL,4),(105,'Beef Baby Back Ribs Meal',NULL,235,NULL,4),(106,'Grilled Bangus Meal',NULL,155,NULL,4),(107,'Grilled Tuna Belly Meal',NULL,235,NULL,4),(108,'Grilled Tuna Panga Meal',NULL,350,NULL,4);
 /*!40000 ALTER TABLE `consumable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +87,9 @@ CREATE TABLE `incoming` (
   `In_Remarks` varchar(255) DEFAULT NULL,
   `RawItem_ID` int(11) NOT NULL,
   `In_ID` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`In_ID`)
+  PRIMARY KEY (`In_ID`),
+  KEY `In_RawItem_ID_idx` (`RawItem_ID`),
+  CONSTRAINT `In_RawItem_ID` FOREIGN KEY (`RawItem_ID`) REFERENCES `rawitem` (`RawItem_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -132,7 +139,11 @@ DROP TABLE IF EXISTS `ingredient`;
 CREATE TABLE `ingredient` (
   `Consumable_ID` int(11) NOT NULL,
   `RawItem_ID` int(11) NOT NULL,
-  `Quantity` int(11) NOT NULL
+  `Quantity` int(11) NOT NULL,
+  KEY `Ingredient_Consumable_ID_idx` (`Consumable_ID`),
+  KEY `Ingredient_RawItem_ID_idx` (`RawItem_ID`),
+  CONSTRAINT `Ingredient_Consumable_ID` FOREIGN KEY (`Consumable_ID`) REFERENCES `consumable` (`Consumable_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Ingredient_RawItem_ID` FOREIGN KEY (`RawItem_ID`) REFERENCES `rawitem` (`RawItem_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -178,9 +189,8 @@ DROP TABLE IF EXISTS `meal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `meal` (
-  `Meal_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `AddOns` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`Meal_ID`)
+  `Meal_ID` int(11) DEFAULT NULL,
+  `AddOns` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -206,7 +216,9 @@ CREATE TABLE `outgoing` (
   `Out_Remarks` varchar(255) DEFAULT NULL,
   `RawItem_ID` int(11) NOT NULL,
   `Out_ID` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`Out_ID`)
+  PRIMARY KEY (`Out_ID`),
+  KEY `Out_RawItem_ID_idx` (`RawItem_ID`),
+  CONSTRAINT `Out_RawItem_ID` FOREIGN KEY (`RawItem_ID`) REFERENCES `rawitem` (`RawItem_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -231,7 +243,8 @@ CREATE TABLE `rawitem` (
   `RawItem_Name` varchar(45) NOT NULL,
   `RawItem_Price` float NOT NULL,
   `RawItem_Quantity` varchar(45) NOT NULL,
-  PRIMARY KEY (`RawItem_ID`)
+  PRIMARY KEY (`RawItem_ID`),
+  UNIQUE KEY `RawItem_Name_UNIQUE` (`RawItem_Name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -255,7 +268,8 @@ DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `Role_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Role_Name` varchar(45) NOT NULL,
-  PRIMARY KEY (`Role_ID`)
+  PRIMARY KEY (`Role_ID`),
+  UNIQUE KEY `Role_Name_UNIQUE` (`Role_Name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -265,7 +279,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'Owner'),(2,'Supervisor'),(3,'Cashier');
+INSERT INTO `role` VALUES (3,'Cashier'),(1,'Owner'),(2,'Supervisor');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,13 +295,15 @@ CREATE TABLE `transaction` (
   `Transaction_DateTime` datetime NOT NULL,
   `User_ID` int(11) NOT NULL,
   `Customer_Number` int(11) DEFAULT NULL,
-  `Trans_Type` varchar(45) NOT NULL,
+  `Transaction_Type` varchar(45) NOT NULL,
   `Cash` float NOT NULL,
   `Change` float DEFAULT NULL,
   `Subtotal` float NOT NULL,
   `Senior_Discount` float DEFAULT NULL,
   `Total` float NOT NULL,
-  PRIMARY KEY (`Transaction_ID`)
+  PRIMARY KEY (`Transaction_ID`),
+  KEY `Transaction_User_ID_idx` (`User_ID`),
+  CONSTRAINT `Transaction_User_ID` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -314,7 +330,11 @@ CREATE TABLE `user` (
   `User_Name` varchar(45) NOT NULL,
   `User_Password` varchar(45) NOT NULL,
   `Role_ID` int(11) NOT NULL,
-  PRIMARY KEY (`User_ID`)
+  PRIMARY KEY (`User_ID`),
+  UNIQUE KEY `User_Username_UNIQUE` (`User_Username`),
+  UNIQUE KEY `User_Name_UNIQUE` (`User_Name`),
+  KEY `User_Role_ID_idx` (`Role_ID`),
+  CONSTRAINT `User_Role_ID` FOREIGN KEY (`Role_ID`) REFERENCES `role` (`Role_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -337,4 +357,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-04 21:34:13
+-- Dump completed on 2017-11-05 23:22:08
