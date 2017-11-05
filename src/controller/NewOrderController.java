@@ -5,11 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import model.Consumable;
 import model.DatabaseModel;
 import view.NewOrderButton;
+import receipt.ReceiptBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,6 +33,12 @@ public class NewOrderController extends Controller
 
     @FXML
     private FlowPane flowpaneBudget, flowpaneCombo, flowpaneSandwich, flowpaneExtras;
+
+    @FXML
+    private VBox vboxReceipt;
+
+    private ReceiptBuilder receiptBuilder;
+    private List<LineItem> lineItems;
 
     public NewOrderController() throws IOException
     {
@@ -97,6 +106,14 @@ public class NewOrderController extends Controller
         for(Consumable c : consumablesList)
         {
             NewOrderButton nob = new NewOrderButton(c.getName(), c.getPrice());
+
+            nob.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                lineItems.add(new LineItem())
+                // Label entry = new Label(c.getName() + "1" + c.getPrice());
+                // vboxReceipt.getChildren().add(entry);
+                // receiptBuilder.addItem(new ReceiptItem(c.getName(), c.getQuantity(), c.getPrice()));
+            });
 
             String category = c.getCategory().getCategoryName();
 
