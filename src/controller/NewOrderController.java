@@ -11,10 +11,13 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import model.Consumable;
 import model.DatabaseModel;
+// import model.TransactionBuilder;
+import model.LineItem;
 import view.NewOrderButton;
 import receipt.ReceiptBuilder;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.ArrayList;
 
 public class NewOrderController extends Controller
@@ -37,7 +40,10 @@ public class NewOrderController extends Controller
     @FXML
     private VBox vboxReceipt;
 
-    private ReceiptBuilder receiptBuilder;
+    // private ReceiptBuilder receiptBuilder;
+    // private TransactionBuilder transactionBuilder;
+
+    private int transactionId;
     private List<LineItem> lineItems;
 
     public NewOrderController() throws IOException
@@ -109,7 +115,17 @@ public class NewOrderController extends Controller
 
             nob.addEventHandler(ActionEvent.ACTION, e ->
             {
-                lineItems.add(new LineItem())
+                /* Check if selected order is already in the list */
+                boolean duplicate = false;
+                for (LineItem li : lineItems) {
+                    if (li.getConsumable().getName().equals(nob.getName())) {
+                        li.increaseQuantity(1);
+                        duplicate = true;
+                        break;
+                    }
+                }
+                if (!duplicate)
+                    lineItems.add(new LineItem(transactionId, c, 1));
                 // Label entry = new Label(c.getName() + "1" + c.getPrice());
                 // vboxReceipt.getChildren().add(entry);
                 // receiptBuilder.addItem(new ReceiptItem(c.getName(), c.getQuantity(), c.getPrice()));
