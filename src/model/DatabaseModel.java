@@ -454,18 +454,15 @@ public class DatabaseModel
             ResultSet rs = dbc.executeQuery("select * from transaction");
             while(rs.next())
             {
-                Transaction t = new Transaction(
-                    rs.getInt("transaction_id"), 
-                    null, 
-                    searchUser(rs.getInt("user_id")), 
-                    null, 
-                    rs.getDouble("cash"), 
-                    rs.getDouble("change"), 
-                    rs.getDouble("senior_discount"), 
-                    rs.getDouble("total"), 
-                    searchLineItems(rs.getInt("transaction_id")), 
-                    rs.getInt("customer_number"));
-                data.add(t);
+                TransactionBuilder builder = new TransactionBuilder(rs.getInt("transaction_id"));
+                builder.setTransactionDate(null)
+                       .setCashier(searchUser(rs.getInt("user_id")))  
+                       .setTransactionMode(null)
+                       .setCashReceived(rs.getDouble("cash"))
+                       .setTotal(rs.getDouble("total"))
+                       .setLineItems(searchLineItems(rs.getInt("transaction_id")))
+                       .setCustNo(rs.getInt("customer_number")));
+                data.add(builder.build());
             }
         }
         catch(Exception e)
@@ -487,17 +484,16 @@ public class DatabaseModel
             ResultSet rs = dbc.executeQuery("select * from transaction where transaction_id=" + id);
             while(rs.next())
             {
-                return new Transaction(
-                    rs.getInt("transaction_id"), 
-                    null, 
-                    searchUser(rs.getInt("user_id")), 
-                    null, 
-                    rs.getDouble("cash"), 
-                    rs.getDouble("change"), 
-                    rs.getDouble("senior_discount"), 
-                    rs.getDouble("total"), 
-                    searchLineItems(rs.getInt("transaction_id")), 
-                    rs.getInt("customer_number"));
+                TransactionBuilder builder = new TransactionBuilder(rs.getInt("transaction_id"));
+                builder.setTransactionDate(null)
+                       .setCashier(searchUser(rs.getInt("user_id")))  
+                       .setTransactionMode(null)
+                       .setCashReceived(rs.getDouble("cash"))
+                       .setTotal(rs.getDouble("total"))
+                       .setLineItems(searchLineItems(rs.getInt("transaction_id")))
+                       .setCustNo(rs.getInt("customer_number")));
+
+                return builder.build();
             }
         }
         catch(Exception e)

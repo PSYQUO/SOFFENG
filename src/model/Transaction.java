@@ -4,46 +4,27 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Transaction {
-    public int transactionID;
-    private LocalDateTime transactionDate;
-    private User cashier;
-    private TransactionMode mode;
-    private double cashReceived;
-    private double change;
-    private double tax;
-    private double discount;
-    private double total;
-    private List<LineItem> lineItems;
-    private int custNo;
+    public final int transactionID;
+    protected LocalDateTime transactionDate;
+    protected User cashier;
+    protected TransactionMode mode;
+    protected double cashReceived;
+    protected double change;
+    protected double tax;
+    protected double discount;
+    protected double total;
+    protected List<LineItem> lineItems;
+    protected int custNo;
 
-    public Transaction(LocalDateTime transactionDate, User cashier, TransactionMode mode, double cashReceived, double change, double tax, double discount, double total, List<LineItem> lineItems, int custNo) {
-        this.transactionID = -1;
-        this.transactionDate = transactionDate;
-        this.cashier = cashier;
-        this.mode = mode;
-        this.cashReceived = cashReceived;
-        this.change = change;
-        this.discount = discount;
-        this.total = total;
-        this.lineItems = lineItems;
-        this.custNo = custNo;
+    public Transaction() {
+        transactionID = -1;
     }
 
-    public Transaction(int transactionID, LocalDateTime transactionDate, User cashier, TransactionMode mode, double cashReceived, double change, double discount, double total, List<LineItem> lineItems, int custNo) {
+    public Transaction(int transactionID) {
         this.transactionID = transactionID;
-        this.transactionDate = transactionDate;
-        this.cashier = cashier;
-        this.mode = mode;
-        this.cashReceived = cashReceived;
-        this.change = change;
-        this.discount = discount;
-        this.total = total;
-        this.lineItems = lineItems;
-        this.custNo = custNo;
     }
 
-    public int getTransactionID()
-    {
+    public int getTransactionID(){
         return transactionID;
     }
 
@@ -85,6 +66,54 @@ public class Transaction {
 
     public int getCustNo() {
         return custNo;
+    }
+
+    protected void setTransactionDate(LocalDateTime transactionDate) {
+        this.transactionDate = transactionDate;
+    }
+
+    protected void setCashier(User cashier) {
+        this.cashier = cashier;
+    }
+
+    protected void setMode(TransactionMode mode) {
+        this.mode = mode;
+    }
+
+    protected void setCashReceived(double cashReceived) {
+        this.cashReceived = cashReceived;
+    }
+
+    protected void setChange(double change) {
+        this.change = change;
+    }
+
+    protected void setTax(double tax) {
+        this.tax = tax;
+    }
+
+    protected void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    protected void setTotal(double total) {
+        this.total = total;
+    }
+
+    protected void addLineItem(LineItem lineItem) {
+        lineItems.add(lineItem);
+    }
+    
+    protected void removeLineItem(LineItem lineItem) {
+        lineItems.remove(lineItem);
+    }
+
+    protected void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
+    }
+
+    protected void setCustNo(int custNo) {
+        this.custNo = custNo;
     }
 
     public enum TransactionMode {

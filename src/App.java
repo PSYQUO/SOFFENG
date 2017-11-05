@@ -2,6 +2,8 @@ import controller.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.DBConnection;
+import model.Transaction;
+import model.TransactionBuilder;
 
 public class App extends Application
 {
@@ -12,6 +14,7 @@ public class App extends Application
 
     /**
      * TODO: Is the Title of the Stage correct? - patsy
+                I think it's good - gian
      * TODO: Might be a better way to decouple ViewManager and Controller classes - patsy
      */
     @Override
