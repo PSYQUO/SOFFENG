@@ -188,7 +188,7 @@ public class DatabaseModel
     }
 
     /**
-     * TODO: NULLS
+     * TODO: NULLS (meals)
      */
     public ArrayList<Consumable> getConsumables()
     {
@@ -205,7 +205,7 @@ public class DatabaseModel
                         rs.getString("Consumable_CodeName"),
                         searchCategory(rs.getInt("Category_ID")),
                         rs.getDouble("Consumable_Price"),
-                        null,
+                        searchIngredientByConsumableID(rs.getInt("consumable_id")),
                         null);
                 data.add(c);
             }
@@ -218,7 +218,7 @@ public class DatabaseModel
     }
 
     /**
-     * TODO: NULLS
+     * TODO: NULLS (meals)
      */
     public Consumable searchConsumable(int id)
     {
@@ -234,7 +234,7 @@ public class DatabaseModel
                     rs.getString("Consumable_CodeName"),
                     searchCategory(rs.getInt("Category_ID")),
                     rs.getDouble("Consumable_Price"),
-                    null,
+                    searchIngredientByConsumableID(rs.getInt("consumable_id")),
                     null);
             }
         }
@@ -246,7 +246,7 @@ public class DatabaseModel
     }
 
     /**
-     * TODO: NULLS
+     * TODO: NULLS (meals)
      */
     public ArrayList<Consumable> searchConsumableByCategory(String category)
     {
@@ -263,7 +263,7 @@ public class DatabaseModel
                     rs.getString("Consumable_CodeName"),
                     searchCategory(rs.getInt("Category_ID")),
                     rs.getDouble("Consumable_Price"),
-                    null,
+                    searchIngredientByConsumableID(rs.getInt("consumable_id")),
                     null);
                 data.add(c);
             }
@@ -276,7 +276,7 @@ public class DatabaseModel
     }
 
     /**
-     * TODO: NULLS
+     * TODO: NULLS (meals)
      */
     public ArrayList<Consumable> searchConsumableByCategory(int id)
     {
@@ -293,7 +293,7 @@ public class DatabaseModel
                     rs.getString("Consumable_CodeName"),
                     searchCategory(rs.getInt("Category_ID")),
                     rs.getDouble("Consumable_Price"),
-                    null,
+                    searchIngredientByConsumableID(rs.getInt("consumable_id")),
                     null);
                 data.add(c);
             }
@@ -529,7 +529,7 @@ public class DatabaseModel
         return data;
     }
 
-    public ArrayList<Ingredient> searchIngredientByConsumable(int id)
+    public ArrayList<Ingredient> searchIngredientByConsumableID(int id)
     {
         dbc = DBConnection.getInstance();
         ArrayList<Ingredient> data = new ArrayList<Ingredient>();

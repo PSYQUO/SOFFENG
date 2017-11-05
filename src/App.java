@@ -21,7 +21,7 @@ public class App extends Application
     {
         // Setup DBConnection
         DBConnection dbc = DBConnection.getInstance();
-        dbc.setConnection("tjbbqdb", "root", "password");
+        dbc.setConnection("tjbbqdb", "root", "1234");
 
         // Setup Controllers and ViewManager
         MainMenuController mmc = new MainMenuController();
