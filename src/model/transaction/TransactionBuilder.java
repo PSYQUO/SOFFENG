@@ -1,13 +1,12 @@
-package transaction;
+package model.transaction;
 
-import java.util.List;
-import java.util.ArrayList;
+import model.LineItem;
+import model.User;
+import model.transaction.Transaction.TransactionMode;
 
 import java.time.LocalDateTime;
-
-import model.Transaction;
-import model.Transaction.TransactionMode;
-import model.LineItem;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionBuilder {
     private TransactionInBuilding transaction;
