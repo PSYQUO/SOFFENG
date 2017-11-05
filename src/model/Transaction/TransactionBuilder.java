@@ -1,8 +1,8 @@
-package model.transaction;
+package model.Transaction;
 
 import model.LineItem;
 import model.User;
-import model.transaction.Transaction.TransactionMode;
+import model.Transaction.Transaction.TransactionMode;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

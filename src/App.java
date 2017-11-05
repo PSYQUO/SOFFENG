@@ -3,8 +3,6 @@ import controller.ViewManager.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.DBConnection;
-import model.Transaction;
-import model.TransactionBuilder;
 
 public class App extends Application
 {
