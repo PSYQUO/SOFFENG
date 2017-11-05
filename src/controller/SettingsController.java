@@ -1,5 +1,7 @@
 package controller;
 
+import controller.ViewManager.ViewManagerException;
+
 import java.io.IOException;
 
 public class SettingsController extends Controller
