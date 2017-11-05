@@ -529,7 +529,7 @@ public class DatabaseModel
         return data;
     }
 
-    public ArrayList<Ingredient> searchIngredientByConsumable(int id)
+    public ArrayList<Ingredient> searchIngredientsByConsumable(int id)
     {
         dbc = DBConnection.getInstance();
         ArrayList<Ingredient> data = new ArrayList<Ingredient>();
