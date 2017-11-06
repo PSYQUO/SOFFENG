@@ -1,6 +1,7 @@
 package controller;
 
 import controller.ViewManager.ViewManagerException;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -35,5 +36,14 @@ public class InventoryController extends Controller
     public void clear()
     {
 
+    }
+
+    private void loadRawItems()
+    {
+        DatabaseModel dbm = new DatabaseModel();
+        ArrayList<RawItem> rawItemList = dbm.getRawItems();
+
+        ObservableList<String> columnData1 = FXCollections.observableArrayList();
+        ObservableList<String> columnData2 = FXCollections.observableArrayList();
     }
 }
