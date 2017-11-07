@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `tjbbqdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `tjbbqdb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: tjbbqdb
+-- Host: localhost    Database: tjbbqdb
 -- ------------------------------------------------------
--- Server version	5.7.16-log
+-- Server version	5.7.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -59,6 +59,7 @@ CREATE TABLE `consumable` (
   PRIMARY KEY (`Consumable_ID`),
   UNIQUE KEY `Consumable_Name_UNIQUE` (`Consumable_Name`),
   UNIQUE KEY `Consumable_CodeName_UNIQUE` (`Consumable_CodeName`),
+  UNIQUE KEY `Meal_ID_UNIQUE` (`Meal_ID`),
   KEY `Consumable_CategoryID_idx` (`Category_ID`),
   CONSTRAINT `Consumable_CategoryID` FOREIGN KEY (`Category_ID`) REFERENCES `category` (`Category_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
@@ -101,32 +102,6 @@ LOCK TABLES `incoming` WRITE;
 /*!40000 ALTER TABLE `incoming` DISABLE KEYS */;
 INSERT INTO `incoming` VALUES ('2017-10-14 01:00:00',3,'Hello World',2,1);
 /*!40000 ALTER TABLE `incoming` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `info`
---
-
-DROP TABLE IF EXISTS `info`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `info` (
-  `POS_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `address` varchar(225) NOT NULL,
-  `telephone` varchar(45) NOT NULL,
-  PRIMARY KEY (`POS_ID`),
-  UNIQUE KEY `telephone_UNIQUE` (`telephone`),
-  UNIQUE KEY `address_UNIQUE` (`address`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `info`
---
-
-LOCK TABLES `info` WRITE;
-/*!40000 ALTER TABLE `info` DISABLE KEYS */;
-/*!40000 ALTER TABLE `info` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -189,8 +164,9 @@ DROP TABLE IF EXISTS `meal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `meal` (
-  `Meal_ID` int(11) DEFAULT NULL,
-  `AddOns` varchar(45) DEFAULT NULL
+  `Meal_ID` int(11) NOT NULL,
+  `AddOns` int(11) NOT NULL,
+  `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -229,6 +205,33 @@ CREATE TABLE `outgoing` (
 LOCK TABLES `outgoing` WRITE;
 /*!40000 ALTER TABLE `outgoing` DISABLE KEYS */;
 /*!40000 ALTER TABLE `outgoing` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pos_info`
+--
+
+DROP TABLE IF EXISTS `pos_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pos_info` (
+  `POS_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `address` varchar(225) NOT NULL,
+  `telephone` varchar(45) NOT NULL,
+  PRIMARY KEY (`POS_ID`),
+  UNIQUE KEY `telephone_UNIQUE` (`telephone`),
+  UNIQUE KEY `address_UNIQUE` (`address`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pos_info`
+--
+
+LOCK TABLES `pos_info` WRITE;
+/*!40000 ALTER TABLE `pos_info` DISABLE KEYS */;
+INSERT INTO `pos_info` VALUES (1,'Parkwood 2 Gate, Legaspi Street, Maybunga, Pasig City','0939-527-9331');
+/*!40000 ALTER TABLE `pos_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -357,4 +360,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-05 23:22:08
+-- Dump completed on 2017-11-07 21:20:04
