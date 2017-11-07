@@ -47,7 +47,7 @@ public class InventoryController extends Controller
 
         ObservableList<String> colRawItemName = FXCollections.observableArrayList();
         ObservableList<String> colQuantity = FXCollections.observableArrayList();
-
+	ObservableList<String> colPrice = FXCollections.observableArrayList();
 
     }
 }
