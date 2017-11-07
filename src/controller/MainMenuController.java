@@ -10,7 +10,7 @@ import java.io.IOException;
 public class MainMenuController extends Controller
 {
     @FXML
-    Button buttonNewOrder, buttonInventory, buttonSettings;
+    private Button buttonNewOrder, buttonInventory, buttonSettings;
 
     public MainMenuController() throws IOException
     {
