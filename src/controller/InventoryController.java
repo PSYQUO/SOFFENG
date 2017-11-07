@@ -2,11 +2,15 @@ package controller;
 
 import controller.ViewManager.ViewManagerException;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import model.DatabaseModel;
+import model.RawItem;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class InventoryController extends Controller
 {
@@ -26,9 +30,7 @@ public class InventoryController extends Controller
     {
         if(checkInitialLoad(getClass().getSimpleName()))
         {
-            /**
-             * Nix, put code here
-             */
+            loadRawItems();
         }
     }
 
@@ -43,7 +45,9 @@ public class InventoryController extends Controller
         DatabaseModel dbm = new DatabaseModel();
         ArrayList<RawItem> rawItemList = dbm.getRawItems();
 
-        ObservableList<String> columnData1 = FXCollections.observableArrayList();
-        ObservableList<String> columnData2 = FXCollections.observableArrayList();
+        ObservableList<String> colRawItemName = FXCollections.observableArrayList();
+        ObservableList<String> colQuantity = FXCollections.observableArrayList();
+
+
     }
 }
