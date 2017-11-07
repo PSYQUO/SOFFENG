@@ -36,25 +36,33 @@ public class SettingsController extends Controller
             buttonChangePassword.addEventHandler(ActionEvent.ACTION, e ->
             {
                 anchorpaneMainSettings.setVisible(false);
+                anchorpaneMainSettings.setDisable(true);
                 anchorpanePasswordSettings.setVisible(true);
+                anchorpanePasswordSettings.setDisable(false);
             });
 
             buttonPasswordSettingsClose.addEventHandler(ActionEvent.ACTION, e ->
             {
                 anchorpanePasswordSettings.setVisible(false);
+                anchorpanePasswordSettings.setDisable(true);
                 anchorpaneMainSettings.setVisible(true);
+                anchorpaneMainSettings.setDisable(false);
             });
 
             buttonSetBackup.addEventHandler(ActionEvent.ACTION, e ->
             {
                 anchorpaneMainSettings.setVisible(false);
+                anchorpaneMainSettings.setDisable(true);
                 anchorpaneBackupSettings.setVisible(true);
+                anchorpaneBackupSettings.setDisable(false);
             });
 
             buttonBackupSettingsClose.addEventHandler(ActionEvent.ACTION, e ->
             {
                 anchorpaneBackupSettings.setVisible(false);
+                anchorpaneBackupSettings.setDisable(true);
                 anchorpaneMainSettings.setVisible(true);
+                anchorpaneMainSettings.setDisable(false);
             });
         }
     }
