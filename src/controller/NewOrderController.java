@@ -45,7 +45,10 @@ public class NewOrderController extends Controller
         if(checkInitialLoad(getClass().getSimpleName()))
         {
             buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
-                    viewManager.switchViews("MainMenuController"));
+            {
+                viewManager.switchViews("MainMenuController");
+                clear();
+            });
 
             buttonOK.addEventHandler(ActionEvent.ACTION, e ->
             {
@@ -84,7 +87,10 @@ public class NewOrderController extends Controller
     @Override
     public void clear()
     {
-
+        flowpaneBudget.getChildren().clear();
+        flowpaneExtras.getChildren().clear();
+        flowpaneCombo.getChildren().clear();
+        flowpaneSandwich.getChildren().clear();
     }
 
     private void loadMeals()
