@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -21,6 +22,9 @@
                         <TableColumn id="tableInventory" fx:id="colIngredients" maxWidth="1.7976931348623157E308" prefWidth="700.0" text="Ingredient" />
                         <TableColumn fx:id="colNumber" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="Number" />
                      </columns>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                   </TableView>
                </children>
             </AnchorPane>
@@ -28,16 +32,14 @@
          <top>
             <HBox id="background" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="66.0" prefWidth="175.0" text="Inventory" textFill="WHITE">
+                  <Label prefHeight="58.0" prefWidth="238.0" text="Inventory" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="36.0" />
+                        <Font name="System Bold" size="40.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <Button id="greenBut" fx:id="greenBut" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="greenbutton" />
-                  <Button id="redBut" fx:id="redBut" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="redbutton" />
                </children>
                <BorderPane.margin>
                   <Insets />
@@ -47,6 +49,23 @@
                </padding>
             </HBox>
          </top>
+         <right>
+            <VBox id="background" prefHeight="200.0" prefWidth="115.0" spacing="30.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button id="greenBut" fx:id="greenBut" mnemonicParsing="false" prefHeight="250.0" prefWidth="105.0" styleClass="greenbutton">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></Button>
+                  <Button id="redBut" fx:id="redBut" mnemonicParsing="false" prefHeight="250.0" prefWidth="105.0" styleClass="redbutton">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </right>
       </BorderPane>
       <Button id="buttonClose" fx:id="buttonClose" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonClose" stylesheets="@inv_most_wastage_analytics.css" text="X" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
    </children>
