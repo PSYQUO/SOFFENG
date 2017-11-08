@@ -1,0 +1,41 @@
+#background {
+    -fx-background-color: rgb(44, 64, 80);
+}
+.greenbutton {
+    -fx-background-color: rgb(46,204,113);
+}
+.yellowbutton {
+	-fx-background-color: rgb(220, 220, 0);
+}
+.redbutton {
+	-fx-background-color: rgb(239, 83, 80);
+}
+
+.tab {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 18px;
+    -fx-background-color:#B7B7B7;
+    -fx-font-weight:bold;
+    -fx-padding: 0 15 0 15;
+}
+
+TabPane .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane {
+  -fx-tab-min-height:50px;
+  -fx-tab-max-height:50px;
+}
+
+TabPane .tab .tab-label {
+    -fx-text-fill:#000000;
+}
+
+TabPane .tab:selected .tab-label {
+    -fx-text-fill:#FFFFFF;
+}
+
+TabPane .tab:selected {
+    -fx-background-color: #3498DB;
+}
