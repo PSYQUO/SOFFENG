@@ -3,6 +3,8 @@ package model;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import model.Transaction.Transaction;
+import model.Transaction.TransactionBuilder;
 
 public class DatabaseModel
 {
@@ -525,7 +527,7 @@ public class DatabaseModel
         return data;
     }
 
-    public ArrayList<Ingredient> searchIngredientByConsumable(int id)
+    public ArrayList<Ingredient> searchIngredientsByConsumable(int id)
     {
         dbc = DBConnection.getInstance();
         ArrayList<Ingredient> data = new ArrayList<Ingredient>();

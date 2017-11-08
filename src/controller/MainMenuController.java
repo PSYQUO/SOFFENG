@@ -1,16 +1,16 @@
 package controller;
 
+import controller.ViewManager.ViewManagerException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class MainMenuController extends Controller
 {
     @FXML
-    Button buttonNewOrder, buttonInventory, buttonSettings;
+    private Button buttonNewOrder, buttonInventory, buttonSettings;
 
     public MainMenuController() throws IOException
     {

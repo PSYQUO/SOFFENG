@@ -1,5 +1,6 @@
-package controller;
+package controller.ViewManager;
 
+import controller.Controller;
 import javafx.scene.Scene;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
  *
  * The ViewManager handles the changing of roots in the Stage's scene.
  * It holds all controllers needed in the application.
- * It holds the scene of the application.
+ * It holds the scene of an application.
  */
 public class ViewManager
 {
@@ -67,7 +68,7 @@ public class ViewManager
     }
 
     /**
-     * TODO: Change to passing actual classes instead of strings. Using classes will make this more robust.
+     * TODO: Consider passing actual classes instead of strings. Using classes will make this more robust.
      * @param classname Class name of the controller to be switched.
      */
     public void switchViews(String classname)

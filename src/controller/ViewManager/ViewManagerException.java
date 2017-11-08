@@ -1,4 +1,4 @@
-package controller;
+package controller.ViewManager;
 
 public class ViewManagerException extends Exception
 {

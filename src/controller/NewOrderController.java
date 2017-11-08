@@ -1,5 +1,6 @@
 package controller;
 
+import controller.ViewManager.ViewManagerException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import model.Consumable;
+import model.Ingredient;
 import model.DatabaseModel;
 import model.TransactionBuilder;
 import model.LineItem;
@@ -66,7 +68,10 @@ public class NewOrderController extends Controller
             transactionBuilder = new TransactionBuilder();
 
             buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
-                    viewManager.switchViews("MainMenuController"));
+            {
+                viewManager.switchViews("MainMenuController");
+                clear();
+            });
 
             buttonOK.addEventHandler(ActionEvent.ACTION, e ->
             {
@@ -105,7 +110,10 @@ public class NewOrderController extends Controller
     @Override
     public void clear()
     {
-
+        flowpaneBudget.getChildren().clear();
+        flowpaneExtras.getChildren().clear();
+        flowpaneCombo.getChildren().clear();
+        flowpaneSandwich.getChildren().clear();
     }
 
     private void loadMeals()
@@ -121,6 +129,13 @@ public class NewOrderController extends Controller
         for(Consumable c : consumablesList)
         {
             NewOrderButton nob = new NewOrderButton(c.getName(), c.getPrice());
+            
+            /* Disables the button when there are not enough ingredients. */
+            List<Ingredient> ingredients = dbm.searchIngredientsByConsumable(c.consumableID);
+            for (Ingredient i : ingredients) {
+                if (i.getRawItem().getQuantity() < i.getQuantity())
+                    nob.setDisable(true);
+            }
 
             nob.addEventHandler(ActionEvent.ACTION, e ->
             {

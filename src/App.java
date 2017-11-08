@@ -1,4 +1,5 @@
 import controller.*;
+import controller.ViewManager.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.DBConnection;
@@ -12,9 +13,6 @@ public class App extends Application
         launch(args);
     }
 
-    /**
-     * TODO: Is the Title of the Stage correct? - patsy
-                I think it's good - gian
      * TODO: Might be a better way to decouple ViewManager and Controller classes - patsy
      */
     @Override
