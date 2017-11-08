@@ -3,8 +3,8 @@ package model;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import model.Transaction.Transaction;
-import model.Transaction.TransactionBuilder;
+import model.transaction.Transaction;
+import model.transaction.TransactionBuilder;
 
 public class DatabaseModel
 {

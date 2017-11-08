@@ -1,4 +1,4 @@
-package model.Transaction;
+package model.transaction;
 
 import model.LineItem;
 import model.User;

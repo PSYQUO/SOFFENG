@@ -3,8 +3,6 @@ import controller.ViewManager.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.DBConnection;
-import model.Transaction;
-import model.TransactionBuilder;
 
 public class App extends Application
 {
@@ -13,14 +11,14 @@ public class App extends Application
         launch(args);
     }
 
-     * TODO: Might be a better way to decouple ViewManager and Controller classes - patsy
+    /* TODO: Might be a better way to decouple ViewManager and Controller classes - patsy
      */
     @Override
     public void start(Stage primaryStage) throws Exception
     {
         // Setup DBConnection
         DBConnection dbc = DBConnection.getInstance();
-        dbc.setConnection("tjbbqdb", "root", "password");
+        dbc.setConnection("tjbbqdb", "root", "p@ssword");
 
         // Setup Controllers and ViewManager
         MainMenuController mmc = new MainMenuController();
