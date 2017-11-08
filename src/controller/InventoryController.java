@@ -14,7 +14,7 @@ public class InventoryController extends Controller
 
     public InventoryController() throws IOException
     {
-        initialize(this, "/view/inventory", true);
+        initialize(this, "/view/inventory", "/view/inventory");
     }
 
     @Override
