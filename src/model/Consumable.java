@@ -3,13 +3,13 @@ package model;
 import java.util.*;
 
 public class Consumable {
-    public int consumableID;
-    private String name;
-    private String codeName;
-    private Category category;
-    private double price;
-    private ArrayList<Ingredient> ingredients;
-    private Meal meal;
+    protected int consumableID;
+    protected String name;
+    protected String codeName;
+    protected Category category;
+    protected double price;
+    protected ArrayList<Ingredient> ingredients;
+    protected Meal meal;
 
     public Consumable(String name, String codeName, Category category, double price, ArrayList<Ingredient> ingredients, Meal meal) {
         this.consumableID = -1;
