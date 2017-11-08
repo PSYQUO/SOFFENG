@@ -2,12 +2,12 @@
 .dropDown {
     -fx-background-color: rgb(52,152,219);
 }
+
+*/
 #background {
     -fx-background-color: RGB(44, 64, 80);
-    -fx-border-style: solid;
-    -fx-border-width: 2px;
 }
-*/
+
 .greenbutton {
     -fx-background-color: rgb(46,204,113);
 }

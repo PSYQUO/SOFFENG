@@ -29,12 +29,12 @@
          <top>
             <VBox maxHeight="1.7976931348623157E308" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Most Sold Items" textFill="#2554a4">
+                  <Label text="Most Sold Items" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label id="dateWasted" fx:id="dateBox" maxWidth="1.7976931348623157E308" text="Date Today" textFill="#2554a4">
+                  <Label id="dateWasted" fx:id="dateBox" maxWidth="1.7976931348623157E308" text="Date Today" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
