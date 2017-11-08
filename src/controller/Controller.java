@@ -30,9 +30,10 @@ public abstract class Controller
 
     /**
      * Initializes the FXML class and sets its controller.
+     *
      * @param controller Controller to be added to the FXML class
-     * @param fxmlpath Path to the FXML class
-     * @param csspath Path to the css file
+     * @param fxmlpath   Path to the FXML class
+     * @param csspath    Path to the css file
      * @throws IOException
      */
     protected void initialize(Controller controller, String fxmlpath, String csspath) throws IOException
@@ -60,14 +61,6 @@ public abstract class Controller
             throw new ViewManagerException(classname);
 
         return initialLoad && !(initialLoad = false);
-        /**
-         * if(initialLoad)
-            {
-                initialLoad = false;
-                return true;
-            }
-            return false;
-         */
     }
 
     /**
