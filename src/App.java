@@ -26,6 +26,7 @@ public class App extends Application
         NewOrderController noc = new NewOrderController();
         InventoryController ic = new InventoryController();
         SettingsController sc = new SettingsController();
+        FilesController fc = new FilesController();
 
         ViewManager vm = new ViewManager(mmc);
 
@@ -36,6 +37,9 @@ public class App extends Application
         ic.setViewManager(vm);
 
         vm.addController(sc);
+        sc.setViewManager(vm);
+
+        vm.addController(fc);
         sc.setViewManager(vm);
 
         primaryStage.setTitle("Tony Joe's POS System");

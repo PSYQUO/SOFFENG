@@ -8,7 +8,7 @@ public class FilesController extends Controller
 {
     public FilesController() throws IOException
     {
-        initialize(this, "/view/inventory", "/view/inventory");
+        initialize(this, "/view/files", "/view/files");
     }
 
     @Override

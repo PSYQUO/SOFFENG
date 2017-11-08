@@ -73,6 +73,8 @@ public class ViewManager
      */
     public void switchViews(String classname)
     {
+        boolean hasSwitched = false;
+
         for(Controller c : controllerList)
         {
             if(classname.equals(c.getClass().getSimpleName()))
@@ -86,7 +88,12 @@ public class ViewManager
                     e.printStackTrace();
                 }
                 scene.setRoot(c.getRoot());
+
+                hasSwitched = true;
             }
         }
+
+        if(!hasSwitched)
+            System.err.println("No class named \"" + classname + "\" added in ViewManager");
     }
 }
