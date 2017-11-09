@@ -45,6 +45,9 @@ public class App extends Application
         primaryStage.setTitle("Tony Joe's POS System");
         primaryStage.setScene(vm.getScene());
         primaryStage.show();
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
+        primaryStage.setFullScreen(true);
     }
 
     @Override
