@@ -57,7 +57,7 @@ public class LineItemBox extends HBox {
     }
 
     public void setCount(int q) {
-        count = c;
+        count = q;
     }
 
     public int getCount() {
