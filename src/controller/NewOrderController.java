@@ -54,7 +54,7 @@ public class NewOrderController extends Controller
 
     public NewOrderController() throws IOException
     {
-        initialize(this, "/view/new-order", true);
+        initialize(this, "/view/new-order", "/view/new-order");
     }
 
     @Override
