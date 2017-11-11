@@ -706,7 +706,7 @@ public class DatabaseModel
             dbc.setString(1, null);
             dbc.setInt(2, newTransaction.getCashier().getUserID());
             dbc.setInt(3, newTransaction.getCustNo());
-            dbc.setString(4, newTransaction.getMode());
+            dbc.setString(4, newTransaction.getMode().toString());
             dbc.setDouble(5, newTransaction.getCashReceived());
             dbc.setDouble(6, newTransaction.getChange());
             dbc.setDouble(7, newTransaction.getTotal()); //must be subtotal
