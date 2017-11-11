@@ -108,7 +108,7 @@ public class NewOrderController extends Controller
             NewOrderButton nob = new NewOrderButton(c.getName(), c.getPrice());
             
             /* Disables the button when there are not enough ingredients. */
-            List<Ingredient> ingredients = dbm.searchIngredientsByConsumable(c.consumableID);
+            List<Ingredient> ingredients = dbm.searchIngredientsByConsumableID(c.consumableID);
             for (Ingredient i : ingredients) {
                 if (i.getRawItem().getQuantity() < i.getQuantity())
                     nob.setDisable(true);
