@@ -981,7 +981,7 @@ public class DatabaseModel
     /**
      * TODO
      */
-    public boolean addMeal(Consumable newConsumable)
+    public boolean addMeal(Consumable consumable, ConsumableQuantityPair cqp)
     {
         try
         {
@@ -1051,17 +1051,41 @@ public class DatabaseModel
     }
 
     /**
-     * delete exactly one (1) ingridient for consumable
+     * delete all ingredient for consumable
      */
-    public boolean deleteIngredient(Consumable consumable, Ingredient ingredient)
+    public boolean deleteIngredient(Consumable consumable)
     {
         try
         {
             dbc = DBConnection.getInstance();
-            dbc.prepareStatement("DELETE FROM ingredient WHERE Consumable_ID=? and RawItem_ID=? and Quantity=?");
+            dbc.prepareStatement("DELETE FROM ingredient WHERE Consumable_ID=?");
             dbc.setInt(1, consumable.getConsumableID());
             dbc.setInt(2, ingredient.getRawItem().getRawItemID());
             dbc.setInt(3, ingredient.getQuantity());
+
+            if(dbc.executeUpdate() == 1)
+            {
+                return true;
+            }
+            dbc.closePreparedStatement();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    /**
+     * delete all line item where transaction id = ?
+     */
+     public boolean deleteLineItem(Transaction transaction)
+    {
+        try
+        {
+            dbc = DBConnection.getInstance();
+            dbc.prepareStatement("DELETE FROM lineitem WHERE transaction_ID=?");
+            dbc.setInt(1, transaction.getTransactionID());
 
             if(dbc.executeUpdate() == 1)
             {
