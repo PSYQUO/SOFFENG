@@ -1060,8 +1060,6 @@ public class DatabaseModel
             dbc = DBConnection.getInstance();
             dbc.prepareStatement("DELETE FROM ingredient WHERE Consumable_ID=?");
             dbc.setInt(1, consumable.getConsumableID());
-            dbc.setInt(2, ingredient.getRawItem().getRawItemID());
-            dbc.setInt(3, ingredient.getQuantity());
 
             if(dbc.executeUpdate() == 1)
             {
