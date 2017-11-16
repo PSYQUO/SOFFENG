@@ -14,7 +14,7 @@ public class Transaction {
 
     public final int transactionID;
     
-    protected LocalDateTime transactionDate;
+    protected LocalDateTime date;
     protected User cashier;
     protected String mode;
     protected double cashReceived;
@@ -23,7 +23,7 @@ public class Transaction {
     protected double discount;
     protected double total;
     protected ArrayList<LineItem> lineItems;
-    protected int custNo;
+    protected int customerNo;
 
     public Transaction() {
         transactionID = -1;
@@ -37,8 +37,8 @@ public class Transaction {
         return transactionID;
     }
 
-    public LocalDateTime getTransactionDate() {
-        return transactionDate;
+    public LocalDateTime getDate() {
+        return date;
     }
 
     public User getCashier() {
@@ -73,12 +73,12 @@ public class Transaction {
         return lineItems;
     }
 
-    public int getCustNo() {
-        return custNo;
+    public int getCustomerNo() {
+        return customerNo;
     }
 
-    protected void setTransactionDate(LocalDateTime transactionDate) {
-        this.transactionDate = transactionDate;
+    protected void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     protected void setCashier(User cashier) {
@@ -111,18 +111,32 @@ public class Transaction {
 
     protected void addLineItem(LineItem lineItem) {
         lineItems.add(lineItem);
+
+        total += lineItem.getConsumable().getPrice()
+               * lineItem.getQuantity();
     }
     
     protected void removeLineItem(LineItem lineItem) {
         lineItems.remove(lineItem);
+
+        total -= lineItem.getConsumable().getPrice()
+               * lineItem.getQuantity();
     }
 
     protected void setLineItems(ArrayList<LineItem> lineItems) {
         this.lineItems = lineItems;
+        
+        for (LineItem li : lineItems)
+            total += li.getConsumable().getPrice()
+                   * li.getQuantity();
+    }
+    
+    public void computeTransaction() {
+        change = cashReceived - total;
     }
 
-    protected void setCustNo(int custNo) {
-        this.custNo = custNo;
+    protected void setCustomerNo(int customerNo) {
+        this.customerNo = customerNo;
     }
 
 }

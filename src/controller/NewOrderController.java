@@ -83,11 +83,15 @@ public class NewOrderController extends Controller
             transactionMode = Transaction.MODE_DINE_IN;
             cashier = new User("Bob", "bobthebuilder", "builder", null);
             lineItems = new ArrayList<LineItem>();
-            transactionBuilder = new TransactionBuilder();
+            transactionBuilder = new TransactionBuilder(transactionId);
             receiptBuilder = new ReceiptBuilder();
+
+            transactionBuilder.setCustomerNo(customerNo)
+                              .setMode(transactionMode)
+                              .setCashier(cashier)
+                              .setDate(LocalDateTime.now());
             
             receiptTextArea = new TextArea();
-            // receiptTextArea.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
             receiptTextArea.setMaxWidth(Double.MAX_VALUE);
             receiptTextArea.setMaxHeight(Double.MAX_VALUE);
 
@@ -171,27 +175,11 @@ public class NewOrderController extends Controller
 
             nob.addEventHandler(ActionEvent.ACTION, e ->
             {
-                /* Check if selected order is already in the list */
-                boolean duplicate = false;
-                for (LineItem li : lineItems) {
-                    if (li.getConsumable().getName().equals(nob.getName())) {
-                        li.increaseQuantity(1);
-                        duplicate = true;
-                        break;
-                    }
-                }
-                if (!duplicate)
-                    lineItems.add(new LineItem(transactionId, c, 1));
+                transactionBuilder.addLineItem(new LineItem(transactionId, c, 1));
                                     
                 // Receipt building begin
                 receiptBuilder.clear();
-
-                receiptBuilder.setLineItems(lineItems)
-                              .setTransactionMode(transactionMode)
-                              .setTransactionNo(transactionId)
-                              .setCustomerNo(customerNo)
-                              .setCashierName(cashier.getUsername())
-                              .setTransactionDate(LocalDateTime.now());
+                receiptBuilder.processTransaction(transactionBuilder.build());
 
                 receipt = receiptBuilder.build();
                 // Receipt building end

@@ -20,6 +20,18 @@ public class ReceiptBuilder {
         footer = new ReceiptFooter();
     }
 
+    public ReceiptBuilder processTransaction(Transaction transaction) {
+        return setLineItems(transaction.getLineItems())
+              .setPayment(transaction.getCashReceived())
+              .setChange(transaction.getChange())
+              .setTotal(transaction.getTotal())
+              .setTransactionMode(transaction.getMode())
+              .setTransactionNo(transaction.getTransactionID())
+              .setCustomerNo(transaction.getCustomerNo())
+              .setCashierName(transaction.getCashier().getUsername())
+              .setTransactionDate(LocalDateTime.now());
+    }
+
     // ReceiptHeader methods
     public ReceiptBuilder setTransactionMode(String transactionMode) {
         header.setTransactionMode(transactionMode);
@@ -37,8 +49,23 @@ public class ReceiptBuilder {
     }
 
     // ReceiptBody methods
+    public ReceiptBuilder setTotal(double total) {
+        body.setTotal(total);
+        return this;
+    }
+
+    public ReceiptBuilder setSubTotal(double subTotal) {
+        body.setSubTotal(subTotal);
+        return this;
+    }
+
     public ReceiptBuilder setPayment(double payment) {
         body.setPayment(payment);
+        return this;
+    }
+
+    public ReceiptBuilder setChange(double change) {
+        body.setChange(change);
         return this;
     }
 
