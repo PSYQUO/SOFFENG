@@ -102,13 +102,13 @@ public class NewOrderController extends Controller
                 textfieldPayment.clear(); // remove textfield content
             });
 
-            ActionEvent cancelOrderHandler = ActionEvent.ACTION, e ->
-            {
+            // ActionEvent cancelOrderHandler = ActionEvent.ACTION, e ->
+            // {
                 // TODO
                 // Get the LineItem assigned to the event source button
                 // Remove the LineItem from the current list of line items
                 // lineItems.remove();
-            }
+            // }
         }
 
 
