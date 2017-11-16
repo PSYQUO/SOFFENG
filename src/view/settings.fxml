@@ -42,7 +42,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorpanePasswordSettings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background">
+      <AnchorPane fx:id="anchorpanePasswordSettings" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" visible="false">
          <children>
             <GridPane hgap="20.0" layoutX="131.0" layoutY="70.0" vgap="50.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="50.0">
                <columnConstraints>
@@ -101,7 +101,7 @@
             <Button fx:id="buttonPasswordSettingsClose" mnemonicParsing="false" styleClass="close" text="X" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorpaneBackupSettings" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" visible="false">
+      <AnchorPane fx:id="anchorpaneBackupSettings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background">
          <children>
             <GridPane hgap="25.0" layoutX="100.0" layoutY="137.0" vgap="50.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
                <columnConstraints>
@@ -135,12 +135,12 @@
                      <font>
                         <Font size="30.0" />
                      </font></Button>
-                  <Label text="Backup Location" textFill="#2554a4">
+                  <Label text="Backup Location" textFill="#13e0ff">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label text="Directory" textFill="#2554a4" GridPane.rowIndex="1">
+                  <Label text="Directory" textFill="#13e0ff" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>

@@ -1,10 +1,13 @@
 #background {
     -fx-background-color: rgb(44, 64, 80);
 }
+.splitPane{
+    -fx-background-color: rgb(44, 64, 80);
+}
 .greenbutton {
     -fx-background-color: rgb(46,204,113);
 }
-.editButtons {
+.blueButtons {
 	-fx-background-color: rgb(52, 152, 219);
 }
 .redbutton {
@@ -29,7 +32,7 @@
     -fx-background-position: center;
 }
 #removeButton{
-    -fx-background-image: url("resources/icons/del2.png");
+    -fx-background-image: url("resources/icons/del.png");
     -fx-background-size: 30%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
