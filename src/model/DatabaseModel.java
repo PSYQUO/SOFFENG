@@ -202,7 +202,10 @@ public class DatabaseModel
             while(rs.next())
             {
                 Consumable c;
-                if (rs.getString("meal_id").equals(""))
+                // Meal_ID column is nullable (can contain null values)
+                // so we need to check first if rs.getString("meal_id") is null
+                // else it's going to throw a NullPointerException.
+                if (rs.getString("meal_id") ==  null || rs.getString("meal_id").equals(""))
                 {
                     c = new Consumable(
                         rs.getInt("Consumable_ID"),
@@ -837,7 +840,7 @@ public class DatabaseModel
 
 
     /**
-     * TODO: NULL LINE
+     * TODO: with NULL LINE
      */
     public boolean addIncoming(Incoming incoming, RawItem rawItem)
     {
@@ -864,7 +867,7 @@ public class DatabaseModel
     }
 
     /**
-     * TODO: NULL LINE
+     * TODO: with NULL LINE
      */
     public boolean addOutgoing(Outgoing outgoing, RawItem rawItem)
     {
@@ -978,16 +981,15 @@ public class DatabaseModel
         return false;
     }
 
-    /**
-     * TODO
-     */
-    public boolean addMeal(Consumable newConsumable)
+    public boolean addMeal(Consumable consumable, ConsumableQuantityPair cqp) // 1:1
     {
         try
         {
             dbc = DBConnection.getInstance();
-            dbc.prepareStatement("");
-            // insert code
+            dbc.prepareStatement("INSERT INTO meal (meal_id, consumable_id, quantity) VALUES (?, ?, ?)");
+            dbc.setInt(1, consumable.getMeal().getMealID());
+            dbc.setInt(2, cqp.getConsumable().getConsumableID());
+            dbc.setInt(3, cqp.getQuantity());
 
             if(dbc.executeUpdate() == 1)
             {
@@ -1002,16 +1004,23 @@ public class DatabaseModel
         return false;
     }
 
-    /**
-     * TODO
-     */
-    public boolean addLineItem(Transaction transaction, Consumable consumable) // 1:1
+    public void addMeals(Consumable consumable, ArrayList<ConsumableQuantityPair> cqps) // many
+    {
+        for(int i=0; i<cqps.size(); i++)
+        {
+            addMeal(consumable, cqps.get(i));
+        }
+    }
+
+    public boolean addLineItem(Transaction transaction, ConsumableQuantityPair cqp) // 1:1
     {
         try
         {
             dbc = DBConnection.getInstance();
-            dbc.prepareStatement("");
-            // insert code
+            dbc.prepareStatement("INSERT INTO lineitem (transaction_id, consumable_id, quantity) VALUES (?, ?, ?)");
+            dbc.setInt(1, transaction.getTransactionID());
+            dbc.setInt(2, cqp.getConsumable().getConsumableID());
+            dbc.setInt(3, cqp.getQuantity());
 
             if(dbc.executeUpdate() == 1)
             {
@@ -1026,42 +1035,55 @@ public class DatabaseModel
         return false;
     }
 
-    /**
-     * TODO
-     */
-    public boolean addIngredients(Consumable consumable, Ingredient ingredient) // 1:1
+    public void addLineItems(Transaction transaction, ArrayList<ConsumableQuantityPair> cqps) // many
     {
-        try
+        for(int i=0; i<cqps.size(); i++)
         {
-            dbc = DBConnection.getInstance();
-            dbc.prepareStatement("");
-            // insert code
-
-            if(dbc.executeUpdate() == 1)
-            {
-                return true;
-            }
-            dbc.closePreparedStatement();
+            addLineItem(transaction, cqps.get(i));
         }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        }
-        return false;
     }
 
-    /**
-     * delete exactly one (1) ingridient for consumable
-     */
-    public boolean deleteIngredient(Consumable consumable, Ingredient ingredient)
+    public boolean addIngredient(Consumable consumable, RawItemQuantityPair rqp) // 1:1
     {
         try
         {
             dbc = DBConnection.getInstance();
-            dbc.prepareStatement("DELETE FROM ingredient WHERE Consumable_ID=? and RawItem_ID=? and Quantity=?");
+            dbc.prepareStatement("INSERT INTO ingredient (Consumable_id, rawitem_id, quantity) VALUES (?, ?, ?)");
             dbc.setInt(1, consumable.getConsumableID());
-            dbc.setInt(2, ingredient.getRawItem().getRawItemID());
-            dbc.setInt(3, ingredient.getQuantity());
+            dbc.setInt(2, rqp.getRawItem().getRawItemID());
+            dbc.setInt(3, rqp.getQuantity());
+
+            if(dbc.executeUpdate() == 1)
+            {
+                return true;
+            }
+            dbc.closePreparedStatement();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public void addIngredients(Consumable consumable, ArrayList<RawItemQuantityPair> rqps) // many
+    {
+        for(int i=0; i<rqps.size(); i++)
+        {
+            addIngredient(consumable, rqps.get(i));
+        }
+    }
+
+    /**
+     * delete all line item for 1 transaction
+     */
+     public boolean deleteLineItems(Transaction transaction)
+    {
+        try
+        {
+            dbc = DBConnection.getInstance();
+            dbc.prepareStatement("DELETE FROM lineitem WHERE transaction_ID=?");
+            dbc.setInt(1, transaction.getTransactionID());
 
             if(dbc.executeUpdate() == 1)
             {
