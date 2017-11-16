@@ -1,6 +1,7 @@
 package controller;
 
 import controller.ViewManager.ViewManagerException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,19 +12,28 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+
 import model.Consumable;
 import model.Ingredient;
 import model.DatabaseModel;
+import model.transaction.Transaction;
 import model.transaction.TransactionBuilder;
 import model.LineItem;
 import model.User;
+
 import view.NewOrderButton;
+
+import receipt.Receipt;
+import receipt.Header;
+import receipt.Footer;
 import receipt.ReceiptItem;
 import receipt.ReceiptBuilder;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class NewOrderController extends Controller
 {
@@ -38,6 +48,8 @@ public class NewOrderController extends Controller
 
     @FXML
     private TextField textfieldPayment;
+    
+    private TextArea receiptTextArea;
 
     @FXML
     private FlowPane flowpaneBudget, flowpaneCombo, flowpaneSandwich, flowpaneExtras;
@@ -48,7 +60,11 @@ public class NewOrderController extends Controller
     private ReceiptBuilder receiptBuilder;
     private TransactionBuilder transactionBuilder;
 
+    private Receipt receipt;
+
     private int transactionId;
+    private int customerNo;
+    private Transaction.TransactionMode transactionMode;
     private User cashier;
     private List<LineItem> lineItems;
 
@@ -63,9 +79,16 @@ public class NewOrderController extends Controller
         if(checkInitialLoad(getClass().getSimpleName()))
         {
             transactionId = 10;
+            customerNo = 2;
+            transactionMode = Transaction.TransactionMode.DINE_IN;
             cashier = new User("Bob", "bobthebuilder", "builder", null);
             lineItems = new ArrayList<LineItem>();
             transactionBuilder = new TransactionBuilder();
+            
+            receiptTextArea = new TextArea();
+            // receiptTextArea.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            receiptTextArea.setMaxWidth(Double.MAX_VALUE);
+            receiptTextArea.setMaxHeight(Double.MAX_VALUE);
 
             buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
             {
@@ -166,8 +189,18 @@ public class NewOrderController extends Controller
                                                            li.getConsumable().getPrice() * li.getQuantity()));
                 }
 
-                TextArea receiptTextArea = new TextArea();
-                receiptTextArea.setText(receiptBuilder.preview());
+                Header header = new Header(transactionMode.toString(), transactionId, customerNo);
+
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
+                Footer footer = new Footer(cashier.getusername(), dtf.format(now)); // 2016/11/16 12:08:43
+
+                receiptBuilder.addHeader(header);
+                receiptBuilder.addFooter(footer);
+
+                receipt = receiptBuilder.build();
+
+                receiptTextArea.setText(receipt.customerReceipt());
                 // Label entry = new Label(c.getName() + "1" + c.getPrice());
                 vboxReceipt.getChildren().clear();
                 vboxReceipt.getChildren().add(receiptTextArea);
