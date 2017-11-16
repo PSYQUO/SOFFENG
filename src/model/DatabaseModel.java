@@ -502,11 +502,7 @@ public class DatabaseModel
             {
                 TransactionBuilder builder = new TransactionBuilder(rs.getInt("transaction_id"));
                 builder.setTransactionDate(null)
-<<<<<<< HEAD
-                       .setCashier(searchUser(rs.getInt("user_id")))  
-=======
                        .setCashier(searchUser(rs.getInt("user_id")))
->>>>>>> master
                        .setMode(null)
                        .setCashReceived(rs.getDouble("cash"))
                        .setTotal(rs.getDouble("total"))
