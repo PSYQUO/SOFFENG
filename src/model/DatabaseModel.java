@@ -474,7 +474,7 @@ public class DatabaseModel
             while(rs.next())
             {
                 TransactionBuilder builder = new TransactionBuilder(rs.getInt("transaction_id"));
-                builder.setTransactionDate(null)
+                builder.setDate(null)
                        .setCashier(searchUser(rs.getInt("user_id")))
                        .setMode(null)
                        .setCashReceived(rs.getDouble("cash"))
@@ -504,7 +504,7 @@ public class DatabaseModel
             while(rs.next())
             {
                 TransactionBuilder builder = new TransactionBuilder(rs.getInt("transaction_id"));
-                builder.setTransactionDate(null)
+                builder.setDate(null)
                        .setCashier(searchUser(rs.getInt("user_id")))
                        .setMode(null)
                        .setCashReceived(rs.getDouble("cash"))
@@ -708,7 +708,7 @@ public class DatabaseModel
             dbc.prepareStatement("INSERT INTO transaction (Transaction_DateTime, User_ID, Customer_Number, Transaction_Type, Cash, Change, Subtotal, Senior_Discount, Total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             dbc.setString(1, null);
             dbc.setInt(2, newTransaction.getCashier().getUserID());
-            dbc.setInt(3, newTransaction.getCustNo());
+            dbc.setInt(3, newTransaction.getCustomerNo());
             dbc.setString(4, newTransaction.getMode().toString());
             dbc.setDouble(5, newTransaction.getCashReceived());
             dbc.setDouble(6, newTransaction.getChange());
@@ -756,7 +756,7 @@ public class DatabaseModel
         {
             dbc = DBConnection.getInstance();
             dbc.prepareStatement("INSERT INTO user (User_Username, User_Name, User_Password, Role) VALUES (?, ?, ?, ?)");
-            dbc.setString(1, newUser.getusername());
+            dbc.setString(1, newUser.getUsername());
             dbc.setString(2, newUser.getUserLoginName());
             dbc.setString(3, newUser.getPassword());
             dbc.setInt(4, newUser.getRole().getRoleID());
