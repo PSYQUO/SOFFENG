@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -29,7 +28,7 @@
          <top>
             <HBox id="background" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="66.0" prefWidth="175.0" text="Inventory" textFill="WHITE">
+                  <Label prefHeight="66.0" prefWidth="175.0" text="Inventory" textFill="#2554a4">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>

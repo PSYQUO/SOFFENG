@@ -2,12 +2,13 @@ package controller.ViewManager;
 
 import controller.Controller;
 import javafx.scene.Scene;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * ViewManager
- *
+ * <p>
  * The ViewManager handles the changing of roots in the Stage's scene.
  * It holds all controllers needed in the application.
  * It holds the scene of an application.
@@ -20,6 +21,7 @@ public class ViewManager
     /**
      * Default constructor of ViewManager.
      * ViewManager should be instantiated with a default controller. This avoids setting the scene's root to null.
+     *
      * @param controller Default controller.
      */
     public ViewManager(Controller controller)
@@ -41,6 +43,7 @@ public class ViewManager
 
     /**
      * Adds a controller to the ViewManager. Checks whether the controller class was already added to the ViewManager.
+     *
      * @param controller Controller to be added
      */
     public void addController(Controller controller)
@@ -60,6 +63,7 @@ public class ViewManager
 
     /**
      * getScene method.
+     *
      * @return Returns the scene of the ViewManager.
      */
     public Scene getScene()
@@ -69,10 +73,13 @@ public class ViewManager
 
     /**
      * TODO: Consider passing actual classes instead of strings. Using classes will make this more robust.
+     *
      * @param classname Class name of the controller to be switched.
      */
     public void switchViews(String classname)
     {
+        boolean hasSwitched = false;
+
         for(Controller c : controllerList)
         {
             if(classname.equals(c.getClass().getSimpleName()))
@@ -86,7 +93,12 @@ public class ViewManager
                     e.printStackTrace();
                 }
                 scene.setRoot(c.getRoot());
+
+                hasSwitched = true;
             }
         }
+
+        if(!hasSwitched)
+            System.err.println("No class named \"" + classname + "\" added in ViewManager");
     }
 }

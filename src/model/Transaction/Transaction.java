@@ -1,10 +1,10 @@
-package model.Transaction;
+package model.transaction;
 
 import model.LineItem;
 import model.User;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Transaction {
     public final int transactionID;
@@ -16,7 +16,7 @@ public class Transaction {
     protected double tax;
     protected double discount;
     protected double total;
-    protected List<LineItem> lineItems;
+    protected ArrayList<LineItem> lineItems;
     protected int custNo;
 
     public Transaction() {
@@ -63,7 +63,7 @@ public class Transaction {
         return total;
     }
 
-    public List<LineItem> getLineItems() {
+    public ArrayList<LineItem> getLineItems() {
         return lineItems;
     }
 
@@ -111,7 +111,7 @@ public class Transaction {
         lineItems.remove(lineItem);
     }
 
-    protected void setLineItems(List<LineItem> lineItems) {
+    protected void setLineItems(ArrayList<LineItem> lineItems) {
         this.lineItems = lineItems;
     }
 

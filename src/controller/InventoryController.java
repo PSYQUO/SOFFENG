@@ -5,7 +5,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.DatabaseModel;
@@ -22,10 +24,11 @@ public class InventoryController extends Controller
 
     @FXML
     private TableColumn tableInventory, colNumber;
+    private Button buttonClose;
 
     public InventoryController() throws IOException
     {
-        initialize(this, "/view/inventory", true);
+        initialize(this, "/view/inventory", "/view/inventory");
     }
 
     @Override
@@ -34,6 +37,11 @@ public class InventoryController extends Controller
         if(checkInitialLoad(getClass().getSimpleName()))
         {
             loadRawItems();
+            buttonClose.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                viewManager.switchViews("MainMenuController");
+                clear();
+            });
         }
     }
 

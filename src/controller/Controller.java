@@ -29,26 +29,14 @@ public abstract class Controller
     public abstract void clear();
 
     /**
-     * Initializes the FXML class without a .css stylesheet.
-     *
-     * @param controller Controller to be added to the FXML class
-     * @param fxmlpath   Path to the FXML class
-     * @throws IOException
-     */
-    protected void initialize(Controller controller, String fxmlpath) throws IOException
-    {
-        initialize(controller, fxmlpath, false);
-    }
-
-    /**
      * Initializes the FXML class and sets its controller.
      *
      * @param controller Controller to be added to the FXML class
      * @param fxmlpath   Path to the FXML class
-     * @param hasCSS     If the view has a .css file with the same name
+     * @param csspath    Path to the css file
      * @throws IOException
      */
-    protected void initialize(Controller controller, String fxmlpath, boolean hasCSS) throws IOException
+    protected void initialize(Controller controller, String fxmlpath, String csspath) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxmlpath + ".fxml"));
@@ -56,7 +44,7 @@ public abstract class Controller
 
         root = loader.load();
 
-        if(hasCSS)
+        if(csspath != null)
             root.getStylesheets().add(getClass().getResource(fxmlpath + ".css").toExternalForm());
     }
 
@@ -73,14 +61,6 @@ public abstract class Controller
             throw new ViewManagerException(classname);
 
         return initialLoad && !(initialLoad = false);
-        /**
-         * if(initialLoad)
-            {
-                initialLoad = false;
-                return true;
-            }
-            return false;
-         */
     }
 
     /**
