@@ -1,0 +1,12 @@
+.background {
+    -fx-background-color: rgb(44, 64, 80);
+}
+.buttons {
+    -fx-background-color: rgb(19,224,255);
+}
+.close {
+    -fx-background-color: #EF5350;
+    -fx-text-fill:#FFFFFF;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
