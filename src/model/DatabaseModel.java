@@ -3,8 +3,8 @@ package model;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import model.Transaction.Transaction;
-import model.Transaction.TransactionBuilder;
+import model.transaction.Transaction;
+import model.transaction.TransactionBuilder;
 
 public class DatabaseModel
 {
@@ -202,7 +202,10 @@ public class DatabaseModel
             while(rs.next())
             {
                 Consumable c;
-                if (rs.getString("meal_id").equals(""))
+                // Meal_ID column is nullable (can contain null values)
+                // so we need to check first if rs.getString("meal_id") is null
+                // else it's going to throw a NullPointerException.
+                if (rs.getString("meal_id") ==  null || rs.getString("meal_id").equals(""))
                 {
                     c = new Consumable(
                         rs.getInt("Consumable_ID"),
