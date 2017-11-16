@@ -30,10 +30,10 @@
     -fx-background-position: center;
 }
 
-#buttonClose {
-    -fx-background-color: #EF5350;
+#buttonBack {
+    -fx-background-color: #1b519d;
     -fx-color:#FFFFFF;
-    -fx-font-size: 15px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
 

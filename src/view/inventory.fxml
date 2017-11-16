@@ -67,6 +67,10 @@
             </VBox>
          </right>
       </BorderPane>
-      <Button id="buttonClose" fx:id="buttonClose" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonClose" stylesheets="@inv_most_wastage_analytics.css" text="X" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button id="buttonBack" fx:id="buttonBack" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="105.0" styleClass="buttonBack" stylesheets="@inv_most_wastage_analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font size="47.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
