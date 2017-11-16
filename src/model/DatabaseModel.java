@@ -480,7 +480,7 @@ public class DatabaseModel
                        .setCashReceived(rs.getDouble("cash"))
                        .setTotal(rs.getDouble("total"))
                        .setLineItems(searchLineItems(rs.getInt("transaction_id")))
-                       .setCustNo(rs.getInt("customer_number"));
+                       .setCustomerNo(rs.getInt("customer_number"));
                 data.add(builder.build());
             }
         }
@@ -510,7 +510,7 @@ public class DatabaseModel
                        .setCashReceived(rs.getDouble("cash"))
                        .setTotal(rs.getDouble("total"))
                        .setLineItems(searchLineItems(rs.getInt("transaction_id")))
-                       .setCustNo(rs.getInt("customer_number"));
+                       .setCustomerNo(rs.getInt("customer_number"));
 
                 return builder.build();
             }
