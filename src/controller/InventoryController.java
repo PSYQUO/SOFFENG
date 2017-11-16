@@ -1,6 +1,8 @@
 package controller;
 
 import controller.ViewManager.ViewManagerException;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.control.TableView;
 import model.DatabaseModel;
 import model.RawItem;
 
+import javax.security.auth.callback.Callback;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -47,7 +50,10 @@ public class InventoryController extends Controller
 
         ObservableList<String> colRawItemName = FXCollections.observableArrayList();
         ObservableList<String> colQuantity = FXCollections.observableArrayList();
-	ObservableList<String> colPrice = FXCollections.observableArrayList();
 
+        tableInventory.setCellValueFactory(
+                (Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>)
+                        param -> new SimpleStringProperty(param.getValue().get(0).toString())
+        );
     }
 }
