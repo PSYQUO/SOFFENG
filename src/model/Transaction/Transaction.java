@@ -7,10 +7,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Transaction {
+    
+    public static final String MODE_DINE_IN = "Dine-in";
+    public static final String MODE_TAKE_OUT = "Take-out";
+    public static final String MODE_DELIVERY = "Delivery";
+
     public final int transactionID;
+    
     protected LocalDateTime transactionDate;
     protected User cashier;
-    protected TransactionMode mode;
+    protected String mode;
     protected double cashReceived;
     protected double change;
     protected double tax;
@@ -39,7 +45,7 @@ public class Transaction {
         return cashier;
     }
 
-    public TransactionMode getMode() {
+    public String getMode() {
         return mode;
     }
 
@@ -79,7 +85,7 @@ public class Transaction {
         this.cashier = cashier;
     }
 
-    protected void setMode(TransactionMode mode) {
+    protected void setMode(String mode) {
         this.mode = mode;
     }
 
@@ -119,9 +125,4 @@ public class Transaction {
         this.custNo = custNo;
     }
 
-    public enum TransactionMode {
-        DINE_IN,
-        TAKE_OUT,
-        DELIVERY
-    }
 }

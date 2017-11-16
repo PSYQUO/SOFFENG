@@ -1,21 +1,39 @@
 package controller;
 
 import controller.ViewManager.ViewManagerException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
+
 import model.Consumable;
 import model.Ingredient;
 import model.DatabaseModel;
+import model.transaction.Transaction;
+import model.transaction.TransactionBuilder;
+import model.LineItem;
+import model.User;
+
 import view.NewOrderButton;
+
+import receipt.Receipt;
+import receipt.ReceiptHeader;
+import receipt.ReceiptFooter;
+import receipt.ReceiptItem;
+import receipt.ReceiptBuilder;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class NewOrderController extends Controller
 {
@@ -30,9 +48,25 @@ public class NewOrderController extends Controller
 
     @FXML
     private TextField textfieldPayment;
+    
+    private TextArea receiptTextArea;
 
     @FXML
     private FlowPane flowpaneBudget, flowpaneCombo, flowpaneSandwich, flowpaneExtras;
+
+    @FXML
+    private VBox vboxReceipt;
+
+    private ReceiptBuilder receiptBuilder;
+    private TransactionBuilder transactionBuilder;
+
+    private Receipt receipt;
+
+    private int transactionId;
+    private int customerNo;
+    private String transactionMode;
+    private User cashier;
+    private List<LineItem> lineItems;
 
     public NewOrderController() throws IOException
     {
@@ -44,6 +78,19 @@ public class NewOrderController extends Controller
     {
         if(checkInitialLoad(getClass().getSimpleName()))
         {
+            transactionId = 10;
+            customerNo = 2;
+            transactionMode = Transaction.MODE_DINE_IN;
+            cashier = new User("Bob", "bobthebuilder", "builder", null);
+            lineItems = new ArrayList<LineItem>();
+            transactionBuilder = new TransactionBuilder();
+            receiptBuilder = new ReceiptBuilder();
+            
+            receiptTextArea = new TextArea();
+            // receiptTextArea.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            receiptTextArea.setMaxWidth(Double.MAX_VALUE);
+            receiptTextArea.setMaxHeight(Double.MAX_VALUE);
+
             buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
             {
                 viewManager.switchViews("MainMenuController");
@@ -78,6 +125,14 @@ public class NewOrderController extends Controller
                 spinnerCustNo.getEditor().clear(); // remove spinner content
                 textfieldPayment.clear(); // remove textfield content
             });
+
+            // ActionEvent cancelOrderHandler = ActionEvent.ACTION, e ->
+            // {
+                // TODO
+                // Get the LineItem assigned to the event source button
+                // Remove the LineItem from the current list of line items
+                // lineItems.remove();
+            // }
         }
 
 
@@ -113,6 +168,39 @@ public class NewOrderController extends Controller
                 if (i.getRawItem().getQuantity() < i.getQuantity())
                     nob.setDisable(true);
             }
+
+            nob.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                /* Check if selected order is already in the list */
+                boolean duplicate = false;
+                for (LineItem li : lineItems) {
+                    if (li.getConsumable().getName().equals(nob.getName())) {
+                        li.increaseQuantity(1);
+                        duplicate = true;
+                        break;
+                    }
+                }
+                if (!duplicate)
+                    lineItems.add(new LineItem(transactionId, c, 1));
+                                    
+                // Receipt building begin
+                receiptBuilder.clear();
+
+                receiptBuilder.setLineItems(lineItems)
+                              .setTransactionMode(transactionMode)
+                              .setTransactionNo(transactionId)
+                              .setCustomerNo(customerNo)
+                              .setCashierName(cashier.getUsername())
+                              .setTransactionDate(LocalDateTime.now());
+
+                receipt = receiptBuilder.build();
+                // Receipt building end
+                
+                // Update receipt sidepane
+                receiptTextArea.setText(receipt.customerReceipt());
+                vboxReceipt.getChildren().clear();
+                vboxReceipt.getChildren().add(receiptTextArea);
+            });
 
             String category = c.getCategory().getCategoryName();
 

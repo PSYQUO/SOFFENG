@@ -27,11 +27,11 @@ public class User {
         return userID;
     }
 
-    public String getusername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setusername(String username) {
+    public void setUsername(String username) {
         if (username.chars().allMatch(Character::isLetter))
             this.username = username;
     }
