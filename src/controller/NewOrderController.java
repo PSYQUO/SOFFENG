@@ -24,8 +24,8 @@ import model.User;
 import view.NewOrderButton;
 
 import receipt.Receipt;
-import receipt.Header;
-import receipt.Footer;
+import receipt.ReceiptHeader;
+import receipt.ReceiptFooter;
 import receipt.ReceiptItem;
 import receipt.ReceiptBuilder;
 
@@ -64,7 +64,7 @@ public class NewOrderController extends Controller
 
     private int transactionId;
     private int customerNo;
-    private Transaction.TransactionMode transactionMode;
+    private String transactionMode;
     private User cashier;
     private List<LineItem> lineItems;
 
@@ -80,10 +80,11 @@ public class NewOrderController extends Controller
         {
             transactionId = 10;
             customerNo = 2;
-            transactionMode = Transaction.TransactionMode.DINE_IN;
+            transactionMode = Transaction.MODE_DINE_IN;
             cashier = new User("Bob", "bobthebuilder", "builder", null);
             lineItems = new ArrayList<LineItem>();
             transactionBuilder = new TransactionBuilder();
+            receiptBuilder = new ReceiptBuilder();
             
             receiptTextArea = new TextArea();
             // receiptTextArea.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -181,31 +182,24 @@ public class NewOrderController extends Controller
                 }
                 if (!duplicate)
                     lineItems.add(new LineItem(transactionId, c, 1));
-                
-                receiptBuilder = new ReceiptBuilder();
-                for (LineItem li : lineItems) {
-                    receiptBuilder.addItem(new ReceiptItem(li.getConsumable().getName(), 
-                                                           li.getQuantity(), 
-                                                           li.getConsumable().getPrice() * li.getQuantity()));
-                }
+                                    
+                // Receipt building begin
+                receiptBuilder.clear();
 
-                Header header = new Header(transactionMode.toString(), transactionId, customerNo);
-
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-                LocalDateTime now = LocalDateTime.now();
-                Footer footer = new Footer(cashier.getusername(), dtf.format(now)); // 2016/11/16 12:08:43
-
-                receiptBuilder.addHeader(header);
-                receiptBuilder.addFooter(footer);
+                receiptBuilder.setLineItems(lineItems)
+                              .setTransactionMode(transactionMode)
+                              .setTransactionNo(transactionId)
+                              .setCustomerNo(customerNo)
+                              .setCashierName(cashier.getUsername())
+                              .setTransactionDate(LocalDateTime.now());
 
                 receipt = receiptBuilder.build();
-
+                // Receipt building end
+                
+                // Update receipt sidepane
                 receiptTextArea.setText(receipt.customerReceipt());
-                // Label entry = new Label(c.getName() + "1" + c.getPrice());
                 vboxReceipt.getChildren().clear();
                 vboxReceipt.getChildren().add(receiptTextArea);
-                // vboxReceipt.getChildren().add(entry);
-                // receiptBuilder.addItem(new ReceiptItem(c.getName(), c.getQuantity(), c.getPrice()));
             });
 
             String category = c.getCategory().getCategoryName();

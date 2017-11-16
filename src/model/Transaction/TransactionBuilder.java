@@ -2,7 +2,7 @@ package model.transaction;
 
 import model.LineItem;
 import model.User;
-import model.transaction.Transaction.TransactionMode;
+// import model.transaction.Transaction.TransactionMode;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder setMode(TransactionMode mode) {
+    public TransactionBuilder setMode(String mode) {
         transaction.setMode(mode);
         return this;
     }
