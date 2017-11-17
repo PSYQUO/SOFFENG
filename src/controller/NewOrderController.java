@@ -116,7 +116,7 @@ public class NewOrderController extends Controller
             receiptTextArea = new TextArea();
             receiptTextArea.setMaxWidth(Double.MAX_VALUE);
             receiptTextArea.setMaxHeight(Double.MAX_VALUE);
-
+            
             changeProperty = new SimpleDoubleProperty();
             // changeProperty.setValue(transactionBuilder.build().getTotal() - Double.parseDouble(textfieldPayment.getText()));
             // labelChange.textProperty().bind(changeProperty.asString());
@@ -162,6 +162,9 @@ public class NewOrderController extends Controller
                 Transaction tempTransaction = transactionBuilder.build();
                 if (tempTransaction.getTotal() != -1)
                     labelTotal.setText(tempTransaction.getTotal() + "");
+                                
+                double change = Double.parseDouble(textfieldPayment.getText()) - tempTransaction.getTotal();
+                labelChange.setText(change + "");
 
                 borderpanePayment.setDisable(false);
                 borderpanePayment.setVisible(true);
@@ -170,15 +173,33 @@ public class NewOrderController extends Controller
 
             buttonEnter.addEventHandler(ActionEvent.ACTION, e ->
             {
+                double change = Double.parseDouble(labelChange.getText());
+                if (change < 0)
+                    return;
+                
+                transactionBuilder.setCashReceived(Double.parseDouble(textfieldPayment.getText()));
+                transactionBuilder.setChange(Double.parseDouble(labelChange.getText()));
+                transactionBuilder.setCustomerNo(spinnerCustNo.getValue());
+
+                receiptBuilder.processTransaction(transactionBuilder.build());
+                
+                // Update receipt sidepane
+                receiptTextArea.setText(receipt.customerReceipt());
+                vboxReceipt.getChildren().clear();
+                vboxReceipt.getChildren().add(receiptTextArea);
+
+                // TODO: at this point papasok na sa DB dapat
+
+                // dbm.addTransaction(transactionBuilder.build());
+
+                // TODO: Dapat after nito magpapakita yung "Transaction complete!"
+
                 borderpanePayment.setDisable(true);
                 borderpanePayment.setVisible(false);
                 borderpaneNewOrder.setDisable(false);
                 spinnerCustNo.getEditor().clear(); // remove spinner content
                 textfieldPayment.clear(); // remove textfield content
-
-                // TODO: at this point papasok na sa DB dapat
-
-                // TODO: Dapat after nito magpapakita yung "Transaction complete!"
+                
             });
             
             buttonBackspace.addEventHandler(ActionEvent.ACTION, e ->
@@ -188,6 +209,12 @@ public class NewOrderController extends Controller
                 else
                     textfieldPayment.setText(
                         textfieldPayment.getText().substring(0, textfieldPayment.getText().length() - 1));
+                
+                double total = transactionBuilder.build().getTotal();
+                if (checkboxSenior.isSelected())
+                    total -= total * 0.20;
+                double change = Double.parseDouble(textfieldPayment.getText()) - total;
+                labelChange.setText(change + "");
             });
 
             buttonPaymentClose.addEventHandler(ActionEvent.ACTION, e ->
