@@ -17,7 +17,7 @@
 }
 
 #redBut{
-	-fx-background-image: url("resources/icons/del2.png");
+	-fx-background-image: url("resources/icons/del.png");
     -fx-background-size: 30%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
