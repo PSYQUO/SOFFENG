@@ -11,6 +11,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.CheckBox;
 // import javafx.scene.control.TextInputControl.TextProperty;
 
 import javafx.scene.layout.BorderPane;
@@ -50,6 +51,9 @@ public class NewOrderController extends Controller
 
     @FXML
     private Button buttonOK, buttonEnter, buttonPaymentClose, buttonNewOrderClose, buttonBackspace;
+
+    @FXML
+    private CheckBox checkboxSenior;
 
     @FXML
     private Spinner<Integer> spinnerCustNo;
@@ -126,11 +130,24 @@ public class NewOrderController extends Controller
                     if (textfieldPayment.getText().equals("0"))
                         textfieldPayment.setText("");
                     textfieldPayment.setText(textfieldPayment.getText() + b.getText());
-                    double change = Double.parseDouble(textfieldPayment.getText()) - transactionBuilder.build().getTotal();
-                    // changeProperty.setValue(change);
+                    double total = transactionBuilder.build().getTotal();
+                    if (checkboxSenior.isSelected())
+                        total -= total * 0.20;
+                    double change = Double.parseDouble(textfieldPayment.getText()) - total;
                     labelChange.setText(change + "");
                 });
             }
+            
+            checkboxSenior.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                // double total = transactionBuilder.build().getTotal();
+                double total = transactionBuilder.build().getTotal();
+                if (checkboxSenior.isSelected())
+                    total -= total * 0.20;
+                // double change = Double.parseDouble(textfieldPayment.getText()) - total;
+                labelChange.setText((Double.parseDouble(textfieldPayment.getText()) - total) + "");
+                labelTotal.setText(total + "");
+            });
 
             buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
             {
