@@ -655,6 +655,30 @@ public class DatabaseModel
         return false;
     }
 
+    public boolean updateRawItem(RawItem newRawItem)
+    {
+        try
+        {
+            dbc = DBConnection.getInstance();
+            dbc.prepareStatement("UPDATE rawitem SET RawItem_Name = ?, RawItem_Quantity = ?, RawItem_Price = ? WHERE RawItem_ID = ?;");
+            dbc.setString(1, newRawItem.getName());
+            dbc.setInt(2, newRawItem.getQuantity());
+            dbc.setDouble(3, newRawItem.getConsumable().getPrice());
+            dbc.setInt(4, newRawItem.rawItemID);
+
+            if(dbc.executeUpdate() == 1)
+            {
+                return true;
+            }
+            dbc.closePreparedStatement();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
     public boolean deleteRawItem(RawItem rawItem)
     {
         try

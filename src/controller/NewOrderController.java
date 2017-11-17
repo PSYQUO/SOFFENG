@@ -192,6 +192,16 @@ public class NewOrderController extends Controller
 
                 // dbm.addTransaction(transactionBuilder.build());
 
+                // Decrease the inventory stocks after the transaction.
+                // RawItem rawItem;
+                // for (LineItem li : transaction.getLineItems()) {
+                //     for (Ingredient i : li.getConsumable().getIngredients()) {
+                //         rawItem = dbm.searchRawItem(i.getRawItem().rawItemID);
+                //         rawItem.setQuantity(rawItem.getQuantity() - i.getQuantity());
+                //         dbm.updateRawItem(rawItem);
+                //     }
+                // }
+
                 // TODO: Dapat after nito magpapakita yung "Transaction complete!"
 
                 borderpanePayment.setDisable(true);
