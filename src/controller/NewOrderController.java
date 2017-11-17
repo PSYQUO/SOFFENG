@@ -4,12 +4,17 @@ import controller.ViewManager.ViewManagerException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+// import javafx.scene.control.TextInputControl.TextProperty;
+
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
@@ -35,13 +40,16 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+
 public class NewOrderController extends Controller
 {
     @FXML
     private BorderPane borderpanePayment, borderpaneNewOrder;
 
     @FXML
-    private Button buttonOK, buttonEnter, buttonPaymentClose, buttonNewOrderClose;
+    private Button buttonOK, buttonEnter, buttonPaymentClose, buttonNewOrderClose, buttonBackspace;
 
     @FXML
     private Spinner<Integer> spinnerCustNo;
@@ -52,10 +60,19 @@ public class NewOrderController extends Controller
     private TextArea receiptTextArea;
 
     @FXML
+    private Label labelTotal;
+
+    @FXML
+    private Label labelChange;
+
+    @FXML
     private FlowPane flowpaneBudget, flowpaneCombo, flowpaneSandwich, flowpaneExtras;
 
     @FXML
     private VBox vboxReceipt;
+
+    @FXML
+    private GridPane gridpaneNumpad;
 
     private ReceiptBuilder receiptBuilder;
     private TransactionBuilder transactionBuilder;
@@ -67,6 +84,7 @@ public class NewOrderController extends Controller
     private String transactionMode;
     private User cashier;
     private List<LineItem> lineItems;
+    private DoubleProperty changeProperty;
 
     public NewOrderController() throws IOException
     {
@@ -95,6 +113,25 @@ public class NewOrderController extends Controller
             receiptTextArea.setMaxWidth(Double.MAX_VALUE);
             receiptTextArea.setMaxHeight(Double.MAX_VALUE);
 
+            changeProperty = new SimpleDoubleProperty();
+            // changeProperty.setValue(transactionBuilder.build().getTotal() - Double.parseDouble(textfieldPayment.getText()));
+            // labelChange.textProperty().bind(changeProperty.asString());
+            // labelChange.textProperty().bind(textfieldPayment.textProperty() - transactionBuilder.build().getTotal());
+
+            // Attach event handlers for each button in the numpad
+            for (Node n : gridpaneNumpad.getChildren()) {
+                Button b = (Button) n;
+                b.addEventHandler(ActionEvent.ACTION, e ->
+                {
+                    if (textfieldPayment.getText().equals("0"))
+                        textfieldPayment.setText("");
+                    textfieldPayment.setText(textfieldPayment.getText() + b.getText());
+                    double change = Double.parseDouble(textfieldPayment.getText()) - transactionBuilder.build().getTotal();
+                    // changeProperty.setValue(change);
+                    labelChange.setText(change + "");
+                });
+            }
+
             buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
             {
                 viewManager.switchViews("MainMenuController");
@@ -103,6 +140,12 @@ public class NewOrderController extends Controller
 
             buttonOK.addEventHandler(ActionEvent.ACTION, e ->
             {
+                labelTotal.setText("");
+                textfieldPayment.setText("0");
+                Transaction tempTransaction = transactionBuilder.build();
+                if (tempTransaction.getTotal() != -1)
+                    labelTotal.setText(tempTransaction.getTotal() + "");
+
                 borderpanePayment.setDisable(false);
                 borderpanePayment.setVisible(true);
                 borderpaneNewOrder.setDisable(true);
@@ -119,6 +162,15 @@ public class NewOrderController extends Controller
                 // TODO: at this point papasok na sa DB dapat
 
                 // TODO: Dapat after nito magpapakita yung "Transaction complete!"
+            });
+            
+            buttonBackspace.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                if (textfieldPayment.getText().length() == 1)
+                    textfieldPayment.setText("0");
+                else
+                    textfieldPayment.setText(
+                        textfieldPayment.getText().substring(0, textfieldPayment.getText().length() - 1));
             });
 
             buttonPaymentClose.addEventHandler(ActionEvent.ACTION, e ->
