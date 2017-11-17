@@ -663,7 +663,7 @@ public class DatabaseModel
             dbc.prepareStatement("UPDATE rawitem SET RawItem_Name = ?, RawItem_Quantity = ?, RawItem_Price = ? WHERE RawItem_ID = ?;");
             dbc.setString(1, newRawItem.getName());
             dbc.setInt(2, newRawItem.getQuantity());
-            dbc.setDouble(3, newRawItem.getConsumable().getPrice());
+            dbc.setDouble(3, newRawItem.getPrice());
             dbc.setInt(4, newRawItem.rawItemID);
 
             if(dbc.executeUpdate() == 1)
