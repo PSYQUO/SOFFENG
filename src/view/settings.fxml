@@ -39,7 +39,7 @@
                   <Font name="System Bold" size="85.0" />
                </font>
             </Label>
-            <Button id="buttonBack" fx:id="buttonBack" layoutX="472.0" layoutY="35.0" mnemonicParsing="false" prefWidth="105.0" styleClass="buttonBack" stylesheets="@inv_most_wastage_analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <Button id="buttonBack" fx:id="buttonBack" layoutX="440.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@inv_most_wastage_analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font size="47.0" />
                </font>
@@ -98,7 +98,6 @@
                   </PasswordField>
                </children>
             </GridPane>
-            <Button fx:id="buttonPasswordSettingsClose" mnemonicParsing="false" styleClass="close" text="X" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
             <GridPane layoutX="-58.0" layoutY="104.0">
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -111,6 +110,11 @@
                   <Font name="System Bold" size="85.0" />
                </font>
             </Label>
+            <Button id="buttonBack" fx:id="buttonBack1" layoutX="444.0" layoutY="-4.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@inv_most_wastage_analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font size="47.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorpaneBackupSettings" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" visible="false">
@@ -147,12 +151,16 @@
                   </Button>
                </children>
             </GridPane>
-            <Button fx:id="buttonBackupSettingsClose" mnemonicParsing="false" styleClass="close" text="X" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
             <Label layoutX="80.0" layoutY="10.0" text="Backup Location" textFill="#35dee8" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="System Bold" size="85.0" />
                </font>
             </Label>
+            <Button id="buttonBack" fx:id="buttonBack2" layoutX="446.0" layoutY="-17.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@inv_most_wastage_analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font size="47.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
