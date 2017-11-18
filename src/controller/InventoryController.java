@@ -10,7 +10,7 @@ import java.io.IOException;
 public class InventoryController extends Controller
 {
     @FXML
-    private Button buttonClose;
+    private Button buttonBack;
 
     public InventoryController() throws IOException
     {
@@ -22,7 +22,7 @@ public class InventoryController extends Controller
     {
         if(checkInitialLoad(getClass().getSimpleName()))
         {
-            buttonClose.addEventHandler(ActionEvent.ACTION, e ->
+            buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
                 viewManager.switchViews("MainMenuController");
                 clear();
