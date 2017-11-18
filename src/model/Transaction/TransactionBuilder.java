@@ -1,12 +1,11 @@
-package model.Transaction;
+package model.transaction;
 
 import model.LineItem;
 import model.User;
-import model.Transaction.Transaction.TransactionMode;
+import model.transaction.Transaction.TransactionMode;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TransactionBuilder {
     private TransactionInBuilding transaction;
@@ -69,7 +68,7 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder setLineItems(List<LineItem> lineItems) {
+    public TransactionBuilder setLineItems(ArrayList<LineItem> lineItems) {
         transaction.setLineItems(lineItems);
         return this;
     }

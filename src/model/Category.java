@@ -1,7 +1,7 @@
 package model;
 
 public class Category {
-    public int categoryID;
+    private int categoryID;
     private String categoryName;
 
     public Category(String categoryName) {
