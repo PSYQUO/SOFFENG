@@ -181,6 +181,12 @@ public class NewOrderController extends Controller
                 transactionBuilder.setChange(Double.parseDouble(labelChange.getText()));
                 transactionBuilder.setCustomerNo(spinnerCustNo.getValue());
 
+                /**
+                 * Dummy Values
+                 */
+                transactionBuilder.addLineItem(new LineItem(1, new Consumable("Nixon", "nix", null, 4.20, null), 420));
+                transactionBuilder.addLineItem(new LineItem(1, new Consumable("Jordan", "nix", null, 69.69, null), 69));
+
                 receiptBuilder.clear();
                 Receipt receipt = receiptBuilder.processTransaction(transactionBuilder.build()).build();
                 

@@ -27,6 +27,9 @@ public class ReceiptHeader {
         lines.add(String.format("%-15s\n", "Transaction Type: " + transactionMode));
         lines.add(String.format("%-15s\n", "Transaction No.: " + transactionNo));
         lines.add(String.format("%-15s\n", "Customer No.: " + customerNo));
+
+        lines.add(String.format("%1s\n", " "));
+        lines.add(String.format("%-15s%21s\n", "Item(s)", "Qty"));
         lines.add(String.format("%35S\n", separator));
 
         String text = "";
@@ -44,12 +47,15 @@ public class ReceiptHeader {
         lines.add(String.format("%35S\n", "Parkwood 2 Gate, Legaspi Street,"));
         lines.add(String.format("%29S\n", "Maybunga, Pasig City"));
         lines.add(String.format("%29S\n", "Tel No: 0939-527-9331"));
-        lines.add(String.format("%32S\n", "VAT REG TIN: 2401-DLSU-MNL"));
+        //lines.add(String.format("%32S\n", "VAT REG TIN: 2401-DLSU-MNL"));
 
         lines.add(String.format("%1s\n", " "));
         lines.add(String.format("%-15s\n", "Transaction Type: " + transactionMode));
         lines.add(String.format("%-15s\n", "Transaction No.: " + transactionNo));
         lines.add(String.format("%-15s\n", "Customer No.: " + customerNo));
+
+        lines.add(String.format("%1s\n", " "));
+        lines.add(String.format("%-15s%5s%16s\n", "Item(s)", "Qty", "Price"));
         lines.add(String.format("%35S\n", separator));
 
         String text = "";

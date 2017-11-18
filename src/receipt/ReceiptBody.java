@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import model.LineItem;
 
 public class ReceiptBody {
+    private double discount;
     private double subTotal; // Setting this here just in case
     private double total; // Can be calculated
     private double payment; // Has to be set
@@ -32,6 +33,10 @@ public class ReceiptBody {
     public void setChange(double change) {
         this.change = change;
     }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
     
     public void addLineItem(LineItem item) {
         lineItems.add(item);
@@ -48,9 +53,9 @@ public class ReceiptBody {
     public String customerItems() {
         String text = "";
         for (LineItem li : lineItems) {
-            text += String.format("%-28s%-2s%7s", li.getConsumable().getName(), 
-                                                   li.getQuantity() + "", 
-                                                   li.getQuantity() * li.getConsumable().getPrice() + "\n");
+            text += String.format("%-15s%5s%16s\n", li.getConsumable().getName(), 
+                                                    li.getQuantity(), 
+                                                    li.getQuantity() * li.getConsumable().getPrice());
         }
 
         return text;
@@ -59,8 +64,8 @@ public class ReceiptBody {
     public String kitchenItems() {
         String text = "";
         for (LineItem li : lineItems) {
-            text += String.format("%-35s%2s", li.getConsumable().getName(), 
-                                              li.getQuantity() + "\n");
+            text += String.format("%-15s%21s\n", li.getConsumable().getName(), 
+                                                 li.getQuantity());
         }
 
         return text;
@@ -71,8 +76,12 @@ public class ReceiptBody {
         lines.add(String.format("%37s\n", "--------"));
         //lines.add(String.format("-15S", "Item Sold 489"));
         lines.add(String.format("%1s\n", " "));
-        lines.add(String.format("%-15S%21S\n", "Amount Tendered", payment + ""));
-        lines.add(String.format("%-15S%21S\n", "Change", change + ""));
+        lines.add(String.format("%-15s%21S\n", "Subtotal", subTotal));
+        lines.add(String.format("%-15s%21S\n", "Discount", discount));
+        lines.add(String.format("%37s\n", "--------"));
+        lines.add(String.format("%-15s%21S\n", "Total", total));
+        lines.add(String.format("%-15s%21S\n", "Amount Tendered", payment));
+        lines.add(String.format("%-15s%21S\n", "Change", change));
 
         String text = "";
         for (int i = 0; i < lines.size(); i++) {

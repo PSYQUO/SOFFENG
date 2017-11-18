@@ -36,9 +36,9 @@ public class ReceiptFooter {
         lines.add(String.format("%31S\n", "Antoine IT Solutions Inc."));
         lines.add(String.format("%32S\n", "Taft Avenue, Malate, Manila"));
         lines.add(String.format("%31S\n", "Contact No. 0977-627-4709"));
-        lines.add(String.format("%1s\n", " "));
+        //lines.add(String.format("%1s\n", " "));
 
-        lines.add(String.format("%33S\n", "Thank you. Please come again."));
+        //lines.add(String.format("%33S\n", "Thank you. Please come again."));
         
         lines.add(String.format("%35S\n", sep));
 
