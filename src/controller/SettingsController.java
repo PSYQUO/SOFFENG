@@ -11,7 +11,7 @@ import java.io.IOException;
 public class SettingsController extends Controller
 {
     @FXML
-    private Button buttonMainSettingsClose, buttonPasswordSettingsClose, buttonBackupSettingsClose,
+    private Button buttonBack, buttonBack1, buttonBack2,
                    buttonChangePassword, buttonSetBackup;
 
     @FXML
@@ -27,7 +27,7 @@ public class SettingsController extends Controller
     {
         if(checkInitialLoad(getClass().getSimpleName()))
         {
-            buttonMainSettingsClose.addEventHandler(ActionEvent.ACTION, e ->
+            buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
                 viewManager.switchViews("MainMenuController");
                 clear();
@@ -41,7 +41,7 @@ public class SettingsController extends Controller
                 anchorpanePasswordSettings.setDisable(false);
             });
 
-            buttonPasswordSettingsClose.addEventHandler(ActionEvent.ACTION, e ->
+            buttonBack1.addEventHandler(ActionEvent.ACTION, e ->
             {
                 anchorpanePasswordSettings.setVisible(false);
                 anchorpanePasswordSettings.setDisable(true);
@@ -57,7 +57,7 @@ public class SettingsController extends Controller
                 anchorpaneBackupSettings.setDisable(false);
             });
 
-            buttonBackupSettingsClose.addEventHandler(ActionEvent.ACTION, e ->
+            buttonBack2.addEventHandler(ActionEvent.ACTION, e ->
             {
                 anchorpaneBackupSettings.setVisible(false);
                 anchorpaneBackupSettings.setDisable(true);

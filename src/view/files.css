@@ -1,15 +1,43 @@
 #background {
     -fx-background-color: rgb(44, 64, 80);
 }
+.splitPane{
+    -fx-background-color: rgb(44, 64, 80);
+}
 .greenbutton {
     -fx-background-color: rgb(46,204,113);
 }
-.yellowbutton {
-	-fx-background-color: rgb(220, 220, 0);
+.blueButtons {
+	-fx-background-color: rgb(52, 152, 219);
 }
 .redbutton {
 	-fx-background-color: rgb(239, 83, 80);
 }
+#fileIcon{
+    -fx-background-image: url("resources/icons/files.png");
+    -fx-background-size: 30%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+#addButton{
+    -fx-background-image: url("resources/icons/addStuff.png");
+    -fx-background-size: 30%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+#editButton{
+    -fx-background-image: url("resources/icons/edit.png");
+    -fx-background-size: 23%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+#removeButton{
+    -fx-background-image: url("resources/icons/del.png");
+    -fx-background-size: 30%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
 
 .tab {
     -fx-text-fill: #FFFFFF;

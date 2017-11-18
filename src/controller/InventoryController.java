@@ -25,7 +25,7 @@ public class InventoryController extends Controller
     private TableColumn colIngredients, colNumber;
 
     @FXML
-    private Button buttonClose;
+    private Button buttonBack;
 
     public InventoryController() throws IOException
     {
@@ -46,7 +46,8 @@ public class InventoryController extends Controller
                             param -> new SimpleStringProperty(param.getValue().get(1).toString()));
 
             loadRawItems();
-            buttonClose.addEventHandler(ActionEvent.ACTION, e ->
+
+            buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
                 viewManager.switchViews("MainMenuController");
                 clear();
