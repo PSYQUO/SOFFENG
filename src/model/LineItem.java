@@ -22,4 +22,14 @@ public class LineItem {
     public int getTransID() {
         return transID;
     }
+
+    public void increaseQuantity(int value) {
+        if (value > 0)
+            quantity += value;
+    }
+
+    public void decreaseQuantity(int value) {
+        if (value > 0 && quantity - value > 0)
+            quantity -= value;
+    }
 }

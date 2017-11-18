@@ -2,7 +2,7 @@ package model.transaction;
 
 import model.LineItem;
 import model.User;
-import model.transaction.Transaction.TransactionMode;
+// import model.transaction.Transaction.TransactionMode;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,8 +18,8 @@ public class TransactionBuilder {
         transaction = new TransactionInBuilding(transactionID);
     }
 
-    public TransactionBuilder setTransactionDate(LocalDateTime transactionDate) {
-        transaction.setTransactionDate(transactionDate);
+    public TransactionBuilder setDate(LocalDateTime date) {
+        transaction.setDate(date);
         return this;
     }
 
@@ -28,7 +28,7 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder setMode(TransactionMode mode) {
+    public TransactionBuilder setMode(String mode) {
         transaction.setMode(mode);
         return this;
     }
@@ -59,7 +59,20 @@ public class TransactionBuilder {
     }
 
     public TransactionBuilder addLineItem(LineItem lineItem) {
-        transaction.addLineItem(lineItem);
+
+        /* Check if lineItem is already in the list */
+        boolean duplicate = false;
+        for (LineItem li : transaction.getLineItems()) {
+            if (li.getConsumable().getName().equals(lineItem.getConsumable().getName())) {
+                li.increaseQuantity(1);
+                setTotal(transaction.getTotal() + li.getConsumable().getPrice());
+                duplicate = true;
+                break;
+            }
+        }
+        if (!duplicate)
+            transaction.addLineItem(lineItem);
+
         return this;
     }
 
@@ -73,8 +86,8 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder setCustNo(int custNo) {
-        transaction.setCustNo(custNo);
+    public TransactionBuilder setCustomerNo(int customerNo) {
+        transaction.setCustomerNo(customerNo);
         return this;
     }
 
@@ -100,7 +113,7 @@ public class TransactionBuilder {
             change = -1;
             total = -1;
             lineItems = new ArrayList<LineItem>();
-            custNo = -1;
+            customerNo = -1;
         }
         
         public TransactionInBuilding(int transactionID) {
@@ -109,7 +122,7 @@ public class TransactionBuilder {
             change = -1;
             total = -1;
             lineItems = new ArrayList<LineItem>();
-            custNo = -1;
+            customerNo = -1;
         }
     }
 }
