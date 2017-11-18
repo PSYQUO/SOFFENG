@@ -10,8 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import model.DatabaseModel;
-import model.RawItem;
+import model.*;
 
 import javafx.util.Callback;
 import java.io.IOException;
@@ -20,10 +19,12 @@ import java.util.ArrayList;
 public class InventoryController extends Controller
 {
     @FXML
-    private TableView tableviewInvetory;
+    private TableView tableviewInventory;
 
     @FXML
-    private TableColumn tableInventory, colNumber;
+    private TableColumn colIngredients, colNumber;
+
+    @FXML
     private Button buttonClose;
 
     public InventoryController() throws IOException
@@ -36,6 +37,14 @@ public class InventoryController extends Controller
     {
         if(checkInitialLoad(getClass().getSimpleName()))
         {
+            colIngredients.setCellValueFactory(
+                    (Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>)
+                            param -> new SimpleStringProperty(param.getValue().get(0).toString()));
+
+            colNumber.setCellValueFactory(
+                    (Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>)
+                            param -> new SimpleStringProperty(param.getValue().get(1).toString()));
+
             loadRawItems();
             buttonClose.addEventHandler(ActionEvent.ACTION, e ->
             {
@@ -56,12 +65,17 @@ public class InventoryController extends Controller
         DatabaseModel dbm = new DatabaseModel();
         ArrayList<RawItem> rawItemList = dbm.getRawItems();
 
-        ObservableList<String> colRawItemName = FXCollections.observableArrayList();
-        ObservableList<String> colQuantity = FXCollections.observableArrayList();
+        ObservableList<ObservableList<String>> columnData = FXCollections.observableArrayList();
 
-        tableInventory.setCellValueFactory(
-                (Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>)
-                        param -> new SimpleStringProperty(param.getValue().get(0).toString())
-        );
+        for(RawItem r : rawItemList)
+        {
+            ObservableList<String> row = FXCollections.observableArrayList();
+            row.add(r.getName());
+            row.add(r.getQuantity() + "");
+
+            columnData.add(row);
+        }
+
+        tableviewInventory.setItems(columnData);
     }
 }
