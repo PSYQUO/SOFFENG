@@ -3,7 +3,7 @@ package receipt;
 import java.util.*;
 
 public class ReceiptHeader {
-    private static String separator = "-------------------------------------";
+    private static String separator = "------------------------------------";
     private String transactionMode;
     private int transactionNo;
     private int customerNo;
@@ -29,8 +29,8 @@ public class ReceiptHeader {
         lines.add(String.format("%-15s\n", "Customer No.: " + customerNo));
 
         lines.add(String.format("%1s\n", " "));
-        lines.add(String.format("%-15s%21s\n", "Item(s)", "Qty"));
-        lines.add(String.format("%35S\n", separator));
+        lines.add(String.format("%-15s%21s\n", "Item", "Qty"));
+        lines.add(String.format("%-15s%21s\n", "----", "---"));
 
         String text = "";
         for (int i = 0; i < lines.size(); i++){
@@ -53,10 +53,9 @@ public class ReceiptHeader {
         lines.add(String.format("%-15s\n", "Transaction Type: " + transactionMode));
         lines.add(String.format("%-15s\n", "Transaction No.: " + transactionNo));
         lines.add(String.format("%-15s\n", "Customer No.: " + customerNo));
-
-        lines.add(String.format("%1s\n", " "));
-        lines.add(String.format("%-15s%5s%16s\n", "Item(s)", "Qty", "Price"));
         lines.add(String.format("%35S\n", separator));
+        lines.add(String.format("%-15s%5s%16s\n", "Item", "Qty", "Price"));
+        lines.add(String.format("%-15s%5s%16s\n", "----", "---", "-----"));
 
         String text = "";
         for (int i = 0; i < lines.size(); i++) {

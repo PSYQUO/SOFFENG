@@ -3,7 +3,7 @@ package receipt;
 import java.util.*;
 
 public class ReceiptFooter {
-    private static String sep = "-------------------------------------";
+    private static String sep = "------------------------------------";
     private String cashierName;
     private String transactionDate;
 

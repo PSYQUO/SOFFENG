@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import model.LineItem;
 
 public class ReceiptBody {
+    private static String separator = "------------------------------------";
     private double discount;
     private double subTotal; // Setting this here just in case
     private double total; // Can be calculated
@@ -73,12 +74,11 @@ public class ReceiptBody {
 
     public String paymentInfo() {
         List<String> lines = new ArrayList<String>();
-        lines.add(String.format("%37s\n", "--------"));
-        //lines.add(String.format("-15S", "Item Sold 489"));
-        lines.add(String.format("%1s\n", " "));
+        lines.add(String.format("%35S\n", separator));
         lines.add(String.format("%-15s%21S\n", "Subtotal", subTotal));
         lines.add(String.format("%-15s%21S\n", "Discount", discount));
-        lines.add(String.format("%37s\n", "--------"));
+        lines.add(String.format("%36s\n", "--------"));
+        //lines.add(String.format("%1s\n", " "));
         lines.add(String.format("%-15s%21S\n", "Total", total));
         lines.add(String.format("%-15s%21S\n", "Amount Tendered", payment));
         lines.add(String.format("%-15s%21S\n", "Change", change));
