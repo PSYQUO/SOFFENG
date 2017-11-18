@@ -32,58 +32,38 @@ public class ReceiptBody {
     public void setChange(double change) {
         this.change = change;
     }
-
-    // public void computeTransaction() {
-    //     change = payment - total;
-    // }
     
     public void addLineItem(LineItem item) {
         lineItems.add(item);
-        // total += item.getConsumable().getPrice()
-        //        * item.getQuantity();
     }
 
     public void removeLineItem(LineItem item) {
         lineItems.remove(item);
-        // total -= item.getConsumable().getPrice()
-        //        * item.getQuantity();
     }
 
     public void setLineItems(List<LineItem> items) {
         lineItems.addAll(items);
-
-        // for (LineItem li : lineItems)
-        //     total += li.getConsumable().getPrice()
-        //            * li.getQuantity();
     }
 
     public String customerItems() {
-        // TODO
-        // lineItems = new ArrayList<LineItem>();
-        // String text = "";
+        String text = "";
+        for (LineItem li : lineItems) {
+            text += String.format("%-28s%-2s%7s", li.getConsumable().getName(), 
+                                                   li.getQuantity() + "", 
+                                                   li.getQuantity() * li.getConsumable().getPrice() + "\n");
+        }
 
-        // for (int i = 0; i < lineItems.size(); i++) {
-        //     text = text + lineItems.get(i);
-        // }
-
-        // return text;
-        return null;
+        return text;
     }
 
     public String kitchenItems() {
-        // TODO
-        // lineItem = new ArrayList<LineItem>();
-        // String text = "";
+        String text = "";
+        for (LineItem li : lineItems) {
+            text += String.format("%-35s%2s", li.getConsumable().getName(), 
+                                              li.getQuantity() + "\n");
+        }
 
-        // for (LineItem li : lineItems) {
-        //     text += li.getConsumable().getName() + "    " 
-        //           + li.getQuantity() + "    " 
-        //           + li.getConsumable().getPrice() * li.getQuantity() + "\n";
-        //     text += li.kitchenItem() + "\n";
-        // }
-
-        // return text;
-        return null;
+        return text;
     }
 
     public String paymentInfo() {

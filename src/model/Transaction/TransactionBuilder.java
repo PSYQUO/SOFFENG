@@ -65,6 +65,7 @@ public class TransactionBuilder {
         for (LineItem li : transaction.getLineItems()) {
             if (li.getConsumable().getName().equals(lineItem.getConsumable().getName())) {
                 li.increaseQuantity(1);
+                setTotal(transaction.getTotal() + li.getConsumable().getPrice());
                 duplicate = true;
                 break;
             }

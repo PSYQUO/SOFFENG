@@ -181,12 +181,11 @@ public class NewOrderController extends Controller
                 transactionBuilder.setChange(Double.parseDouble(labelChange.getText()));
                 transactionBuilder.setCustomerNo(spinnerCustNo.getValue());
 
-                receiptBuilder.processTransaction(transactionBuilder.build());
+                receiptBuilder.clear();
+                Receipt receipt = receiptBuilder.processTransaction(transactionBuilder.build()).build();
                 
-                // Update receipt sidepane
-                receiptTextArea.setText(receipt.customerReceipt());
-                vboxReceipt.getChildren().clear();
-                vboxReceipt.getChildren().add(receiptTextArea);
+                System.out.println(receipt.customerReceipt());
+                System.out.println(receipt.kitchenReceipt());
 
                 // TODO: at this point papasok na sa DB dapat
 
