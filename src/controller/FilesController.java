@@ -1,7 +1,6 @@
 package controller;
 
 import controller.ViewManager.ViewManagerException;
-<<<<<<< HEAD
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -14,11 +13,9 @@ import javafx.scene.control.TableView;
 import model.*;
 import model.transaction.Transaction;
 import model.transaction.TransactionBuilder;
-=======
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
->>>>>>> 6b47296f4cd7b819434208e90239fe08fdd12402
 
 import javafx.util.Callback;
 import java.io.IOException;
