@@ -4,9 +4,3 @@
 .buttons {
     -fx-background-color: rgb(46,204,113);
 }
-.close {
-    -fx-background-color: #EF5350;
-    -fx-text-fill:#FFFFFF;
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-}

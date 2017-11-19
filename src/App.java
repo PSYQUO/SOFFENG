@@ -40,7 +40,7 @@ public class App extends Application
         sc.setViewManager(vm);
 
         vm.addController(fc);
-        sc.setViewManager(vm);
+        fc.setViewManager(vm);
 
         primaryStage.setTitle("Tony Joe's POS System");
         primaryStage.setScene(vm.getScene());

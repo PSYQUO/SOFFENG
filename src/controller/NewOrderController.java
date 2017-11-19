@@ -23,7 +23,7 @@ public class NewOrderController extends Controller
     private BorderPane borderpanePayment, borderpaneNewOrder;
 
     @FXML
-    private Button buttonOK, buttonEnter, buttonPaymentClose, buttonNewOrderClose;
+    private Button buttonOK, buttonEnter, buttonPaymentClose, buttonBack;
 
     @FXML
     private Spinner<Integer> spinnerCustNo;
@@ -44,7 +44,7 @@ public class NewOrderController extends Controller
     {
         if(checkInitialLoad(getClass().getSimpleName()))
         {
-            buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
+            buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
                 viewManager.switchViews("MainMenuController");
                 clear();
@@ -79,7 +79,6 @@ public class NewOrderController extends Controller
                 textfieldPayment.clear(); // remove textfield content
             });
         }
-
 
         loadMeals();
     }
