@@ -281,16 +281,16 @@ public class NewOrderController extends Controller
                 transactionBuilder.addLineItem(new LineItem(transactionId, c, 1));
 
                 // Receipt building begin
-                receiptBuilder.clear();
-                receiptBuilder.processTransaction(transactionBuilder.build());
+                // receiptBuilder.clear();
+                // receiptBuilder.processTransaction(transactionBuilder.build());
 
-                receipt = receiptBuilder.build();
+                // receipt = receiptBuilder.build();
                 // Receipt building end
 
                 // Update receipt sidepane
-                receiptTextArea.setText(receipt.customerReceipt());
-                vboxReceipt.getChildren().clear();
-                vboxReceipt.getChildren().add(receiptTextArea);
+                // receiptTextArea.setText(receipt.customerReceipt());
+                // vboxReceipt.getChildren().clear();
+                // vboxReceipt.getChildren().add(receiptTextArea);
             });
 
             String category = c.getCategory().getCategoryName();
