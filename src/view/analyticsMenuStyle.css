@@ -1,0 +1,18 @@
+#background {
+    -fx-background-color: RGB(44, 64, 80);
+}
+
+.grayButton {
+    -fx-background-color: RGB(165, 129, 131);
+    -fx-font-size: 50px;
+    -fx-font-color:white;
+    -fx-font-weight:bold;
+}
+
+
+#buttonBack {
+    -fx-background-color: #1b519d;
+    -fx-color:#FFFFFF;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
