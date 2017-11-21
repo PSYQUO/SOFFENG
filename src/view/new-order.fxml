@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -21,159 +22,6 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane fx:id="borderpaneNewOrder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
-         <center>
-            <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-               <tabs>
-                  <Tab fx:id="tabBudget" text="BUDGET &amp; FAVORITES">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <FlowPane fx:id="flowpaneBudget" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </FlowPane>
-                              <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Budget &amp; Favorites" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab fx:id="tabCombo" text="COMBO">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <FlowPane fx:id="flowpaneCombo" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </FlowPane>
-                              <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Combo Meals" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab fx:id="tabSandwich" text="SANDWICH, APPETIZER, PASTA">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <FlowPane fx:id="flowpaneSandwich" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </FlowPane>
-                              <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Sandwich/Appetizer/Pasta" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab fx:id="tabExtras" text="EXTRAS">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <FlowPane fx:id="flowpaneExtras" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </FlowPane>
-                              <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Extras" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-               </tabs>
-            </TabPane>
-         </center>
-         <right>
-            <AnchorPane prefHeight="400.0" prefWidth="264.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ScrollPane fx:id="scrollpaneSummary" layoutX="8.0" layoutY="71.0" prefHeight="413.0" prefWidth="247.0" AnchorPane.bottomAnchor="116.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="120.0">
-                     <content>
-                        <VBox fx:id="vboxReceipt" maxHeight="1.7976931348623157E308" prefHeight="379.0" prefWidth="232.0" spacing="5.0">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
-                  <Button fx:id="buttonOK" layoutX="9.0" layoutY="315.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="247.0" text="OK" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-                  <GridPane layoutX="9.0" layoutY="493.0" prefHeight="30.0" prefWidth="245.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="10.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="90.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="155.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label fx:id="labelSubtotal" alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="166.0" text="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
-                           <font>
-                              <Font name="System Bold" size="30.0" />
-                           </font>
-                        </Label>
-                        <Label text="Subtotal">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </GridPane>
-                  <GridPane layoutX="8.0" layoutY="45.0" prefHeight="30.0" prefWidth="247.0" AnchorPane.topAnchor="85.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="113.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="10.0" prefWidth="51.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label text="Item Name" GridPane.halignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label text="Qty" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label text="Price" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </GridPane>
-                  <Button id="buttonBack" fx:id="buttonBack" layoutX="114.0" layoutY="1.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@inv_most_wastage_analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                     <font>
-                        <Font size="47.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-         </right>
-      </BorderPane>
       <BorderPane fx:id="borderpanePayment" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="false" StackPane.alignment="CENTER">
          <top>
             <Button fx:id="buttonPaymentClose" mnemonicParsing="false" styleClass="buttonClose" text="X" BorderPane.alignment="TOP_RIGHT">
@@ -386,5 +234,160 @@
             </GridPane>
          </center>
       </BorderPane>
+      <SplitPane fx:id="splitpaneNewOrder" dividerPositions="0.67" prefHeight="160.0" prefWidth="200.0">
+        <items>
+          <AnchorPane fx:id="anchorpaneNewOrderLeft" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab fx:id="tabBudget" text="BUDGET &amp; FAVORITES">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <FlowPane fx:id="flowpaneBudget" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </FlowPane>
+                                    <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Budget &amp; Favorites" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                                       <font>
+                                          <Font name="System Bold" size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab fx:id="tabCombo" text="COMBO">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <FlowPane fx:id="flowpaneCombo" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </FlowPane>
+                                    <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Combo Meals" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                                       <font>
+                                          <Font name="System Bold" size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab fx:id="tabSandwich" text="SANDWICH, APPETIZER, PASTA">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <FlowPane fx:id="flowpaneSandwich" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </FlowPane>
+                                    <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Sandwich/Appetizer/Pasta" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                                       <font>
+                                          <Font name="System Bold" size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab fx:id="tabExtras" text="EXTRAS">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <FlowPane fx:id="flowpaneExtras" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </FlowPane>
+                                    <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Extras" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                                       <font>
+                                          <Font name="System Bold" size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchorpaneNewOrderRight" prefHeight="400.0" prefWidth="264.0">
+               <children>
+                  <ScrollPane fx:id="scrollpaneSummary" layoutX="8.0" layoutY="71.0" prefHeight="413.0" prefWidth="247.0" AnchorPane.bottomAnchor="116.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="120.0">
+                     <content>
+                        <VBox fx:id="vboxReceipt" maxHeight="1.7976931348623157E308" prefHeight="379.0" prefWidth="232.0" spacing="5.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <Button fx:id="buttonOK" layoutX="9.0" layoutY="315.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="247.0" text="OK" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <GridPane layoutX="9.0" layoutY="493.0" prefHeight="30.0" prefWidth="378.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="90.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="155.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="labelSubtotal" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" text="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label text="Subtotal">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane layoutX="8.0" layoutY="45.0" prefHeight="30.0" prefWidth="357.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="85.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="0.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="93.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Item Name" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="Qty" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="Price" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Button id="buttonBack" fx:id="buttonBack" layoutX="114.0" layoutY="1.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@inv_most_wastage_analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font size="47.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </StackPane>
