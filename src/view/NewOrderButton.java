@@ -10,6 +10,7 @@ public class NewOrderButton extends Button {
     public NewOrderButton(Consumable c) {
         setConsumable(c);
         setAppearance();
+        refreshText();
     }
 
     public void setConsumable(Consumable c) {
