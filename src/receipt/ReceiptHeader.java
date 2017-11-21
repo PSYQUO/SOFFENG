@@ -2,25 +2,30 @@ package receipt;
 
 import java.util.*;
 
-public class ReceiptHeader {
+public class ReceiptHeader
+{
     private static String separator = "------------------------------------";
     private String transactionMode;
     private int transactionNo;
     private int customerNo;
 
-    public void setTransactionMode(String transactionMode) {
+    public void setTransactionMode(String transactionMode)
+    {
         this.transactionMode = transactionMode;
     }
 
-    public void setTransactionNo(int transactionNo) {
+    public void setTransactionNo(int transactionNo)
+    {
         this.transactionNo = transactionNo;
     }
 
-    public void setCustomerNo(int customerNo) {
+    public void setCustomerNo(int customerNo)
+    {
         this.customerNo = customerNo;
     }
 
-    public String kitchenHeader() {
+    public String kitchenHeader()
+    {
         ArrayList<String> lines = new ArrayList<String>();
         
         lines.add(String.format("%-15S\n", "Kitchen slip"));
@@ -33,14 +38,16 @@ public class ReceiptHeader {
         lines.add(String.format("%-15s%21s\n", "----", "---"));
 
         String text = "";
-        for (int i = 0; i < lines.size(); i++){
+        for (int i = 0; i < lines.size(); i++)
+        {
             text = text + lines.get(i);
         }
 
         return text;
     }
 
-    public String customerHeader() {
+    public String customerHeader()
+    {
         ArrayList<String> lines = new ArrayList<String>();
 
         lines.add(String.format("%28S\n", "Tony Joe's Barbeque"));
@@ -58,7 +65,8 @@ public class ReceiptHeader {
         lines.add(String.format("%-15s%5s%16s\n", "----", "---", "-----"));
 
         String text = "";
-        for (int i = 0; i < lines.size(); i++) {
+        for (int i = 0; i < lines.size(); i++)
+        {
             text = text + lines.get(i);
         }
 
