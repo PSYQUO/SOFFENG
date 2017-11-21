@@ -1,7 +1,7 @@
 .dropDown {
     -fx-background-color: rgb(52,152,219);
 }
-#background {
+.background {
     -fx-background-color: RGB(44, 64, 80);
 }
 .greenbutton {
@@ -13,7 +13,7 @@
 }
 
 #redBut{
-	-fx-background-image: url("resources/icons/del2.png");
+	-fx-background-image: url("resources/icons/del.png");
     -fx-background-size: 30%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;

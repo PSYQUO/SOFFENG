@@ -19,7 +19,7 @@ public class Transaction {
     protected String mode;
     protected double cashReceived;
     protected double change;
-    protected double tax;
+    protected double subTotal;
     protected double discount;
     protected double total;
     protected ArrayList<LineItem> lineItems;
@@ -57,8 +57,8 @@ public class Transaction {
         return change;
     }
 
-    public double getTax() {
-        return tax;
+    public double getSubTotal() {
+        return subTotal;
     }
 
     public double getDiscount() {
@@ -97,8 +97,8 @@ public class Transaction {
         this.change = change;
     }
 
-    protected void setTax(double tax) {
-        this.tax = tax;
+    protected void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
     }
 
     protected void setDiscount(double discount) {

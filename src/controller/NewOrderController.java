@@ -50,7 +50,7 @@ public class NewOrderController extends Controller
     private BorderPane borderpanePayment, borderpaneNewOrder;
 
     @FXML
-    private Button buttonOK, buttonEnter, buttonPaymentClose, buttonNewOrderClose, buttonBackspace;
+    private Button buttonOK, buttonEnter, buttonPaymentClose, buttonBack, buttonBackspace;
 
     @FXML
     private CheckBox checkboxSenior;
@@ -149,7 +149,7 @@ public class NewOrderController extends Controller
                 labelTotal.setText(total + "");
             });
 
-            buttonNewOrderClose.addEventHandler(ActionEvent.ACTION, e ->
+            buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
                 viewManager.switchViews("MainMenuController");
                 clear();
@@ -243,7 +243,6 @@ public class NewOrderController extends Controller
                 // lineItems.remove();
             // }
         }
-
 
         loadMeals();
     }

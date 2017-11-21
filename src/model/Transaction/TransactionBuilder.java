@@ -43,8 +43,8 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder setTax(double tax) {
-        transaction.setTax(tax);
+    public TransactionBuilder setSubTotal(double subTotal) {
+        transaction.setSubTotal(subTotal);
         return this;
     }
 
