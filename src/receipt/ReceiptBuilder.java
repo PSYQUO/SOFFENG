@@ -4,7 +4,7 @@ import java.util.List;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import model.transaction.Transaction;
+import model.Transaction.Transaction;
 import model.LineItem;
 
 public class ReceiptBuilder {

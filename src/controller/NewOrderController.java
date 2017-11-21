@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.CheckBox;
-// import javafx.scene.control.TextInputControl.TextProperty;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -22,8 +21,8 @@ import javafx.scene.layout.VBox;
 import model.Consumable;
 import model.Ingredient;
 import model.DatabaseModel;
-import model.transaction.Transaction;
-import model.transaction.TransactionBuilder;
+import model.Transaction.Transaction;
+import model.Transaction.TransactionBuilder;
 import model.LineItem;
 import model.User;
 
@@ -60,7 +59,7 @@ public class NewOrderController extends Controller
 
     @FXML
     private TextField textfieldPayment;
-    
+
     private TextArea receiptTextArea;
 
     @FXML
@@ -112,11 +111,11 @@ public class NewOrderController extends Controller
                               .setMode(transactionMode)
                               .setCashier(cashier)
                               .setDate(LocalDateTime.now());
-            
+
             receiptTextArea = new TextArea();
             receiptTextArea.setMaxWidth(Double.MAX_VALUE);
             receiptTextArea.setMaxHeight(Double.MAX_VALUE);
-            
+
             changeProperty = new SimpleDoubleProperty();
             // changeProperty.setValue(transactionBuilder.build().getTotal() - Double.parseDouble(textfieldPayment.getText()));
             // labelChange.textProperty().bind(changeProperty.asString());
@@ -137,7 +136,7 @@ public class NewOrderController extends Controller
                     labelChange.setText(change + "");
                 });
             }
-            
+
             checkboxSenior.addEventHandler(ActionEvent.ACTION, e ->
             {
                 // double total = transactionBuilder.build().getTotal();
@@ -162,7 +161,7 @@ public class NewOrderController extends Controller
                 Transaction tempTransaction = transactionBuilder.build();
                 if (tempTransaction.getTotal() != -1)
                     labelTotal.setText(tempTransaction.getTotal() + "");
-                                
+
                 double change = Double.parseDouble(textfieldPayment.getText()) - tempTransaction.getTotal();
                 labelChange.setText(change + "");
 
@@ -176,14 +175,14 @@ public class NewOrderController extends Controller
                 double change = Double.parseDouble(labelChange.getText());
                 if (change < 0)
                     return;
-                
+
                 transactionBuilder.setCashReceived(Double.parseDouble(textfieldPayment.getText()));
                 transactionBuilder.setChange(Double.parseDouble(labelChange.getText()));
                 transactionBuilder.setCustomerNo(spinnerCustNo.getValue());
 
                 receiptBuilder.clear();
                 Receipt receipt = receiptBuilder.processTransaction(transactionBuilder.build()).build();
-                
+
                 System.out.println(receipt.customerReceipt());
                 System.out.println(receipt.kitchenReceipt());
 
@@ -208,9 +207,9 @@ public class NewOrderController extends Controller
                 borderpaneNewOrder.setDisable(false);
                 spinnerCustNo.getEditor().clear(); // remove spinner content
                 textfieldPayment.clear(); // remove textfield content
-                
+
             });
-            
+
             buttonBackspace.addEventHandler(ActionEvent.ACTION, e ->
             {
                 if (textfieldPayment.getText().length() == 1)
@@ -218,7 +217,7 @@ public class NewOrderController extends Controller
                 else
                     textfieldPayment.setText(
                         textfieldPayment.getText().substring(0, textfieldPayment.getText().length() - 1));
-                
+
                 double total = transactionBuilder.build().getTotal();
                 if (checkboxSenior.isSelected())
                     total -= total * 0.20;
@@ -280,14 +279,14 @@ public class NewOrderController extends Controller
             nob.addEventHandler(ActionEvent.ACTION, e ->
             {
                 transactionBuilder.addLineItem(new LineItem(transactionId, c, 1));
-                                    
+
                 // Receipt building begin
                 receiptBuilder.clear();
                 receiptBuilder.processTransaction(transactionBuilder.build());
 
                 receipt = receiptBuilder.build();
                 // Receipt building end
-                
+
                 // Update receipt sidepane
                 receiptTextArea.setText(receipt.customerReceipt());
                 vboxReceipt.getChildren().clear();
