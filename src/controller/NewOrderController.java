@@ -31,7 +31,6 @@ import view.NewOrderButton;
 import receipt.Receipt;
 import receipt.ReceiptHeader;
 import receipt.ReceiptFooter;
-import receipt.ReceiptItem;
 import receipt.ReceiptBuilder;
 
 import java.io.IOException;
