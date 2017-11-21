@@ -32,4 +32,12 @@ public class LineItem {
         if (value > 0 && quantity - value > 0)
             quantity -= value;
     }
+
+    public String getKitchenItem() {
+        return String.format("%-15s%21s\n", consumable.getName(), quantity);
+    }
+
+    public String getCustomerItem() {
+        return String.format("%-15s%5s%16s\n", consumable.getName(), quantity + "", consumable.getPrice());
+    }
 }
