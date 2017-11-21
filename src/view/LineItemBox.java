@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import model.LineItem;
 
 public class LineItemBox extends HBox {
 
@@ -18,7 +19,6 @@ public class LineItemBox extends HBox {
 
     public LineItemBox(LineItem l) {
         addCloseButton();
-        count = 0;
         this.setLineItem(l);
         addAllLabels();
         refreshAllLabels();
@@ -60,13 +60,13 @@ public class LineItemBox extends HBox {
     public void refreshAllLabels() {
         name.setText(lineItem.getConsumable().getCodeName());
         price.setText(lineItem.getConsumable().getPrice() + "");
-        qty.setText(lineItem.getCount() + "");
+        qty.setText(lineItem.getQuantity() + "");
     }
 
     public void setAppearance() {
         this.setMaxWidth(Double.MAX_VALUE);
         this.setSpacing(10.0);
-        // this.setStyle();
+        this.setStyle("Button {-fx-text-fill: BLACK;}");
     }
 
     private Label name = new Label();
