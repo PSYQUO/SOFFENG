@@ -13,8 +13,8 @@ import javafx.scene.control.TableView;
 
 import model.Consumable;
 import model.DatabaseModel;
-import model.Transaction.Transaction;
-import model.Transaction.TransactionBuilder;
+import model.transaction.Transaction;
+import model.transaction.TransactionBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

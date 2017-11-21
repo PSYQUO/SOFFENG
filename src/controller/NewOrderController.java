@@ -21,8 +21,8 @@ import javafx.scene.layout.VBox;
 import model.Consumable;
 import model.Ingredient;
 import model.DatabaseModel;
-import model.Transaction.Transaction;
-import model.Transaction.TransactionBuilder;
+import model.transaction.Transaction;
+import model.transaction.TransactionBuilder;
 import model.LineItem;
 import model.User;
 
