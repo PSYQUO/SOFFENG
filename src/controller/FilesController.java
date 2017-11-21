@@ -61,7 +61,7 @@ public class FilesController extends Controller
         {
             ObservableList<String> row = FXCollections.observableArrayList();
             row.add(u.getUserID() + "");
-            row.add(u.getusername());
+            row.add(u.getUsername());
             row.add(u.getUserLoginName());
             row.add(u.getPassword());
             row.add(u.getRole().getRoleName());
@@ -84,7 +84,7 @@ public class FilesController extends Controller
         {
             ObservableList<String> row = FXCollections.observableArrayList();
             row.add(t.getTransactionID() + "");
-            row.add(t.getTransactionDate() + "");
+            row.add(t.getDate() + "");
             row.add(t.getCashier().getUserLoginName());
             row.add(t.getMode().toString());
             row.add(t.getCashReceived() + "");
