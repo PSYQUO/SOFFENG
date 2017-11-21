@@ -1,44 +1,37 @@
 package view;
 
 import javafx.scene.control.Button;
+import model.Consumable;
 
 public class NewOrderButton extends Button {
-    public NewOrderButton() {
-        setPrice(0.00);
+    // location of the CSS for each button
+    private static final String STYLESHEET_LOCATION = "/views/new-order-button.css";
+
+    public NewOrderButton(Consumable c) {
+        setConsumable(c);
+        setAppearance();
     }
 
-    public NewOrderButton(String name) {
-        setName(name);
-        setPrice(0.00);
+    public void setConsumable(Consumable c) {
+        consumable = c;
     }
 
-    public NewOrderButton(String name, Double price) {
-        setName(name);
-        setPrice(price);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-        refreshText();
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-        refreshText();
+    public Consumable getConsumable() {
+        return consumable;
     }
 
     public void refreshText() {
-        this.setText(name + "\n" + price);
+        this.setText(consumable.getCodeName()
+                + "\n" + consumable.getPrice());
     }
 
-    private String name;
-    private Double price;
+    public void setAppearance() {
+        this.getStylesheets().add(NewOrderButton.STYLESHEET_LOCATION);
+        this.setHeight(150);
+        this.setWidth(150);
+        if (consumable != null)
+            this.setId(consumable.getCategory().getCategoryName().replace(" ", ""));
+    }
+
+    private Consumable consumable;
 }
