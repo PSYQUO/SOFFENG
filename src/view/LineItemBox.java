@@ -7,22 +7,22 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-import model.Consumable;
+import model.LineItem;
 
 public class LineItemBox extends HBox {
 
     public LineItemBox() {
         addCloseButton();
-        count = 0;
         addAllLabels();
+        setAppearance();
     }
 
-    public LineItemBox(Consumable c) {
+    public LineItemBox(LineItem l) {
         addCloseButton();
-        count = 0;
-        this.setConsumable(c);
+        this.setLineItem(l);
         addAllLabels();
         refreshAllLabels();
+        setAppearance();
     }
 
     public void addCloseButton() {
@@ -31,61 +31,46 @@ public class LineItemBox extends HBox {
         EventHandler<ActionEvent> handler = event -> {
             // get button that triggered the action
             Node n = (Node) event.getSource();
-        
+
             // get node to remove
             Node p = n.getParent();
-        
+
             // remove p from parent's child list
             ((Pane) p.getParent()).getChildren().remove(p);
         };
-        
+
         x.setOnAction(handler);
-        
+
         this.getChildren().add(x);
     }
 
-    public void addLabels() {
-        this.getChildren().addAll(this.name, this.price, this.qty);
+    public void setLineItem(LineItem l) {
+        lineItem = l;
     }
 
-    public void setConsumable(Consumable c) {
-        consumable = c;
-    }
-
-    public Consumable getConsumable() {
-        return consumable;
-    }
-
-    public void setCount(int q) {
-        count = q;
-    }
-
-    public int getCount() {
-        return count;
+    public LineItem getLineItem() {
+        return lineItem;
     }
 
     public void addAllLabels() {
         this.getChildren().addAll(name, price, qty);
     }
 
-    // uses the data of its consumable to refresh its labels
+    // uses the data of its line item to refresh its labels
     public void refreshAllLabels() {
-        name.setText(consumable.getCodeName());
-        price.setText(consumable.getPrice() + "");
-        qty.setText(count + "");
+        name.setText(lineItem.getConsumable().getCodeName());
+        price.setText(lineItem.getConsumable().getPrice() + "");
+        qty.setText(lineItem.getQuantity() + "");
     }
 
     public void setAppearance() {
         this.setMaxWidth(Double.MAX_VALUE);
         this.setSpacing(10.0);
-        // this.setStyle();
+        this.setStyle("Button {-fx-text-fill: BLACK;}");
     }
 
     private Label name = new Label();
     private Label price = new Label();
     private Label qty = new Label();
-    private Consumable consumable;
-
-    // int value for the qty
-    private int count;
+    private LineItem lineItem;
 }
