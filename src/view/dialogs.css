@@ -1,0 +1,17 @@
+.label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #ffffff;
+}
+
+PasswordField {
+    -fx-font-size: 30px;
+    -fx-background-color: #ffffff;
+}
+
+/* default button */
+.button {
+    -fx-background-color: #d9d9ff;
+    -fx-text-fill: #000000;
+}
+
+/* OK button should be green */
