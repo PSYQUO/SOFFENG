@@ -1,5 +1,7 @@
 package view;
 
 public enum WarningType {
-    WRONG_INPUT
+    INVALID_INPUT,
+    INVALID_PAYMENT,
+    RESTRICTED_ACCESS
 }
