@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -8,12 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
+import model.User;
 
 public class PasswordDialog extends Dialog<String> {
     // location of the CSS for entire layout
     private static final String STYLESHEET_LOCATION = "/views/dialogs.css";
     private static final String MESSAGE = "Enter your password:";
-    private static final String WARNING = "Enter your password:";
+    private static final String WARNING = "";
 
     public PasswordDialog(User u) {
         getDialogPane().getStylesheets().add(STYLESHEET_LOCATION);
