@@ -165,6 +165,8 @@ public class NewOrderController extends Controller
 
                 if (tempTransaction.getTotal() <= 0)
                     return;
+                
+                checkboxSenior.setSelected(false);
 
                 if (tempTransaction.getTotal() != -1)
                     labelTotal.setText(df.format(tempTransaction.getTotal()));
