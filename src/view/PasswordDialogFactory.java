@@ -17,6 +17,7 @@ public class PasswordDialogFactory implements I_DialogFactory {
     private static final String MESSAGE = "Enter your password:";
     private static final String WARNING = "Incorrect password! Please try again!";
 
+    @Override
     public Dialog create() {
         initialize();
         return dialog;
