@@ -52,7 +52,7 @@ public class PasswordDialog extends Dialog<String> {
         return passwordField;
     }
 
-    public void passwordIncorrectNotification() {
+    public void notifyIncorrectPassword() {
         // Red border and background for passwordField
         passwordField.setStyle("-fx-background-color: #f4ccff; " +
                 "-fx-border-color: RGB(239, 83, 80); " +
