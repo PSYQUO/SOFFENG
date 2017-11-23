@@ -11,21 +11,31 @@ import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 import model.User;
 
-public class PasswordDialog extends Dialog<String> {
+public class PasswordDialogFactory implements I_DialogFactory {
     // location of the CSS for entire layout
     private static final String STYLESHEET_LOCATION = "/views/dialogs.css";
     private static final String MESSAGE = "Enter your password:";
     private static final String WARNING = "Incorrect password! Please try again!";
 
-    public PasswordDialog(User u) {
-        getDialogPane().getStylesheets().add(STYLESHEET_LOCATION);
-        getDialogPane().getStyleClass().add("background");
+    public Dialog create() {
+        initialize();
+        return dialog;
+    }
+
+    public PasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public void initialize() {
+        dialog = new Dialog();
+        dialog.getDialogPane().getStylesheets().add(STYLESHEET_LOCATION);
+        dialog.getDialogPane().getStyleClass().add("background");
         // Remove the title bar
-        initStyle(StageStyle.UNDECORATED);
+        dialog.initStyle(StageStyle.UNDECORATED);
         // Do not set header text
-        setHeaderText(null);
+        dialog.setHeaderText(null);
         // Add buttons: OK, CANCEL
-        getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL, ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL, ButtonType.OK);
 
         // TODO Figure out how to get the buttons themselves for CSS styling (OK button is green)
 
@@ -39,17 +49,11 @@ public class PasswordDialog extends Dialog<String> {
         passwordField = new PasswordField();
         warning = new Label("");
         warning.setId("labelWarning");
-        vboxContent.getChildren().addAll(new Label(PasswordDialog.MESSAGE), passwordField, warning);
-        getDialogPane().setContent(vboxContent);
+        vboxContent.getChildren().addAll(new Label(MESSAGE), passwordField, warning);
+        dialog.getDialogPane().setContent(vboxContent);
 
         // Focus on password
         Platform.runLater(() -> passwordField.requestFocus());
-
-        showAndWait();
-    }
-
-    public PasswordField getPasswordField() {
-        return passwordField;
     }
 
     public void notifyIncorrectPassword() {
@@ -57,9 +61,10 @@ public class PasswordDialog extends Dialog<String> {
         passwordField.setStyle("-fx-background-color: #f4ccff; " +
                 "-fx-border-color: RGB(239, 83, 80); " +
                 "-fx-border-width: 3px;");
-        warning.setText(PasswordDialog.WARNING);
+        warning.setText(WARNING);
     }
 
     private PasswordField passwordField;
     private Label warning;
+    private Dialog dialog;
 }
