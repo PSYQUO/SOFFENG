@@ -15,7 +15,7 @@ public class PasswordDialog extends Dialog<String> {
     // location of the CSS for entire layout
     private static final String STYLESHEET_LOCATION = "/views/dialogs.css";
     private static final String MESSAGE = "Enter your password:";
-    private static final String WARNING = "";
+    private static final String WARNING = "Incorrect password! Please try again!";
 
     public PasswordDialog(User u) {
         getDialogPane().getStylesheets().add(STYLESHEET_LOCATION);
@@ -33,7 +33,7 @@ public class PasswordDialog extends Dialog<String> {
         VBox vboxContent = new VBox();
         vboxContent.setAlignment(Pos.CENTER);
         vboxContent.setSpacing(20.0);
-        vboxContent.setPadding(new Insets(30, 10, 10, 20));
+        vboxContent.setPadding(new Insets(30, 10, 10, 10));
 
         // Add all elements to space, place in dialog
         passwordField = new PasswordField();
@@ -57,7 +57,7 @@ public class PasswordDialog extends Dialog<String> {
         passwordField.setStyle("-fx-background-color: #f4ccff; " +
                 "-fx-border-color: RGB(239, 83, 80); " +
                 "-fx-border-width: 3px;");
-        warning.setText("Incorrect password! Please try again!");
+        warning.setText(PasswordDialog.WARNING);
     }
 
     private PasswordField passwordField;
