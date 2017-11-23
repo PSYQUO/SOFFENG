@@ -162,13 +162,15 @@ public class NewOrderController extends Controller
                 labelTotal.setText("");
                 textfieldPayment.setText("0");
                 Transaction tempTransaction = transactionBuilder.build();
+
+                if (tempTransaction.getTotal() <= 0)
+                    return;
+
                 if (tempTransaction.getTotal() != -1)
                     labelTotal.setText(df.format(tempTransaction.getTotal()));
-                System.out.println(tempTransaction.getTotal());
 
                 double change = Double.parseDouble(textfieldPayment.getText()) - tempTransaction.getTotal();
                 labelChange.setText(df.format(change));
-                System.out.println(change);
 
                 borderpanePayment.setDisable(false);
                 borderpanePayment.setVisible(true);
@@ -178,7 +180,8 @@ public class NewOrderController extends Controller
             buttonEnter.addEventHandler(ActionEvent.ACTION, e ->
             {
                 double change = Double.parseDouble(labelChange.getText());
-                if (change < 0)
+                double total = Double.parseDouble(labelTotal.getText());
+                if (change < 0 || total <= 0)
                     return;
 
                 transactionBuilder.setCashReceived(Double.parseDouble(textfieldPayment.getText()));
@@ -213,11 +216,14 @@ public class NewOrderController extends Controller
 
                 // TODO: Dapat after nito magpapakita yung "Transaction complete!"
 
-                borderpanePayment.setDisable(true);
-                borderpanePayment.setVisible(false);
-                borderpaneNewOrder.setDisable(false);
-                spinnerCustNo.getEditor().clear(); // remove spinner content
-                textfieldPayment.clear(); // remove textfield content
+                // borderpanePayment.setDisable(true);
+                // borderpanePayment.setVisible(false);
+                // borderpaneNewOrder.setDisable(false);
+                // spinnerCustNo.getEditor().clear(); // remove spinner content
+                // textfieldPayment.clear(); // remove textfield content
+                
+                viewManager.switchViews("MainMenuController");
+                clear();
 
             });
 
