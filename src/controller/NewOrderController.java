@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.text.DecimalFormat;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -87,6 +88,8 @@ public class NewOrderController extends Controller
     private User cashier;
     private List<LineItem> lineItems;
     private DoubleProperty changeProperty;
+    
+    private DecimalFormat df = new DecimalFormat("0.00");
 
     public NewOrderController() throws IOException
     {
@@ -96,6 +99,7 @@ public class NewOrderController extends Controller
     @Override
     public void load() throws ViewManagerException
     {
+
         if(checkInitialLoad(getClass().getSimpleName()))
         {
             transactionId = 10;
@@ -132,7 +136,7 @@ public class NewOrderController extends Controller
                     if (checkboxSenior.isSelected())
                         total -= total * 0.20;
                     double change = Double.parseDouble(textfieldPayment.getText()) - total;
-                    labelChange.setText(change + "");
+                    labelChange.setText(df.format(change));
                 });
             }
 
@@ -143,8 +147,8 @@ public class NewOrderController extends Controller
                 if (checkboxSenior.isSelected())
                     total -= total * 0.20;
                 // double change = Double.parseDouble(textfieldPayment.getText()) - total;
-                labelChange.setText((Double.parseDouble(textfieldPayment.getText()) - total) + "");
-                labelTotal.setText(total + "");
+                labelChange.setText(df.format((Double.parseDouble(textfieldPayment.getText()) - total)));
+                labelTotal.setText(df.format(total));
             });
 
             buttonBack.addEventHandler(ActionEvent.ACTION, e ->
@@ -159,10 +163,12 @@ public class NewOrderController extends Controller
                 textfieldPayment.setText("0");
                 Transaction tempTransaction = transactionBuilder.build();
                 if (tempTransaction.getTotal() != -1)
-                    labelTotal.setText(tempTransaction.getTotal() + "");
+                    labelTotal.setText(df.format(tempTransaction.getTotal()));
+                System.out.println(tempTransaction.getTotal());
 
                 double change = Double.parseDouble(textfieldPayment.getText()) - tempTransaction.getTotal();
-                labelChange.setText(change + "");
+                labelChange.setText(df.format(change));
+                System.out.println(change);
 
                 borderpanePayment.setDisable(false);
                 borderpanePayment.setVisible(true);
@@ -182,14 +188,14 @@ public class NewOrderController extends Controller
                 /**
                  * Dummy Values
                  */
-                transactionBuilder.addLineItem(new LineItem(1, new Consumable("Nixon", "nix", null, 4.20, null), 420));
-                transactionBuilder.addLineItem(new LineItem(1, new Consumable("Jordan", "nix", null, 69.69, null), 69));
+                // transactionBuilder.addLineItem(new LineItem(1, new Consumable("Nixon", "nix", null, 4.20, null), 420));
+                // transactionBuilder.addLineItem(new LineItem(1, new Consumable("Jordan", "nix", null, 69.69, null), 69));
 
-                receiptBuilder.clear();
-                Receipt receipt = receiptBuilder.processTransaction(transactionBuilder.build()).build();
+                // receiptBuilder.clear();
+                // Receipt receipt = receiptBuilder.processTransaction(transactionBuilder.build()).build();
 
-                System.out.println(receipt.customerReceipt());
-                System.out.println(receipt.kitchenReceipt());
+                // System.out.println(receipt.customerReceipt());
+                // System.out.println(receipt.kitchenReceipt());
 
                 // TODO: at this point papasok na sa DB dapat
 
@@ -227,7 +233,7 @@ public class NewOrderController extends Controller
                 if (checkboxSenior.isSelected())
                     total -= total * 0.20;
                 double change = Double.parseDouble(textfieldPayment.getText()) - total;
-                labelChange.setText(change + "");
+                labelChange.setText(df.format(change) + "");
             });
 
             buttonPaymentClose.addEventHandler(ActionEvent.ACTION, e ->
