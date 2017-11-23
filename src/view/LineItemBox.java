@@ -97,7 +97,7 @@ public class LineItemBox extends HBox {
         qty = new Label();
 
         // initialize grid, set pane constraints
-        grid = new GridPane();
+        GridPane grid = new GridPane();
         grid.setMaxWidth(Double.MAX_VALUE);
 
         // set hbox constraints
@@ -124,7 +124,6 @@ public class LineItemBox extends HBox {
     private Label name;
     private Label price;
     private Label qty;
-    private GridPane grid;
     private LineItem lineItem;
     private Button buttonClose;
 }
