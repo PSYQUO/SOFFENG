@@ -1,6 +1,15 @@
+.background{
+    -fx-background-color: rgb(44, 64, 80);
+}
+
 .label {
     -fx-font-size: 24px;
     -fx-text-fill: #ffffff;
+}
+
+#warningLabel {
+    -fx-font-size: 18px;
+    -fx-text-fill: #f4ccff;
 }
 
 PasswordField {

@@ -1,6 +1,7 @@
 package view;
 
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -18,6 +19,7 @@ public class PasswordDialog extends Dialog<String> {
 
     public PasswordDialog(User u) {
         getDialogPane().getStylesheets().add(STYLESHEET_LOCATION);
+        getDialogPane().getStyleClass().add("background");
         // Remove the title bar
         initStyle(StageStyle.UNDECORATED);
         // Do not set header text
@@ -30,11 +32,14 @@ public class PasswordDialog extends Dialog<String> {
         // Create space to place stuff
         VBox vboxContent = new VBox();
         vboxContent.setAlignment(Pos.CENTER);
+        vboxContent.setSpacing(20.0);
+        vboxContent.setPadding(new Insets(30, 10, 10, 20));
 
         // Add all elements to space, place in dialog
+        passwordField = new PasswordField();
         warning = new Label("");
         warning.setId("labelWarning");
-        vboxContent.getChildren().addAll(new Label(MESSAGE), passwordField, warning);
+        vboxContent.getChildren().addAll(new Label(PasswordDialog.MESSAGE), passwordField, warning);
         getDialogPane().setContent(vboxContent);
 
         // Focus on password
