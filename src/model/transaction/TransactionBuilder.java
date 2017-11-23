@@ -60,6 +60,9 @@ public class TransactionBuilder {
 
     public TransactionBuilder addLineItem(LineItem lineItem) {
 
+        if (transaction.getTotal() == -1)
+            transaction.setTotal(0);
+
         /* Check if lineItem is already in the list */
         boolean duplicate = false;
         for (LineItem li : transaction.getLineItems()) {
