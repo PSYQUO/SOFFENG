@@ -10,7 +10,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import model.*;
+
+import model.Consumable;
+import model.DatabaseModel;
 import model.transaction.Transaction;
 import model.transaction.TransactionBuilder;
 import javafx.event.ActionEvent;
@@ -18,6 +20,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 import javafx.util.Callback;
+import model.User;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -61,7 +65,7 @@ public class FilesController extends Controller
         {
             ObservableList<String> row = FXCollections.observableArrayList();
             row.add(u.getUserID() + "");
-            row.add(u.getusername());
+            row.add(u.getUsername());
             row.add(u.getUserLoginName());
             row.add(u.getPassword());
             row.add(u.getRole().getRoleName());
@@ -84,7 +88,7 @@ public class FilesController extends Controller
         {
             ObservableList<String> row = FXCollections.observableArrayList();
             row.add(t.getTransactionID() + "");
-            row.add(t.getTransactionDate() + "");
+            row.add(t.getDate() + "");
             row.add(t.getCashier().getUserLoginName());
             row.add(t.getMode().toString());
             row.add(t.getCashReceived() + "");

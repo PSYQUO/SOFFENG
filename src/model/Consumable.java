@@ -2,6 +2,13 @@ package model;
 
 import java.util.*;
 
+/**
+ * The representation of a food item. 
+ * It is an aggregation of ingredients and can be either a standalone food item or representing a meal. 
+ * If representing a meal, it holds a reference to an object (Meal) in order to track 
+ * which other food items are included in the actual meal. Also contains a category used 
+ * to separate different classes of food or meals.
+ */
 public class Consumable {
     public int consumableID;
     private String name;

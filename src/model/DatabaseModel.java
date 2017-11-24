@@ -1,5 +1,6 @@
 package model;
 
+import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -168,7 +169,7 @@ public class DatabaseModel
     public User searchUser(int id)
     {
         dbc = DBConnection.getInstance();
-        ArrayList<User> data = new ArrayList<User>();
+        //ArrayList<User> data = new ArrayList<User>();
         try
         {
             ResultSet rs = dbc.executeQuery("select * from user where user_id=" + id);
@@ -198,11 +199,14 @@ public class DatabaseModel
         ArrayList<Consumable> data = new ArrayList<Consumable>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID = cc.Category_ID");
+            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID = cc.Category_ID order by consumable_name");
             while(rs.next())
             {
                 Consumable c;
-                if (rs.getString("meal_id").equals(""))
+                // Meal_ID column is nullable (can contain null values)
+                // so we need to check first if rs.getString("meal_id") is null
+                // else it's going to throw a NullPointerException.
+                if (rs.getString("meal_id") ==  null || rs.getString("meal_id").equals(""))
                 {
                     c = new Consumable(
                         rs.getInt("Consumable_ID"),
@@ -366,6 +370,29 @@ public class DatabaseModel
         }
         return data;
     }
+    
+    public ArrayList<XReading> getXReadAll()
+    {
+        dbc = DBConnection.getInstance();
+        ArrayList<XReading> data = new ArrayList<XReading>();
+        try
+        {
+            ResultSet rs = dbc.executeQuery("select date(t.Transaction_DateTime), u.*, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID group by date(t.Transaction_DateTime), u.User_ID order by t.Transaction_DateTime desc");
+            while(rs.next())
+            {
+                XReading x = new XReading(
+                    searchUser(rs.getInt("user_id")), 
+                    rs.getDouble("sum(t.total)"),
+                    rs.getString(1));
+                data.add(x);
+            }
+        }
+        catch(Exception e)
+        {
+            System.err.println(e);
+        }
+        return data;
+    }
 
     public ArrayList<XReading> getXReadToday()
     {
@@ -373,7 +400,7 @@ public class DatabaseModel
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select u.*, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime=curdate() group by u.User_ID");
+            ResultSet rs = dbc.executeQuery("select u.*, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Transaction_DateTime=curdate() group by u.User_ID");
             while(rs.next())
             {
                 XReading x = new XReading(
@@ -395,7 +422,7 @@ public class DatabaseModel
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime=='" + date + "' group by u.User_ID");
+            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Transaction_DateTime=='" + date + "' group by u.User_ID");
             while(rs.next())
             {
                 XReading x = new XReading(
@@ -411,13 +438,14 @@ public class DatabaseModel
         return data;
     }
 
+    // TODO: date to be formatted
     public ArrayList<XReading> getXReadRangeDate(LocalDate dateStart, LocalDate dateEnd)
     {
         dbc = DBConnection.getInstance();
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime>='" + dateStart + "' and t.Trans_DateTime<='" + dateEnd + "' group by u.User_ID;");
+            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Transaction_DateTime>='" + dateStart + "' and t.Transaction_DateTime<='" + dateEnd + "' group by u.User_ID;");
             while(rs.next())
             {
                 XReading x = new XReading(
@@ -436,17 +464,17 @@ public class DatabaseModel
     /**
      * TODO: rs.getString(1) to Date data type
      */
-    public ArrayList<ZReading> getZReading()
+    public ArrayList<ZReading> getZReadAll()
     {
         dbc = DBConnection.getInstance();
         ArrayList<ZReading> data = new ArrayList<ZReading>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select trans_datetime, sum(total) from transaction group by date(trans_datetime)");
+            ResultSet rs = dbc.executeQuery("select date(Transaction_DateTime), sum(total) from transaction group by date(Transaction_datetime) order by transaction_datetime desc");
             while(rs.next())
             {
                 ZReading z = new ZReading(
-                    rs.getString("trans_datetime"), 
+                    rs.getString(1), //must be 1, will have an error if transaction_datetime
                     rs.getDouble("sum(total)"));
                 data.add(z);
             }
@@ -471,13 +499,13 @@ public class DatabaseModel
             while(rs.next())
             {
                 TransactionBuilder builder = new TransactionBuilder(rs.getInt("transaction_id"));
-                builder.setTransactionDate(null)
+                builder.setDate(null)
                        .setCashier(searchUser(rs.getInt("user_id")))
                        .setMode(null)
                        .setCashReceived(rs.getDouble("cash"))
                        .setTotal(rs.getDouble("total"))
                        .setLineItems(searchLineItems(rs.getInt("transaction_id")))
-                       .setCustNo(rs.getInt("customer_number"));
+                       .setCustomerNo(rs.getInt("customer_number"));
                 data.add(builder.build());
             }
         }
@@ -494,20 +522,20 @@ public class DatabaseModel
     public Transaction searchTransaction(int id)
     {
         dbc = DBConnection.getInstance();
-        ArrayList<Transaction> data = new ArrayList<Transaction>();
+        //ArrayList<Transaction> data = new ArrayList<Transaction>();
         try
         {
             ResultSet rs = dbc.executeQuery("select * from transaction where transaction_id=" + id);
             while(rs.next())
             {
                 TransactionBuilder builder = new TransactionBuilder(rs.getInt("transaction_id"));
-                builder.setTransactionDate(null)
+                builder.setDate(null)
                        .setCashier(searchUser(rs.getInt("user_id")))
                        .setMode(null)
                        .setCashReceived(rs.getDouble("cash"))
                        .setTotal(rs.getDouble("total"))
                        .setLineItems(searchLineItems(rs.getInt("transaction_id")))
-                       .setCustNo(rs.getInt("customer_number"));
+                       .setCustomerNo(rs.getInt("customer_number"));
 
                 return builder.build();
             }
@@ -652,6 +680,30 @@ public class DatabaseModel
         return false;
     }
 
+    public boolean updateRawItem(RawItem newRawItem)
+    {
+        try
+        {
+            dbc = DBConnection.getInstance();
+            dbc.prepareStatement("UPDATE rawitem SET RawItem_Name = ?, RawItem_Quantity = ?, RawItem_Price = ? WHERE RawItem_ID = ?;");
+            dbc.setString(1, newRawItem.getName());
+            dbc.setInt(2, newRawItem.getQuantity());
+            dbc.setDouble(3, newRawItem.getPrice());
+            dbc.setInt(4, newRawItem.rawItemID);
+
+            if(dbc.executeUpdate() == 1)
+            {
+                return true;
+            }
+            dbc.closePreparedStatement();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
     public boolean deleteRawItem(RawItem rawItem)
     {
         try
@@ -705,7 +757,7 @@ public class DatabaseModel
             dbc.prepareStatement("INSERT INTO transaction (Transaction_DateTime, User_ID, Customer_Number, Transaction_Type, Cash, Change, Subtotal, Senior_Discount, Total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             dbc.setString(1, null);
             dbc.setInt(2, newTransaction.getCashier().getUserID());
-            dbc.setInt(3, newTransaction.getCustNo());
+            dbc.setInt(3, newTransaction.getCustomerNo());
             dbc.setString(4, newTransaction.getMode().toString());
             dbc.setDouble(5, newTransaction.getCashReceived());
             dbc.setDouble(6, newTransaction.getChange());
@@ -753,7 +805,7 @@ public class DatabaseModel
         {
             dbc = DBConnection.getInstance();
             dbc.prepareStatement("INSERT INTO user (User_Username, User_Name, User_Password, Role) VALUES (?, ?, ?, ?)");
-            dbc.setString(1, newUser.getusername());
+            dbc.setString(1, newUser.getUsername());
             dbc.setString(2, newUser.getUserLoginName());
             dbc.setString(3, newUser.getPassword());
             dbc.setInt(4, newUser.getRole().getRoleID());
@@ -837,7 +889,7 @@ public class DatabaseModel
 
 
     /**
-     * TODO: NULL LINE
+     * TODO: with NULL LINE
      */
     public boolean addIncoming(Incoming incoming, RawItem rawItem)
     {
@@ -864,7 +916,7 @@ public class DatabaseModel
     }
 
     /**
-     * TODO: NULL LINE
+     * TODO: with NULL LINE
      */
     public boolean addOutgoing(Outgoing outgoing, RawItem rawItem)
     {
@@ -978,16 +1030,15 @@ public class DatabaseModel
         return false;
     }
 
-    /**
-     * TODO
-     */
-    public boolean addMeal(Consumable newConsumable)
+    public boolean addMeal(Consumable consumable, ConsumableQuantityPair cqp) // 1:1
     {
         try
         {
             dbc = DBConnection.getInstance();
-            dbc.prepareStatement("");
-            // insert code
+            dbc.prepareStatement("INSERT INTO meal (meal_id, consumable_id, quantity) VALUES (?, ?, ?)");
+            dbc.setInt(1, consumable.getMeal().getMealID());
+            dbc.setInt(2, cqp.getConsumable().getConsumableID());
+            dbc.setInt(3, cqp.getQuantity());
 
             if(dbc.executeUpdate() == 1)
             {
@@ -1002,16 +1053,23 @@ public class DatabaseModel
         return false;
     }
 
-    /**
-     * TODO
-     */
-    public boolean addLineItem(Transaction transaction, Consumable consumable) // 1:1
+    public void addMeals(Consumable consumable, ArrayList<ConsumableQuantityPair> cqps) // many
+    {
+        for(int i=0; i<cqps.size(); i++)
+        {
+            addMeal(consumable, cqps.get(i));
+        }
+    }
+
+    public boolean addLineItem(Transaction transaction, ConsumableQuantityPair cqp) // 1:1
     {
         try
         {
             dbc = DBConnection.getInstance();
-            dbc.prepareStatement("");
-            // insert code
+            dbc.prepareStatement("INSERT INTO lineitem (transaction_id, consumable_id, quantity) VALUES (?, ?, ?)");
+            dbc.setInt(1, transaction.getTransactionID());
+            dbc.setInt(2, cqp.getConsumable().getConsumableID());
+            dbc.setInt(3, cqp.getQuantity());
 
             if(dbc.executeUpdate() == 1)
             {
@@ -1026,42 +1084,55 @@ public class DatabaseModel
         return false;
     }
 
-    /**
-     * TODO
-     */
-    public boolean addIngredients(Consumable consumable, Ingredient ingredient) // 1:1
+    public void addLineItems(Transaction transaction, ArrayList<ConsumableQuantityPair> cqps) // many
     {
-        try
+        for(int i=0; i<cqps.size(); i++)
         {
-            dbc = DBConnection.getInstance();
-            dbc.prepareStatement("");
-            // insert code
-
-            if(dbc.executeUpdate() == 1)
-            {
-                return true;
-            }
-            dbc.closePreparedStatement();
+            addLineItem(transaction, cqps.get(i));
         }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        }
-        return false;
     }
 
-    /**
-     * delete exactly one (1) ingridient for consumable
-     */
-    public boolean deleteIngredient(Consumable consumable, Ingredient ingredient)
+    public boolean addIngredient(Consumable consumable, RawItemQuantityPair rqp) // 1:1
     {
         try
         {
             dbc = DBConnection.getInstance();
-            dbc.prepareStatement("DELETE FROM ingredient WHERE Consumable_ID=? and RawItem_ID=? and Quantity=?");
+            dbc.prepareStatement("INSERT INTO ingredient (Consumable_id, rawitem_id, quantity) VALUES (?, ?, ?)");
             dbc.setInt(1, consumable.getConsumableID());
-            dbc.setInt(2, ingredient.getRawItem().getRawItemID());
-            dbc.setInt(3, ingredient.getQuantity());
+            dbc.setInt(2, rqp.getRawItem().getRawItemID());
+            dbc.setInt(3, rqp.getQuantity());
+
+            if(dbc.executeUpdate() == 1)
+            {
+                return true;
+            }
+            dbc.closePreparedStatement();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public void addIngredients(Consumable consumable, ArrayList<RawItemQuantityPair> rqps) // many
+    {
+        for(int i=0; i<rqps.size(); i++)
+        {
+            addIngredient(consumable, rqps.get(i));
+        }
+    }
+
+    /**
+     * delete all line item for 1 transaction
+     */
+     public boolean deleteLineItems(Transaction transaction)
+    {
+        try
+        {
+            dbc = DBConnection.getInstance();
+            dbc.prepareStatement("DELETE FROM lineitem WHERE transaction_ID=?");
+            dbc.setInt(1, transaction.getTransactionID());
 
             if(dbc.executeUpdate() == 1)
             {

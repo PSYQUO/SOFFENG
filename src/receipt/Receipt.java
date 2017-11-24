@@ -1,60 +1,66 @@
 package receipt;
 
-public class Receipt{
-    private Header header;
-    private Footer footer;
-    private Items items;
+public class Receipt
+{
+    private ReceiptHeader header;
+    private ReceiptBody body;
+    private ReceiptFooter footer;
 
-    public Receipt() {
+    // Empty constructor since there is already a builder
+    // for this class
+    // @see ReceiptBuilder
+    public Receipt()
+    {
 
     }
 
-    public Receipt(Header header, Footer footer, Items items) {
+    // Returns the version of the receipt that 
+    // is to be given to the customer
+    public String customerReceipt()
+    {
+        return header.customerHeader()
+             + body.customerItems()
+             + body.paymentInfo()
+             + footer.customerFooter();
+    }
+
+    // Returns the version of the receipt that 
+    // is to be given to the kitchen department
+    public String kitchenReceipt()
+    {
+        return header.kitchenHeader()
+             + body.kitchenItems()
+             + footer.kitchenFooter();
+    }
+
+    public ReceiptHeader getHeader()
+    {
+        return header;
+    }
+
+    public ReceiptBody getBody()
+    {
+        return body;
+    }
+
+    public ReceiptFooter getFooter()
+    {
+        return footer;
+    }
+
+    public void setHeader(ReceiptHeader header)
+    {
         this.header = header;
-        this.footer = footer;
-        this.items = items;
     }
 
-    public String customerReceipt() {
-        return header.customerHeader()+items.customerItems()+items.paymentInfo()+footer.customerFooter();
+    public void setBody(ReceiptBody body)
+    {
+        this.body = body;
     }
 
-    public String kitchenReceipt() {
-        return header.kitchenHeader()+items.kitchenItems()+footer.kitchenFooter();
-    }
-
-    public void setHeader(Header header) {
-        this.header = header;
-    }
-
-    public void setItems(Items items) {
-        this.items = items;
-    }
-
-    public void setFooter(Footer footer) {
+    public void setFooter(ReceiptFooter footer)
+    {
         this.footer = footer;
     }
 
-    // public static class ReceiptBuilder {
-    //     private Receipt receipt;
-
-    //     public ReceiptBuilder(){
-            
-    //     }
-    //     public ReceiptBuilder addHeader(Header header){
-
-    //     }
-    //     public ReceiptBuilder addItem(Items item){
-            
-    //     }
-    //     public ReceiptBuilder addPayment(double payment){
-            
-    //     }
-    //     public ReceiptBuilder addFooter(Footer footer){
-            
-    //     }
-    //     public Receipt build(){
-            
-    //     }
-    // }
 }

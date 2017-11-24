@@ -6,18 +6,31 @@ import model.User;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Represents an actual order transaction. 
+ * Contains the list of line items that are involved in the transaction, 
+ * including the price, tax, ...etc. 
+ * It also contains a reference to the operating cashier and data 
+ * that determines the mode of transaction used.
+ */
 public class Transaction {
+    
+    public static final String MODE_DINE_IN = "Dine-in";
+    public static final String MODE_TAKE_OUT = "Take-out";
+    public static final String MODE_DELIVERY = "Delivery";
+
     public final int transactionID;
-    protected LocalDateTime transactionDate;
+    
+    protected LocalDateTime date;
     protected User cashier;
-    protected TransactionMode mode;
+    protected String mode;
     protected double cashReceived;
     protected double change;
     protected double subTotal;
     protected double discount;
     protected double total;
     protected ArrayList<LineItem> lineItems;
-    protected int custNo;
+    protected int customerNo;
 
     public Transaction() {
         transactionID = -1;
@@ -31,15 +44,15 @@ public class Transaction {
         return transactionID;
     }
 
-    public LocalDateTime getTransactionDate() {
-        return transactionDate;
+    public LocalDateTime getDate() {
+        return date;
     }
 
     public User getCashier() {
         return cashier;
     }
 
-    public TransactionMode getMode() {
+    public String getMode() {
         return mode;
     }
 
@@ -67,19 +80,19 @@ public class Transaction {
         return lineItems;
     }
 
-    public int getCustNo() {
-        return custNo;
+    public int getCustomerNo() {
+        return customerNo;
     }
 
-    protected void setTransactionDate(LocalDateTime transactionDate) {
-        this.transactionDate = transactionDate;
+    protected void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     protected void setCashier(User cashier) {
         this.cashier = cashier;
     }
 
-    protected void setMode(TransactionMode mode) {
+    protected void setMode(String mode) {
         this.mode = mode;
     }
 
@@ -103,25 +116,48 @@ public class Transaction {
         this.total = total;
     }
 
+    /**
+     * Adds a line item to the transaction's current list of line items.
+     * Also automatically adds the total price of the line item to the
+     * transaction's current total.
+     *
+     * @param lineItem The line item to be added to the list.
+     */
     protected void addLineItem(LineItem lineItem) {
         lineItems.add(lineItem);
+
+        total += lineItem.getConsumable().getPrice()
+               * lineItem.getQuantity();
     }
     
+    /**
+     * Removes a line item from the transaction's current list of line items.
+     * Also automatically deducts the total price of the line item from the
+     * transaction's current total.
+     *
+     * @param lineItem The line item to be removed from the list.
+     */
     protected void removeLineItem(LineItem lineItem) {
         lineItems.remove(lineItem);
+
+        total -= lineItem.getConsumable().getPrice()
+               * lineItem.getQuantity();
     }
 
     protected void setLineItems(ArrayList<LineItem> lineItems) {
         this.lineItems = lineItems;
+        
+        for (LineItem li : lineItems)
+            total += li.getConsumable().getPrice()
+                   * li.getQuantity();
+    }
+    
+    public void computeTransaction() {
+        change = cashReceived - total;
     }
 
-    protected void setCustNo(int custNo) {
-        this.custNo = custNo;
+    protected void setCustomerNo(int customerNo) {
+        this.customerNo = customerNo;
     }
 
-    public enum TransactionMode {
-        DINE_IN,
-        TAKE_OUT,
-        DELIVERY
-    }
 }

@@ -2,6 +2,9 @@ package model;
 
 import java.time.LocalDateTime;
 
+/**
+ * A record of the list of the raw items / ingredients that are considered waste or exiting the inventory.
+ */
 public class Outgoing {
     private LocalDateTime outDate;
     private int quantity;

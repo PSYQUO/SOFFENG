@@ -2,6 +2,9 @@ package model;
 
 import java.util.*;
 
+/**
+ * An entity that tracks which other food items are included in a single meal.
+ */
 public class Meal {
     private int mealID;
     private ArrayList<ConsumableQuantityPair> addOns;
