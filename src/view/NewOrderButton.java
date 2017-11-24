@@ -10,23 +10,6 @@ public class NewOrderButton extends Button
     private static final String STYLESHEET_LOCATION = "/view/new-order-button.css";
     private Consumable consumable;
 
-    public NewOrderButton()
-    {
-        setPrice(0.00);
-    }
-
-    public NewOrderButton(String name)
-    {
-        setName(name);
-        setPrice(0.00);
-    }
-
-    public NewOrderButton(String name, Double price)
-    {
-        setName(name);
-        setPrice(price);
-    }
-
     public NewOrderButton(Consumable c)
     {
         setConsumable(c);
