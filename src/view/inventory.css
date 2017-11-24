@@ -1,12 +1,19 @@
+/* -------------------- CONTAINERS -------------------- */
+
 AnchorPane {
     -fx-background-color: RGB(44, 64, 80);
 }
-.dropDown {
-    -fx-background-color: rgb(52,152,219);
-}
+
 .background {
     -fx-background-color: RGB(44, 64, 80);
 }
+
+/* -------------------- ELEMENTS -------------------- */
+
+.dropDown {
+    -fx-background-color: rgb(52,152,219);
+}
+
 .greenbutton {
     -fx-background-color: rgb(46,204,113);
 }
@@ -27,4 +34,88 @@ AnchorPane {
     -fx-background-size: 30%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
+}
+
+/* -------------------- TAB PANE -------------------- */
+
+.tab {
+    -fx-color: #FFFFFF;
+    -fx-font-size: 18px;
+    -fx-background-color:#B7B7B7;
+    -fx-font-weight:bold;
+    -fx-padding: 0 15 0 15;
+}
+
+TabPane .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane {
+  -fx-tab-min-height:50px;
+  -fx-tab-max-height:50px;
+}
+
+TabPane .tab .tab-label {
+    -fx-text-fill:#000000;
+}
+
+TabPane .tab:selected .tab-label {
+    -fx-text-fill:#FFFFFF;
+}
+
+TabPane .tab:selected {
+    -fx-background-color: #3498DB;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-border-color: #2C3E50;
+    -fx-border-width: 5px; 
+}
+
+/* -------------------- TABLE VIEW -------------------- */
+
+.table-view{
+    -fx-background-color: transparent;
+ }
+
+.table-view .column-header-background{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-padding: 2px;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 2px;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, rgb(44, 125, 179);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #3498DB;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */  
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgb(46,204,113);
+    -fx-background-insets: 0;
 }
