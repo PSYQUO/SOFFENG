@@ -1,0 +1,8 @@
+Label {
+    -fx-text-fill: #000000;
+}
+
+Button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: #ffffff;
+}

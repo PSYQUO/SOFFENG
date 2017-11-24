@@ -3,6 +3,8 @@ package view;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
 import javafx.scene.Node;
@@ -11,22 +13,29 @@ import model.LineItem;
 
 public class LineItemBox extends HBox {
 
+    private static final String STYLESHEET_LOCATION = "/view/line-item-box.css";
+
+    /*
     public LineItemBox() {
+        initialize();
         addCloseButton();
-        addAllLabels();
-        setAppearance();
     }
+    */
 
     public LineItemBox(LineItem l) {
+        initialize();
         addCloseButton();
         this.setLineItem(l);
-        addAllLabels();
         refreshAllLabels();
-        setAppearance();
     }
 
+    /**
+     * Adds an "X" button inside the LineItemBox
+     * which allows the LineItemBox to be removed from
+     * its parent.
+     */
     public void addCloseButton() {
-        Button x = new Button("x");
+        buttonClose = new Button("x");
 
         EventHandler<ActionEvent> handler = event -> {
             // get button that triggered the action
@@ -39,38 +48,82 @@ public class LineItemBox extends HBox {
             ((Pane) p.getParent()).getChildren().remove(p);
         };
 
-        x.setOnAction(handler);
+        buttonClose.setOnAction(handler);
 
-        this.getChildren().add(x);
+        this.getChildren().add(buttonClose);
     }
 
+    /**
+     * Changes the contained LineItem into the parameter specified
+     * @param l
+     */
     public void setLineItem(LineItem l) {
         lineItem = l;
     }
 
+    /**
+     * Return the LineItem contained inside the LineItemBox object
+     * @return LineItem
+     */
     public LineItem getLineItem() {
         return lineItem;
     }
 
-    public void addAllLabels() {
-        this.getChildren().addAll(name, price, qty);
+    /**
+     * Return the close button inside the LineItemBox object
+     * @return buttonClose
+     */
+    public Button getCloseButton() {
+        return buttonClose;
     }
 
-    // uses the data of its line item to refresh its labels
+    /**
+     * Refreshes the LineItemBox labels by grabbing information from
+     * the contained LineItem
+     */
     public void refreshAllLabels() {
         name.setText(lineItem.getConsumable().getCodeName());
         price.setText(lineItem.getConsumable().getPrice() + "");
         qty.setText(lineItem.getQuantity() + "");
     }
 
-    public void setAppearance() {
+    /**
+     * Initializes the content of the LineItemBox
+     */
+    public void initialize() {
+        // initialize labels
+        name = new Label();
+        price = new Label();
+        qty = new Label();
+
+        // initialize grid, set pane constraints
+        GridPane grid = new GridPane();
+        grid.setMaxWidth(Double.MAX_VALUE);
+
+        // set hbox constraints
         this.setMaxWidth(Double.MAX_VALUE);
         this.setSpacing(10.0);
-        this.setStyle("Button {-fx-text-fill: BLACK;}");
+        this.getStylesheets().add(STYLESHEET_LOCATION);
+
+        // set column constraints in percentage
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setPercentWidth(50);
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setPercentWidth(20);
+        ColumnConstraints column3 = new ColumnConstraints();
+        column3.setPercentWidth(30);
+        grid.getColumnConstraints().addAll(column1, column2, column3);
+
+        // Add labels
+        grid.add(name, 0, 0);
+        grid.add(qty, 1, 0);
+        grid.add(price, 2, 0);
+        this.getChildren().add(grid);
     }
 
-    private Label name = new Label();
-    private Label price = new Label();
-    private Label qty = new Label();
+    private Label name;
+    private Label price;
+    private Label qty;
     private LineItem lineItem;
+    private Button buttonClose;
 }
