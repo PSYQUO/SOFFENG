@@ -32,14 +32,14 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <FlowPane fx:id="flowpaneBudget" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
+                                    <FlowPane fx:id="flowpaneBudget" alignment="TOP_CENTER" hgap="10.0" layoutY="85.0" prefHeight="448.0" prefWidth="532.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </FlowPane>
-                                    <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Budget &amp; Favorites" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                                    <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Budget &amp; Favorites" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                                        <font>
-                                          <Font name="System Bold" size="36.0" />
+                                          <Font name="System Bold" size="50.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -50,14 +50,14 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <FlowPane fx:id="flowpaneCombo" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
+                                    <FlowPane fx:id="flowpaneCombo" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </FlowPane>
                                     <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Combo Meals" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                        <font>
-                                          <Font name="System Bold" size="36.0" />
+                                          <Font name="System Bold" size="50.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -68,14 +68,14 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <FlowPane fx:id="flowpaneSandwich" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
+                                    <FlowPane fx:id="flowpaneSandwich" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </FlowPane>
                                     <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Sandwich/Appetizer/Pasta" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                        <font>
-                                          <Font name="System Bold" size="36.0" />
+                                          <Font name="System Bold" size="50.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -86,14 +86,14 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <FlowPane fx:id="flowpaneExtras" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
+                                    <FlowPane fx:id="flowpaneExtras" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </FlowPane>
                                     <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Extras" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                        <font>
-                                          <Font name="System Bold" size="36.0" />
+                                          <Font name="System Bold" size="50.0" />
                                        </font>
                                     </Label>
                                  </children>

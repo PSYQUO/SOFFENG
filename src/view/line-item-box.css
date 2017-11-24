@@ -2,7 +2,17 @@ Label {
     -fx-text-fill: #000000;
 }
 
-Button {
+#buttonClose {
     -fx-background-color: #e74c3c;
+    -fx-text-fill: #ffffff;
+}
+
+#buttonAdd {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: #ffffff;
+}
+
+#buttonSubtract {
+    -fx-background-color: #2ECC71;
     -fx-text-fill: #ffffff;
 }

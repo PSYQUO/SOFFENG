@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane fx:id="background" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <AnchorPane id="background" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView id="tableForWasted" layoutX="36.0" layoutY="6.0" prefHeight="307.0" prefWidth="527.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                  <TableView id="tableForWasted" layoutX="36.0" layoutY="6.0" prefHeight="307.0" prefWidth="527.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn id="colItem" fx:id="colCashier" maxWidth="1.7976931348623157E308" prefWidth="700.0" text="Cashier" />
                         <TableColumn id="colPrice" fx:id="colShiftTime" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="200.0" text="Shift Time" />
@@ -32,7 +32,7 @@
                <children>
                   <Label text="Z-Reading" textFill="#35dee8">
                      <font>
-                        <Font name="System Bold" size="36.0" />
+                        <Font name="System Bold" size="50.0" />
                      </font>
                   </Label>
                   <Label id="dateWasted" fx:id="dateBox" maxWidth="1.7976931348623157E308" text="Date Today" textFill="WHITE">
@@ -45,7 +45,7 @@
                   <Insets />
                </BorderPane.margin>
                <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
                </padding>
             </VBox>
          </top>
@@ -64,7 +64,7 @@
                   </Label>
                </children>
                <BorderPane.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
                </BorderPane.margin>
             </HBox>
          </bottom>

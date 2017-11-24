@@ -14,6 +14,12 @@ import model.LineItem;
 public class LineItemBox extends HBox {
 
     private static final String STYLESHEET_LOCATION = "/view/line-item-box.css";
+    public static final int DEFAULT = 0;
+    public static final int MARK_FOR_DELETE = 1;
+    public static final int MARK_FOR_INCREASE = 2;
+    public static final int MARK_FOR_DECREASE= 3;
+
+    private int statusFlag;
 
     /*
     public LineItemBox() {
@@ -23,6 +29,7 @@ public class LineItemBox extends HBox {
     */
 
     public LineItemBox(LineItem l) {
+        statusFlag = LineItemBox.MARK_FOR_DELETE;
         addCloseButton();
         initialize();
         this.setLineItem(l);
@@ -36,6 +43,7 @@ public class LineItemBox extends HBox {
      */
     public void addCloseButton() {
         buttonClose = new Button("x");
+        buttonClose.setId("buttonClose");
 
         EventHandler<ActionEvent> handler = event -> {
             // get button that triggered the action
@@ -51,6 +59,18 @@ public class LineItemBox extends HBox {
         buttonClose.setOnAction(handler);
 
         this.getChildren().add(buttonClose);
+    }
+
+    /**
+     * Adds "+" and "-" buttons inside the LineItemBox
+     *
+     */
+    public void addQuantityButtons() {
+        Button add = new Button("+");
+        add.setId("buttonAdd");
+        Button subtract = new Button("-");
+        add.setId("buttonSubtract");
+        this.getChildren().addAll(add, )
     }
 
     /**
