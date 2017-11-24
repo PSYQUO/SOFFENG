@@ -21,15 +21,19 @@
 }
 
 #buttonBackspace {
+    -fx-background-image: url("resources/icons/backspace.png");
     -fx-background-color: #EF5350;
-    -fx-background-image: url("/resources/icons/ic_keyboard_return_white_48dp_1x.png");
     -fx-background-size: 60%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
 #buttonEnter {
+    -fx-background-image: url("resources/icons/enter.png");
     -fx-background-color: #2ECC71;
+    -fx-background-size: 60%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 CheckBox {
