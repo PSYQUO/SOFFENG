@@ -138,6 +138,9 @@ public class NewOrderController extends Controller
                             return;
                     }
 
+                    if (textfieldPayment.getText().length() >= 6)
+                        return;
+
                     if (textfieldPayment.getText().equals("0") && !b.getText().equals("."))
                         textfieldPayment.setText("");
                     
