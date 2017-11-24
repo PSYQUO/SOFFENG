@@ -1,3 +1,6 @@
+AnchorPane {
+    -fx-background-color: RGB(44, 64, 80);
+}
 .dropDown {
     -fx-background-color: rgb(52,152,219);
 }
