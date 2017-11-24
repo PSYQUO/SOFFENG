@@ -31,7 +31,6 @@
                                           <TableColumn fx:id="colAcctID" prefWidth="30.0" text="ID" />
                                           <TableColumn fx:id="colAcctUsername" prefWidth="120.0" text="Username" />
                                           <TableColumn fx:id="colAcctName" prefWidth="200.0" text="Name" />
-                                          <TableColumn fx:id="colAcctPassword" prefWidth="180.0" text="Password" />
                                           <TableColumn fx:id="colAcctRole" prefWidth="75.0" text="Role" />
                                        </columns>
                                     </TableView>
