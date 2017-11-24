@@ -89,13 +89,13 @@
                                           <TableColumn fx:id="colTransID" prefWidth="30.0" text="ID" />
                                           <TableColumn fx:id="colTransDateTime" prefWidth="200.0" text="Date and Time" />
                                           <TableColumn fx:id="colTransCashier" prefWidth="120.0" text="Cashier" />
-                                          <TableColumn fx:id="colTransCustNo" prefWidth="60.0" text="Cust. No" />
+                                          <TableColumn fx:id="colTransCustNo" prefWidth="90.0" text="Cust. No" />
                                           <TableColumn fx:id="colTransType" prefWidth="100.0" text="Type" />
                                           <TableColumn fx:id="colTransCash" prefWidth="100.0" text="Cash" />
                                           <TableColumn fx:id="colTransChange" prefWidth="100.0" text="Change" />
                                           <TableColumn fx:id="colTransSubtotal" prefWidth="100.0" text="Subtotal" />
-                                          <TableColumn fx:id="colTransSeniorDiscount" prefWidth="100.0" text="Senior Disc." />
-                                          <TableColumn fx:id="colTransTotal" prefWidth="75.0" text="Total" />
+                                          <TableColumn fx:id="colTransSeniorDiscount" prefWidth="120.0" text="Senior Disc." />
+                                          <TableColumn fx:id="colTransTotal" prefWidth="100.0" text="Total" />
                                        </columns>
                                     </TableView>
                                  </children>
