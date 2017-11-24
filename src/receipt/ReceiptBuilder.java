@@ -91,7 +91,7 @@ public class ReceiptBuilder
         return this;
     }
     
-    public ReceiptBuilder setLineItems(ArrayList<LineItem> items)
+    public ReceiptBuilder setLineItems(List<LineItem> items)
     {
         body.setLineItems(items);
         return this;

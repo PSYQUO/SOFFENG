@@ -12,7 +12,7 @@ public class ReceiptBody
     private double total; // Can be calculated
     private double payment; // Has to be set
     private double change; // Can be calculated given that payment has been set
-    private ArrayList<LineItem> lineItems;
+    private List<LineItem> lineItems;
 
     public ReceiptBody()
     {
@@ -55,7 +55,7 @@ public class ReceiptBody
         lineItems.remove(item);
     }
 
-    public void setLineItems(ArrayList<LineItem> items)
+    public void setLineItems(List<LineItem> items)
     {
         lineItems.addAll(items);
     }

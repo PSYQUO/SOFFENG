@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.SplitPane;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -27,6 +28,7 @@ import model.LineItem;
 import model.User;
 
 import view.NewOrderButton;
+import view.LineItemBox;
 
 import receipt.Receipt;
 import receipt.ReceiptHeader;
@@ -46,7 +48,10 @@ import javafx.beans.property.SimpleDoubleProperty;
 public class NewOrderController extends Controller
 {
     @FXML
-    private BorderPane borderpanePayment, borderpaneNewOrder;
+    private BorderPane borderpanePayment;
+    
+    @FXML
+    private SplitPane splitpaneNewOrder;
 
     @FXML
     private Button buttonOK, buttonEnter, buttonPaymentClose, buttonBack, buttonBackspace;
@@ -67,6 +72,9 @@ public class NewOrderController extends Controller
 
     @FXML
     private Label labelChange;
+
+    @FXML
+    private Label labelSubtotal;
 
     @FXML
     private FlowPane flowpaneBudget, flowpaneCombo, flowpaneSandwich, flowpaneExtras;
@@ -106,6 +114,8 @@ public class NewOrderController extends Controller
         labelTotal.setText("");
         textfieldPayment.setText("0");
         spinnerCustNo.getValueFactory().setValue(1);
+        vboxReceipt.getChildren().clear();
+        labelSubtotal.setText("0.00");
 
         if(checkInitialLoad(getClass().getSimpleName()))
         {
@@ -194,7 +204,7 @@ public class NewOrderController extends Controller
 
                 borderpanePayment.setDisable(false);
                 borderpanePayment.setVisible(true);
-                borderpaneNewOrder.setDisable(true);
+                splitpaneNewOrder.setDisable(true);
             });
 
             // Finalize transaction.
@@ -232,7 +242,7 @@ public class NewOrderController extends Controller
 
                 borderpanePayment.setDisable(true);
                 borderpanePayment.setVisible(false);
-                borderpaneNewOrder.setDisable(false);
+                splitpaneNewOrder.setDisable(false);
                 // spinnerCustNo.getEditor().clear(); // remove spinner content
                 textfieldPayment.clear(); // remove textfield content
                 
@@ -266,7 +276,7 @@ public class NewOrderController extends Controller
             {
                 borderpanePayment.setDisable(true);
                 borderpanePayment.setVisible(false);
-                borderpaneNewOrder.setDisable(false);
+                splitpaneNewOrder.setDisable(false);
                 spinnerCustNo.getEditor().clear(); // remove spinner content
                 // spinnerCustNo.getValueFactory().setValue(1);
                 textfieldPayment.clear(); // remove textfield content
@@ -317,7 +327,10 @@ public class NewOrderController extends Controller
             // When an order button is clicked.
             nob.addEventHandler(ActionEvent.ACTION, e ->
             {
-                transactionBuilder.addLineItem(new LineItem(transactionId, c, 1));
+                LineItem lineItem = new LineItem(transactionId, c, 1);
+                transactionBuilder.addLineItem(lineItem);
+                // addLineItem(lineItems, lineItem);
+                refreshSummary();
             });
 
             String category = c.getCategory().getCategoryName();
@@ -331,6 +344,58 @@ public class NewOrderController extends Controller
                 flowpaneSandwich.getChildren().add(nob);
             else
                 flowpaneExtras.getChildren().add(nob);
+        }
+    }
+
+    public void refreshSummary() {
+        List<LineItem> lineItems = transactionBuilder.build().getLineItems();
+        vboxReceipt.getChildren().clear();
+
+        for (LineItem li : lineItems) {
+            LineItemBox lib = new LineItemBox(li);
+
+            lib.addEventHandler(ActionEvent.ACTION, e2 -> {
+                LineItem libLi = ((LineItemBox)e2.getSource()).getLineItem();
+                int index = lineItems.indexOf(libLi);
+                switch (((LineItemBox)e2.getSource()).getStatusFlag()) {
+                    case LineItemBox.MARK_FOR_INCREASE:
+                        lineItems.get(index).increaseQuantity(1);
+                        break;
+                    case LineItemBox.MARK_FOR_DECREASE:
+                        if (lineItems.get(index).getQuantity() <= 1)
+                            // lineItems.remove(index);
+                            lineItems.remove(index);
+                        else
+                            lineItems.get(index).decreaseQuantity(1);
+                        break;
+                    case LineItemBox.MARK_FOR_DELETE:
+                        // lineItems.remove(index);
+                            lineItems.remove(index);
+                        break;
+                    case LineItemBox.DEFAULT:
+                        break;
+                }
+                transactionBuilder.setLineItems(lineItems);
+                refreshSummary();
+            });
+
+            vboxReceipt.getChildren().add(lib);
+        }
+        labelSubtotal.setText(df.format(transactionBuilder.build().getTotal()));
+    }
+
+    public void addLineItem(List<LineItem> lineItems, LineItem lineItem) {
+        // Check if the selected line item is already in the list of line items
+        boolean duplicate = false;
+        for (LineItem li : lineItems) {
+            if (li.getConsumable().getName().equals(lineItem.getConsumable().getName())) {
+                li.increaseQuantity(1);
+                duplicate = true;
+                break;
+            }
+        }
+        if (!duplicate) {
+            lineItems.add(lineItem);
         }
     }
 }

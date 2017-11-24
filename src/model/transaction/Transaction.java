@@ -4,6 +4,7 @@ import model.LineItem;
 import model.User;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,7 @@ public class Transaction {
     protected double subTotal;
     protected double discount;
     protected double total;
-    protected ArrayList<LineItem> lineItems;
+    protected List<LineItem> lineItems;
     protected int customerNo;
 
     public Transaction() {
@@ -76,7 +77,7 @@ public class Transaction {
         return total;
     }
 
-    public ArrayList<LineItem> getLineItems() {
+    public List<LineItem> getLineItems() {
         return lineItems;
     }
 
@@ -144,7 +145,7 @@ public class Transaction {
                * lineItem.getQuantity();
     }
 
-    protected void setLineItems(ArrayList<LineItem> lineItems) {
+    protected void setLineItems(List<LineItem> lineItems) {
         this.lineItems = lineItems;
         
         for (LineItem li : lineItems)

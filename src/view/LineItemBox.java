@@ -29,7 +29,7 @@ public class LineItemBox extends HBox {
     */
 
     public LineItemBox(LineItem l) {
-        statusFlag = LineItemBox.MARK_FOR_DELETE;
+        statusFlag = LineItemBox.DEFAULT;
         addQuantityButtons();
         initialize();
         addCloseButton();
@@ -53,6 +53,9 @@ public class LineItemBox extends HBox {
             // get node to remove
             Node p = n.getParent();
 
+            // mark line item box for deletion
+            statusFlag = LineItemBox.MARK_FOR_DELETE;
+
             // remove p from parent's child list
             ((Pane) p.getParent()).getChildren().remove(p);
         };
@@ -75,14 +78,16 @@ public class LineItemBox extends HBox {
         add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                lineItem.increaseQuantity(1);
+                // lineItem.increaseQuantity(1);
+                statusFlag = LineItemBox.MARK_FOR_INCREASE;
             }
         });
 
         subtract.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                lineItem.decreaseQuantity(1);
+                // lineItem.decreaseQuantity(1);
+                statusFlag = LineItemBox.MARK_FOR_DECREASE;
             }
         });
 
@@ -103,6 +108,14 @@ public class LineItemBox extends HBox {
      */
     public LineItem getLineItem() {
         return lineItem;
+    }
+
+    /**
+     * Return the status flag of the LineItemBox
+     * @return statusFlag
+     */
+    public int getStatusFlag() {
+        return statusFlag;
     }
 
     /**

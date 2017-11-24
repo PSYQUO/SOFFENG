@@ -4,6 +4,7 @@ import model.LineItem;
 import model.User;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -86,8 +87,14 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder setLineItems(ArrayList<LineItem> lineItems) {
+    public TransactionBuilder setLineItems(List<LineItem> lineItems) {
         transaction.setLineItems(lineItems);
+
+        double total = 0;
+        for (LineItem li : lineItems)
+            total += li.getConsumable().getPrice() * li.getQuantity();
+        transaction.setTotal(total);
+
         return this;
     }
 
@@ -100,7 +107,7 @@ public class TransactionBuilder {
         if (transaction.getTotal() == -1) { // Computes the total if total was not modified.
             double total = 0;
             for (LineItem li : transaction.getLineItems())
-                total += li.getConsumable().getPrice();
+                total += li.getConsumable().getPrice() * li.getQuantity();
             transaction.setTotal(total);
         }
 

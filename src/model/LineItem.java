@@ -58,4 +58,10 @@ public class LineItem {
     public String getCustomerItem() {
         return String.format("%-15s%5s%16s\n", consumable.getName(), quantity + "", consumable.getPrice());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        LineItem li = (LineItem)o;
+        return consumable.getCodeName().equals(li.getConsumable().getCodeName());
+    }
 }
