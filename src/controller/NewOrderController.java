@@ -107,6 +107,12 @@ public class NewOrderController extends Controller
     @Override
     public void load() throws ViewManagerException
     {
+        // Temporary hard-coded data
+        transactionId = 10;
+        customerNo = 2;
+        transactionMode = Transaction.MODE_DINE_IN;
+        cashier = new User("Bob", "bobthebuilder", "builder", null);
+        
         lineItems = new ArrayList<LineItem>();
         transactionBuilder = new TransactionBuilder(transactionId);
         receiptBuilder = new ReceiptBuilder();
@@ -116,21 +122,16 @@ public class NewOrderController extends Controller
         spinnerCustNo.getValueFactory().setValue(1);
         vboxReceipt.getChildren().clear();
         labelSubtotal.setText("0.00");
+        
+        transactionBuilder.setCustomerNo(customerNo)
+                            .setMode(transactionMode)
+                            .setCashier(cashier)
+                            .setDate(LocalDateTime.now());
 
         if(checkInitialLoad(getClass().getSimpleName()))
         {
-            // Temporary hard-coded data
-            transactionId = 10;
-            customerNo = 2;
-            transactionMode = Transaction.MODE_DINE_IN;
-            cashier = new User("Bob", "bobthebuilder", "builder", null);
 
             textfieldPayment.setDisable(true);
-
-            transactionBuilder.setCustomerNo(customerNo)
-                              .setMode(transactionMode)
-                              .setCashier(cashier)
-                              .setDate(LocalDateTime.now());
 
             // Attach event handlers for each button in the numpad
             for (Node n : gridpaneNumpad.getChildren()) {
@@ -237,6 +238,10 @@ public class NewOrderController extends Controller
                 //         dbm.updateRawItem(rawItem);
                 //     }
                 // }
+                receiptBuilder.clear();
+                Receipt receipt = receiptBuilder.processTransaction(transactionBuilder.build()).build();
+                System.out.println(receipt.customerReceipt());
+                System.out.println(receipt.kitchenReceipt());
 
                 // TODO: Dapat after nito magpapakita yung "Transaction complete!"
 

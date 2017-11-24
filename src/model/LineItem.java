@@ -45,7 +45,7 @@ public class LineItem {
      * printing a receipt given to the kitchen staff.
      */
     public String getKitchenItem() {
-        return String.format("%-15s%21s\n", consumable.getName(), quantity);
+        return String.format("%-15s%21s\n", consumable.getCodeName(), quantity);
     }
 
     /**
@@ -56,7 +56,7 @@ public class LineItem {
      * printing a receipt given to the customer.
      */
     public String getCustomerItem() {
-        return String.format("%-15s%5s%16s\n", consumable.getName(), quantity + "", consumable.getPrice());
+        return String.format("%-15s%5s%16s\n", consumable.getCodeName(), quantity + "", consumable.getPrice());
     }
 
     @Override

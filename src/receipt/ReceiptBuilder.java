@@ -24,15 +24,24 @@ public class ReceiptBuilder
 
     public ReceiptBuilder processTransaction(Transaction transaction)
     {
-        return setLineItems(transaction.getLineItems())
-              .setPayment(transaction.getCashReceived())
-              .setChange(transaction.getChange())
-              .setTotal(transaction.getTotal())
-              .setTransactionMode(transaction.getMode())
-              .setTransactionNo(transaction.getTransactionID())
-              .setCustomerNo(transaction.getCustomerNo())
-              .setCashierName(transaction.getCashier().getUsername())
-              .setTransactionDate(LocalDateTime.now());
+        if (transaction.getLineItems() != null)
+            setLineItems(transaction.getLineItems());
+        if (transaction.getCashReceived() > -1)
+            setPayment(transaction.getCashReceived());
+        if (transaction.getChange() > -1)
+            setChange(transaction.getChange());
+        if (transaction.getTotal() > -1)
+            setTotal(transaction.getTotal());
+        if (transaction.getMode() != null)
+            setTransactionMode(transaction.getMode());
+        if (transaction.getTransactionID() > -1)
+            setTransactionNo(transaction.getTransactionID());
+        if (transaction.getCustomerNo() > -1)
+            setCustomerNo(transaction.getCustomerNo());
+        if (transaction.getCashier().getUsername() != null)
+            setCashierName(transaction.getCashier().getUsername());
+        setTransactionDate(LocalDateTime.now());
+        return this;
     }
 
     // ReceiptHeader methods
