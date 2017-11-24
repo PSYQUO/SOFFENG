@@ -1,3 +1,5 @@
+/* -------------------- CONTAINERS -------------------- */
+
 AnchorPane {
     -fx-background-color: rgb(44, 64, 80);
 }
@@ -7,6 +9,8 @@ AnchorPane {
 .splitPane{
     -fx-background-color: rgb(44, 64, 80);
 }
+
+/* -------------------- BUTTONS -------------------- */
 .greenbutton {
     -fx-background-color: rgb(46,204,113);
 }
@@ -41,7 +45,7 @@ AnchorPane {
     -fx-background-position: center;
 }
 
-
+/* -------------------- TAB PANE -------------------- */
 .tab {
     -fx-color: #FFFFFF;
     -fx-font-size: 18px;
@@ -73,4 +77,53 @@ TabPane .tab:selected {
 .tab-pane > .tab-header-area > .headers-region > .tab {
     -fx-border-color: #2C3E50;
     -fx-border-width: 5px; 
+}
+
+/* -------------------- TABLE VIEW -------------------- */
+
+.table-view{
+    -fx-background-color: transparent;
+ }
+
+.table-view .column-header-background{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-padding: 2px;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 2px;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, rgb(44, 125, 179);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #3498DB;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */  
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgb(46,204,113);
+    -fx-background-insets: 0;
 }
