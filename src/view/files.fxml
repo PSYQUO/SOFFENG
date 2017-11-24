@@ -22,7 +22,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="1.67" layoutY="6.0" prefHeight="160.0" prefWidth="200.0" styleClass="splitPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.67" layoutY="6.0" prefHeight="160.0" prefWidth="200.0" styleClass="splitPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
                               <AnchorPane fx:id="anchorpaneAccountsLeft" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefWidth="459.0">
                                  <children>
@@ -31,7 +31,6 @@
                                           <TableColumn fx:id="colAcctID" prefWidth="30.0" text="ID" />
                                           <TableColumn fx:id="colAcctUsername" prefWidth="120.0" text="Username" />
                                           <TableColumn fx:id="colAcctName" prefWidth="200.0" text="Name" />
-                                          <TableColumn fx:id="colAcctPassword" prefWidth="180.0" text="Password" />
                                           <TableColumn fx:id="colAcctRole" prefWidth="75.0" text="Role" />
                                        </columns>
                                     </TableView>
@@ -90,13 +89,13 @@
                                           <TableColumn fx:id="colTransID" prefWidth="30.0" text="ID" />
                                           <TableColumn fx:id="colTransDateTime" prefWidth="200.0" text="Date and Time" />
                                           <TableColumn fx:id="colTransCashier" prefWidth="120.0" text="Cashier" />
-                                          <TableColumn fx:id="colTransCustNo" prefWidth="60.0" text="Cust. No" />
+                                          <TableColumn fx:id="colTransCustNo" prefWidth="90.0" text="Cust. No" />
                                           <TableColumn fx:id="colTransType" prefWidth="100.0" text="Type" />
                                           <TableColumn fx:id="colTransCash" prefWidth="100.0" text="Cash" />
                                           <TableColumn fx:id="colTransChange" prefWidth="100.0" text="Change" />
                                           <TableColumn fx:id="colTransSubtotal" prefWidth="100.0" text="Subtotal" />
-                                          <TableColumn fx:id="colTransSeniorDiscount" prefWidth="100.0" text="Senior Disc." />
-                                          <TableColumn fx:id="colTransTotal" prefWidth="75.0" text="Total" />
+                                          <TableColumn fx:id="colTransSeniorDiscount" prefWidth="120.0" text="Senior Disc." />
+                                          <TableColumn fx:id="colTransTotal" prefWidth="100.0" text="Total" />
                                        </columns>
                                     </TableView>
                                  </children>

@@ -242,7 +242,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Spinner fx:id="spinnerCustNo" editable="true" prefHeight="50.0" GridPane.columnIndex="1" min="1" max="40" />
+                              <Spinner fx:id="spinnerCustNo" editable="true" max="40" min="1" prefHeight="50.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <GridPane alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="10.0">
@@ -344,7 +344,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="button00" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="numberButtons" text="00" GridPane.rowIndex="3">
+                              <Button id="numberButton00" fx:id="button00" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="00" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="30.0" />
                                  </font>

@@ -1,18 +1,14 @@
 package controller;
 
 import controller.ViewManager.ViewManagerException;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 import model.DatabaseModel;
 import model.RawItem;
 
@@ -33,9 +29,12 @@ public class InventoryController extends Controller
     @FXML
     private Button buttonBack, greenBut, redBut;
 
+    private DatabaseModel dbm;
+
     public InventoryController() throws IOException
     {
         initialize(this, "/view/inventory", "/view/inventory");
+        dbm = new DatabaseModel();
     }
 
     @Override
@@ -46,8 +45,6 @@ public class InventoryController extends Controller
             colIngredients.setCellValueFactory(new PropertyValueFactory<>("name"));
             colNumber.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
-            loadRawItems();
-
             greenBut.addEventHandler(ActionEvent.ACTION, e ->
             {
                 RawItem selectedItem = tableviewInventory.getSelectionModel().getSelectedItem();
@@ -55,10 +52,11 @@ public class InventoryController extends Controller
                 {
                     selectedItem.setQuantity(selectedItem.getQuantity() + 1);
                     tableviewInventory.refresh();
-
                     /**
-                     * TODO: Update DB with RawItem added quantity
+                     * This is currently querying the DB every button press.
+                     * TODO: Once the dialog gets implemented this will change
                      */
+                    dbm.updateRawItem(selectedItem);
                 }
             });
 
@@ -69,10 +67,11 @@ public class InventoryController extends Controller
                 {
                     selectedItem.setQuantity(selectedItem.getQuantity() - 1);
                     tableviewInventory.refresh();
-
                     /**
-                     * TODO: Update DB with RawItem subtracted quantity
+                     * This is currently querying the DB every button press.
+                     * TODO: Once the dialog gets implemented this will change
                      */
+                    dbm.updateRawItem(selectedItem);
                 }
             });
 
@@ -82,21 +81,13 @@ public class InventoryController extends Controller
                 clear();
             });
         }
+
+        tableviewInventory.setItems(FXCollections.observableArrayList(dbm.getRawItems()));
     }
 
     @Override
     public void clear()
     {
-
-    }
-
-    private void loadRawItems()
-    {
-        DatabaseModel dbm = new DatabaseModel();
-        ArrayList<RawItem> rawItemList = dbm.getRawItems();
-        ObservableList<RawItem> data = FXCollections.observableArrayList();
-        data.addAll(rawItemList);
-
-        tableviewInventory.setItems(data);
+        tableviewInventory.getItems().clear();
     }
 }

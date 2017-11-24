@@ -1,4 +1,4 @@
-package view;
+package view.dialog;
 
 import javafx.scene.control.Dialog;
 

@@ -1,4 +1,4 @@
-package view;
+package view.dialog;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -9,11 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
-import model.User;
 
 public class PasswordDialogFactory implements I_DialogFactory {
     // location of the CSS for entire layout
-    private static final String STYLESHEET_LOCATION = "/views/dialogs.css";
+    private static final String STYLESHEET_LOCATION = "/view/dialogs.css";
     private static final String MESSAGE = "Enter your password:";
     private static final String WARNING = "Incorrect password! Please try again!";
 

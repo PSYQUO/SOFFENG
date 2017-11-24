@@ -2,7 +2,6 @@ package controller;
 
 import controller.ViewManager.ViewManagerException;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,17 +9,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Consumable;
 import model.DatabaseModel;
-import model.transaction.Transaction;
-import model.transaction.TransactionBuilder;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-
-import javafx.util.Callback;
 import model.User;
+import model.transaction.Transaction;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,9 +23,47 @@ public class FilesController extends Controller
     @FXML
     private Button buttonBack;
 
+    // Accounts Table component declaration
+    @FXML
+    private TableView<User> tableviewAccounts;
+
+    @FXML
+    private TableColumn<User, String>  colAcctUsername, colAcctName, colAcctRole;
+
+    @FXML
+    private TableColumn<User, Integer> colAcctID;
+
+    // Transaction Table component declaration
+    @FXML
+    private TableView<Transaction> tableviewTransactions;
+
+    @FXML
+    private TableColumn<Transaction, Integer> colTransID, colTransCustNo;
+
+    @FXML
+    private TableColumn<Transaction, String> colTransDateTime, colTransCashier, colTransType;
+
+    @FXML
+    private TableColumn<Transaction, Double> colTransCash, colTransChange, colTransSubtotal, colTransSeniorDiscount, colTransTotal;
+
+    @FXML
+    private TableView<Consumable> tableviewMeals;
+
+    @FXML
+    private TableColumn<Consumable, Integer> colMealID;
+
+    @FXML
+    private TableColumn<Consumable, String> colMealName, colMealCodename, colMealCategory;
+
+    @FXML
+    private TableColumn<Consumable, Double> colMealPrice;
+
+    private DatabaseModel dbm;
+
     public FilesController() throws IOException
     {
         initialize(this, "/view/files", "/view/files");
+        dbm = new DatabaseModel();
     }
 
     @Override
@@ -40,89 +71,49 @@ public class FilesController extends Controller
     {
         if(checkInitialLoad(getClass().getSimpleName()))
         {
+            setTablePropertiesAndItems();
+
             buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
                 viewManager.switchViews("MainMenuController");
                 clear();
             });
         }
+
+        tableviewAccounts.setItems(FXCollections.observableArrayList(dbm.getUsers()));
+        tableviewTransactions.setItems(FXCollections.observableArrayList(dbm.getTransactions()));
+        tableviewMeals.setItems(FXCollections.observableArrayList(dbm.getConsumables()));
     }
 
     @Override
     public void clear()
     {
-
+        tableviewAccounts.getItems().clear();
+        tableviewTransactions.getItems().clear();
+        tableviewMeals.getItems().clear();
     }
 
-    private void loadUsers()
+    private void setTablePropertiesAndItems()
     {
-        DatabaseModel dbm = new DatabaseModel();
-        ArrayList<User> userList = dbm.getUsers();
+        colAcctUsername.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        colAcctName.setCellValueFactory(new PropertyValueFactory<>("username"));
+        colAcctUsername.setCellValueFactory(new PropertyValueFactory<>("userLoginName"));
+        colAcctRole.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getRole().getRoleName()));
 
-        ObservableList<ObservableList<String>> columnData = FXCollections.observableArrayList();
+        colTransCash.setCellValueFactory(new PropertyValueFactory<>("cashReceived"));
+        colTransCashier.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCashier().getUsername()));
+        colTransChange.setCellValueFactory(new PropertyValueFactory<>("change"));
+        colTransCustNo.setCellValueFactory(new PropertyValueFactory<>("customerNo"));
+        colTransID.setCellValueFactory(new PropertyValueFactory<>("transactionID"));
+        colTransSeniorDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
+        colTransSubtotal.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
+        colTransTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colTransType.setCellValueFactory(new PropertyValueFactory<>("mode"));
 
-        for(User u : userList)
-        {
-            ObservableList<String> row = FXCollections.observableArrayList();
-            row.add(u.getUserID() + "");
-            row.add(u.getUsername());
-            row.add(u.getUserLoginName());
-            row.add(u.getPassword());
-            row.add(u.getRole().getRoleName());
-            
-
-            columnData.add(row);
-        }
-
-        //tableviewInventory.setItems(columnData);
-    }
-
-    private void loadTransactions()
-    {
-        DatabaseModel dbm = new DatabaseModel();
-        ArrayList<Transaction> transList = dbm.getTransactions();
-
-        ObservableList<ObservableList<String>> columnData = FXCollections.observableArrayList();
-
-        for(Transaction t : transList)
-        {
-            ObservableList<String> row = FXCollections.observableArrayList();
-            row.add(t.getTransactionID() + "");
-            row.add(t.getDate() + "");
-            row.add(t.getCashier().getUserLoginName());
-            row.add(t.getMode().toString());
-            row.add(t.getCashReceived() + "");
-            row.add(t.getChange() + "");
-            row.add(t.getDiscount() + "");
-            row.add(t.getSubTotal() + "");
-            row.add(t.getTotal() + "");
-
-            columnData.add(row);
-        }
-
-        //tableviewInventory.setItems(columnData);
-    }
-
-    private void loadConsumables()
-    {
-        DatabaseModel dbm = new DatabaseModel();
-        ArrayList<Consumable> consList = dbm.getConsumables();
-
-        ObservableList<ObservableList<String>> columnData = FXCollections.observableArrayList();
-
-        for(Consumable c : consList)
-        {
-            ObservableList<String> row = FXCollections.observableArrayList();
-            row.add(c.getConsumableID() + "");
-            row.add(c.getName());
-            row.add(c.getCodeName());
-            row.add(c.getCategory().getCategoryName());
-            row.add(c.getPrice() + "");
-            row.add(c.getMeal().getMealID() + "");
-
-            columnData.add(row);
-        }
-
-        //tableviewInventory.setItems(columnData);
+        colMealCategory.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCategory().getCategoryName()));
+        colMealCodename.setCellValueFactory(new PropertyValueFactory<>("codeName"));
+        colMealID.setCellValueFactory(new PropertyValueFactory<>("consumableID"));
+        colMealName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colMealPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 }
