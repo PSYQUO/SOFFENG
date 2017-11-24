@@ -17,8 +17,8 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Text>
-      <Button id="buttonBack" fx:id="buttonBack" mnemonicParsing="false" prefWidth="105.0" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <BorderPane fx:id="background" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+      <Button id="buttonBack" fx:id="buttonBack" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <BorderPane fx:id="background" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="30.0" />
          </padding>

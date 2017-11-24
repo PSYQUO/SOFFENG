@@ -1,3 +1,6 @@
+AnchorPane {
+    -fx-background-color: rgb(44, 64, 80);
+}
 #background {
     -fx-background-color: rgb(44, 64, 80);
 }
@@ -54,25 +57,20 @@ TabPane .tab-header-background {
 .tab-pane {
   -fx-tab-min-height:50px;
   -fx-tab-max-height:50px;
-  -fx-tab-min-width:150px;
-  -fx-tab-max-width:150px;
-  -fx-margin-left:50px;
-  -fx-background-color: black;
-
 }
 
-.tab-pane > .tab-header-area > .headers-region > .tab {
-    -fx-border-color: black;
-    -fx-border-width: 5px; 
-}
 TabPane .tab .tab-label {
-    -fx-color:#000000;
+    -fx-text-fill:#000000;
 }
 
 TabPane .tab:selected .tab-label {
-    -fx-color:#FFFFFF;
+    -fx-text-fill:#FFFFFF;
 }
 
 TabPane .tab:selected {
     -fx-background-color: #3498DB;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-border-color: #2C3E50;
+    -fx-border-width: 5px; 
 }
