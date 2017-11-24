@@ -112,7 +112,7 @@ public class NewOrderController extends Controller
         customerNo = 2;
         transactionMode = Transaction.MODE_DINE_IN;
         cashier = new User("Bob", "bobthebuilder", "builder", null);
-        
+
         lineItems = new ArrayList<LineItem>();
         transactionBuilder = new TransactionBuilder(transactionId);
         receiptBuilder = new ReceiptBuilder();
@@ -222,6 +222,13 @@ public class NewOrderController extends Controller
                     return;
                 }
 
+                transactionBuilder.setSubTotal(transactionBuilder.build().getTotal());
+                transactionBuilder.setTotal(total);
+                // System.out.println(total - transactionBuilder.build().getSubTotal());
+                double discount = (total - transactionBuilder.build().getSubTotal());
+                if (discount < 0)
+                    discount *= -1;
+                transactionBuilder.setDiscount(discount);
                 transactionBuilder.setCashReceived(Double.parseDouble(textfieldPayment.getText()));
                 transactionBuilder.setChange(Double.parseDouble(labelChange.getText()));
 

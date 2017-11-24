@@ -56,7 +56,7 @@ public class LineItem {
      * printing a receipt given to the customer.
      */
     public String getCustomerItem() {
-        return String.format("%-15s%5s%16s\n", consumable.getCodeName(), quantity + "", consumable.getPrice());
+        return String.format("%-15s%5s%16.2f\n", consumable.getCodeName(), quantity + "", consumable.getPrice());
     }
 
     @Override

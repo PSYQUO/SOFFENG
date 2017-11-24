@@ -32,6 +32,10 @@ public class ReceiptBuilder
             setChange(transaction.getChange());
         if (transaction.getTotal() > -1)
             setTotal(transaction.getTotal());
+        if (transaction.getSubTotal() > -1)
+            setSubTotal(transaction.getSubTotal());
+        if (transaction.getDiscount() > -1)
+            setDiscount(transaction.getDiscount());
         if (transaction.getMode() != null)
             setTransactionMode(transaction.getMode());
         if (transaction.getTransactionID() > -1)
@@ -73,6 +77,12 @@ public class ReceiptBuilder
     public ReceiptBuilder setSubTotal(double subTotal)
     {
         body.setSubTotal(subTotal);
+        return this;
+    }
+
+    public ReceiptBuilder setDiscount(double discount)
+    {
+        body.setDiscount(discount);
         return this;
     }
 
