@@ -105,6 +105,7 @@ public class NewOrderController extends Controller
         labelChange.setText("");
         labelTotal.setText("");
         textfieldPayment.setText("0");
+        spinnerCustNo.getValueFactory().setValue(1);
 
         if(checkInitialLoad(getClass().getSimpleName()))
         {
@@ -198,9 +199,14 @@ public class NewOrderController extends Controller
                 if (change < 0 || total <= 0)
                     return;
 
+                try {
+                    transactionBuilder.setCustomerNo(Integer.parseInt(spinnerCustNo.getEditor().getText()));
+                } catch (NumberFormatException nfe) {
+                    return;
+                }
+
                 transactionBuilder.setCashReceived(Double.parseDouble(textfieldPayment.getText()));
                 transactionBuilder.setChange(Double.parseDouble(labelChange.getText()));
-                transactionBuilder.setCustomerNo(spinnerCustNo.getValue());
 
                 /**
                  * Dummy Values
@@ -233,7 +239,7 @@ public class NewOrderController extends Controller
                 borderpanePayment.setDisable(true);
                 borderpanePayment.setVisible(false);
                 borderpaneNewOrder.setDisable(false);
-                spinnerCustNo.getEditor().clear(); // remove spinner content
+                // spinnerCustNo.getEditor().clear(); // remove spinner content
                 textfieldPayment.clear(); // remove textfield content
                 
                 viewManager.switchViews("MainMenuController");
@@ -262,6 +268,7 @@ public class NewOrderController extends Controller
                 borderpanePayment.setVisible(false);
                 borderpaneNewOrder.setDisable(false);
                 spinnerCustNo.getEditor().clear(); // remove spinner content
+                // spinnerCustNo.getValueFactory().setValue(1);
                 textfieldPayment.clear(); // remove textfield content
             });
 
