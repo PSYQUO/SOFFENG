@@ -31,7 +31,7 @@ public class InventoryController extends Controller
     private TableColumn<RawItem, Integer> colNumber;
 
     @FXML
-    private Button buttonBack;
+    private Button buttonBack, greenBut, redBut;
 
     public InventoryController() throws IOException
     {
@@ -44,10 +44,29 @@ public class InventoryController extends Controller
         if(checkInitialLoad(getClass().getSimpleName()))
         {
             colIngredients.setCellValueFactory(new PropertyValueFactory<>("name"));
-
             colNumber.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
             loadRawItems();
+
+            greenBut.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                RawItem selectedItem = tableviewInventory.getSelectionModel().getSelectedItem();
+                if(selectedItem != null)
+                {
+                    selectedItem.setQuantity(selectedItem.getQuantity() + 1);
+                    tableviewInventory.refresh();
+                }
+            });
+
+            redBut.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                RawItem selectedItem = tableviewInventory.getSelectionModel().getSelectedItem();
+                if(selectedItem != null)
+                {
+                    selectedItem.setQuantity(selectedItem.getQuantity() - 1);
+                    tableviewInventory.refresh();
+                }
+            });
 
             buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
