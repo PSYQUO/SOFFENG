@@ -23,8 +23,8 @@ public class LineItemBox extends HBox {
     */
 
     public LineItemBox(LineItem l) {
-        initialize();
         addCloseButton();
+        initialize();
         this.setLineItem(l);
         refreshAllLabels();
     }
