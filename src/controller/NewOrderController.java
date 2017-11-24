@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.text.DecimalFormat;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -85,7 +86,10 @@ public class NewOrderController extends Controller
     private int customerNo;
     private String transactionMode;
     private User cashier;
-    private List<LineItem> lineItems; // Line items of the current order
+    private List<LineItem> lineItems;
+    private DoubleProperty changeProperty;
+    
+    private DecimalFormat df = new DecimalFormat("0.00");
 
     public NewOrderController() throws IOException
     {
@@ -95,6 +99,14 @@ public class NewOrderController extends Controller
     @Override
     public void load() throws ViewManagerException
     {
+        lineItems = new ArrayList<LineItem>();
+        transactionBuilder = new TransactionBuilder(transactionId);
+        receiptBuilder = new ReceiptBuilder();
+        labelChange.setText("");
+        labelTotal.setText("");
+        textfieldPayment.setText("0");
+        spinnerCustNo.getValueFactory().setValue(1);
+
         if(checkInitialLoad(getClass().getSimpleName()))
         {
             // Temporary hard-coded data
@@ -103,9 +115,7 @@ public class NewOrderController extends Controller
             transactionMode = Transaction.MODE_DINE_IN;
             cashier = new User("Bob", "bobthebuilder", "builder", null);
 
-            lineItems = new ArrayList<LineItem>();
-            transactionBuilder = new TransactionBuilder(transactionId);
-            receiptBuilder = new ReceiptBuilder();
+            textfieldPayment.setDisable(true);
 
             transactionBuilder.setCustomerNo(customerNo)
                               .setMode(transactionMode)
@@ -117,23 +127,29 @@ public class NewOrderController extends Controller
                 Button b = (Button) n;
                 b.addEventHandler(ActionEvent.ACTION, e ->
                 {
-                    // Remove the 0 to clear the field for user input.
-                    if (textfieldPayment.getText().equals("0"))
-                        textfieldPayment.setText("");
+                    if (b.getText().equals(".")) {
+                        if (textfieldPayment.getText().contains("."))
+                            return;
+                    }
 
-                    // Add to the payment input the value of the button's texts.
+                    if (textfieldPayment.getText().length() >= 6)
+                        return;
+
+                    if (textfieldPayment.getText().equals("0") && !b.getText().equals("."))
+                        textfieldPayment.setText("");
+                    
                     textfieldPayment.setText(textfieldPayment.getText() + b.getText());
 
-                    // Get the current total of the transaction.
+                    if (Integer.parseInt(textfieldPayment.getText()) == 0)
+                        textfieldPayment.setText("0");
+
                     double total = transactionBuilder.build().getTotal();
 
-                    // Apply the senior citizen discount if selected.
                     if (checkboxSenior.isSelected())
                         total -= total * 0.20;
 
-                    // Calculate the change given a payment and a total.
                     double change = Double.parseDouble(textfieldPayment.getText()) - total;
-                    labelChange.setText(change + "");
+                    labelChange.setText(df.format(change));
                 });
             }
 
@@ -145,10 +161,9 @@ public class NewOrderController extends Controller
                 // Apply the senior citizen discount if selected.
                 if (checkboxSenior.isSelected())
                     total -= total * 0.20;
-                
-                // Calculate the change given a payment and a total.
-                labelChange.setText((Double.parseDouble(textfieldPayment.getText()) - total) + "");
-                labelTotal.setText(total + "");
+                // double change = Double.parseDouble(textfieldPayment.getText()) - total;
+                labelChange.setText(df.format((Double.parseDouble(textfieldPayment.getText()) - total)));
+                labelTotal.setText(df.format(total));
             });
 
             // The x button
@@ -165,13 +180,17 @@ public class NewOrderController extends Controller
                 textfieldPayment.setText("0");
                 Transaction tempTransaction = transactionBuilder.build();
 
-                // If the total is not invalid/null/uninitialized, display the total.
+                if (tempTransaction.getTotal() <= 0)
+                    return;
+                
+                checkboxSenior.setSelected(false);
+
                 if (tempTransaction.getTotal() != -1)
-                    labelTotal.setText(tempTransaction.getTotal() + "");
+                    labelTotal.setText(df.format(tempTransaction.getTotal()));
 
                 // Calculate the change given a payment and a total.
                 double change = Double.parseDouble(textfieldPayment.getText()) - tempTransaction.getTotal();
-                labelChange.setText(change + "");
+                labelChange.setText(df.format(change));
 
                 borderpanePayment.setDisable(false);
                 borderpanePayment.setVisible(true);
@@ -182,12 +201,18 @@ public class NewOrderController extends Controller
             buttonEnter.addEventHandler(ActionEvent.ACTION, e ->
             {
                 double change = Double.parseDouble(labelChange.getText());
-                if (change < 0)
-                    return; // If change is negative, cancel further computations.
+                double total = Double.parseDouble(labelTotal.getText());
+                if (change < 0 || total <= 0)
+                    return;
+
+                try {
+                    transactionBuilder.setCustomerNo(Integer.parseInt(spinnerCustNo.getEditor().getText()));
+                } catch (NumberFormatException nfe) {
+                    return;
+                }
 
                 transactionBuilder.setCashReceived(Double.parseDouble(textfieldPayment.getText()));
                 transactionBuilder.setChange(Double.parseDouble(labelChange.getText()));
-                transactionBuilder.setCustomerNo(spinnerCustNo.getValue());
 
                 // TODO: at this point papasok na sa DB dapat
 
@@ -208,8 +233,11 @@ public class NewOrderController extends Controller
                 borderpanePayment.setDisable(true);
                 borderpanePayment.setVisible(false);
                 borderpaneNewOrder.setDisable(false);
-                spinnerCustNo.getEditor().clear(); // remove spinner content
+                // spinnerCustNo.getEditor().clear(); // remove spinner content
                 textfieldPayment.clear(); // remove textfield content
+                
+                viewManager.switchViews("MainMenuController");
+                clear();
 
             });
 
@@ -230,7 +258,7 @@ public class NewOrderController extends Controller
                 
                 // Calculate the change given a payment and a total.
                 double change = Double.parseDouble(textfieldPayment.getText()) - total;
-                labelChange.setText(change + "");
+                labelChange.setText(df.format(change) + "");
             });
 
             // Cancel payment input
@@ -240,6 +268,7 @@ public class NewOrderController extends Controller
                 borderpanePayment.setVisible(false);
                 borderpaneNewOrder.setDisable(false);
                 spinnerCustNo.getEditor().clear(); // remove spinner content
+                // spinnerCustNo.getValueFactory().setValue(1);
                 textfieldPayment.clear(); // remove textfield content
             });
 
