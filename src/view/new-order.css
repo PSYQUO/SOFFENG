@@ -69,7 +69,10 @@ TabPane .tab:selected .tab-label {
 TabPane .tab:selected {
     -fx-background-color: #3498DB;
 }
-
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-border-color: white;
+    -fx-border-width: 5px; 
+}
 .buttonClose {
     -fx-background-color: #EF5350;
     -fx-text-fill:#FFFFFF;

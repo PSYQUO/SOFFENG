@@ -40,7 +40,7 @@
 
 
 .tab {
-    -fx-text-fill: #FFFFFF;
+    -fx-color: #FFFFFF;
     -fx-font-size: 18px;
     -fx-background-color:#B7B7B7;
     -fx-font-weight:bold;
@@ -54,14 +54,23 @@ TabPane .tab-header-background {
 .tab-pane {
   -fx-tab-min-height:50px;
   -fx-tab-max-height:50px;
+  -fx-tab-min-width:150px;
+  -fx-tab-max-width:150px;
+  -fx-margin-left:50px;
+  -fx-background-color: black;
+
 }
 
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-border-color: black;
+    -fx-border-width: 5px; 
+}
 TabPane .tab .tab-label {
-    -fx-text-fill:#000000;
+    -fx-color:#000000;
 }
 
 TabPane .tab:selected .tab-label {
-    -fx-text-fill:#FFFFFF;
+    -fx-color:#FFFFFF;
 }
 
 TabPane .tab:selected {

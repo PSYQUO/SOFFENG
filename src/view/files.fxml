@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane layoutX="7.0" layoutY="338.0" prefHeight="400.0" prefWidth="600.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+      <TabPane layoutY="130.0" prefHeight="400.0" prefWidth="600.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
         <tabs>
-          <Tab text="Accounts">
+          <Tab fx:id="accountTab" text="Accounts">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -161,8 +161,11 @@
                </content>
             </Tab>
         </tabs>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
       </TabPane>
-      <Label layoutX="18.0" layoutY="14.0" text="Files" textFill="#35dee8e3" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="20.0">
+      <Label layoutX="8.0" layoutY="14.0" prefHeight="53.0" prefWidth="147.0" text="Files" textFill="#35dee8e3" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
