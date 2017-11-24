@@ -114,6 +114,8 @@ public class NewOrderController extends Controller
             transactionMode = Transaction.MODE_DINE_IN;
             cashier = new User("Bob", "bobthebuilder", "builder", null);
 
+            textfieldPayment.setDisable(true);
+
             transactionBuilder.setCustomerNo(customerNo)
                               .setMode(transactionMode)
                               .setCashier(cashier)
@@ -145,6 +147,9 @@ public class NewOrderController extends Controller
                         textfieldPayment.setText("");
                     
                     textfieldPayment.setText(textfieldPayment.getText() + b.getText());
+
+                    if (Integer.parseInt(textfieldPayment.getText()) == 0)
+                        textfieldPayment.setText("0");
 
                     double total = transactionBuilder.build().getTotal();
 
