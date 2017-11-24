@@ -99,6 +99,12 @@ public class NewOrderController extends Controller
     @Override
     public void load() throws ViewManagerException
     {
+        lineItems = new ArrayList<LineItem>();
+        transactionBuilder = new TransactionBuilder(transactionId);
+        receiptBuilder = new ReceiptBuilder();
+        labelChange.setText("");
+        labelTotal.setText("");
+        textfieldPayment.setText("0");
 
         if(checkInitialLoad(getClass().getSimpleName()))
         {
@@ -106,9 +112,6 @@ public class NewOrderController extends Controller
             customerNo = 2;
             transactionMode = Transaction.MODE_DINE_IN;
             cashier = new User("Bob", "bobthebuilder", "builder", null);
-            lineItems = new ArrayList<LineItem>();
-            transactionBuilder = new TransactionBuilder(transactionId);
-            receiptBuilder = new ReceiptBuilder();
 
             transactionBuilder.setCustomerNo(customerNo)
                               .setMode(transactionMode)
@@ -218,11 +221,11 @@ public class NewOrderController extends Controller
 
                 // TODO: Dapat after nito magpapakita yung "Transaction complete!"
 
-                // borderpanePayment.setDisable(true);
-                // borderpanePayment.setVisible(false);
-                // borderpaneNewOrder.setDisable(false);
-                // spinnerCustNo.getEditor().clear(); // remove spinner content
-                // textfieldPayment.clear(); // remove textfield content
+                borderpanePayment.setDisable(true);
+                borderpanePayment.setVisible(false);
+                borderpaneNewOrder.setDisable(false);
+                spinnerCustNo.getEditor().clear(); // remove spinner content
+                textfieldPayment.clear(); // remove textfield content
                 
                 viewManager.switchViews("MainMenuController");
                 clear();
