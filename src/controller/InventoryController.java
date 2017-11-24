@@ -94,8 +94,7 @@ public class InventoryController extends Controller
     {
         dbm = new DatabaseModel();
         ArrayList<RawItem> rawItemList = dbm.getRawItems();
-        ObservableList<RawItem> data = FXCollections.observableArrayList();
-        data.addAll(rawItemList);
+        ObservableList<RawItem> data = FXCollections.observableArrayList(rawItemList);
 
         tableviewInventory.setItems(data);
     }

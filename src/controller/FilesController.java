@@ -8,19 +8,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import model.Consumable;
 import model.DatabaseModel;
-import model.transaction.Transaction;
-import model.transaction.TransactionBuilder;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-
-import javafx.util.Callback;
+import model.Role;
 import model.User;
+import model.transaction.Transaction;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +26,17 @@ public class FilesController extends Controller
 {
     @FXML
     private Button buttonBack;
+
+    @FXML
+    private TableView<User> tableviewAccounts;
+
+    @FXML
+    private TableColumn<User, String>  colAcctUsername, colAcctName, colAcctRole;
+
+    @FXML
+    private TableColumn<User, Integer> colAcctID;
+
+    private DatabaseModel dbm;
 
     public FilesController() throws IOException
     {
@@ -40,41 +48,38 @@ public class FilesController extends Controller
     {
         if(checkInitialLoad(getClass().getSimpleName()))
         {
+            setTableColumnActions();
+
             buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
                 viewManager.switchViews("MainMenuController");
                 clear();
             });
         }
+
+        loadUsers();
     }
 
     @Override
     public void clear()
     {
+        tableviewAccounts.getItems().clear();
+    }
 
+    private void setTableColumnActions()
+    {
+        colAcctUsername.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        colAcctName.setCellValueFactory(new PropertyValueFactory<>("username"));
+        colAcctUsername.setCellValueFactory(new PropertyValueFactory<>("userLoginName"));
+        colAcctRole.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getRole().getRoleName()));
     }
 
     private void loadUsers()
     {
-        DatabaseModel dbm = new DatabaseModel();
+        dbm = new DatabaseModel();
         ArrayList<User> userList = dbm.getUsers();
-
-        ObservableList<ObservableList<String>> columnData = FXCollections.observableArrayList();
-
-        for(User u : userList)
-        {
-            ObservableList<String> row = FXCollections.observableArrayList();
-            row.add(u.getUserID() + "");
-            row.add(u.getUsername());
-            row.add(u.getUserLoginName());
-            row.add(u.getPassword());
-            row.add(u.getRole().getRoleName());
-            
-
-            columnData.add(row);
-        }
-
-        //tableviewInventory.setItems(columnData);
+        ObservableList<User> data = FXCollections.observableArrayList(userList);
+        tableviewAccounts.getItems().addAll(data);
     }
 
     private void loadTransactions()
