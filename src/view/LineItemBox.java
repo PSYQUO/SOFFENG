@@ -30,8 +30,9 @@ public class LineItemBox extends HBox {
 
     public LineItemBox(LineItem l) {
         statusFlag = LineItemBox.MARK_FOR_DELETE;
-        addCloseButton();
+        addQuantityButtons();
         initialize();
+        addCloseButton();
         this.setLineItem(l);
         refreshAllLabels();
     }
@@ -63,14 +64,29 @@ public class LineItemBox extends HBox {
 
     /**
      * Adds "+" and "-" buttons inside the LineItemBox
-     *
+     * to add or subtract from the line item quantity
      */
     public void addQuantityButtons() {
         Button add = new Button("+");
-        add.setId("buttonAdd");
+        add.setId("buttonAdd"); // for CSS
         Button subtract = new Button("-");
-        add.setId("buttonSubtract");
-        this.getChildren().addAll(add, )
+        add.setId("buttonSubtract"); // for CSS
+
+        add.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                lineItem.increaseQuantity(1);
+            }
+        });
+
+        subtract.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                lineItem.decreaseQuantity(1);
+            }
+        });
+
+        this.getChildren().addAll(add, subtract);
     }
 
     /**
@@ -118,9 +134,11 @@ public class LineItemBox extends HBox {
 
         // initialize grid, set pane constraints
         GridPane grid = new GridPane();
+        this.setPrefWidth(Double.MAX_VALUE);
         grid.setMaxWidth(Double.MAX_VALUE);
 
         // set hbox constraints
+        this.setPrefWidth(Double.MAX_VALUE);
         this.setMaxWidth(Double.MAX_VALUE);
         this.setSpacing(10.0);
         this.getStylesheets().add(STYLESHEET_LOCATION);
