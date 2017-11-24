@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `tjbbqdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `tjbbqdb`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: localhost    Database: tjbbqdb
+-- Host: 127.0.0.1    Database: tjbbqdb
 -- ------------------------------------------------------
--- Server version	5.7.19-log
+-- Server version	5.7.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS `consumable`;
 CREATE TABLE `consumable` (
   `Consumable_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Consumable_Name` varchar(100) NOT NULL,
-  `Consumable_CodeName` varchar(15) DEFAULT NULL,
+  `Consumable_CodeName` varchar(6) NOT NULL,
   `Consumable_Price` float NOT NULL,
   `Meal_ID` int(11) DEFAULT NULL,
   `Category_ID` int(11) NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE `consumable` (
 
 LOCK TABLES `consumable` WRITE;
 /*!40000 ALTER TABLE `consumable` DISABLE KEYS */;
-INSERT INTO `consumable` VALUES (1,'Crispy Pork Chop Meal',NULL,99,NULL,3),(2,'Juicy Fried Chicken Meal',NULL,99,NULL,3),(3,'Crispy Liempo Meal',NULL,99,NULL,3),(4,'Beef Nachos w/ Fries',NULL,145,NULL,9),(5,'Chicken Croquettes w/ Fries',NULL,145,NULL,9),(6,'Buffalo Wings w/ Fries',NULL,145,NULL,9),(7,'Hungarian Sausage w/ Fries',NULL,145,NULL,9),(8,'Hamburger',NULL,125,NULL,1),(9,'Hamburger w/ Cheese',NULL,140,NULL,1),(10,'Hungarian',NULL,140,NULL,1),(11,'Sriracha BBQ Chicken Skewers',NULL,50,NULL,2),(12,'Sriracha Pork BBQ Skewers',NULL,50,NULL,2),(13,'Fries Ala Carte',NULL,80,NULL,2),(14,'Twisty Fries',NULL,95,NULL,2),(15,'Cross Fries',NULL,95,NULL,2),(16,'Crispy Wedges',NULL,95,NULL,2),(17,'Jalapeno Balls',NULL,155,NULL,2),(18,'Mozarella Cheese Sticks',NULL,175,NULL,2),(19,'Sizzling Sisig',NULL,220,NULL,2),(49,'Chicken Quarter',NULL,125,NULL,4),(50,'Pork BBQ 2 pcs',NULL,105,NULL,4),(51,'Liempo BBQ',NULL,125,NULL,4),(52,'Porkchop BBQ 2 pcs',NULL,125,NULL,4),(53,'BBQ Spareribs',NULL,145,NULL,4),(54,'Baby Back Ribs',NULL,185,NULL,4),(55,'Grilled Beefy Burger',NULL,105,NULL,4),(56,'Grilled Hungarian 2pcs',NULL,145,NULL,4),(57,'Grilled Beefy Belly',NULL,195,NULL,4),(58,'Grilled Bulalo Steak',NULL,195,NULL,4),(59,'Beef Baby Back Ribs',NULL,195,NULL,4),(60,'Grilled Bangus',NULL,115,NULL,4),(61,'Grilled Tuna Belly',NULL,195,NULL,4),(62,'Grilled Tuna Panga',NULL,310,NULL,4),(78,'Spaghetti w/ Meatballs',NULL,125,NULL,5),(79,'Spaghetti Carbonara',NULL,125,NULL,5),(80,'Plain',NULL,20,NULL,6),(81,'Garlic',NULL,25,NULL,6),(82,'Java',NULL,25,NULL,6),(83,'Halo Halo',NULL,70,NULL,7),(84,'Saba Con Hielo',NULL,60,NULL,7),(85,'Mais Con Hielo',NULL,60,NULL,7),(86,'Lemon Iced Tea',NULL,40,NULL,8),(87,'Raspberry Juice',NULL,40,NULL,8),(88,'Iced Tea Litro',NULL,125,NULL,8),(89,'Bottled Water',NULL,20,NULL,8),(90,'Coke',NULL,40,NULL,8),(91,'Pineapple Juice in Can',NULL,45,NULL,8),(92,'San Mig Pale',NULL,55,NULL,8),(93,'San Mig Light',NULL,55,NULL,8),(94,'Sprite',NULL,40,NULL,8),(95,'Chicken Quarter Meal',NULL,165,NULL,4),(96,'Pork BBQ 2 pcs Meal',NULL,145,NULL,4),(97,'Liempo BBQ Meal',NULL,165,NULL,4),(98,'Porkchop BBQ 2 pcs Meal',NULL,165,NULL,4),(99,'BBQ Spareribs Meal',NULL,185,NULL,4),(100,'Baby Back Ribs Meal',NULL,225,NULL,4),(101,'Grilled Beefy Burger Meal',NULL,145,NULL,4),(102,'Grilled Hungarian 2pcs Meal',NULL,185,NULL,4),(103,'Grilled Beefy Belly Meal',NULL,235,NULL,4),(104,'Grilled Bulalo Steak Meal',NULL,235,NULL,4),(105,'Beef Baby Back Ribs Meal',NULL,235,NULL,4),(106,'Grilled Bangus Meal',NULL,155,NULL,4),(107,'Grilled Tuna Belly Meal',NULL,235,NULL,4),(108,'Grilled Tuna Panga Meal',NULL,350,NULL,4);
+INSERT INTO `consumable` VALUES (1,'Crispy Pork Chop Meal','CRPCPM',99,NULL,3),(2,'Juicy Fried Chicken Meal','JFCHXM',99,NULL,3),(3,'Crispy Liempo Meal','CRLMPM',99,NULL,3),(4,'Beef Nachos w/ Fries','BFNCWF',145,NULL,9),(5,'Chicken Croquettes w/ Fries','CHCQWF',145,NULL,9),(6,'Buffalo Wings w/ Fries','BFWGWF',145,NULL,9),(7,'Hungarian Sausage w/ Fries','HNSSWF',145,NULL,9),(8,'Hamburger','HMBRGR',125,NULL,1),(9,'Hamburger w/ Cheese','HMBRWC',140,NULL,1),(10,'Hungarian','HNGRNB',140,NULL,1),(11,'Sriracha BBQ Chicken Skewers','SBFBBQ',50,NULL,2),(12,'Sriracha Pork BBQ Skewers','SPRBBQ',50,NULL,2),(13,'Fries Ala Carte','REGFRS',80,NULL,2),(14,'Twisty Fries','TWSTFR',95,NULL,2),(15,'Cross Fries','CRSSFR',95,NULL,2),(16,'Crispy Wedges','CRWDGS',95,NULL,2),(17,'Jalapeno Balls','JLPNBL',155,NULL,2),(18,'Mozarella Cheese Sticks','MZCHSX',175,NULL,2),(19,'Sizzling Sisig','SZLSSG',220,NULL,2),(49,'Chicken Quarter','CHXQRA',125,NULL,4),(50,'Pork BBQ 2 pcs','PBQ2PA',105,NULL,4),(51,'Liempo BBQ','LPBBQA',125,NULL,4),(52,'Porkchop BBQ 2 pcs','PCHP2A',125,NULL,4),(53,'BBQ Spareribs','SPRBSA',145,NULL,4),(54,'Baby Back Ribs','PRBBYA',185,NULL,4),(55,'Grilled Beefy Burger','BBRGRA',105,NULL,4),(56,'Grilled Hungarian 2pcs','HNGN2A',145,NULL,4),(57,'Grilled Beefy Belly','BBLLYA',195,NULL,4),(58,'Grilled Bulalo Steak','BLALOA',195,NULL,4),(59,'Beef Baby Back Ribs','BFBBYA',195,NULL,4),(60,'Grilled Bangus','BNGUSA',115,NULL,4),(61,'Grilled Tuna Belly','TNBLYA',195,NULL,4),(62,'Grilled Tuna Panga','TNPNGA',310,NULL,4),(78,'Spaghetti w/ Meatballs','SPGMTB',125,NULL,5),(79,'Spaghetti Carbonara','CRBNRA',125,NULL,5),(80,'Plain','PLNRCE',20,NULL,6),(81,'Garlic','GRLCRC',25,NULL,6),(82,'Java','JAVARC',25,NULL,6),(83,'Halo Halo','HLHALO',70,NULL,7),(84,'Saba Con Hielo','SBCNYL',60,NULL,7),(85,'Mais Con Hielo','MSCNYL',60,NULL,7),(86,'Lemon Iced Tea','ICETEA',40,NULL,8),(87,'Raspberry Juice','RSBRYJ',40,NULL,8),(88,'Iced Tea Litro','ICETLT',125,NULL,8),(89,'Bottled Water','BTLWTR',20,NULL,8),(90,'Coke','COKEDR',40,NULL,8),(91,'Pineapple Juice in Can','PNPPJC',45,NULL,8),(92,'San Mig Pale','SNMGPL',55,NULL,8),(93,'San Mig Light','SNMGLT',55,NULL,8),(94,'Sprite','SPRITE',40,NULL,8),(95,'Chicken Quarter Meal','CHXQRM',165,NULL,4),(96,'Pork BBQ 2 pcs Meal','PBQ2PM',145,NULL,4),(97,'Liempo BBQ Meal','LPBBQM',165,NULL,4),(98,'Porkchop BBQ 2 pcs Meal','PCHP2M',165,NULL,4),(99,'BBQ Spareribs Meal','SPRBSM',185,NULL,4),(100,'Baby Back Ribs Meal','PRBBYM',225,NULL,4),(101,'Grilled Beefy Burger Meal','BBRGRM',145,NULL,4),(102,'Grilled Hungarian 2pcs Meal','HNGN2M',185,NULL,4),(103,'Grilled Beefy Belly Meal','BBLLYM',235,NULL,4),(104,'Grilled Bulalo Steak Meal','BLALOM',235,NULL,4),(105,'Beef Baby Back Ribs Meal','BFBBYM',235,NULL,4),(106,'Grilled Bangus Meal','BNGUSM',155,NULL,4),(107,'Grilled Tuna Belly Meal','TNBLYM',235,NULL,4),(108,'Grilled Tuna Panga Meal','TNPNGM',350,NULL,4);
 /*!40000 ALTER TABLE `consumable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,4 +360,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-07 21:20:04
+-- Dump completed on 2017-11-23 10:53:27

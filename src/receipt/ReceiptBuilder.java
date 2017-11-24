@@ -123,18 +123,18 @@ public class ReceiptBuilder
         // There are two methods of clearing the builder here
         // Which do you guys suppose is more optimal?
 
-        // this.setTransactionMode("")
-        //     .setTransactionNo(-1)
-        //     .setCustomerNo(-1)
-        //     .setPayment(-1)
-        //     .setLineItems(new ArrayList<LineItem>())
-        //     .setCashierName("")
-        //     .setTransactionDate(null);
+        this.setTransactionMode("")
+            .setTransactionNo(-1)
+            .setCustomerNo(-1)
+            .setPayment(-1)
+            .setLineItems(new ArrayList<LineItem>())
+            .setCashierName("")
+            .setTransactionDate(null);
         
-        receipt = new Receipt();
-        header = new ReceiptHeader();
-        body = new ReceiptBody();
-        footer = new ReceiptFooter();
+        // receipt = new Receipt();
+        // header = new ReceiptHeader();
+        // body = new ReceiptBody();
+        // footer = new ReceiptFooter();
     }
 
     // Build and return the receipt

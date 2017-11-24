@@ -2,11 +2,13 @@ package model.transaction;
 
 import model.LineItem;
 import model.User;
-// import model.transaction.Transaction.TransactionMode;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Used to streamline the building/construction process of a transaction.
+ */
 public class TransactionBuilder {
     private TransactionInBuilding transaction;
 
@@ -95,20 +97,20 @@ public class TransactionBuilder {
     }
 
     public Transaction build() {
-        if (transaction.getTotal() == -1) {
+        if (transaction.getTotal() == -1) { // Computes the total if total was not modified.
             double total = 0;
             for (LineItem li : transaction.getLineItems())
                 total += li.getConsumable().getPrice();
             transaction.setTotal(total);
         }
 
-        // if (transaction.getChange() == -1 
-        //     && transaction.getTotal() != -1 && transaction.getCashReceived() != -1)
-        //     transaction.setChange(transaction.get)
-
         return transaction;
     }
 
+    /**
+     * A subclass of Transaction that is able to access the mutator methods
+     * of a Transaction. A design used to prevent modification of a Transaction.
+     */
     private class TransactionInBuilding extends Transaction {
         public TransactionInBuilding() {
             super(-1);

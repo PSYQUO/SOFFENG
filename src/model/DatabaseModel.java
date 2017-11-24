@@ -1,5 +1,6 @@
 package model;
 
+import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -168,7 +169,7 @@ public class DatabaseModel
     public User searchUser(int id)
     {
         dbc = DBConnection.getInstance();
-        ArrayList<User> data = new ArrayList<User>();
+        //ArrayList<User> data = new ArrayList<User>();
         try
         {
             ResultSet rs = dbc.executeQuery("select * from user where user_id=" + id);
@@ -198,7 +199,7 @@ public class DatabaseModel
         ArrayList<Consumable> data = new ArrayList<Consumable>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID = cc.Category_ID");
+            ResultSet rs = dbc.executeQuery("select * from consumable c, category cc where c.Category_ID = cc.Category_ID order by consumable_name");
             while(rs.next())
             {
                 Consumable c;
@@ -369,6 +370,29 @@ public class DatabaseModel
         }
         return data;
     }
+    
+    public ArrayList<XReading> getXReadAll()
+    {
+        dbc = DBConnection.getInstance();
+        ArrayList<XReading> data = new ArrayList<XReading>();
+        try
+        {
+            ResultSet rs = dbc.executeQuery("select date(t.Transaction_DateTime), u.*, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID group by date(t.Transaction_DateTime), u.User_ID order by t.Transaction_DateTime desc");
+            while(rs.next())
+            {
+                XReading x = new XReading(
+                    searchUser(rs.getInt("user_id")), 
+                    rs.getDouble("sum(t.total)"),
+                    rs.getString(1));
+                data.add(x);
+            }
+        }
+        catch(Exception e)
+        {
+            System.err.println(e);
+        }
+        return data;
+    }
 
     public ArrayList<XReading> getXReadToday()
     {
@@ -376,7 +400,7 @@ public class DatabaseModel
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select u.*, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime=curdate() group by u.User_ID");
+            ResultSet rs = dbc.executeQuery("select u.*, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Transaction_DateTime=curdate() group by u.User_ID");
             while(rs.next())
             {
                 XReading x = new XReading(
@@ -398,7 +422,7 @@ public class DatabaseModel
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime=='" + date + "' group by u.User_ID");
+            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Transaction_DateTime=='" + date + "' group by u.User_ID");
             while(rs.next())
             {
                 XReading x = new XReading(
@@ -414,13 +438,14 @@ public class DatabaseModel
         return data;
     }
 
+    // TODO: date to be formatted
     public ArrayList<XReading> getXReadRangeDate(LocalDate dateStart, LocalDate dateEnd)
     {
         dbc = DBConnection.getInstance();
         ArrayList<XReading> data = new ArrayList<XReading>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Trans_DateTime>='" + dateStart + "' and t.Trans_DateTime<='" + dateEnd + "' group by u.User_ID;");
+            ResultSet rs = dbc.executeQuery("select u.user_name, sum(t.total) from user u, transaction t where u.User_ID=t.User_ID and t.Transaction_DateTime>='" + dateStart + "' and t.Transaction_DateTime<='" + dateEnd + "' group by u.User_ID;");
             while(rs.next())
             {
                 XReading x = new XReading(
@@ -439,17 +464,17 @@ public class DatabaseModel
     /**
      * TODO: rs.getString(1) to Date data type
      */
-    public ArrayList<ZReading> getZReading()
+    public ArrayList<ZReading> getZReadAll()
     {
         dbc = DBConnection.getInstance();
         ArrayList<ZReading> data = new ArrayList<ZReading>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select trans_datetime, sum(total) from transaction group by date(trans_datetime)");
+            ResultSet rs = dbc.executeQuery("select date(Transaction_DateTime), sum(total) from transaction group by date(Transaction_datetime) order by transaction_datetime desc");
             while(rs.next())
             {
                 ZReading z = new ZReading(
-                    rs.getString("trans_datetime"), 
+                    rs.getString(1), //must be 1, will have an error if transaction_datetime
                     rs.getDouble("sum(total)"));
                 data.add(z);
             }
@@ -497,7 +522,7 @@ public class DatabaseModel
     public Transaction searchTransaction(int id)
     {
         dbc = DBConnection.getInstance();
-        ArrayList<Transaction> data = new ArrayList<Transaction>();
+        //ArrayList<Transaction> data = new ArrayList<Transaction>();
         try
         {
             ResultSet rs = dbc.executeQuery("select * from transaction where transaction_id=" + id);

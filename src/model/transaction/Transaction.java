@@ -6,6 +6,13 @@ import model.User;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Represents an actual order transaction. 
+ * Contains the list of line items that are involved in the transaction, 
+ * including the price, tax, ...etc. 
+ * It also contains a reference to the operating cashier and data 
+ * that determines the mode of transaction used.
+ */
 public class Transaction {
     
     public static final String MODE_DINE_IN = "Dine-in";
@@ -109,6 +116,13 @@ public class Transaction {
         this.total = total;
     }
 
+    /**
+     * Adds a line item to the transaction's current list of line items.
+     * Also automatically adds the total price of the line item to the
+     * transaction's current total.
+     *
+     * @param lineItem The line item to be added to the list.
+     */
     protected void addLineItem(LineItem lineItem) {
         lineItems.add(lineItem);
 
@@ -116,6 +130,13 @@ public class Transaction {
                * lineItem.getQuantity();
     }
     
+    /**
+     * Removes a line item from the transaction's current list of line items.
+     * Also automatically deducts the total price of the line item from the
+     * transaction's current total.
+     *
+     * @param lineItem The line item to be removed from the list.
+     */
     protected void removeLineItem(LineItem lineItem) {
         lineItems.remove(lineItem);
 

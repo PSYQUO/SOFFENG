@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * The representation of an item/ingredient in stock in the inventory.
+ */
 public class RawItem {
     public int rawItemID;
     private String name;

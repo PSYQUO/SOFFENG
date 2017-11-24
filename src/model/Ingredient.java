@@ -1,8 +1,11 @@
 package model;
 
+/**
+ * The item/ingredient used as a component of a food item.
+ */
 public class Ingredient {
     private RawItem rawItem;
-    private int quantity;
+    private int quantity; // The number of rawItems used as ingredient.
 
     public Ingredient(RawItem rawItem, int quantity) {
         this.rawItem = rawItem;

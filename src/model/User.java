@@ -1,9 +1,15 @@
 package model;
 
+/**
+ * Represents an employee or an owner in the business that directly participates in 
+ * the order business process and transactions. 
+ * Has a username and password used to log into the system in addition to 
+ * the person’s name as well as the role/position of the person.
+ */
 public class User {
     private int userID;
-    private String username;
-    private String userLoginName;
+    private String username; // Name of the user.
+    private String userLoginName; // Name that is used to log into the system.
     private String password;
     private Role role;
 

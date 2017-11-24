@@ -1,11 +1,5 @@
 package model;
 
-/**
- * TODO: String date to Date data type
- */
-
-import java.time.LocalDate;
-
 public class ZReading{
     private String date;
     private double total;
