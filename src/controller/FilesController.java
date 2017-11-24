@@ -2,20 +2,16 @@ package controller;
 
 import controller.ViewManager.ViewManagerException;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 import model.Consumable;
 import model.DatabaseModel;
-import model.Role;
 import model.User;
 import model.transaction.Transaction;
 
@@ -27,6 +23,7 @@ public class FilesController extends Controller
     @FXML
     private Button buttonBack;
 
+    // Accounts Table component declaration
     @FXML
     private TableView<User> tableviewAccounts;
 
@@ -35,6 +32,19 @@ public class FilesController extends Controller
 
     @FXML
     private TableColumn<User, Integer> colAcctID;
+
+    // Transaction Table component declaration
+    @FXML
+    private TableView<Transaction> tableviewTransactions;
+
+    @FXML
+    private TableColumn<Transaction, Integer> colTransID, colTransCustNo;
+
+    @FXML
+    private TableColumn<Transaction, String> colTransDateTime, colTransCashier, colTransType;
+
+    @FXML
+    private TableColumn<Transaction, Double> colTransCash, colTransChange, colTransSubtotal, colTransSeniorDiscount, colTransTotal;
 
     private DatabaseModel dbm;
 
@@ -48,7 +58,7 @@ public class FilesController extends Controller
     {
         if(checkInitialLoad(getClass().getSimpleName()))
         {
-            setTableColumnActions();
+            setTablePropertiesAndItems();
 
             buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
@@ -57,7 +67,8 @@ public class FilesController extends Controller
             });
         }
 
-        loadUsers();
+        tableviewAccounts.setItems(FXCollections.observableArrayList(dbm.getUsers()));
+        tableviewTransactions.setItems(FXCollections.observableArrayList(dbm.getTransactions()));
     }
 
     @Override
@@ -66,46 +77,22 @@ public class FilesController extends Controller
         tableviewAccounts.getItems().clear();
     }
 
-    private void setTableColumnActions()
+    private void setTablePropertiesAndItems()
     {
         colAcctUsername.setCellValueFactory(new PropertyValueFactory<>("userID"));
         colAcctName.setCellValueFactory(new PropertyValueFactory<>("username"));
         colAcctUsername.setCellValueFactory(new PropertyValueFactory<>("userLoginName"));
         colAcctRole.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getRole().getRoleName()));
-    }
 
-    private void loadUsers()
-    {
-        dbm = new DatabaseModel();
-        ArrayList<User> userList = dbm.getUsers();
-        ObservableList<User> data = FXCollections.observableArrayList(userList);
-        tableviewAccounts.getItems().addAll(data);
-    }
-
-    private void loadTransactions()
-    {
-        DatabaseModel dbm = new DatabaseModel();
-        ArrayList<Transaction> transList = dbm.getTransactions();
-
-        ObservableList<ObservableList<String>> columnData = FXCollections.observableArrayList();
-
-        for(Transaction t : transList)
-        {
-            ObservableList<String> row = FXCollections.observableArrayList();
-            row.add(t.getTransactionID() + "");
-            row.add(t.getDate() + "");
-            row.add(t.getCashier().getUserLoginName());
-            row.add(t.getMode().toString());
-            row.add(t.getCashReceived() + "");
-            row.add(t.getChange() + "");
-            row.add(t.getDiscount() + "");
-            row.add(t.getSubTotal() + "");
-            row.add(t.getTotal() + "");
-
-            columnData.add(row);
-        }
-
-        //tableviewInventory.setItems(columnData);
+        colTransCash.setCellValueFactory(new PropertyValueFactory<>("cashReceived"));
+        colTransCashier.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCashier().getUsername()));
+        colTransChange.setCellValueFactory(new PropertyValueFactory<>("change"));
+        colTransCustNo.setCellValueFactory(new PropertyValueFactory<>("customerNo"));
+        colTransID.setCellValueFactory(new PropertyValueFactory<>("transactionID"));
+        colTransSeniorDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
+        colTransSubtotal.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
+        colTransTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colTransType.setCellValueFactory(new PropertyValueFactory<>("mode"));
     }
 
     private void loadConsumables()

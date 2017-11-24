@@ -81,21 +81,12 @@ public class InventoryController extends Controller
             });
         }
 
-        loadRawItems();
+        tableviewInventory.setItems(FXCollections.observableArrayList(dbm.getRawItems()));
     }
 
     @Override
     public void clear()
     {
         tableviewInventory.getItems().clear();
-    }
-
-    private void loadRawItems()
-    {
-        dbm = new DatabaseModel();
-        ArrayList<RawItem> rawItemList = dbm.getRawItems();
-        ObservableList<RawItem> data = FXCollections.observableArrayList(rawItemList);
-
-        tableviewInventory.setItems(data);
     }
 }
