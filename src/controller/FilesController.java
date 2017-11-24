@@ -46,11 +46,24 @@ public class FilesController extends Controller
     @FXML
     private TableColumn<Transaction, Double> colTransCash, colTransChange, colTransSubtotal, colTransSeniorDiscount, colTransTotal;
 
+    @FXML
+    private TableView<Consumable> tableviewMeals;
+
+    @FXML
+    private TableColumn<Consumable, Integer> colMealID;
+
+    @FXML
+    private TableColumn<Consumable, String> colMealName, colMealCodename, colMealCategory;
+
+    @FXML
+    private TableColumn<Consumable, Double> colMealPrice;
+
     private DatabaseModel dbm;
 
     public FilesController() throws IOException
     {
         initialize(this, "/view/files", "/view/files");
+        dbm = new DatabaseModel();
     }
 
     @Override
@@ -69,12 +82,15 @@ public class FilesController extends Controller
 
         tableviewAccounts.setItems(FXCollections.observableArrayList(dbm.getUsers()));
         tableviewTransactions.setItems(FXCollections.observableArrayList(dbm.getTransactions()));
+        tableviewMeals.setItems(FXCollections.observableArrayList(dbm.getConsumables()));
     }
 
     @Override
     public void clear()
     {
         tableviewAccounts.getItems().clear();
+        tableviewTransactions.getItems().clear();
+        tableviewMeals.getItems().clear();
     }
 
     private void setTablePropertiesAndItems()
@@ -93,28 +109,11 @@ public class FilesController extends Controller
         colTransSubtotal.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
         colTransTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
         colTransType.setCellValueFactory(new PropertyValueFactory<>("mode"));
-    }
 
-    private void loadConsumables()
-    {
-        DatabaseModel dbm = new DatabaseModel();
-        ArrayList<Consumable> consList = dbm.getConsumables();
-
-        ObservableList<ObservableList<String>> columnData = FXCollections.observableArrayList();
-
-        for(Consumable c : consList)
-        {
-            ObservableList<String> row = FXCollections.observableArrayList();
-            row.add(c.getConsumableID() + "");
-            row.add(c.getName());
-            row.add(c.getCodeName());
-            row.add(c.getCategory().getCategoryName());
-            row.add(c.getPrice() + "");
-            row.add(c.getMeal().getMealID() + "");
-
-            columnData.add(row);
-        }
-
-        //tableviewInventory.setItems(columnData);
+        colMealCategory.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCategory().getCategoryName()));
+        colMealCodename.setCellValueFactory(new PropertyValueFactory<>("codeName"));
+        colMealID.setCellValueFactory(new PropertyValueFactory<>("consumableID"));
+        colMealName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colMealPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 }
