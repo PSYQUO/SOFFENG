@@ -5,7 +5,7 @@ import model.Consumable;
 
 public class NewOrderButton extends Button {
     // location of the CSS for each button
-    private static final String STYLESHEET_LOCATION = "/views/new-order-button.css";
+    private static final String STYLESHEET_LOCATION = "/view/new-order-button.css";
 
     public NewOrderButton(Consumable c) {
         setConsumable(c);

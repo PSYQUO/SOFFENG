@@ -11,7 +11,7 @@ import javafx.stage.StageStyle;
 
 public class DialogFactory implements I_DialogFactory {
     // location of the CSS for entire layout
-    private static final String STYLESHEET_LOCATION = "/views/dialogs.css";
+    private static final String STYLESHEET_LOCATION = "/view/dialogs.css";
 
     @Override
     public Dialog create() {
