@@ -13,6 +13,13 @@
     -fx-font-size: 32px;
 }
 
+#numberButton00 {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+}
+
 #buttonBackspace {
     -fx-background-color: #EF5350;
     -fx-background-image: url("/resources/icons/ic_keyboard_return_white_48dp_1x.png");
