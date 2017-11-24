@@ -132,12 +132,21 @@ public class NewOrderController extends Controller
                 Button b = (Button) n;
                 b.addEventHandler(ActionEvent.ACTION, e ->
                 {
-                    if (textfieldPayment.getText().equals("0"))
+                    if (b.getText().equals(".")) {
+                        if (textfieldPayment.getText().contains("."))
+                            return;
+                    }
+
+                    if (textfieldPayment.getText().equals("0") && !b.getText().equals("."))
                         textfieldPayment.setText("");
+                    
                     textfieldPayment.setText(textfieldPayment.getText() + b.getText());
+
                     double total = transactionBuilder.build().getTotal();
+
                     if (checkboxSenior.isSelected())
                         total -= total * 0.20;
+
                     double change = Double.parseDouble(textfieldPayment.getText()) - total;
                     labelChange.setText(df.format(change));
                 });
