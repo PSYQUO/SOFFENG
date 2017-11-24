@@ -24,14 +24,16 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button id="buttonMainPassword" fx:id="buttonChangePassword" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttons" text="CHANGE PASSWORD" textFill="#2c4050">
+                  <Button id="buttonMainPassword" fx:id="buttonChangePassword" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttons" text="CHANGE PASSWORD" textFill="WHITE">
                      <font>
-                        <Font size="85.0" />
-                     </font></Button>
-                  <Button id="buttonMainBackup" fx:id="buttonSetBackup" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="79.0" prefWidth="600.0" styleClass="buttons" text="SET BACKUP LOCATION" textFill="#2c4050" GridPane.rowIndex="1">
+                        <Font name="System Bold" size="85.0" />
+                     </font>
+                  </Button>
+                  <Button id="buttonMainBackup" fx:id="buttonSetBackup" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="79.0" prefWidth="600.0" styleClass="buttons" text="SET BACKUP LOCATION" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
-                        <Font size="85.0" />
-                     </font></Button>
+                        <Font name="System Bold" size="85.0" />
+                     </font>
+                  </Button>
                </children>
             </GridPane>
             <Label layoutX="80.0" layoutY="15.0" text="Settings" textFill="#35dee8" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="20.0">
@@ -48,7 +50,7 @@
       </AnchorPane>
       <AnchorPane id="passwordSettings" fx:id="anchorpanePasswordSettings" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" visible="false">
          <children>
-            <GridPane layoutX="131.0" layoutY="70.0" vgap="40.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="150.0">
+            <GridPane layoutX="131.0" layoutY="70.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="150.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -59,13 +61,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button id="buttonPasswordChange" fx:id="buttonChange" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="buttons" text="Change" textFill="#2c4050" GridPane.rowIndex="6">
-                     <font>
-                        <Font size="60.0" />
-                     </font></Button>
                   <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Old password" textFill="#13e0ff">
                      <font>
                         <Font size="60.0" />
@@ -108,42 +105,15 @@
                   <Font size="47.0" />
                </font>
             </Button>
+            <Button id="buttonPasswordChange" fx:id="buttonChange" layoutX="96.0" layoutY="309.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="buttons" text="Change" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
+               <font>
+                  <Font size="60.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane id="backupSettings" fx:id="anchorpaneBackupSettings" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" visible="false">
          <children>
-            <GridPane hgap="100.0" layoutX="114.0" layoutY="144.0" vgap="100.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="110.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <TextField id="backupLocation" fx:id="textfieldBackupLocation" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="C://user/document/notporn/porn.mp4" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="40.0" />
-                     </font></TextField>
-                  <Button id="buttonBackupApply" fx:id="buttonApply" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttons" text="Apply" textFill="#2c4050" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="60.0" />
-                     </font></Button>
-                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Current Directory" textFill="#13e0ff" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="60.0" />
-                     </font>
-                  </Label>
-                  <Button id="buttonBackupChange" fx:id="buttonChangeLocation" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="65.0" prefWidth="93.0" styleClass="buttons" text="Change location" textFill="#2c4050" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="60.0" />
-                     </font>
-                  </Button>
-               </children>
-            </GridPane>
             <Label layoutX="80.0" layoutY="10.0" text="Backup Location" textFill="#35dee8" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="System Bold" size="36.0" />
@@ -154,6 +124,59 @@
                   <Font size="47.0" />
                </font>
             </Button>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Current Directory" textFill="WHITE" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="150.0">
+               <font>
+                  <Font name="System Bold" size="60.0" />
+               </font>
+            </Label>
+            <GridPane hgap="100.0" layoutX="148.0" layoutY="212.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="350.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane hgap="100.0" vgap="100.0" GridPane.columnIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button id="buttonBackupApply" fx:id="buttonApply" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttons" text="Apply" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="60.0" />
+                           </font>
+                        </Button>
+                        <Button id="buttonBackupChange" fx:id="buttonChangeLocation" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="65.0" prefWidth="93.0" styleClass="buttons" text="Change location" textFill="WHITE">
+                           <font>
+                              <Font size="60.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </GridPane>
+                  <GridPane hgap="100.0" vgap="100.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField id="backupLocation" fx:id="textfieldBackupLocation" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="C://user/document/notporn/porn.mp4">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
          </children>
       </AnchorPane>
    </children>
