@@ -55,6 +55,10 @@ public class InventoryController extends Controller
                 {
                     selectedItem.setQuantity(selectedItem.getQuantity() + 1);
                     tableviewInventory.refresh();
+
+                    /**
+                     * TODO: Update DB with RawItem added quantity
+                     */
                 }
             });
 
@@ -65,6 +69,10 @@ public class InventoryController extends Controller
                 {
                     selectedItem.setQuantity(selectedItem.getQuantity() - 1);
                     tableviewInventory.refresh();
+
+                    /**
+                     * TODO: Update DB with RawItem subtracted quantity
+                     */
                 }
             });
 
