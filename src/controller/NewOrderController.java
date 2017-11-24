@@ -305,7 +305,7 @@ public class NewOrderController extends Controller
 
         for(Consumable c : consumablesList)
         {
-            NewOrderButton nob = new NewOrderButton(c.getName(), c.getPrice());
+            NewOrderButton nob = new NewOrderButton(c);
             
             // Disables the button when there are not enough ingredients.
             List<Ingredient> ingredients = dbm.searchIngredientByConsumableID(c.consumableID);
