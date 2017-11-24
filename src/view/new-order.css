@@ -1,3 +1,11 @@
+.split-pane {
+    -fx-background-color: #2C3E50;
+}
+
+.split-Pane:vertical > .split-pane-divider {
+   -fx-background-color: #2C3E50;
+}
+
 .numberButtons {
     -fx-background-color: #FFFFFF;
     -fx-text-fill: #000000;
@@ -70,7 +78,7 @@ TabPane .tab:selected {
     -fx-background-color: #3498DB;
 }
 .tab-pane > .tab-header-area > .headers-region > .tab {
-    -fx-border-color: white;
+    -fx-border-color: #2C3E50;
     -fx-border-width: 5px; 
 }
 .buttonClose {
