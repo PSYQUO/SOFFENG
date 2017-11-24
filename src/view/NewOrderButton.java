@@ -1,3 +1,4 @@
+
 package view;
 
 import javafx.scene.control.Button;
@@ -7,31 +8,13 @@ import java.text.DecimalFormat;
 
 public class NewOrderButton extends Button
 {
+    // location of the CSS for each button
     private static final String STYLESHEET_LOCATION = "/view/new-order-button.css";
-    private Consumable consumable;
 
     public NewOrderButton(Consumable c)
     {
         setConsumable(c);
         setAppearance();
-        refreshText();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-        refreshText();
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
         refreshText();
     }
 
@@ -45,6 +28,12 @@ public class NewOrderButton extends Button
         return consumable;
     }
 
+    public void refreshText()
+    {
+        this.setText(consumable.getCodeName()
+                + "\n" + df.format(consumable.getPrice()));
+    }
+
     public void setAppearance()
     {
         this.getStylesheets().add(NewOrderButton.STYLESHEET_LOCATION);
@@ -54,17 +43,6 @@ public class NewOrderButton extends Button
             this.setId(consumable.getCategory().getCategoryName().replace(" ", ""));
     }
 
-    public void refreshText()
-    {
-        String text = "";
-        if(name != null)
-            text += name + "\n";
-        if(price != null)
-            text += df.format((double) price);
-        this.setText(text);
-    }
-
-    private String name;
-    private Double price;
+    private Consumable consumable;
     private DecimalFormat df = new DecimalFormat("0.00");
 }
