@@ -1,53 +1,60 @@
-Button {
-    -fx-text-size: 20px;
-}
-
 #Sandwiches {
     -fx-background-color: #3498db;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
+    -fx
 }
 
 #Appetizer {
     -fx-background-color: #e74c3c;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
 }
 
 #BudgetMeal {
     -fx-background-color: #3498db;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
 }
 
 #ComboMeal {
     -fx-background-color: #3498db;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
 }
 
 #Pasta {
     -fx-background-color: #2ecc71;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
 }
 
 #Rice {
     -fx-background-color: #3498db;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
 }
 
 #Dessert {
     -fx-background-color: #e74c3c;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
 }
 
 #Drinks {
     -fx-background-color: #2ecc71;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
 }
 
 #Favorites {
     -fx-background-color: #e74c3c;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
 }
 
 #Extras {
     -fx-background-color: #3498db;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
 }
