@@ -4,6 +4,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import model.DBConnection;
 
+import java.io.*;
+import java.net.URL;
+
 public class App extends Application
 {
     public static void main(String[] args)
@@ -18,8 +21,7 @@ public class App extends Application
     public void start(Stage primaryStage) throws Exception
     {
         // Setup DBConnection
-        DBConnection dbc = DBConnection.getInstance();
-        dbc.setConnection("tjbbqdb", "root", "p@ssword");
+        setupDatabaseConfig();
 
         // Setup Controllers and ViewManager
         MainMenuController mmc = new MainMenuController();
@@ -48,6 +50,53 @@ public class App extends Application
         primaryStage.setMinHeight(600);
         primaryStage.setMinWidth(800);
         primaryStage.setFullScreen(true);
+    }
+
+    private void setupDatabaseConfig()
+    {
+        String line, database = "", username = "", password = "";
+
+        try
+        {
+            URL path = App.class.getResource("dbconfig.ini");
+            File file = new File(path.getFile());
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            while((line = reader.readLine()) != null)
+            {
+                if(line.charAt(0) != '#')
+                {
+                    String[] ini = line.split("=");
+                    switch(ini[0])
+                    {
+                        case "database":
+                            database = ini[1].trim();
+                            break;
+                        case "username":
+                            username = ini[1].trim();
+                            break;
+                        case "password":
+                            password = ini[1].trim();
+                            break;
+                    }
+                }
+            }
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        if(!database.equals("") && !username.equals("") && !password.equals(""))
+        {
+            DBConnection dbc = DBConnection.getInstance();
+            dbc.setConnection(database, username, password);
+        }
+        else
+            System.err.println("Database connection was not set. Check dbconfig.ini at the default package.");
     }
 
     @Override
