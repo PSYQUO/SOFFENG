@@ -6,12 +6,16 @@
     -fx-background-color: rgb(46,204,113);
 }
 
-.redButton {
-
+.greenButton:pressed {
+    -fx-background-color: #219150;
 }
 
 .grayButton {
     -fx-background-color: RGB(102, 102, 102);
+}
+
+.grayButton:pressed {
+    -fx-background-color: #404040;
 }
 
 .dropDown {
