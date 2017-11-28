@@ -54,7 +54,7 @@
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
     -fx-text-fill: white;
-    -fx-font-size: 32px;
+    -fx-font-size: 40px;
     -fx-padding: 2px;
 }
 
@@ -69,7 +69,7 @@
 .table-view .table-cell{
     -fx-background-color: transparent;
     -fx-text-fill: white;
-    -fx-font-size: 30px;
+    -fx-font-size: 40px;
     -fx-padding: 2px;
 }
 
