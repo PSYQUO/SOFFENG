@@ -11,7 +11,7 @@
 }
 
 .redbutton {
--fx-background-color: rgb(239, 83, 80);
+    -fx-background-color: rgb(239, 83, 80);
 }
 
 #redBut{
@@ -31,7 +31,7 @@
 #buttonBack {
     -fx-background-color: #1b519d;
     -fx-color:#FFFFFF;
-    -fx-font-size: 20px;
+    -fx-font-size: 32px;
     -fx-font-weight: bold;
 }
 
@@ -54,7 +54,7 @@
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
     -fx-text-fill: white;
-    -fx-font-size: 20px;
+    -fx-font-size: 32px;
     -fx-padding: 2px;
 }
 
@@ -69,7 +69,7 @@
 .table-view .table-cell{
     -fx-background-color: transparent;
     -fx-text-fill: white;
-    -fx-font-size: 16px;
+    -fx-font-size: 30px;
     -fx-padding: 2px;
 }
 
