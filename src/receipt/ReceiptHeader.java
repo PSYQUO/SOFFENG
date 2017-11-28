@@ -61,8 +61,8 @@ public class ReceiptHeader
         lines.add(String.format("%-15s\n", "Transaction No.: " + transactionNo));
         lines.add(String.format("%-15s\n", "Customer No.: " + customerNo));
         lines.add(String.format("%35S\n", separator));
-        lines.add(String.format("%-15s%5s%16s\n", "Item", "Qty", "Price"));
-        lines.add(String.format("%-15s%5s%16s\n", "----", "---", "-----"));
+        lines.add(String.format("%-15s%6s%5s%10s\n", "Item", "", "Qty", "Price"));
+        lines.add(String.format("%-15s%6s%5s%10s\n", "----", "", "---", "-----"));
 
         String text = "";
         for (int i = 0; i < lines.size(); i++)

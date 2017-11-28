@@ -12,7 +12,9 @@ public class ReceiptBody
     private double total; // Can be calculated
     private double payment; // Has to be set
     private double change; // Can be calculated given that payment has been set
-    private ArrayList<LineItem> lineItems;
+    private List<LineItem> lineItems;
+
+    // private DecimalFormat df = new DecimalFormat("0.00");
 
     public ReceiptBody()
     {
@@ -55,7 +57,7 @@ public class ReceiptBody
         lineItems.remove(item);
     }
 
-    public void setLineItems(ArrayList<LineItem> items)
+    public void setLineItems(List<LineItem> items)
     {
         lineItems.addAll(items);
     }
@@ -86,14 +88,14 @@ public class ReceiptBody
     {
         ArrayList<String> lines = new ArrayList<String>();
         
-        lines.add(String.format("%35S\n", separator));
-        lines.add(String.format("%-15s%21S\n", "Subtotal", subTotal));
-        lines.add(String.format("%-15s%21S\n", "Discount", discount));
+        lines.add(String.format("%35s\n", separator));
+        lines.add(String.format("%-15s%21.2f\n", "Subtotal", subTotal));
+        lines.add(String.format("%-15s%21.2f\n", "Discount", discount));
         lines.add(String.format("%36s\n", "--------"));
         //lines.add(String.format("%1s\n", " "));
-        lines.add(String.format("%-15s%21S\n", "Total", total));
-        lines.add(String.format("%-15s%21S\n", "Amount Tendered", payment));
-        lines.add(String.format("%-15s%21S\n", "Change", change));
+        lines.add(String.format("%-15s%21.2f\n", "Total", total));
+        lines.add(String.format("%-15s%21.2f\n", "Amount Tendered", payment));
+        lines.add(String.format("%-15s%21.2f\n", "Change", change));
 
         String text = "";
         for (int i = 0; i < lines.size(); i++)

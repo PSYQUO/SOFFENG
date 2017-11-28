@@ -4,6 +4,7 @@ import model.LineItem;
 import model.User;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -70,7 +71,8 @@ public class TransactionBuilder {
         for (LineItem li : transaction.getLineItems()) {
             if (li.getConsumable().getName().equals(lineItem.getConsumable().getName())) {
                 li.increaseQuantity(1);
-                setTotal(transaction.getTotal() + li.getConsumable().getPrice());
+                // setTotal(transaction.getTotal() + li.getConsumable().getPrice() * li.getQuantity());
+                // setSubTotal(transaction.getTotal());
                 duplicate = true;
                 break;
             }
@@ -86,8 +88,15 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder setLineItems(ArrayList<LineItem> lineItems) {
+    public TransactionBuilder setLineItems(List<LineItem> lineItems) {
         transaction.setLineItems(lineItems);
+
+        // double total = 0;
+        // for (LineItem li : lineItems)
+        //     total += li.getConsumable().getPrice() * li.getQuantity();
+        // transaction.setTotal(total);
+        // transaction.setSubTotal(total);
+
         return this;
     }
 
@@ -97,12 +106,14 @@ public class TransactionBuilder {
     }
 
     public Transaction build() {
-        if (transaction.getTotal() == -1) { // Computes the total if total was not modified.
-            double total = 0;
-            for (LineItem li : transaction.getLineItems())
-                total += li.getConsumable().getPrice();
-            transaction.setTotal(total);
-        }
+        // if (transaction.getTotal() == -1) { // Computes the total if total was not modified.
+        //     double total = 0;
+        //     for (LineItem li : transaction.getLineItems())
+        //         total += li.getConsumable().getPrice() * li.getQuantity();
+        //     transaction.setTotal(total);
+        //     transaction.setSubTotal(total);
+        // }
+        // transaction.setSubTotal(transaction.getTotal());
 
         return transaction;
     }
