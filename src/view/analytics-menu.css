@@ -9,6 +9,9 @@
     -fx-font-weight:bold;
 }
 
-.analButtons:pressed {
-    
+.analButtons:pressed{
+    -fx-background-color: rgb(33,145,80);
+}
+#buttonBack:pressed{
+    -fx-background-color: rgb(18,56,109);
 }
