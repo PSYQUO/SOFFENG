@@ -10,8 +10,16 @@
     -fx-background-color: rgb(46,204,113);
 }
 
+.greenbutton:pressed {
+    -fx-background-color: #219150;
+}
+
 .redbutton {
     -fx-background-color: rgb(239, 83, 80);
+}
+
+.redbutton:pressed {
+    -fx-background-color: #cc2b19;
 }
 
 #redBut{
