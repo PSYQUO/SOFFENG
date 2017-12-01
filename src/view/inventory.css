@@ -12,6 +12,10 @@ BorderPane {
     -fx-background-color: RGB(44, 64, 80);
 }
 
+.scroll-pane > .viewport {
+    -fx-background-color: rgb(44, 64, 80);
+ }
+
 /* -------------------- ELEMENTS -------------------- */
 
 .dropDown {
@@ -121,7 +125,7 @@ TabPane .tab:selected {
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
     -fx-text-fill: white;
-    -fx-font-size: 32px;
+    -fx-font-size: 28px;
     -fx-padding: 2px;
 }
 
@@ -155,4 +159,5 @@ TabPane .tab:selected {
 .table-row-cell:selected {
     -fx-background-color: #bedef4;
     -fx-background-insets: 0;
+    -fx-table-cell-border-color: transparent;
 }
