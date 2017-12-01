@@ -96,6 +96,7 @@ TabPane .tab:selected {
 
 .table-view{
     -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
  }
 
 .table-view .column-header-background{
@@ -105,7 +106,7 @@ TabPane .tab:selected {
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
     -fx-text-fill: white;
-    -fx-font-size: 20px;
+    -fx-font-size: 32px;
     -fx-padding: 2px;
 }
 
@@ -119,24 +120,24 @@ TabPane .tab:selected {
 
 .table-view .table-cell{
     -fx-background-color: transparent;
-    -fx-text-fill: white;
-    -fx-font-size: 16px;
+    -fx-text-fill: #2c4050;
+    -fx-font-size: 26px;
     -fx-padding: 2px;
 }
 
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, rgb(44, 125, 179);
+    -fx-background-color: -fx-table-cell-border-color, #ffffff;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
 }
 
 .table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #3498DB;
+    -fx-background-color: -fx-table-cell-border-color, #e9f4fb;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */  
 }
 
 .table-row-cell:selected {
-    -fx-background-color: rgb(46,204,113);
+    -fx-background-color: #bedef4;
     -fx-background-insets: 0;
 }

@@ -53,6 +53,7 @@
 
 .table-view{
     -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
  }
 
 .table-view .column-header-background{
@@ -62,7 +63,7 @@
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
     -fx-text-fill: white;
-    -fx-font-size: 40px;
+    -fx-font-size: 32px;
     -fx-padding: 2px;
 }
 
@@ -71,29 +72,29 @@
 }
 
 .table-view .filler {
-    -fx-background-color: RGB(44, 64, 80);
+    -fx-background-color: transparent;
 }
 
 .table-view .table-cell{
     -fx-background-color: transparent;
     -fx-text-fill: #2c4050;
-    -fx-font-size: 40px;
+    -fx-font-size: 26px;
     -fx-padding: 2px;
 }
 
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #e9f4fb;
+    -fx-background-color: -fx-table-cell-border-color, #ffffff;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
 }
 
 .table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #ffffff;
+    -fx-background-color: -fx-table-cell-border-color, #e9f4fb;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */  
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #a8d3f0;
+    -fx-background-color: #bedef4;
     -fx-background-insets: 0;
 }
