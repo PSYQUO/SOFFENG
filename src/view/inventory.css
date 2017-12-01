@@ -22,8 +22,36 @@ BorderPane {
     -fx-background-color: rgb(46,204,113);
 }
 
+.greenbutton:pressed {
+    -fx-background-color: #219150;
+}
+
 .redbutton {
--fx-background-color: rgb(239, 83, 80);
+    -fx-background-color: rgb(239, 83, 80);
+}
+
+.redbutton:pressed {
+    -fx-background-color: #cc2b19;
+}
+
+.okButton {
+    -fx-background-color: rgb(46,204,113);
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.okButton:pressed {
+    -fx-background-color: #219150;
+}
+
+.cancelButton {
+    -fx-background-color: #d9d9d9;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
+
+.cancelButton:pressed {
+    -fx-background-color: #b3b3b3;
 }
 
 #redBut{
@@ -38,6 +66,10 @@ BorderPane {
     -fx-background-size: 30%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
+}
+
+#buttonBack:pressed{
+    -fx-background-color: rgb(18,56,109);
 }
 
 /* -------------------- TAB PANE -------------------- */
