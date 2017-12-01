@@ -11,18 +11,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane id="background" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background">
+      <AnchorPane id="background" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background">
          <children>
-            <Button id="buttonBack" fx:id="buttonBack" layoutX="525.0" layoutY="30.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <Button id="buttonBack" fx:id="buttonBack" layoutX="525.0" layoutY="30.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font size="47.0" />
                </font>
@@ -32,7 +30,7 @@
                   <Font name="System Bold" size="50.0" />
                </font>
             </Label>
-            <SplitPane dividerPositions="0.67" prefHeight="160.0" prefWidth="200.0" styleClass="background" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0">
+            <SplitPane dividerPositions="0.825" prefHeight="160.0" prefWidth="200.0" styleClass="background" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0">
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -72,14 +70,14 @@
             </SplitPane>
          </children>
       </AnchorPane>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <BorderPane fx:id="borderpaneIncoming" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="false">
          <padding>
-            <Insets bottom="20.0" left="40.0" right="40.0" top="40.0" />
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
          </padding>
          <top>
             <VBox BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Add Inventory" textFill="#35dee8">
+                  <Label text="Incoming" textFill="#35dee8">
                      <font>
                         <Font name="System Bold" size="50.0" />
                      </font>
@@ -87,7 +85,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="labelName" text="Insert Product Name Here" textFill="WHITE">
+                  <Label fx:id="labelNameIncoming" text="Insert Product Name Here" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="32.0" />
                      </font>
@@ -100,7 +98,7 @@
                         <Insets bottom="10.0" top="30.0" />
                      </VBox.margin>
                   </Label>
-                  <Spinner fx:id="spinnerQuantity" editable="true" prefHeight="60.0" prefWidth="527.0">
+                  <Spinner fx:id="spinnerQuantityIncoming" editable="true" prefHeight="60.0" prefWidth="527.0">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -109,20 +107,87 @@
             </VBox>
          </top>
          <bottom>
-            <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Button fx:id="buttonCancel" mnemonicParsing="false" prefWidth="120.0" text="Cancel">
+                  <Button fx:id="buttonCancelIncoming" alignment="CENTER" mnemonicParsing="false" prefWidth="120.0" styleClass="cancelButton" text="Cancel" GridPane.halignment="LEFT">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonOK" mnemonicParsing="false" prefWidth="120.0" text="OK">
+                  <Button fx:id="buttonOKIncoming" alignment="CENTER" mnemonicParsing="false" prefWidth="120.0" styleClass="okButton" text="OK" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Button>
                </children>
-            </HBox>
+            </GridPane>
+         </bottom>
+      </BorderPane>
+      <BorderPane fx:id="borderpaneOutgoing" disable="true" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="false">
+         <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </padding>
+         <top>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Outgoing" textFill="#35dee8">
+                     <font>
+                        <Font name="System Bold" size="50.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="labelNameOutgoing" text="Insert Product Name Here" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+                  <Label text="Item Quantity" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Spinner fx:id="spinnerQuantityOutgoing" editable="true" prefHeight="60.0" prefWidth="527.0">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Spinner>
+               </children>
+            </VBox>
+         </top>
+         <bottom>
+            <GridPane BorderPane.alignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="buttonCancelOutgoing" alignment="CENTER" mnemonicParsing="false" prefWidth="120.0" styleClass="cancelButton" text="Cancel" GridPane.halignment="LEFT">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="buttonOKOutgoing" alignment="CENTER" mnemonicParsing="false" prefWidth="120.0" styleClass="okButton" text="OK" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
          </bottom>
       </BorderPane>
    </children>
