@@ -1,53 +1,103 @@
-Button {
-    -fx-text-size: 20px;
-}
-
-#Sandwiches {
-    -fx-background-color: #3498db;
-    -fx-text-fill: #ffffff;
-}
-
-#Appetizer {
-    -fx-background-color: #e74c3c;
-    -fx-text-fill: #ffffff;
-}
-
-#BudgetMeal {
-    -fx-background-color: #3498db;
-    -fx-text-fill: #ffffff;
-}
-
-#ComboMeal {
-    -fx-background-color: #3498db;
-    -fx-text-fill: #ffffff;
-}
-
-#Pasta {
-    -fx-background-color: #2ecc71;
-    -fx-text-fill: #ffffff;
-}
-
-#Rice {
-    -fx-background-color: #3498db;
-    -fx-text-fill: #ffffff;
-}
-
-#Dessert {
-    -fx-background-color: #e74c3c;
-    -fx-text-fill: #ffffff;
-}
-
-#Drinks {
-    -fx-background-color: #2ecc71;
-    -fx-text-fill: #ffffff;
-}
-
-#Favorites {
-    -fx-background-color: #e74c3c;
-    -fx-text-fill: #ffffff;
-}
-
-#Extras {
-    -fx-background-color: #3498db;
-    -fx-text-fill: #ffffff;
+Button { 
+    -fx-text-size: 20px; 
+} 
+ 
+#Sandwiches { 
+    -fx-background-color: #3498db; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 28px; 
+} 
+ 
+#Sandwiches:pressed { 
+    -fx-background-color: #1f74ad; 
+} 
+ 
+#Appetizer { 
+    -fx-background-color: #e74c3c; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 28px; 
+} 
+ 
+#Appetizer:pressed { 
+    -fx-background-color: #cc2b19; 
+} 
+ 
+#BudgetMeal { 
+    -fx-background-color: #3498db; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 28px; 
+} 
+ 
+#BudgetMeal:pressed { 
+    -fx-background-color: #1f74ad; 
+} 
+ 
+#ComboMeal { 
+    -fx-background-color: #3498db; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 28px; 
+} 
+ 
+#ComboMeal:pressed { 
+    -fx-background-color: #1f74ad; 
+} 
+ 
+#Pasta { 
+    -fx-background-color: #2ecc71; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 28px; 
+} 
+ 
+#Pasta:pressed { 
+    -fx-background-color: #219150; 
+} 
+ 
+#Rice { 
+    -fx-background-color: #3498db; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 28px; 
+} 
+ 
+#Rice:pressed { 
+    -fx-background-color: #1f74ad; 
+} 
+ 
+#Dessert { 
+    -fx-background-color: #e74c3c; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 28px; 
+} 
+ 
+#Dessert:pressed { 
+    -fx-background-color: #cc2b19; 
+} 
+ 
+#Drinks { 
+    -fx-background-color: #2ecc71; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 28px; 
+} 
+ 
+#Drinks:pressed { 
+    -fx-background-color: #219150; 
+} 
+ 
+#Favorites { 
+    -fx-background-color: #e74c3c; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 28px; 
+} 
+ 
+#Favorites:pressed { 
+    -fx-background-color: #cc2b19; 
+} 
+ 
+#Extras { 
+    -fx-background-color: #3498db; 
+    -fx-text-fill: #ffffff; 
+    -fx-font-size: 28px; 
+} 
+ 
+#Extras:pressed { 
+    -fx-background-color: #1f74ad; 
 }
