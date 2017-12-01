@@ -4,6 +4,10 @@ AnchorPane {
     -fx-background-color: RGB(44, 64, 80);
 }
 
+BorderPane {
+    -fx-background-color: RGB(44, 64, 80);
+}
+
 .background {
     -fx-background-color: RGB(44, 64, 80);
 }
