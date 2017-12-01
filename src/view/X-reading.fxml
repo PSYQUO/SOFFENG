@@ -48,7 +48,7 @@
             </VBox>
          </top>
       </BorderPane>
-      <Button id="buttonBack" fx:id="buttonBack" layoutX="535.0" layoutY="40.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <Button id="buttonBack" fx:id="buttonBack" layoutX="535.0" layoutY="40.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font size="47.0" />
          </font>
