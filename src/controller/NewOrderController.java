@@ -366,30 +366,33 @@ public class NewOrderController extends Controller
         for (LineItem li : lineItems) {
             LineItemBox lib = new LineItemBox(li);
 
-            lib.addEventHandler(ActionEvent.ACTION, e2 -> {
-                LineItem libLi = ((LineItemBox)e2.getSource()).getLineItem();
-                int index = lineItems.indexOf(libLi);
-                switch (((LineItemBox)e2.getSource()).getStatusFlag()) {
-                    case LineItemBox.MARK_FOR_INCREASE:
-                        lineItems.get(index).increaseQuantity(1);
-                        break;
-                    case LineItemBox.MARK_FOR_DECREASE:
-                        if (lineItems.get(index).getQuantity() <= 1)
-                            // lineItems.remove(index);
-                            lineItems.remove(index);
-                        else
-                            lineItems.get(index).decreaseQuantity(1);
-                        break;
-                    case LineItemBox.MARK_FOR_DELETE:
-                        // lineItems.remove(index);
-                            lineItems.remove(index);
-                        break;
-                    case LineItemBox.DEFAULT:
-                        break;
+        lib.addEventHandler(ActionEvent.ACTION, e2 -> {
+            LineItem libLi = ((LineItemBox)e2.getSource()).getLineItem();
+            int index = lineItems.indexOf(libLi);
+        switch (((LineItemBox)e2.getSource()).getStatusFlag()) {
+            case LineItemBox.MARK_FOR_INCREASE:
+                if (lineItems.get(index).getQuantity() < 1 && lib.isDisabled())
+                    lib.setDisable(false);
+                lineItems.get(index).increaseQuantity(1);
+                break;
+            case LineItemBox.MARK_FOR_DECREASE:
+                if (lineItems.get(index).getQuantity() <= 1) {
+                    // lineItems.remove(index);
+                    lib.setDisable(true);
                 }
-                transactionBuilder.setLineItems(lineItems);
-                refreshSummary();
-            });
+                else
+                    lineItems.get(index).decreaseQuantity(1);
+                break;
+            case LineItemBox.MARK_FOR_DELETE:
+                // lineItems.remove(index);
+                lineItems.remove(index);
+                break;
+            case LineItemBox.DEFAULT:
+                break;
+        }
+            transactionBuilder.setLineItems(lineItems);
+            refreshSummary();
+        });
 
             vboxReceipt.getChildren().add(lib);
         }
