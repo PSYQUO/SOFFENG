@@ -1,11 +1,3 @@
-.scroll-pane > .viewport {
-    -fx-background-color: rgb(44, 64, 80);
-}
-
-.scroll-pane {
- -fx-background-color:transparent;
-}
-
 .split-pane {
     -fx-background-color: #2C3E50;
 }
@@ -90,6 +82,9 @@ TabPane .tab .tab-label {
     -fx-text-fill:#000000;
 }
 
+#buttonBack:pressed{
+    -fx-background-color: rgb(18,56,109);
+}
 TabPane .tab:selected .tab-label {
     -fx-text-fill:#FFFFFF;
 }
@@ -100,6 +95,8 @@ TabPane .tab:selected {
 .tab-pane > .tab-header-area > .headers-region > .tab {
     -fx-border-color: #2C3E50;
     -fx-border-width: 5px; 
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 .buttonClose {
     -fx-background-color: #EF5350;

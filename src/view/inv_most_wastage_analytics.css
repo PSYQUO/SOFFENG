@@ -97,3 +97,11 @@
     -fx-background-color: rgb(46,204,113);
     -fx-background-insets: 0;
 }
+#choiceBox{
+    -fx-font-size:30px;
+    -fx-font-weight:bold;
+    -fx-text-color:white;
+}
+#choiceBox .label {
+     -fx-text-fill: white; 
+}
