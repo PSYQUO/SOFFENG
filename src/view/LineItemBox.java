@@ -160,6 +160,13 @@ public class LineItemBox extends HBox {
      * Initializes the content of the LineItemBox
      */
     public void initialize() {
+        this.setStyle("-fx-background-color: #ffffff; " +
+                "-fx-padding: 5px; " +
+                "-fx-border-radius: 30; " +
+                "-fx-border-width: 3px; " +
+                "-fx-border-color: #ffffff;");
+        this.setAlignment(Pos.CENTER_LEFT);
+
         // initialize labels
         name = new Label();
         price = new Label();
