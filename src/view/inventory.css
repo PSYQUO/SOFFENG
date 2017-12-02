@@ -14,7 +14,11 @@ BorderPane {
 
 .scroll-pane > .viewport {
     -fx-background-color: rgb(44, 64, 80);
- }
+}
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
 
 /* -------------------- ELEMENTS -------------------- */
 
