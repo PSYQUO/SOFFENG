@@ -82,10 +82,10 @@ public class LineItemBox extends HBox {
         add.setId("buttonAdd"); // for CSS
         add.setMinSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         add.setPrefSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-        Button subtract = new Button("-");
-        subtract.setId("buttonSubtract"); // for CSS
-        subtract.setMinSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-        subtract.setPrefSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        buttonSubtract = new Button("-");
+        buttonSubtract.setId("buttonSubtract"); // for CSS
+        buttonSubtract.setMinSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        buttonSubtract.setPrefSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
 
         add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -95,7 +95,7 @@ public class LineItemBox extends HBox {
             }
         });
 
-        subtract.setOnAction(new EventHandler<ActionEvent>() {
+        buttonSubtract.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 // lineItem.decreaseQuantity(1);
@@ -103,7 +103,7 @@ public class LineItemBox extends HBox {
             }
         });
 
-        this.getChildren().addAll(add, subtract);
+        this.getChildren().addAll(add, buttonSubtract);
     }
 
     /**
@@ -136,6 +136,14 @@ public class LineItemBox extends HBox {
      */
     public Button getCloseButton() {
         return buttonClose;
+    }
+
+    /**
+     * Return the subtract button inside the LineItemBox object
+     * @return buttonSubtract
+     */
+    public Button getSubtractButton() {
+        return buttonSubtract;
     }
 
     /**
@@ -187,4 +195,5 @@ public class LineItemBox extends HBox {
     private Label qty;
     private LineItem lineItem;
     private Button buttonClose;
+    private Button buttonSubtract;
 }
