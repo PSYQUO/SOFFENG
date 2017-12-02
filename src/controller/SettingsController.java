@@ -4,18 +4,23 @@ import controller.ViewManager.ViewManagerException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import model.BackUp;
 
 import java.io.IOException;
 
 public class SettingsController extends Controller
-{
+{   
     @FXML
     private Button buttonBack, buttonBack1, buttonBack2,
-                   buttonChangePassword, buttonSetBackup;
+                   buttonChangePassword, buttonSetBackup, buttonApply;
 
     @FXML
     private AnchorPane anchorpaneMainSettings, anchorpanePasswordSettings, anchorpaneBackupSettings;
+
+    @FXML
+    private TextField textfieldBackupLocation;
 
     public SettingsController() throws IOException
     {
@@ -63,6 +68,11 @@ public class SettingsController extends Controller
                 anchorpaneBackupSettings.setDisable(true);
                 anchorpaneMainSettings.setVisible(true);
                 anchorpaneMainSettings.setDisable(false);
+            });
+
+            buttonApply.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                BackUp b = new BackUp(textfieldBackupLocation.getText());
             });
         }
     }
