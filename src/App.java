@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import model.DBConnection;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class App extends Application
@@ -58,15 +59,14 @@ public class App extends Application
 
         try
         {
-            URL path = App.class.getResource("dbconfig.ini");
-            File file = new File(path.getFile());
+            File file = new File(App.class.getResource("dbconfig.ini").toURI());
             BufferedReader reader = new BufferedReader(new FileReader(file));
             while((line = reader.readLine()) != null)
             {
                 if(line.charAt(0) != '#')
                 {
                     String[] ini = line.split("=");
-                    switch(ini[0])
+                    switch(ini[0].trim())
                     {
                         case "database":
                             database = ini[1].trim();
@@ -86,6 +86,10 @@ public class App extends Application
             e.printStackTrace();
         }
         catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch(URISyntaxException e)
         {
             e.printStackTrace();
         }
