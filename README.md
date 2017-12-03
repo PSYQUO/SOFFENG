@@ -2,7 +2,7 @@
 
 Welcome to SOFENGG S18B's Github Repository!
 
-### How to Contribution:
+### How to contribution:
 Recommended IDEs
 - [Visual Studio Code](https://code.visualstudio.com/) 
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/)
@@ -16,7 +16,18 @@ Libraries
 
 <hr></hr>
 
-### How to Run w/o IDE or Gradle:
+### Setting up database connection parameters
+
+Create a file called dbconfig.ini and place it at the default package (beside App.class).
+
+The dbconfig.ini file should contain the following
+```ini
+database = <database schema name>
+username = <username of database connection>
+password = <password of database connection>
+```
+
+### How to run w/o IDE or Gradle:
 
 Note: Remember to create/configure the dbconfig.ini at the default package.
 ```sh
