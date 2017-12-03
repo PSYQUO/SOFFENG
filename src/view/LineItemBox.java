@@ -129,6 +129,14 @@ public class LineItemBox extends HBox {
     public int getStatusFlag() {
         return statusFlag;
     }
+    
+    /**
+     * Changes the status flag of the LineItemBox
+     * @param f the status flag
+     */
+    public void setStatusFlag(int f) {
+        statusFlag = f;
+    }
 
     /**
      * Return the close button inside the LineItemBox object
