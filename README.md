@@ -18,8 +18,7 @@ Libraries
 
 ### Setting up database connection parameters
 
-Create a file called dbconfig.ini and place it at the default package (beside App.class).
-
+Create a file called dbconfig.ini and place it at the default package (beside App.class).<br>
 The dbconfig.ini file should contain the following
 ```ini
 database = <database schema name>
