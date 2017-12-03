@@ -18,7 +18,7 @@ Libraries
 
 ### How to Run w/o IDE or Gradle:
 
-Note: Remember to change the database connection's username and password before compiling.
+Note: Remember to create/configure the dbconfig.ini at the default package.
 ```sh
 cd src
 javac App.java controller/*.java controller/ViewManager/*.java model/*.java model/Transaction/*.java receipt/*.java 
