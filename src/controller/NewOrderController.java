@@ -250,6 +250,8 @@ public class NewOrderController extends Controller
                 Receipt receipt = receiptBuilder.processTransaction(transactionBuilder.build()).build();
                 //System.out.println(receipt.customerReceipt());
                 //System.out.println(receipt.kitchenReceipt());
+
+                System.out.println(receipt.customerReceipt()+"\n"+receipt.kitchenReceipt());
                 ReceiptPrinter rp = new ReceiptPrinter();
                 //rp.printado(receipt.customerReceipt());
                 rp.printado(receipt.customerReceipt()+"\n"+receipt.kitchenReceipt());
