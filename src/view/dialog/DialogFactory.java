@@ -25,7 +25,7 @@ public class DialogFactory implements I_DialogFactory {
      * create method.
      * @param type
      */
-    public void create(DialogMessageType type) {
+    public Dialog create(DialogMessageType type) {
         initialize();
         switch(type) {
             // Confirmation
@@ -34,22 +34,21 @@ public class DialogFactory implements I_DialogFactory {
             case DATABASE_REMOVE:
             case PASSWORD_CHANGE:
             case APP_EXIT:
-                createConfirmationDialog(type);
-                break;
+                return createConfirmationDialog(type);
 
             // Warning
             case INVALID_INPUT:
             case INVALID_PAYMENT:
             case RESTRICTED_ACCESS:
-                createWarningDialog(type);
-                break;
+                return createWarningDialog(type);
 
             // Information
             case TRANSACTION_COMPLETE:
             case SETTINGS_SAVED:
-                createInformationDialog(type);
-                break;
+                return createInformationDialog(type);
         }
+
+        return create();
     }
 
     /**

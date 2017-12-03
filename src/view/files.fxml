@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -22,18 +23,22 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.67" layoutY="6.0" prefHeight="160.0" prefWidth="200.0" styleClass="splitPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.825" layoutY="6.0" prefHeight="160.0" prefWidth="200.0" styleClass="splitPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
                               <AnchorPane fx:id="anchorpaneAccountsLeft" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefWidth="459.0">
                                  <children>
-                                    <TableView fx:id="tableviewAccounts" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <columns>
-                                          <TableColumn fx:id="colAcctID" prefWidth="30.0" text="ID" />
-                                          <TableColumn fx:id="colAcctUsername" prefWidth="120.0" text="Username" />
-                                          <TableColumn fx:id="colAcctName" prefWidth="200.0" text="Name" />
-                                          <TableColumn fx:id="colAcctRole" prefWidth="75.0" text="Role" />
-                                       </columns>
-                                    </TableView>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <TableView fx:id="tableviewAccounts" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+                                             <columns>
+                                                <TableColumn fx:id="colAcctID" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" text="ID" />
+                                                <TableColumn fx:id="colAcctUsername" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Username" />
+                                                <TableColumn fx:id="colAcctName" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Name" />
+                                                <TableColumn fx:id="colAcctRole" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Role" />
+                                             </columns>
+                                          </TableView>
+                                       </content>
+                                    </ScrollPane>
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="splitPane">
@@ -80,24 +85,28 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="1.67" layoutY="6.0" prefHeight="160.0" prefWidth="200.0" styleClass="splitPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.825" layoutY="6.0" prefHeight="160.0" prefWidth="200.0" styleClass="splitPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="gridButton">
                                  <children>
-                                    <TableView fx:id="tableviewTransactions" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <columns>
-                                          <TableColumn fx:id="colTransID" prefWidth="30.0" text="ID" />
-                                          <TableColumn fx:id="colTransDateTime" prefWidth="200.0" text="Date and Time" />
-                                          <TableColumn fx:id="colTransCashier" prefWidth="120.0" text="Cashier" />
-                                          <TableColumn fx:id="colTransCustNo" prefWidth="90.0" text="Cust. No" />
-                                          <TableColumn fx:id="colTransType" prefWidth="100.0" text="Type" />
-                                          <TableColumn fx:id="colTransCash" prefWidth="100.0" text="Cash" />
-                                          <TableColumn fx:id="colTransChange" prefWidth="100.0" text="Change" />
-                                          <TableColumn fx:id="colTransSubtotal" prefWidth="100.0" text="Subtotal" />
-                                          <TableColumn fx:id="colTransSeniorDiscount" prefWidth="120.0" text="Senior Disc." />
-                                          <TableColumn fx:id="colTransTotal" prefWidth="100.0" text="Total" />
-                                       </columns>
-                                    </TableView>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <TableView fx:id="tableviewTransactions" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                             <columns>
+                                                <TableColumn fx:id="colTransID" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" text="ID" />
+                                                <TableColumn fx:id="colTransDateTime" maxWidth="1.7976931348623157E308" minWidth="400.0" prefWidth="400.0" text="Date and Time" />
+                                                <TableColumn fx:id="colTransCashier" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Cashier" />
+                                                <TableColumn fx:id="colTransCustNo" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Cust. No" />
+                                                <TableColumn fx:id="colTransType" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Type" />
+                                                <TableColumn fx:id="colTransCash" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Cash" />
+                                                <TableColumn fx:id="colTransChange" minWidth="200.0" prefWidth="200.0" text="Change" />
+                                                <TableColumn fx:id="colTransSubtotal" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Subtotal" />
+                                                <TableColumn fx:id="colTransSeniorDiscount" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Senior Disc." />
+                                                <TableColumn fx:id="colTransTotal" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Total" />
+                                             </columns>
+                                          </TableView>
+                                       </content>
+                                    </ScrollPane>
                                  </children>
                               </AnchorPane>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="splitPane">
@@ -134,19 +143,23 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="1.67" layoutY="6.0" prefHeight="160.0" prefWidth="200.0" styleClass="splitPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.825" layoutY="6.0" prefHeight="160.0" prefWidth="200.0" styleClass="splitPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="gridButton">
                                  <children>
-                                    <TableView fx:id="tableviewMeals" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <columns>
-                                          <TableColumn fx:id="colMealID" prefWidth="30.0" text="ID" />
-                                          <TableColumn fx:id="colMealName" prefWidth="200.0" text="Name" />
-                                          <TableColumn fx:id="colMealCodename" prefWidth="120.0" text="Codename" />
-                                          <TableColumn fx:id="colMealPrice" prefWidth="100.0" text="Price" />
-                                          <TableColumn fx:id="colMealCategory" prefWidth="120.0" text="Category" />
-                                       </columns>
-                                    </TableView>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <TableView fx:id="tableviewMeals" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                             <columns>
+                                                <TableColumn fx:id="colMealID" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" text="ID" />
+                                                <TableColumn fx:id="colMealName" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Name" />
+                                                <TableColumn fx:id="colMealCodename" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Codename" />
+                                                <TableColumn fx:id="colMealPrice" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Price" />
+                                                <TableColumn fx:id="colMealCategory" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Category" />
+                                             </columns>
+                                          </TableView>
+                                       </content>
+                                    </ScrollPane>
                                  </children>
                               </AnchorPane>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="splitPane">
@@ -199,7 +212,7 @@
             <Font name="System Bold" size="50.0" />
          </font>
       </Label>
-      <Button id="buttonBack" fx:id="buttonBack" layoutX="515.0" layoutY="20.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@inv_most_wastage_analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <Button id="buttonBack" fx:id="buttonBack" layoutX="515.0" layoutY="20.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" styleClass="buttonBack" stylesheets="@analytics.css" text="Back" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font size="47.0" />
          </font>

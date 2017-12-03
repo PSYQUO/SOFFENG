@@ -365,24 +365,34 @@ public class NewOrderController extends Controller
 
         for (LineItem li : lineItems) {
             LineItemBox lib = new LineItemBox(li);
+            
+            if (li.getQuantity() <= 1)
+                lib.getSubtractButton().setDisable(true);
 
             lib.addEventHandler(ActionEvent.ACTION, e2 -> {
                 LineItem libLi = ((LineItemBox)e2.getSource()).getLineItem();
                 int index = lineItems.indexOf(libLi);
+
+                Button buttonSubtract = lib.getSubtractButton();
+
                 switch (((LineItemBox)e2.getSource()).getStatusFlag()) {
                     case LineItemBox.MARK_FOR_INCREASE:
                         lineItems.get(index).increaseQuantity(1);
+                        if (lineItems.get(index).getQuantity() > 1 && buttonSubtract.isDisabled())
+                            buttonSubtract.setDisable(false);
                         break;
                     case LineItemBox.MARK_FOR_DECREASE:
-                        if (lineItems.get(index).getQuantity() <= 1)
+                        if (lineItems.get(index).getQuantity() <= 1) {
                             // lineItems.remove(index);
-                            lineItems.remove(index);
+                            if (!buttonSubtract.isDisabled())
+                                buttonSubtract.setDisable(true);
+                        }
                         else
                             lineItems.get(index).decreaseQuantity(1);
                         break;
                     case LineItemBox.MARK_FOR_DELETE:
                         // lineItems.remove(index);
-                            lineItems.remove(index);
+                        lineItems.remove(index);
                         break;
                     case LineItemBox.DEFAULT:
                         break;

@@ -82,6 +82,9 @@ TabPane .tab .tab-label {
     -fx-text-fill:#000000;
 }
 
+#buttonBack:pressed{
+    -fx-background-color: rgb(18,56,109);
+}
 TabPane .tab:selected .tab-label {
     -fx-text-fill:#FFFFFF;
 }
@@ -92,6 +95,8 @@ TabPane .tab:selected {
 .tab-pane > .tab-header-area > .headers-region > .tab {
     -fx-border-color: #2C3E50;
     -fx-border-width: 5px; 
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 .buttonClose {
     -fx-background-color: #EF5350;
@@ -100,8 +105,19 @@ TabPane .tab:selected {
     -fx-font-weight: bold;
 }
 
+.buttonClose:pressed { 
+    -fx-background-color: #cc2b19; 
+}
+
 .buttonClose:hover {
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
     -fx-scale-z: 1.1;
+}
+#greenbutton{
+    -fx-background-color: rgb(46,204,113);
+}
+
+#greenbutton:pressed{
+    -fx-background-color: rgb(33,145,80);
 }
