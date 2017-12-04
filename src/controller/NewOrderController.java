@@ -131,7 +131,7 @@ public class NewOrderController extends Controller
         if(checkInitialLoad(getClass().getSimpleName()))
         {
 
-            textfieldPayment.setDisable(true);
+            textfieldPayment.setEditable(false);
 
             // Attach event handlers for each button in the numpad
             for (Node n : gridpaneNumpad.getChildren()) {
