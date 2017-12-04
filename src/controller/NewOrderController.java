@@ -31,8 +31,6 @@ import view.NewOrderButton;
 import view.LineItemBox;
 
 import receipt.Receipt;
-import receipt.ReceiptHeader;
-import receipt.ReceiptFooter;
 import receipt.ReceiptBuilder;
 import receipt.ReceiptPrinter;
 
@@ -40,11 +38,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.text.DecimalFormat;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 
 public class NewOrderController extends Controller
 {
@@ -253,8 +249,8 @@ public class NewOrderController extends Controller
 
                 System.out.println(receipt.customerReceipt()+"\n"+receipt.kitchenReceipt());
                 ReceiptPrinter rp = new ReceiptPrinter();
-                //rp.printado(receipt.customerReceipt());
-                rp.printado(receipt.customerReceipt()+"\n"+receipt.kitchenReceipt());
+                //rp.printReceipt(receipt.customerReceipt());
+                rp.printReceipt(receipt.customerReceipt()+"\n"+receipt.kitchenReceipt());
 
 
 
