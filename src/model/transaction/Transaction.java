@@ -148,6 +148,7 @@ public class Transaction {
     protected void setLineItems(List<LineItem> lineItems) {
         this.lineItems = lineItems;
         
+        total = 0;
         for (LineItem li : lineItems)
             total += li.getConsumable().getPrice()
                    * li.getQuantity();

@@ -1,19 +1,26 @@
 package model;
 
-import java.util.ArrayList;
-import java.time.LocalDateTime;
 import java.io.FileWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class BackUp
 {
     private DatabaseModel dbm;
     private String filePath;
-    private String date = "12-12-12"; // TODO must be LocalDateTime
+    private DateFormat dateFormat;
+    private Date date;
     
     public BackUp(String filePath)
-    {
-        dbm = new DatabaseModel();
+    {   
         this.filePath = filePath;
+        dbm = new DatabaseModel();
+        
+        dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        date = new Date();
+
         BackUpInventory();
         BackUpXReading();
         BackUpZReading();
@@ -24,7 +31,7 @@ public class BackUp
         ArrayList<RawItem> data = dbm.getRawItems();
         try
         {
-            String fname = "Inventory " + date + ".csv";
+            String fname = "Inventory " + dateFormat.format(date) + ".csv";
             FileWriter fw = new FileWriter(filePath + fname);
             for(RawItem r: data)
             {   
@@ -47,7 +54,7 @@ public class BackUp
         ArrayList<XReading> data = dbm.getXReadAll();
         try
         {
-            String fname = "XRead.csv";
+            String fname = "XRead" + dateFormat.format(date) + ".csv";
             FileWriter fw = new FileWriter(filePath + fname);
             for(XReading x: data)
             {   
@@ -72,7 +79,7 @@ public class BackUp
         ArrayList<ZReading> data = dbm.getZReadAll();
         try
         {
-            String fname = "ZRead.csv";
+            String fname = "ZRead" + dateFormat.format(date) + ".csv";
             FileWriter fw = new FileWriter(filePath + fname);
             for(ZReading z: data)
             {   

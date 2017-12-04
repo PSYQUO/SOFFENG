@@ -132,7 +132,7 @@ public class NewOrderController extends Controller
         if(checkInitialLoad(getClass().getSimpleName()))
         {
 
-            textfieldPayment.setDisable(true);
+            textfieldPayment.setEditable(false);
 
             // Attach event handlers for each button in the numpad
             for (Node n : gridpaneNumpad.getChildren()) {
@@ -377,35 +377,43 @@ public class NewOrderController extends Controller
             if (li.getQuantity() <= 1)
                 lib.getSubtractButton().setDisable(true);
 
-            lib.addEventHandler(ActionEvent.ACTION, e2 -> {
-                LineItem libLi = ((LineItemBox)e2.getSource()).getLineItem();
-                int index = lineItems.indexOf(libLi);
+            lib.addEventHandler(ActionEvent.ACTION, e -> {
+                // LineItem libLi = ((LineItemBox)e2.getSource()).getLineItem();
+                List<LineItem> lineItems2 = transactionBuilder.build().getLineItems();
+                LineItem libLi = lib.getLineItem();
+                int index = lineItems2.indexOf(libLi);
 
                 Button buttonSubtract = lib.getSubtractButton();
 
-                switch (((LineItemBox)e2.getSource()).getStatusFlag()) {
+                // int statusFlag = ((LineItemBox)e2.getSource()).getStatusFlag();
+                int statusFlag = lib.getStatusFlag();
+
+                switch (statusFlag) {
                     case LineItemBox.MARK_FOR_INCREASE:
-                        lineItems.get(index).increaseQuantity(1);
-                        if (lineItems.get(index).getQuantity() > 1 && buttonSubtract.isDisabled())
+                        lineItems2.get(index).increaseQuantity(1);
+                        if (lineItems2.get(index).getQuantity() > 1 && buttonSubtract.isDisabled())
                             buttonSubtract.setDisable(false);
+                        lib.setStatusFlag(LineItemBox.DEFAULT);
                         break;
                     case LineItemBox.MARK_FOR_DECREASE:
-                        if (lineItems.get(index).getQuantity() <= 1) {
+                        if (lineItems2.get(index).getQuantity() <= 1) {
                             // lineItems.remove(index);
                             if (!buttonSubtract.isDisabled())
                                 buttonSubtract.setDisable(true);
                         }
                         else
-                            lineItems.get(index).decreaseQuantity(1);
+                            lineItems2.get(index).decreaseQuantity(1);
+                        lib.setStatusFlag(LineItemBox.DEFAULT);
                         break;
                     case LineItemBox.MARK_FOR_DELETE:
                         // lineItems.remove(index);
-                        lineItems.remove(index);
+                        lineItems2.remove(index);
+                        lib.setStatusFlag(LineItemBox.DEFAULT);
                         break;
                     case LineItemBox.DEFAULT:
                         break;
                 }
-                transactionBuilder.setLineItems(lineItems);
+                transactionBuilder.setLineItems(lineItems2);
                 refreshSummary();
             });
 
