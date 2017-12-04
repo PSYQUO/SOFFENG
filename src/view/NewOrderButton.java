@@ -37,8 +37,10 @@ public class NewOrderButton extends Button
     public void setAppearance()
     {
         this.getStylesheets().add(NewOrderButton.STYLESHEET_LOCATION);
-        this.setHeight(150);
-        this.setWidth(150);
+        this.setPrefHeight(150.0);
+        this.setMaxHeight(150.0);
+        this.setPrefWidth(150);
+        this.setMaxWidth(150.0);
         if(consumable != null)
             this.setId(consumable.getCategory().getCategoryName().replace(" ", ""));
     }

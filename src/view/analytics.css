@@ -1,15 +1,7 @@
 /* -------------------- CONTAINERS -------------------- */
 
-AnchorPane {
-    -fx-background-color: RGB(44, 64, 80);
-}
-
-BorderPane {
-    -fx-background-color: RGB(44, 64, 80);
-}
-
-.background {
-    -fx-background-color: RGB(44, 64, 80);
+#background {
+    -fx-background-color: RGB(44, 64, 80);  
 }
 
 .scroll-pane > .viewport {
@@ -20,11 +12,8 @@ BorderPane {
     -fx-background-color:transparent;
 }
 
-/* -------------------- ELEMENTS -------------------- */
 
-.dropDown {
-    -fx-background-color: rgb(52,152,219);
-}
+/* -------------------- BUTTONS -------------------- */
 
 .greenbutton {
     -fx-background-color: rgb(46,204,113);
@@ -42,26 +31,6 @@ BorderPane {
     -fx-background-color: #cc2b19;
 }
 
-.okButton {
-    -fx-background-color: rgb(46,204,113);
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-}
-
-.okButton:pressed {
-    -fx-background-color: #219150;
-}
-
-.cancelButton {
-    -fx-background-color: #d9d9d9;
-    -fx-font-weight: bold;
-    -fx-text-fill: #000000;
-}
-
-.cancelButton:pressed {
-    -fx-background-color: #b3b3b3;
-}
-
 #redBut{
 	-fx-background-image: url("resources/icons/del.png");
     -fx-background-size: 30%;
@@ -76,43 +45,17 @@ BorderPane {
     -fx-background-position: center;
 }
 
-#buttonBack:pressed{
-    -fx-background-color: rgb(18,56,109);
+#buttonBack {
+    -fx-background-color: #1b519d;
+    -fx-color:#FFFFFF;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
 }
 
-/* -------------------- TAB PANE -------------------- */
-
-.tab {
-    -fx-color: #FFFFFF;
-    -fx-font-size: 18px;
-    -fx-background-color:#B7B7B7;
-    -fx-font-weight:bold;
-    -fx-padding: 0 15 0 15;
-}
-
-TabPane .tab-header-background {
-    -fx-background-color: transparent;
-}
-
-.tab-pane {
-  -fx-tab-min-height:50px;
-  -fx-tab-max-height:50px;
-}
-
-TabPane .tab .tab-label {
-    -fx-text-fill:#000000;
-}
-
-TabPane .tab:selected .tab-label {
-    -fx-text-fill:#FFFFFF;
-}
-
-TabPane .tab:selected {
-    -fx-background-color: #3498DB;
-}
-.tab-pane > .tab-header-area > .headers-region > .tab {
-    -fx-border-color: #2C3E50;
-    -fx-border-width: 5px; 
+.buttonClose:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
 }
 
 /* -------------------- TABLE VIEW -------------------- */

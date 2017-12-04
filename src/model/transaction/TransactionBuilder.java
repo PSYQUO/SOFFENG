@@ -68,7 +68,8 @@ public class TransactionBuilder {
 
         /* Check if lineItem is already in the list */
         boolean duplicate = false;
-        for (LineItem li : transaction.getLineItems()) {
+        List<LineItem> lineItems = transaction.getLineItems();
+        for (LineItem li : lineItems) {
             if (li.getConsumable().getName().equals(lineItem.getConsumable().getName())) {
                 li.increaseQuantity(1);
                 // setTotal(transaction.getTotal() + li.getConsumable().getPrice() * li.getQuantity());
@@ -79,6 +80,8 @@ public class TransactionBuilder {
         }
         if (!duplicate)
             transaction.addLineItem(lineItem);
+        else
+            transaction.setLineItems(lineItems);
 
         return this;
     }
