@@ -39,13 +39,13 @@ public abstract class Controller
     protected void initialize(Controller controller, String fxmlpath, String csspath) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxmlpath + ".fxml"));
+        loader.setLocation(getClass().getResource(fxmlpath));
         loader.setController(controller);
 
         root = loader.load();
 
         if(csspath != null)
-            root.getStylesheets().add(getClass().getResource(fxmlpath + ".css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource(csspath).toExternalForm());
     }
 
     /**

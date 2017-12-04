@@ -33,7 +33,7 @@ public class InventoryController extends Controller
 
     public InventoryController() throws IOException
     {
-        initialize(this, "/view/inventory", "/view/inventory");
+        initialize(this, "/view/inventory.fxml", "/view/inventory.css");
         dbm = new DatabaseModel();
     }
 

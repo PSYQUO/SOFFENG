@@ -14,7 +14,7 @@ public class MainMenuController extends Controller
 
     public MainMenuController() throws IOException
     {
-        initialize(this, "/view/main-menu", "/view/main-menu");
+        initialize(this, "/view/main-menu.fxml", "/view/main-menu.css");
     }
 
     @Override

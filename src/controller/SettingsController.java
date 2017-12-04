@@ -24,7 +24,7 @@ public class SettingsController extends Controller
 
     public SettingsController() throws IOException
     {
-        initialize(this, "/view/settings", "/view/settings");
+        initialize(this, "/view/settings.fxml", "/view/settings.css");
     }
 
     @Override

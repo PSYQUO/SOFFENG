@@ -98,7 +98,7 @@ public class NewOrderController extends Controller
 
     public NewOrderController() throws IOException
     {
-        initialize(this, "/view/new-order", "/view/new-order");
+        initialize(this, "/view/new-order.fxml", "/view/new-order.css");
     }
 
     @Override

@@ -46,6 +46,8 @@ public class FilesController extends Controller
     @FXML
     private TableColumn<Transaction, Double> colTransCash, colTransChange, colTransSubtotal, colTransSeniorDiscount, colTransTotal;
 
+
+    // Meals Table component declaration
     @FXML
     private TableView<Consumable> tableviewMeals;
 
@@ -62,7 +64,7 @@ public class FilesController extends Controller
 
     public FilesController() throws IOException
     {
-        initialize(this, "/view/files", "/view/files");
+        initialize(this, "/view/files.fxml", "/view/files.css");
         dbm = new DatabaseModel();
     }
 
