@@ -10,7 +10,7 @@ import java.io.IOException;
 public class MainMenuController extends Controller
 {
     @FXML
-    private Button buttonNewOrder, buttonInventory, buttonSettings, buttonFiles;
+    private Button buttonNewOrder, buttonInventory, buttonSettings, buttonFiles, buttonAnalytics;
 
     public MainMenuController() throws IOException
     {
@@ -33,6 +33,9 @@ public class MainMenuController extends Controller
 
             buttonFiles.addEventHandler(ActionEvent.ACTION, e ->
                     viewManager.switchViews("FilesController"));
+
+            buttonAnalytics.addEventHandler(ActionEvent.ACTION, e ->
+                    viewManager.switchViews("AnalyticsController"));
         }
     }
 
