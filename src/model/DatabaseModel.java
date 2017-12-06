@@ -1,9 +1,10 @@
 package model;
 
-import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import model.food.*;
 import model.transaction.Transaction;
 import model.transaction.TransactionBuilder;
 

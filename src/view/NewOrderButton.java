@@ -2,7 +2,7 @@
 package view;
 
 import javafx.scene.control.Button;
-import model.Consumable;
+import model.food.Consumable;
 
 import java.text.DecimalFormat;
 

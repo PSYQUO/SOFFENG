@@ -2,7 +2,6 @@ package controller;
 
 import controller.ViewManager.ViewManagerException;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,10 +9,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.DatabaseModel;
-import model.RawItem;
+import model.food.RawItem;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class InventoryController extends Controller
 {

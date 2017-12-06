@@ -19,12 +19,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
-import model.Consumable;
-import model.Ingredient;
+import model.food.Consumable;
+import model.food.Ingredient;
 import model.DatabaseModel;
 import model.transaction.Transaction;
 import model.transaction.TransactionBuilder;
-import model.LineItem;
+import model.food.LineItem;
 import model.User;
 
 import view.NewOrderButton;

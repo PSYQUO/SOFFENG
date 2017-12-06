@@ -1,4 +1,6 @@
-package model;
+package model.food;
+
+import model.food.RawItem;
 
 /**
  * The item/ingredient used as a component of a food item.
