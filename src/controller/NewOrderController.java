@@ -1,6 +1,6 @@
 package controller;
 
-import controller.ViewManager.ViewManagerException;
+import controller.viewmanager.ViewManagerException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,9 +96,9 @@ public class NewOrderController extends Controller
     
     private DecimalFormat df = new DecimalFormat("0.00");
 
-    public NewOrderController() throws IOException
+    public NewOrderController(String fxmlpath, String csspath) throws IOException
     {
-        initialize(this, "/view/new-order.fxml", "/view/new-order.css");
+        super(fxmlpath, csspath);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class NewOrderController extends Controller
                             .setCashier(cashier)
                             .setDate(LocalDateTime.now());
 
-        if(checkInitialLoad(getClass().getSimpleName()))
+        if(isFirstLoad())
         {
 
             textfieldPayment.setEditable(false);

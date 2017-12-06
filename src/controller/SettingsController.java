@@ -1,11 +1,12 @@
 package controller;
 
-import controller.ViewManager.ViewManagerException;
+import controller.viewmanager.ViewManagerException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.BackUp;
 
 import java.io.IOException;
@@ -22,15 +23,18 @@ public class SettingsController extends Controller
     @FXML
     private TextField textfieldBackupLocation;
 
-    public SettingsController() throws IOException
+    private Stage stage;
+
+    public SettingsController(String fxmlpath, String csspath, Stage primaryStage) throws IOException
     {
-        initialize(this, "/view/settings.fxml", "/view/settings.css");
+        super(fxmlpath, csspath);
+        stage = primaryStage;
     }
 
     @Override
     public void load() throws ViewManagerException
     {
-        if(checkInitialLoad(getClass().getSimpleName()))
+        if(isFirstLoad())
         {
             buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
