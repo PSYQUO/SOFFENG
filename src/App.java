@@ -13,10 +13,7 @@ public class App extends Application
     {
         launch(args);
     }
-
-    /**
-     * TODO: Might be a better way to decouple ViewManager and Controller classes - patsy
-     */
+    
     @Override
     public void start(Stage primaryStage) throws Exception
     {
