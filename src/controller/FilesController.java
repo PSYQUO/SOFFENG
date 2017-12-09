@@ -1,22 +1,20 @@
 package controller;
 
-import controller.ViewManager.ViewManagerException;
+import controller.viewmanager.ViewManagerException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Consumable;
+import model.food.Consumable;
 import model.DatabaseModel;
 import model.User;
 import model.transaction.Transaction;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class FilesController extends Controller
 {
@@ -46,6 +44,8 @@ public class FilesController extends Controller
     @FXML
     private TableColumn<Transaction, Double> colTransCash, colTransChange, colTransSubtotal, colTransSeniorDiscount, colTransTotal;
 
+
+    // Meals Table component declaration
     @FXML
     private TableView<Consumable> tableviewMeals;
 
@@ -60,16 +60,16 @@ public class FilesController extends Controller
 
     private DatabaseModel dbm;
 
-    public FilesController() throws IOException
+    public FilesController(String fxmlpath, String csspath) throws IOException
     {
-        initialize(this, "/view/files", "/view/files");
+        super(fxmlpath, csspath);
         dbm = new DatabaseModel();
     }
 
     @Override
     public void load() throws ViewManagerException
     {
-        if(checkInitialLoad(getClass().getSimpleName()))
+        if(isFirstLoad())
         {
             setTablePropertiesAndItems();
 

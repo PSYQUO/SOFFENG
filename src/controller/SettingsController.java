@@ -1,31 +1,42 @@
 package controller;
 
-import controller.ViewManager.ViewManagerException;
+import java.io.IOException;
+
+import controller.viewmanager.ViewManagerException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+import java.io.File;
+import model.BackUp;
 
 public class SettingsController extends Controller
-{
+{   
     @FXML
     private Button buttonBack, buttonBack1, buttonBack2,
-                   buttonChangePassword, buttonSetBackup;
+                   buttonChangePassword, buttonSetBackup, buttonApply, buttonChangeLocation;
 
     @FXML
     private AnchorPane anchorpaneMainSettings, anchorpanePasswordSettings, anchorpaneBackupSettings;
 
-    public SettingsController() throws IOException
+    @FXML
+    private TextField textfieldBackupLocation;
+
+    private Stage stage;
+
+    public SettingsController(String fxmlpath, String csspath, Stage primaryStage) throws IOException
     {
-        initialize(this, "/view/settings", "/view/settings");
+        super(fxmlpath, csspath);
+        stage = primaryStage;
     }
 
     @Override
     public void load() throws ViewManagerException
     {
-        if(checkInitialLoad(getClass().getSimpleName()))
+        if(isFirstLoad())
         {
             buttonBack.addEventHandler(ActionEvent.ACTION, e ->
             {
@@ -63,6 +74,25 @@ public class SettingsController extends Controller
                 anchorpaneBackupSettings.setDisable(true);
                 anchorpaneMainSettings.setVisible(true);
                 anchorpaneMainSettings.setDisable(false);
+            });
+
+            buttonApply.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                BackUp b = new BackUp(textfieldBackupLocation.getText());
+            });
+
+            buttonChangeLocation.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                DirectoryChooser directoryChooser = new DirectoryChooser();
+                File selectedDirectory = directoryChooser.showDialog(stage);
+                if(selectedDirectory == null)
+                {
+                    textfieldBackupLocation.setText("No Directory selected");
+                }
+                else
+                {
+                    textfieldBackupLocation.setText(selectedDirectory.getAbsolutePath() + "\\");
+                }
             });
         }
     }

@@ -1,22 +1,29 @@
 package controller;
 
-import controller.ViewManager.ViewManagerException;
+import controller.viewmanager.ViewManagerException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 
 public class AnalyticsController extends Controller
 {
-    public AnalyticsController() throws IOException
+    @FXML
+    private Button buttonBack;
+
+    public AnalyticsController(String fxmlpath, String csspath) throws IOException
     {
-        initialize(this, "/view/analytics-menu", "/view/analytics-menu");
+        super(fxmlpath, csspath);
     }
 
     @Override
     public void load() throws ViewManagerException
     {
-        if(checkInitialLoad(getClass().getSimpleName()))
+        if(isFirstLoad())
         {
-
+            buttonBack.addEventHandler(ActionEvent.ACTION, e ->
+                viewManager.switchViews("MainMenuController"));
         }
     }
 

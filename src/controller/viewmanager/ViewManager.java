@@ -1,4 +1,4 @@
-package controller.ViewManager;
+package controller.viewmanager;
 
 import controller.Controller;
 import javafx.scene.Scene;
@@ -42,7 +42,8 @@ public class ViewManager
     }
 
     /**
-     * Adds a controller to the ViewManager. Checks whether the controller class was already added to the ViewManager.
+     * Adds a controller to the ViewManager.
+     * Checks whether the controller class was already added to the ViewManager to avoid duplicate controllers.
      *
      * @param controller Controller to be added
      */
@@ -50,7 +51,6 @@ public class ViewManager
     {
         for(Controller c : controllerList)
         {
-            //Same class name
             if(controller.getClass().getSimpleName().equals(c.getClass().getSimpleName()))
             {
                 System.err.println(controller.getClass().getSimpleName() + " class was already added to the ViewManager");
@@ -72,7 +72,7 @@ public class ViewManager
     }
 
     /**
-     * TODO: Consider passing actual classes instead of strings. Using classes will make this more robust.
+     * Switches the currently displayed controller view. Will throw a ViewManagerException if the class was not found.
      *
      * @param classname Class name of the controller to be switched.
      */
@@ -92,8 +92,8 @@ public class ViewManager
                 {
                     e.printStackTrace();
                 }
-                scene.setRoot(c.getRoot());
 
+                scene.setRoot(c.getRoot());
                 hasSwitched = true;
             }
         }

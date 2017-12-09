@@ -1,4 +1,6 @@
-package model;
+package model.food;
+
+import model.food.RawItem;
 
 public class RawItemQuantityPair
 {

@@ -1,6 +1,6 @@
 package controller;
 
-import controller.ViewManager.ViewManagerException;
+import controller.viewmanager.ViewManagerException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,15 +12,15 @@ public class MainMenuController extends Controller
     @FXML
     private Button buttonNewOrder, buttonInventory, buttonSettings, buttonFiles, buttonAnalytics;
 
-    public MainMenuController() throws IOException
+    public MainMenuController(String fxmlpath, String csspath) throws IOException
     {
-        initialize(this, "/view/main-menu", "/view/main-menu");
+        super(fxmlpath, csspath);
     }
 
     @Override
     public void load() throws ViewManagerException
     {
-        if(checkInitialLoad(getClass().getSimpleName()))
+        if(isFirstLoad())
         {
             buttonNewOrder.addEventHandler(ActionEvent.ACTION, e ->
                     viewManager.switchViews("NewOrderController"));

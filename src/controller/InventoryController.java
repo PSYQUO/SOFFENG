@@ -1,8 +1,7 @@
 package controller;
 
-import controller.ViewManager.ViewManagerException;
+import controller.viewmanager.ViewManagerException;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,10 +9,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.DatabaseModel;
-import model.RawItem;
+import model.food.RawItem;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class InventoryController extends Controller
 {
@@ -31,16 +29,16 @@ public class InventoryController extends Controller
 
     private DatabaseModel dbm;
 
-    public InventoryController() throws IOException
+    public InventoryController(String fxmlpath, String csspath) throws IOException
     {
-        initialize(this, "/view/inventory", "/view/inventory");
+        super(fxmlpath, csspath);
         dbm = new DatabaseModel();
     }
 
     @Override
     public void load() throws ViewManagerException
     {
-        if(checkInitialLoad(getClass().getSimpleName()))
+        if(isFirstLoad())
         {
             colIngredients.setCellValueFactory(new PropertyValueFactory<>("name"));
             colNumber.setCellValueFactory(new PropertyValueFactory<>("quantity"));

@@ -1,11 +1,10 @@
 package model.transaction;
 
-import model.LineItem;
+import model.food.LineItem;
 import model.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Represents an actual order transaction. 

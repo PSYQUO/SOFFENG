@@ -1,12 +1,11 @@
 import controller.*;
-import controller.ViewManager.ViewManager;
+import controller.viewmanager.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.DBConnection;
 
 import java.io.*;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 public class App extends Application
 {
@@ -14,10 +13,7 @@ public class App extends Application
     {
         launch(args);
     }
-
-    /**
-     * TODO: Might be a better way to decouple ViewManager and Controller classes - patsy
-     */
+    
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -25,12 +21,12 @@ public class App extends Application
         setupDatabaseConfig();
 
         // Setup Controllers and ViewManager
-        MainMenuController mmc = new MainMenuController();
-        NewOrderController noc = new NewOrderController();
-        InventoryController ic = new InventoryController();
-        SettingsController sc = new SettingsController();
-        FilesController fc = new FilesController();
-        AnalyticsController ac = new AnalyticsController();
+        MainMenuController mmc = new MainMenuController("/view/main-menu.fxml", "/view/main-menu.css");
+        NewOrderController noc = new NewOrderController("/view/new-order.fxml", "/view/new-order.css");
+        InventoryController ic = new InventoryController("/view/inventory.fxml", "/view/inventory.css");
+        SettingsController sc = new SettingsController("/view/settings.fxml", "/view/settings.css", primaryStage);
+        FilesController fc = new FilesController("/view/files.fxml", "/view/files.css");
+        AnalyticsController ac = new AnalyticsController("/view/analytics-menu.fxml", "/view/analytics-menu.css");
 
         ViewManager vm = new ViewManager(mmc);
 
