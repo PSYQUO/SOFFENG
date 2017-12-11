@@ -1,4 +1,4 @@
-package model;
+package model.food;
 
 /**
  * Used to separate different classes of food or meals.

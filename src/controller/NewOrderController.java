@@ -1,6 +1,6 @@
 package controller;
 
-import controller.ViewManager.ViewManagerException;
+import controller.viewmanager.ViewManagerException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,12 +19,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
-import model.Consumable;
-import model.Ingredient;
+import model.food.Consumable;
+import model.food.Ingredient;
 import model.DatabaseModel;
 import model.transaction.Transaction;
 import model.transaction.TransactionBuilder;
-import model.LineItem;
+import model.food.LineItem;
 import model.User;
 
 import view.NewOrderButton;
@@ -96,9 +96,9 @@ public class NewOrderController extends Controller
     
     private DecimalFormat df = new DecimalFormat("0.00");
 
-    public NewOrderController() throws IOException
+    public NewOrderController(String fxmlpath, String csspath) throws IOException
     {
-        initialize(this, "/view/new-order.fxml", "/view/new-order.css");
+        super(fxmlpath, csspath);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class NewOrderController extends Controller
                             .setCashier(cashier)
                             .setDate(LocalDateTime.now());
 
-        if(checkInitialLoad(getClass().getSimpleName()))
+        if(isFirstLoad())
         {
 
             textfieldPayment.setEditable(false);

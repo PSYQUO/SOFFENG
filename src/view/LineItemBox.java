@@ -7,8 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.control.Label;
 import javafx.scene.Node;
-import javafx.scene.text.TextAlignment;
-import model.LineItem;
+import model.food.LineItem;
 
 public class LineItemBox extends HBox {
 

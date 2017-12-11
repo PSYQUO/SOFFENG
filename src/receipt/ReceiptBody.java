@@ -2,7 +2,7 @@ package receipt;
 
 import java.util.*;
 
-import model.LineItem;
+import model.food.LineItem;
 
 public class ReceiptBody
 {

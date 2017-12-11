@@ -1,6 +1,6 @@
 package model.transaction;
 
-import model.LineItem;
+import model.food.LineItem;
 import model.User;
 
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package model;
+package model.food;
 
 /**
  * The representation of a food item involved in a transaction. 

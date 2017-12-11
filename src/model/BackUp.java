@@ -1,5 +1,7 @@
 package model;
 
+import model.food.RawItem;
+
 import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
