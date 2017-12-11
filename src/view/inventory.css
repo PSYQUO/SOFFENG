@@ -20,6 +20,16 @@ BorderPane {
     -fx-background-color:transparent;
 }
 
+.split-pane {
+    -fx-background-color: #2C3E50;
+}
+
+.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+    -fx-background-color: #2C3E50;
+    -fx-background-insets: 0;
+}
+
 /* -------------------- ELEMENTS -------------------- */
 
 .dropDown {
