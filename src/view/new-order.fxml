@@ -131,7 +131,7 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <Button id="greenbutton" fx:id="buttonOK" layoutX="9.0" layoutY="315.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="247.0" text="OK" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0">
+                  <Button id="greenbutton" fx:id="buttonOK" layoutX="9.0" layoutY="315.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="247.0" text="OK" textFill="WHITE" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
