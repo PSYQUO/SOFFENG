@@ -91,7 +91,16 @@ public class SettingsController extends Controller
                 }
                 else
                 {
-                    textfieldBackupLocation.setText(selectedDirectory.getAbsolutePath() + "\\");
+                    String s = "";
+                    if (selectedDirectory.getAbsolutePath().contains("\\"))
+                    {
+                        s = "\\";
+                    }
+                    else
+                    {
+                        s = "/";
+                    }
+                    textfieldBackupLocation.setText(selectedDirectory.getAbsolutePath() + s);
                 }
             });
         }
