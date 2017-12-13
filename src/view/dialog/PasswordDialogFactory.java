@@ -8,6 +8,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class PasswordDialogFactory implements I_DialogFactory {
@@ -15,6 +16,13 @@ public class PasswordDialogFactory implements I_DialogFactory {
     private static final String STYLESHEET_LOCATION = "/view/dialogs.css";
     private static final String MESSAGE = "Enter your password:";
     private static final String WARNING = "Incorrect password! Please try again!";
+
+    private Stage stage;
+
+    public PasswordDialogFactory(Stage stage)
+    {
+        this.stage = stage;
+    }
 
     @Override
     public Dialog create() {
@@ -34,6 +42,8 @@ public class PasswordDialogFactory implements I_DialogFactory {
         dialog.initStyle(StageStyle.UNDECORATED);
         // Do not set header text
         dialog.setHeaderText(null);
+        // Initialize window to avoid closing main window
+        dialog.initOwner(stage);
         // Add buttons: OK, CANCEL
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL, ButtonType.OK);
 

@@ -7,11 +7,18 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class DialogFactory implements I_DialogFactory {
     // location of the CSS for entire layout
     private static final String STYLESHEET_LOCATION = "/view/dialogs.css";
+    private Stage stage;
+
+    public DialogFactory(Stage stage)
+    {
+        this.stage = stage;
+    }
 
     @Override
     public Dialog create() {
@@ -209,6 +216,8 @@ public class DialogFactory implements I_DialogFactory {
         dialog.initStyle(StageStyle.UNDECORATED);
         // Do not set header text
         dialog.setHeaderText(null);
+        // Initialize window to avoid closing main window
+        dialog.initOwner(stage);
 
         // Create space to place stuff
         VBox vboxContent = new VBox();
