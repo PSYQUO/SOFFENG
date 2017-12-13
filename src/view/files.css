@@ -6,8 +6,13 @@ AnchorPane {
 #background {
     -fx-background-color: rgb(44, 64, 80);
 }
-.splitPane{
-    -fx-background-color: rgb(44, 64, 80);
+.split-pane {
+    -fx-background-color: #2C3E50;
+}
+.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+    -fx-background-color: #2C3E50;
+    -fx-background-insets: 0;
 }
 .scroll-pane > .viewport {
     -fx-background-color: rgb(44, 64, 80);
@@ -19,12 +24,15 @@ AnchorPane {
 /* -------------------- BUTTONS -------------------- */
 .greenbutton {
     -fx-background-color: rgb(46,204,113);
+    -fx-text-fill: #ffffff;
 }
 .blueButtons {
-	-fx-background-color: rgb(52, 152, 219);
+    -fx-background-color: rgb(52, 152, 219);
+    -fx-text-fill: #ffffff;
 }
 .redbutton {
-	-fx-background-color: rgb(239, 83, 80);
+    -fx-background-color: rgb(239, 83, 80);
+    -fx-text-fill: #ffffff;
 }
 
 .greenbutton:pressed{
@@ -38,6 +46,21 @@ AnchorPane {
 }
 #buttonBack:pressed{
     -fx-background-color: rgb(18,56,109);
+}
+.buttonClose {
+    -fx-background-color: #EF5350;
+    -fx-text-fill:#FFFFFF;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+.buttonClose:pressed { 
+    -fx-background-color: #cc2b19; 
+}
+
+.buttonClose:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
 }
 #fileIcon{
     -fx-background-image: url("resources/icons/files.png");

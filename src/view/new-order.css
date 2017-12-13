@@ -5,13 +5,19 @@
 .scroll-pane {
     -fx-background-color:transparent;
 }
- 
+
+.border-pane {
+    -fx-background-color: #2C3E50;
+}
+
 .split-pane {
     -fx-background-color: #2C3E50;
 }
 
-.split-Pane:vertical > .split-pane-divider {
-   -fx-background-color: #2C3E50;
+.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+    -fx-background-color: #2C3E50;
+    -fx-background-insets: 0;
 }
 
 .numberButtons {

@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.Node;
 import model.food.LineItem;
 
-public class LineItemBox extends HBox {
+public class LineItemBox extends ItemBox {
 
     private static final String STYLESHEET_LOCATION = "/view/line-item-box.css";
     public static final int DEFAULT = 0;
@@ -27,13 +27,7 @@ public class LineItemBox extends HBox {
     */
 
     public LineItemBox(LineItem l) {
-        // set hbox constraints
-        this.setPrefHeight(30);
-        this.setPrefWidth(300);
-        this.setMaxWidth(Double.MAX_VALUE);
-        this.setSpacing(10.0);
-        this.getStylesheets().add(STYLESHEET_LOCATION);
-
+        super();
         statusFlag = LineItemBox.DEFAULT;
         addQuantityButtons();
         initialize();

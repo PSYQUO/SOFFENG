@@ -10,7 +10,7 @@ import java.io.IOException;
 public class AnalyticsController extends Controller
 {
     @FXML
-    private Button buttonBack;
+    private Button buttonBackMenu;
 
     public AnalyticsController(String fxmlpath, String csspath) throws IOException
     {
@@ -22,7 +22,7 @@ public class AnalyticsController extends Controller
     {
         if(isFirstLoad())
         {
-            buttonBack.addEventHandler(ActionEvent.ACTION, e ->
+            buttonBackMenu.addEventHandler(ActionEvent.ACTION, e ->
                 viewManager.switchViews("MainMenuController"));
         }
     }

@@ -4,13 +4,13 @@ import controller.viewmanager.ViewManagerException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import model.DatabaseModel;
 import model.food.RawItem;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class InventoryController extends Controller
@@ -25,7 +25,17 @@ public class InventoryController extends Controller
     private TableColumn<RawItem, Integer> colNumber;
 
     @FXML
-    private Button buttonBack, greenBut, redBut;
+    private BorderPane borderpaneIncoming, borderpaneOutgoing;
+
+    @FXML
+    private Label labelNameIncoming, labelNameOutgoing;
+
+    @FXML
+    private Spinner spinnerQuantityIncoming, spinnerQuantityOutgoing;
+
+    @FXML
+    private Button buttonBack, greenBut, redBut, buttonCancelIncoming, buttonOKIncoming,
+            buttonCancelOutgoing, buttonOKOutgoing;
 
     private DatabaseModel dbm;
 
@@ -45,31 +55,61 @@ public class InventoryController extends Controller
 
             greenBut.addEventHandler(ActionEvent.ACTION, e ->
             {
-                RawItem selectedItem = tableviewInventory.getSelectionModel().getSelectedItem();
-                if(selectedItem != null)
+                if(!tableviewInventory.getSelectionModel().isEmpty())
                 {
-                    selectedItem.setQuantity(selectedItem.getQuantity() + 1);
-                    tableviewInventory.refresh();
-                    /**
-                     * This is currently querying the DB every button press.
-                     * TODO: Once the dialog gets implemented this will change
-                     */
-                    dbm.updateRawItem(selectedItem);
+                    RawItem selectgedItem = tableviewInventory.getSelectionModel().getSelectedItem();
+                    labelNameIncoming.setText("Item: " + selectgedItem.getName());
+
+                    changePaneState("TO_IN");
                 }
             });
 
             redBut.addEventHandler(ActionEvent.ACTION, e ->
             {
-                RawItem selectedItem = tableviewInventory.getSelectionModel().getSelectedItem();
-                if(selectedItem != null)
+                if(!tableviewInventory.getSelectionModel().isEmpty())
                 {
-                    selectedItem.setQuantity(selectedItem.getQuantity() - 1);
-                    tableviewInventory.refresh();
-                    /**
-                     * This is currently querying the DB every button press.
-                     * TODO: Once the dialog gets implemented this will change
-                     */
+                    RawItem selectedItem = tableviewInventory.getSelectionModel().getSelectedItem();
+                    labelNameOutgoing.setText("Item: " + selectedItem.getName());
+
+                    changePaneState("TO_OUT");
+                }
+            });
+
+            buttonCancelIncoming.addEventHandler(ActionEvent.ACTION, e ->
+                    changePaneState("TO_TABLE"));
+
+            buttonCancelOutgoing.addEventHandler(ActionEvent.ACTION, e ->
+                    changePaneState("TO_TABLE"));
+
+            buttonOKIncoming.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                String text = spinnerQuantityIncoming.getEditor().getText().trim();
+                if(!text.equals(""))
+                {
+                    int qty = Integer.parseInt(text);
+
+                    RawItem selectedItem = tableviewInventory.getSelectionModel().getSelectedItem();
+                    selectedItem.setQuantity(selectedItem.getQuantity() + qty);
+
                     dbm.updateRawItem(selectedItem);
+                    tableviewInventory.refresh();
+                    changePaneState("TO_TABLE");
+                }
+            });
+
+            buttonOKOutgoing.addEventHandler(ActionEvent.ACTION, e ->
+            {
+                String text = spinnerQuantityOutgoing.getEditor().getText().trim();
+                if(!text.equals(""))
+                {
+                    int qty = Integer.parseInt(text);
+
+                    RawItem selectedItem = tableviewInventory.getSelectionModel().getSelectedItem();
+                    selectedItem.setQuantity(selectedItem.getQuantity() - qty);
+
+                    dbm.updateRawItem(selectedItem);
+                    tableviewInventory.refresh();
+                    changePaneState("TO_TABLE");
                 }
             });
 
@@ -87,5 +127,32 @@ public class InventoryController extends Controller
     public void clear()
     {
         tableviewInventory.getItems().clear();
+        changePaneState("TO_TABLE");
+    }
+
+    private void changePaneState(String state)
+    {
+        switch(state)
+        {
+            case "TO_IN":
+                borderpaneOutgoing.setVisible(false);
+                borderpaneIncoming.setVisible(true);
+                borderpaneIncoming.setDisable(false);
+                tableviewInventory.setDisable(true);
+                break;
+            case"TO_OUT":
+                borderpaneIncoming.setVisible(false);
+                borderpaneOutgoing.setVisible(true);
+                borderpaneOutgoing.setDisable(false);
+                tableviewInventory.setDisable(true);
+                break;
+            case "TO_TABLE":
+                borderpaneIncoming.setVisible(false);
+                borderpaneIncoming.setDisable(true);
+                borderpaneOutgoing.setVisible(false);
+                borderpaneOutgoing.setDisable(true);
+                tableviewInventory.setDisable(false);
+                break;
+        }
     }
 }

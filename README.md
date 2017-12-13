@@ -31,6 +31,6 @@ password = <password of database connection>
 Note: Remember to create/configure the dbconfig.ini at the default package.
 ```sh
 cd src
-javac App.java controller/*.java controller/ViewManager/*.java model/*.java model/Transaction/*.java receipt/*.java 
+javac App.java controller/*.java controller/viewmanager/*.java model/*.java model/transaction/*.java receipt/*.java model/food/*.java
 java App
 ```

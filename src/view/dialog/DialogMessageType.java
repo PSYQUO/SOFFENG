@@ -6,6 +6,7 @@ public enum DialogMessageType {
     DATABASE_EDIT,
     DATABASE_REMOVE,
     PASSWORD_CHANGE,
+    APP_BACK,
     APP_EXIT,
 
     //Warning

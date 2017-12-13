@@ -26,7 +26,7 @@ public class App extends Application
         InventoryController ic = new InventoryController("/view/inventory.fxml", "/view/inventory.css");
         SettingsController sc = new SettingsController("/view/settings.fxml", "/view/settings.css", primaryStage);
         FilesController fc = new FilesController("/view/files.fxml", "/view/files.css");
-        AnalyticsController ac = new AnalyticsController("/view/analytics-menu.fxml", "/view/analytics-menu.css");
+        AnalyticsController ac = new AnalyticsController("/view/analytics.fxml", "/view/analytics.css");
 
         ViewManager vm = new ViewManager(mmc);
 

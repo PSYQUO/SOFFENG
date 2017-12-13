@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane fx:id="splitpaneNewOrder" dividerPositions="0.67" prefHeight="160.0" prefWidth="200.0">
         <items>
@@ -32,16 +32,20 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <FlowPane fx:id="flowpaneBudget" alignment="TOP_CENTER" hgap="10.0" layoutY="85.0" prefHeight="448.0" prefWidth="532.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
-                                       <padding>
-                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </FlowPane>
                                     <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Budget &amp; Favorites" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                                        <font>
                                           <Font name="System Bold" size="50.0" />
                                        </font>
                                     </Label>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+                                       <content>
+                                          <FlowPane fx:id="flowpaneBudget" alignment="TOP_CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="448.0" prefWidth="532.0" vgap="10.0">
+                                             <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </padding>
+                                          </FlowPane>
+                                       </content>
+                                    </ScrollPane>
                                  </children>
                               </AnchorPane>
                            </content>
@@ -50,16 +54,20 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <FlowPane fx:id="flowpaneCombo" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
-                                       <padding>
-                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </FlowPane>
                                     <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Combo Meals" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                        <font>
                                           <Font name="System Bold" size="50.0" />
                                        </font>
                                     </Label>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+                                       <content>
+                                          <FlowPane fx:id="flowpaneCombo" alignment="TOP_CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="504.0" prefWidth="536.0" vgap="10.0">
+                                             <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </padding>
+                                          </FlowPane>
+                                       </content>
+                                    </ScrollPane>
                                  </children>
                               </AnchorPane>
                            </content>
@@ -68,11 +76,15 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <FlowPane fx:id="flowpaneSandwich" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
-                                       <padding>
-                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </FlowPane>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+                                       <content>
+                                          <FlowPane fx:id="flowpaneSandwich" alignment="TOP_CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="504.0" prefWidth="536.0" vgap="10.0">
+                                             <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </padding>
+                                          </FlowPane>
+                                       </content>
+                                    </ScrollPane>
                                     <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Sandwich/Appetizer/Pasta" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                        <font>
                                           <Font name="System Bold" size="50.0" />
@@ -86,11 +98,15 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <FlowPane fx:id="flowpaneExtras" alignment="TOP_CENTER" hgap="10.0" layoutY="67.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
-                                       <padding>
-                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </FlowPane>
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+                                       <content>
+                                          <FlowPane fx:id="flowpaneExtras" alignment="TOP_CENTER" hgap="10.0" prefHeight="504.0" prefWidth="536.0" vgap="10.0">
+                                             <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </padding>
+                                          </FlowPane>
+                                       </content>
+                                    </ScrollPane>
                                     <Label alignment="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="53.0" prefWidth="383.0" text="Extras" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                        <font>
                                           <Font name="System Bold" size="50.0" />
@@ -115,7 +131,7 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <Button id="greenbutton" fx:id="buttonOK" layoutX="9.0" layoutY="315.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="247.0" text="OK" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0">
+                  <Button id="greenbutton" fx:id="buttonOK" layoutX="9.0" layoutY="315.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="57.0" prefWidth="247.0" text="OK" textFill="WHITE" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
