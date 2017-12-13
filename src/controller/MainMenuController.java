@@ -8,10 +8,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 import model.DatabaseModel;
 import model.User;
 import view.dialog.PasswordDialogFactory;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class MainMenuController extends Controller
@@ -20,10 +22,10 @@ public class MainMenuController extends Controller
     private Button buttonNewOrder, buttonInventory, buttonSettings, buttonFiles, buttonAnalytics;
 
     @FXML
-    private ComboBox comboName;
+    private ChoiceBox comboName;
 
     private DatabaseModel dbm;
-    private boolean hasPrivileges;
+    private User user;
     private Stage stage;
 
     public MainMenuController(String fxmlpath, String csspath, Stage primaryStage) throws IOException
@@ -65,45 +67,30 @@ public class MainMenuController extends Controller
 
     }
 
-    protected boolean isPrivileged()
-    {
-        return hasPrivileges;
-    }
-
     private void setupComboName()
     {
-        Callback<ListView<User>, ListCell<User>> factory = new Callback<ListView<User>, ListCell<User>>()
+        comboName.setConverter(new StringConverter<User>()
         {
             @Override
-            public ListCell<User> call(ListView<User> param)
+            public String toString(User user)
             {
-                return new ListCell<User>()
-                {
-                    @Override
-                    protected void updateItem(User user, boolean empty)
-                    {
-                        super.updateItem(user, empty);
-
-                        if(user != null)
-                            setText(user.getUsername());
-                        else
-                            setText(null);
-                    }
-                };
+                return user.getUsername();
             }
-        };
 
-        comboName.setCellFactory(factory);
-        comboName.setButtonCell(factory.call(null));
-        comboName.valueProperty().addListener((ChangeListener<User>) (ov, oldValue, newValue) ->
-        {
-            PasswordDialogFactory pdf = new PasswordDialogFactory();
+            @Override
+            public User fromString(String string)
+            {
+                return null;
+            }
+        });
+
+        comboName.addEventHandler(ActionEvent.ACTION, event -> {
+            PasswordDialogFactory pdf = new PasswordDialogFactory(stage);
             Dialog d = pdf.create();
             d.show();
-            if(pdf.getPasswordField().getText().equals(newValue.getPassword()) && newValue != null)
+            if(pdf.getPasswordField().getText().equals("1234"))
             {
-                int roleID = newValue.getRole().getRoleID();
-                hasPrivileges = roleID == 1 || roleID == 2;
+                System.out.println("SUP BRO");
             }
         });
     }
