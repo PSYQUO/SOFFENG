@@ -14,7 +14,7 @@ public abstract class ItemBox extends HBox {
     public ItemBox() {
         // set hbox constraints
         this.setPrefHeight(30);
-        this.setPrefWidth(Double.MAX_VALUE);
+        this.setPrefWidth(300);
         this.setMaxWidth(Double.MAX_VALUE);
         this.setSpacing(10.0);
         this.getStylesheets().add(STYLESHEET_LOCATION);

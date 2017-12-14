@@ -73,7 +73,7 @@ public class LineItemBox extends ItemBox {
     public void addQuantityButtons() {
         Button add = new Button("+");
         add.setId("buttonAdd"); // for CSS
-        add.setMinSize(60, USE_COMPUTED_SIZE);
+        add.setMinSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         add.setPrefSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         buttonSubtract = new Button("-");
         buttonSubtract.setId("buttonSubtract"); // for CSS
@@ -175,7 +175,7 @@ public class LineItemBox extends ItemBox {
 
         // initialize grid, set pane constraints
         GridPane grid = new GridPane();
-        grid.setPrefWidth(Double.MAX_VALUE);
+        grid.setPrefWidth(330);
         grid.setMaxWidth(Double.MAX_VALUE);
         grid.setPrefHeight(USE_COMPUTED_SIZE);
 
