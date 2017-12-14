@@ -592,19 +592,19 @@ public class DatabaseModel
         return data;
     }
 
-    public ArrayList<Col2> getMostandLeastSold()
+    public ArrayList<MostSoldWasted> getMostandLeastSold()
     {
         dbc = DBConnection.getInstance();
-        ArrayList<Col2> data = new ArrayList<Col2>();
+        ArrayList<MostSoldWasted> data = new ArrayList<MostSoldWasted>();
         try
         {
             ResultSet rs = dbc.executeQuery("select c.consumable_name, sum(l.quantity) from lineitem l, consumable c, category cc where l.consumable_id=c.consumable_id and c.Category_ID=cc.Category_ID and cc.Category_Name!='Appetizer' and cc.Category_Name!='Drinks'and cc.Category_Name!='Extras'and cc.Category_Name!='Rice' group by l.quantity desc;");
             while(rs.next())
             {
-                Col2 c = new Col2(
+                MostSoldWasted s = new MostSoldWasted(
                     rs.getString("consumable_name"), 
                     rs.getString("sum(l.quantity)"));
-                data.add(c);
+                data.add(s);
             }
         }
         catch(Exception e)
