@@ -926,7 +926,7 @@ public class DatabaseModel
         {
             dbc = DBConnection.getInstance();
             dbc.prepareStatement("INSERT INTO incoming (In_DateTime, In_Quantity, In_Remarks, RawItem_ID) VALUES (?, ?, ?, ?)");
-            dbc.setString(1, null); // set date
+            dbc.setString(1, incoming.getInDate().toString()); // set date
             dbc.setInt(2, incoming.getQuantity());
             dbc.setString(3, incoming.getRemarks());
             dbc.setInt(4, rawItem.getRawItemID());
