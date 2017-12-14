@@ -68,6 +68,11 @@ public class MainMenuController extends Controller
 
     }
 
+    public User getCurrentUser()
+    {
+        return currentUser;
+    }
+
     private void setupComboName()
     {
         comboName.setConverter(new StringConverter<User>()
