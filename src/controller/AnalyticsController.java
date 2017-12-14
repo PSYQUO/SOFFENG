@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,6 +17,8 @@ import model.ZReading;
 import model.food.MostSoldWasted;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AnalyticsController extends Controller
 {
@@ -52,6 +55,9 @@ public class AnalyticsController extends Controller
     @FXML
     private AnchorPane analMainMenu, analMostSold, analMostWasted, analZReading, analXReading;
 
+    @FXML
+    private Label dateBoxX;
+
     private DatabaseModel dbm;
 
     public AnalyticsController(String fxmlpath, String csspath) throws IOException
@@ -72,7 +78,7 @@ public class AnalyticsController extends Controller
 
             buttonXreading.addEventHandler(ActionEvent.ACTION, event ->
                     changePaneState("TO_XR"));
-            
+
             buttonZreading.addEventHandler(ActionEvent.ACTION, event ->
                     changePaneState("TO_ZR"));
 
@@ -162,6 +168,7 @@ public class AnalyticsController extends Controller
 //        tableMostSold.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
 //        tableMostWasted.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
         tableXReading.setItems(FXCollections.observableArrayList(dbm.getXReadToday()));
+        dateBoxX.setText(new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
         tableZReading.setItems(FXCollections.observableArrayList(dbm.getZReadAll()));
     }
 }
