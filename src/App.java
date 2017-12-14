@@ -21,7 +21,7 @@ public class App extends Application
         setupDatabaseConfig();
 
         // Setup Controllers and ViewManager
-        MainMenuController mmc = new MainMenuController("/view/main-menu.fxml", "/view/main-menu.css");
+        MainMenuController mmc = new MainMenuController("/view/main-menu.fxml", "/view/main-menu.css", primaryStage);
         NewOrderController noc = new NewOrderController("/view/new-order.fxml", "/view/new-order.css");
         InventoryController ic = new InventoryController("/view/inventory.fxml", "/view/inventory.css");
         SettingsController sc = new SettingsController("/view/settings.fxml", "/view/settings.css", primaryStage);
@@ -51,6 +51,13 @@ public class App extends Application
         primaryStage.setMinHeight(600);
         primaryStage.setMinWidth(800);
         primaryStage.setFullScreen(true);
+    }
+
+    @Override
+    public void stop()
+    {
+        DBConnection dbc = DBConnection.getInstance();
+        dbc.closeConnection();
     }
 
     private void setupDatabaseConfig()
@@ -101,12 +108,5 @@ public class App extends Application
         }
         else
             System.err.println("Database connection was not set. Check dbconfig.ini at the default package.");
-    }
-
-    @Override
-    public void stop()
-    {
-        DBConnection dbc = DBConnection.getInstance();
-        dbc.closeConnection();
     }
 }
