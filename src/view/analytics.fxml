@@ -84,7 +84,7 @@
                      <children>
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                            <content>
-                              <TableView id="tableForWasted" prefHeight="307.0" prefWidth="527.0">
+                              <TableView id="tableForWasted" fx:id="tableMostSold" prefHeight="307.0" prefWidth="527.0">
                                  <columns>
                                     <TableColumn id="colItem" fx:id="colItemS" maxWidth="1.7976931348623157E308" prefWidth="700.0" text="Item" />
                                     <TableColumn id="colPrice" fx:id="colPriceS" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="200.0" text="Price" />
@@ -130,7 +130,7 @@
                      <children>
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                            <content>
-                              <TableView id="tableForWasted" prefHeight="307.0" prefWidth="527.0">
+                              <TableView id="tableForWasted" fx:id="tableMostWasted" prefHeight="307.0" prefWidth="527.0">
                                  <columns>
                                     <TableColumn id="colItem" fx:id="colItemW" maxWidth="1.7976931348623157E308" prefWidth="700.0" text="Item" />
                                     <TableColumn id="colPrice" fx:id="colPriceW" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="200.0" text="Price" />
@@ -176,7 +176,7 @@
                      <children>
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                            <content>
-                              <TableView id="tableForWasted" prefHeight="307.0" prefWidth="527.0">
+                              <TableView id="tableForWasted" fx:id="tableZReading" prefHeight="307.0" prefWidth="527.0">
                                  <columns>
                                     <TableColumn id="colItem" fx:id="colCashierZ" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Cashier" />
                                     <TableColumn id="colPrice" fx:id="colShiftTimeZ" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Shift Time" />
@@ -245,7 +245,7 @@
                      <children>
                         <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                            <content>
-                              <TableView id="tableForWasted" prefHeight="307.0" prefWidth="527.0">
+                              <TableView id="tableForWasted" fx:id="tableXReading" prefHeight="307.0" prefWidth="527.0">
                                  <columns>
                                     <TableColumn id="colItem" fx:id="colCashierX" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Cashier" />
                                     <TableColumn id="colPrice" fx:id="colShiftTimeX" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Shift Time" />
