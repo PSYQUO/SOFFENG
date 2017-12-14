@@ -5,11 +5,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import model;
 
 import java.io.IOException;
 
 public class AnalyticsController extends Controller
 {
+    @FXML
+    private TableView<Col2> tableMostSold, tableMostWasted;
+
+    @FXML
+    private TableView<XReading> tableXReading;
+
+    @FXML
+    private TableView<ZReading> tableZReading;
+
     @FXML
     private Button buttonXreading, buttonZreading, buttonSold, buttonWasted,
             buttonBackMenu, buttonBackS, buttonBackW, buttonBackZ, buttonBackX;

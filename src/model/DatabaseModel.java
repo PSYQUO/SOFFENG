@@ -598,7 +598,7 @@ public class DatabaseModel
         ArrayList<Col2> data = new ArrayList<Col2>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select c.consumable_name, sum(l.quantity) from lineitem l, consumable c where l.consumable_id=c.consumable_id group by l.quantity desc");
+            ResultSet rs = dbc.executeQuery("select c.consumable_name, sum(l.quantity) from lineitem l, consumable c, category cc where l.consumable_id=c.consumable_id and c.Category_ID=cc.Category_ID and cc.Category_Name!='Appetizer' and cc.Category_Name!='Drinks'and cc.Category_Name!='Extras'and cc.Category_Name!='Rice' group by l.quantity desc;");
             while(rs.next())
             {
                 Col2 c = new Col2(
