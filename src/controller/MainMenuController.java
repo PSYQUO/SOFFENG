@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.DatabaseModel;
 import model.User;
+import view.dialog.DialogFactory;
 import view.dialog.PasswordDialogFactory;
 
 import java.io.IOException;
@@ -44,19 +45,72 @@ public class MainMenuController extends Controller
             setupComboName();
 
             buttonNewOrder.addEventHandler(ActionEvent.ACTION, e ->
-                    viewManager.switchViews("NewOrderController"));
+            {
+                if(currentUser != null)
+                    viewManager.switchViews("NewOrderController");
+                else
+                {
+                    DialogFactory df = new DialogFactory(stage);
+                    Dialog d = df.createWarningDialog("You are not currently logged in.\nPlease login using the blue dropdown at the top.");
+                    d.show();
+                }
+            });
 
             buttonInventory.addEventHandler(ActionEvent.ACTION, e ->
-                    viewManager.switchViews("InventoryController"));
+            {
+                if(currentUser != null)
+                    viewManager.switchViews("InventoryController");
+                else
+                {
+                    DialogFactory df = new DialogFactory(stage);
+                    Dialog d = df.createWarningDialog("You are not currently logged in.\nPlease login using the blue dropdown at the top.");
+                    d.show();
+                }
+            });
 
             buttonSettings.addEventHandler(ActionEvent.ACTION, e ->
-                    viewManager.switchViews("SettingsController"));
+            {
+                if(currentUser != null)
+                    viewManager.switchViews("SettingsController");
+                else
+                {
+                    DialogFactory df = new DialogFactory(stage);
+                    Dialog d = df.createWarningDialog("You are not currently logged in.\nPlease login using the blue dropdown at the top.");
+                    d.show();
+                }
+            });
 
             buttonFiles.addEventHandler(ActionEvent.ACTION, e ->
-                    viewManager.switchViews("FilesController"));
+            {
+                if(currentUser != null)
+                    viewManager.switchViews("FilesController");
+                else
+                {
+                    DialogFactory df = new DialogFactory(stage);
+                    Dialog d = df.createWarningDialog("You are not currently logged in.\nPlease login using the blue dropdown at the top.");
+                    d.show();
+                }
+            });
 
             buttonAnalytics.addEventHandler(ActionEvent.ACTION, e ->
-                    viewManager.switchViews("AnalyticsController"));
+            {
+                if(currentUser != null)
+                {
+                    if(currentUser.getRole().getRoleID() == 2 || currentUser.getRole().getRoleID() == 3)
+                        viewManager.switchViews("AnalyticsController");
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    DialogFactory df = new DialogFactory(stage);
+                    Dialog d = df.createWarningDialog("You are not currently logged in.\nPlease login using the blue dropdown at the top.");
+                    d.show();
+                }
+            });
+
         }
 
         loadUsers();
