@@ -1,18 +1,22 @@
 package controller;
 
+import java.io.IOException;
+
 import controller.viewmanager.ViewManagerException;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import model;
-
-import java.io.IOException;
+import model.DatabaseModel;
+import model.XReading;
+import model.ZReading;
+import model.food.MostSoldWasted;
 
 public class AnalyticsController extends Controller
 {
     @FXML
-    private TableView<Col2> tableMostSold, tableMostWasted;
+    private TableView<MostSoldWasted> tableMostSold, tableMostWasted;
 
     @FXML
     private TableView<XReading> tableXReading;
@@ -27,9 +31,12 @@ public class AnalyticsController extends Controller
     @FXML
     private AnchorPane analMainMenu, analMostSold, analMostWasted, analZReading, analXReading;
 
+    private DatabaseModel dbm;
+
     public AnalyticsController(String fxmlpath, String csspath) throws IOException
     {
         super(fxmlpath, csspath);
+        dbm = new DatabaseModel();
     }
 
     @Override
@@ -133,6 +140,9 @@ public class AnalyticsController extends Controller
 
     private void loadTables()
     {
-
+        tableMostSold.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
+        tableMostWasted.setItems(FXCollections.observableArrayList(dbm.getRawItems()));
+        tableXReading.setItems(FXCollections.observableArrayList(dbm.getXReadToday()));
+        tableZReading.setItems(FXCollections.observableArrayList(dbm.getZReadAll()));
     }
 }
