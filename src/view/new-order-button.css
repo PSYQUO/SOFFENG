@@ -5,7 +5,7 @@ Button {
 #Sandwiches { 
     -fx-background-color: #3498db; 
     -fx-text-fill: #ffffff; 
-    -fx-font-size: 28px; 
+    -fx-font-size: 23px; 
 } 
  
 #Sandwiches:pressed { 
@@ -15,7 +15,7 @@ Button {
 #Appetizer { 
     -fx-background-color: #e74c3c; 
     -fx-text-fill: #ffffff; 
-    -fx-font-size: 28px; 
+    -fx-font-size: 23px; 
 } 
  
 #Appetizer:pressed { 
@@ -25,7 +25,7 @@ Button {
 #BudgetMeal { 
     -fx-background-color: #3498db; 
     -fx-text-fill: #ffffff; 
-    -fx-font-size: 28px; 
+    -fx-font-size: 23px; 
 } 
  
 #BudgetMeal:pressed { 
@@ -35,7 +35,7 @@ Button {
 #ComboMeal { 
     -fx-background-color: #3498db; 
     -fx-text-fill: #ffffff; 
-    -fx-font-size: 28px; 
+    -fx-font-size: 23px; 
 } 
  
 #ComboMeal:pressed { 
@@ -45,7 +45,7 @@ Button {
 #Pasta { 
     -fx-background-color: #2ecc71; 
     -fx-text-fill: #ffffff; 
-    -fx-font-size: 28px; 
+    -fx-font-size: 23px; 
 } 
  
 #Pasta:pressed { 
@@ -55,7 +55,7 @@ Button {
 #Rice { 
     -fx-background-color: #3498db; 
     -fx-text-fill: #ffffff; 
-    -fx-font-size: 28px; 
+    -fx-font-size: 23px; 
 } 
  
 #Rice:pressed { 
@@ -65,7 +65,7 @@ Button {
 #Dessert { 
     -fx-background-color: #e74c3c; 
     -fx-text-fill: #ffffff; 
-    -fx-font-size: 28px; 
+    -fx-font-size: 23px; 
 } 
  
 #Dessert:pressed { 
@@ -75,7 +75,7 @@ Button {
 #Drinks { 
     -fx-background-color: #2ecc71; 
     -fx-text-fill: #ffffff; 
-    -fx-font-size: 28px; 
+    -fx-font-size: 23px; 
 } 
  
 #Drinks:pressed { 
@@ -85,7 +85,7 @@ Button {
 #Favorites { 
     -fx-background-color: #e74c3c; 
     -fx-text-fill: #ffffff; 
-    -fx-font-size: 28px; 
+    -fx-font-size: 23px; 
 } 
  
 #Favorites:pressed { 
@@ -95,7 +95,7 @@ Button {
 #Extras { 
     -fx-background-color: #3498db; 
     -fx-text-fill: #ffffff; 
-    -fx-font-size: 28px; 
+    -fx-font-size: 23px; 
 } 
  
 #Extras:pressed { 
