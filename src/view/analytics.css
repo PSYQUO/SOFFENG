@@ -1,7 +1,7 @@
 /* -------------------- CONTAINERS -------------------- */
 
-#background {
-    -fx-background-color: RGB(44, 64, 80);  
+.background {
+    -fx-background-color: rgb(72,105,132);
 }
 
 .scroll-pane > .viewport {
@@ -11,7 +11,6 @@
 .scroll-pane {
     -fx-background-color:transparent;
 }
-
 
 /* -------------------- BUTTONS -------------------- */
 
