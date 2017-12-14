@@ -602,13 +602,13 @@ public class DatabaseModel
         ArrayList<MostSoldWasted> data = new ArrayList<MostSoldWasted>();
         try
         {
-            ResultSet rs = dbc.executeQuery("");
+            ResultSet rs = dbc.executeQuery("select c.consumable_name, c.consumable_price, sum(l.quantity) from lineitem l, consumable c, category cc where l.Consumable_ID=c.Consumable_ID and cc.Category_ID=c.Category_ID and  cc.Category_Name!='Appetizer' and cc.Category_Name!='Drinks' and cc.Category_Name!='Extras' and cc.Category_Name!='Rice' group by l.Consumable_ID desc order by 3 desc;");
             while(rs.next())
             {
                 MostSoldWasted s = new MostSoldWasted(
-                    rs.getString(""), 
-                    rs.getDouble(""),
-                    rs.getInt(""));
+                    rs.getString(1), 
+                    rs.getDouble(2),
+                    rs.getInt(3));
                 data.add(s);
             }
         }

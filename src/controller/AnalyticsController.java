@@ -160,6 +160,10 @@ public class AnalyticsController extends Controller
 
     private void setTablePropertiesAndItems()
     {
+        colItemS.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colPriceS.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colQuantityS.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
         colItemW.setCellValueFactory(new PropertyValueFactory<>("name"));
         colPriceW.setCellValueFactory(new PropertyValueFactory<>("price"));
         colQuantityW.setCellValueFactory(new PropertyValueFactory<>("quantity"));
@@ -173,7 +177,7 @@ public class AnalyticsController extends Controller
 
     private void loadTables()
     {
-//        tableMostSold.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
+        tableMostSold.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
         tableMostWasted.setItems(FXCollections.observableArrayList(dbm.getMostWasted()));
         tableXReading.setItems(FXCollections.observableArrayList(dbm.getXReadToday()));
         dateBoxX.setText(new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
