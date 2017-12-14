@@ -27,6 +27,15 @@ public class AnalyticsController extends Controller
     private TableView<ZReading> tableZReading;
 
     @FXML
+    private TableColumn<RawItem, String>    colItemS, colPriceS, colQuantityS,
+                                            colItemW, colPriceW, colQuantityW,
+                                            colCashierZ, colShiftTimeZ, colXReadingZ,
+                                            colCashierX, colShiftTimeX;
+
+    @FXML
+    private TableColumn<RawItem, Integer> colNumber;
+
+    @FXML
     private Button buttonXreading, buttonZreading, buttonSold, buttonWasted,
             buttonBackMenu, buttonBackS, buttonBackW, buttonBackZ, buttonBackX;
 
