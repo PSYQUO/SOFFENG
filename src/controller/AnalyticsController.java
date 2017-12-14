@@ -1,19 +1,21 @@
 package controller;
 
-import java.io.IOException;
-
 import controller.viewmanager.ViewManagerException;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.DatabaseModel;
 import model.XReading;
 import model.ZReading;
 import model.food.MostSoldWasted;
+
+import java.io.IOException;
 
 public class AnalyticsController extends Controller
 {
@@ -26,14 +28,22 @@ public class AnalyticsController extends Controller
     @FXML
     private TableView<ZReading> tableZReading;
 
-    @FXML
-    private TableColumn<RawItem, String>    colItemS, colPriceS, colQuantityS,
-                                            colItemW, colPriceW, colQuantityW,
-                                            colCashierZ, colShiftTimeZ, colXReadingZ,
-                                            colCashierX, colShiftTimeX;
+//    @FXML
+//    private TableColumn
+//            colItemS, colPriceS, colQuantityS,
+//            colItemW, colPriceW, colQuantityW;
 
     @FXML
-    private TableColumn<RawItem, Integer> colNumber;
+    private TableColumn<XReading, Double> colTotalX;
+
+    @FXML
+    private TableColumn<XReading, String> colUserX, colDateX;
+
+    @FXML
+    private TableColumn<ZReading, Double> colTotalZ;
+
+    @FXML
+    private TableColumn<ZReading, String> colDateZ;
 
     @FXML
     private Button buttonXreading, buttonZreading, buttonSold, buttonWasted,
@@ -58,43 +68,31 @@ public class AnalyticsController extends Controller
             buttonBackMenu.addEventHandler(ActionEvent.ACTION, e ->
                     viewManager.switchViews("MainMenuController"));
 
-            buttonXreading.addEventHandler(ActionEvent.ACTION, event ->
-            {
-                changePaneState("TO_XR");
-            });
+            setTablePropertiesAndItems();
 
+            buttonXreading.addEventHandler(ActionEvent.ACTION, event ->
+                    changePaneState("TO_XR"));
+            
             buttonZreading.addEventHandler(ActionEvent.ACTION, event ->
-            {
-                changePaneState("TO_ZR");
-            });
+                    changePaneState("TO_ZR"));
 
             buttonSold.addEventHandler(ActionEvent.ACTION, event ->
-            {
-                changePaneState("TO_MS");
-            });
+                    changePaneState("TO_MS"));
 
             buttonWasted.addEventHandler(ActionEvent.ACTION, event ->
                     changePaneState("TO_MW"));
 
             buttonBackX.addEventHandler(ActionEvent.ACTION, event ->
-            {
-                changePaneState("TO_MAIN");
-            });
+                    changePaneState("TO_MAIN"));
 
             buttonBackZ.addEventHandler(ActionEvent.ACTION, event ->
-            {
-                changePaneState("TO_MAIN");
-            });
+                    changePaneState("TO_MAIN"));
 
             buttonBackS.addEventHandler(ActionEvent.ACTION, event ->
-            {
-                changePaneState("TO_MAIN");
-            });
+                    changePaneState("TO_MAIN"));
 
             buttonBackW.addEventHandler(ActionEvent.ACTION, event ->
-            {
-                changePaneState("TO_MAIN");
-            });
+                    changePaneState("TO_MAIN"));
         }
 
         loadTables();
@@ -147,12 +145,22 @@ public class AnalyticsController extends Controller
                 analZReading.setDisable(true);
                 break;
         }
+
+    }
+
+    private void setTablePropertiesAndItems()
+    {
+        colUserX.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getUser().getUsername()));
+        colTotalX.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colDateX.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colTotalZ.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colDateZ.setCellValueFactory(new PropertyValueFactory<>("date"));
     }
 
     private void loadTables()
     {
-        tableMostSold.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
-        tableMostWasted.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
+//        tableMostSold.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
+//        tableMostWasted.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
         tableXReading.setItems(FXCollections.observableArrayList(dbm.getXReadToday()));
         tableZReading.setItems(FXCollections.observableArrayList(dbm.getZReadAll()));
     }

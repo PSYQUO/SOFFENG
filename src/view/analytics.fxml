@@ -178,9 +178,8 @@
                            <content>
                               <TableView id="tableForWasted" fx:id="tableZReading" prefHeight="307.0" prefWidth="527.0">
                                  <columns>
-                                    <TableColumn id="colItem" fx:id="colCashierZ" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Cashier" />
-                                    <TableColumn id="colPrice" fx:id="colShiftTimeZ" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Shift Time" />
-                                    <TableColumn id="colQuantity" fx:id="colXReadingZ" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="X-Readings" />
+                                    <TableColumn id="colPrice" fx:id="colTotalZ" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Total Sales" />
+                                    <TableColumn id="colQuantity" fx:id="colDateZ" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Date" />
                                  </columns>
                               </TableView>
                            </content>
@@ -247,8 +246,9 @@
                            <content>
                               <TableView id="tableForWasted" fx:id="tableXReading" prefHeight="307.0" prefWidth="527.0">
                                  <columns>
-                                    <TableColumn id="colItem" fx:id="colCashierX" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Cashier" />
-                                    <TableColumn id="colPrice" fx:id="colShiftTimeX" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Shift Time" />
+                                     <TableColumn id="colItem" fx:id="colUserX" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Cashier" />
+                                     <TableColumn id="colQuantity" fx:id="colTotalX" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Total Sales" />
+                                    <TableColumn id="colPrice" fx:id="colDateX" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Date" />
                                  </columns>
                               </TableView>
                            </content>
