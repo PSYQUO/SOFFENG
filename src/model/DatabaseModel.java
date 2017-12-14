@@ -8,6 +8,10 @@ import model.food.*;
 import model.transaction.Transaction;
 import model.transaction.TransactionBuilder;
 
+/**
+ * TODO LINE 605
+ */
+
 public class DatabaseModel
 {
     private DBConnection dbc;
@@ -598,12 +602,36 @@ public class DatabaseModel
         ArrayList<MostSoldWasted> data = new ArrayList<MostSoldWasted>();
         try
         {
-            ResultSet rs = dbc.executeQuery("select c.consumable_name, sum(l.quantity) from lineitem l, consumable c, category cc where l.consumable_id=c.consumable_id and c.Category_ID=cc.Category_ID and cc.Category_Name!='Appetizer' and cc.Category_Name!='Drinks'and cc.Category_Name!='Extras'and cc.Category_Name!='Rice' group by l.quantity desc;");
+            ResultSet rs = dbc.executeQuery("");
             while(rs.next())
             {
                 MostSoldWasted s = new MostSoldWasted(
-                    rs.getString("consumable_name"), 
-                    rs.getString("sum(l.quantity)"));
+                    rs.getString(""), 
+                    rs.getDouble(""),
+                    rs.getInt(""));
+                data.add(s);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return data;
+    }
+
+    public ArrayList<MostSoldWasted> getMostWasted()
+    {
+        dbc = DBConnection.getInstance();
+        ArrayList<MostSoldWasted> data = new ArrayList<MostSoldWasted>();
+        try
+        {
+            ResultSet rs = dbc.executeQuery("select r.RawItem_Name, r.RawItem_Price, o.Out_Quantity from rawitem r, outgoing o where r.RawItem_ID=o.RawItem_ID;");
+            while(rs.next())
+            {
+                MostSoldWasted s = new MostSoldWasted(
+                    rs.getString("RawItem_Name"), 
+                    rs.getDouble("RawItem_Price"),
+                    rs.getInt("Out_Quantity"));
                 data.add(s);
             }
         }

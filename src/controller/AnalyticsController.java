@@ -6,6 +6,8 @@ import controller.viewmanager.ViewManagerException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import model.DatabaseModel;
@@ -141,7 +143,7 @@ public class AnalyticsController extends Controller
     private void loadTables()
     {
         tableMostSold.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
-        tableMostWasted.setItems(FXCollections.observableArrayList(dbm.getRawItems()));
+        tableMostWasted.setItems(FXCollections.observableArrayList(dbm.getMostandLeastSold()));
         tableXReading.setItems(FXCollections.observableArrayList(dbm.getXReadToday()));
         tableZReading.setItems(FXCollections.observableArrayList(dbm.getZReadAll()));
     }

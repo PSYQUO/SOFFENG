@@ -3,12 +3,14 @@ package model.food;
 public class MostSoldWasted
 {
     private String name;
-    private String quantity;
+    private int quantity;
+    private double price;
 
-    public MostSoldWasted(String name, String quantity)
+    public MostSoldWasted(String name, double price, int quantity)
     {
         this.name = name;
         this.quantity = quantity;
+        this.price = price;
     }
 
     public String getName()
@@ -16,8 +18,13 @@ public class MostSoldWasted
         return name;
     }
 
-    public String getQuantity()
+    public int getQuantity()
     {
         return quantity;
+    }
+
+    public double getPrice()
+    {
+        return price;
     }
 }
