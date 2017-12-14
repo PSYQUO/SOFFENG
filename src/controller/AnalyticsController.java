@@ -40,7 +40,7 @@ public class AnalyticsController extends Controller
     private TableColumn<XReading, Double> colTotalX;
 
     @FXML
-    private TableColumn<XReading, String> colUserX, colDateX;
+    private TableColumn<XReading, String> colUserX;
 
     @FXML
     private TableColumn<ZReading, Double> colTotalZ;
@@ -158,7 +158,6 @@ public class AnalyticsController extends Controller
     {
         colUserX.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getUser().getUsername()));
         colTotalX.setCellValueFactory(new PropertyValueFactory<>("total"));
-        colDateX.setCellValueFactory(new PropertyValueFactory<>("date"));
         colTotalZ.setCellValueFactory(new PropertyValueFactory<>("total"));
         colDateZ.setCellValueFactory(new PropertyValueFactory<>("date"));
     }

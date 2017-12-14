@@ -248,7 +248,6 @@
                                  <columns>
                                      <TableColumn id="colItem" fx:id="colUserX" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Cashier" />
                                      <TableColumn id="colQuantity" fx:id="colTotalX" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Total Sales" />
-                                    <TableColumn id="colPrice" fx:id="colDateX" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" text="Date" />
                                  </columns>
                               </TableView>
                            </content>
