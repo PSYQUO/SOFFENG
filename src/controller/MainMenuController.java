@@ -1,5 +1,6 @@
 package controller;
 
+import controller.usercontrol.UserControl;
 import controller.viewmanager.ViewManagerException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.util.StringConverter;
 import model.DatabaseModel;
 import model.User;
 import view.dialog.DialogFactory;
+import view.dialog.DialogMessageType;
 import view.dialog.PasswordDialogFactory;
 
 import java.io.IOException;
@@ -27,7 +29,6 @@ public class MainMenuController extends Controller
     private ChoiceBox comboName;
 
     private DatabaseModel dbm;
-    private User currentUser;
     private Stage stage;
 
     public MainMenuController(String fxmlpath, String csspath, Stage primaryStage) throws IOException
@@ -46,7 +47,7 @@ public class MainMenuController extends Controller
 
             buttonNewOrder.addEventHandler(ActionEvent.ACTION, e ->
             {
-                if(currentUser != null)
+                if(UserControl.getInstance().getCurrentUser() != null)
                     viewManager.switchViews("NewOrderController");
                 else
                 {
@@ -58,7 +59,7 @@ public class MainMenuController extends Controller
 
             buttonInventory.addEventHandler(ActionEvent.ACTION, e ->
             {
-                if(currentUser != null)
+                if(UserControl.getInstance().getCurrentUser() != null)
                     viewManager.switchViews("InventoryController");
                 else
                 {
@@ -70,7 +71,7 @@ public class MainMenuController extends Controller
 
             buttonSettings.addEventHandler(ActionEvent.ACTION, e ->
             {
-                if(currentUser != null)
+                if(UserControl.getInstance().getCurrentUser() != null)
                     viewManager.switchViews("SettingsController");
                 else
                 {
@@ -82,8 +83,18 @@ public class MainMenuController extends Controller
 
             buttonFiles.addEventHandler(ActionEvent.ACTION, e ->
             {
-                if(currentUser != null)
-                    viewManager.switchViews("FilesController");
+                User user = UserControl.getInstance().getCurrentUser();
+                if(user != null)
+                {
+                    if(user.getRole().getRoleID() == 2 || user.getRole().getRoleID() == 3)
+                        viewManager.switchViews("FilesController");
+                    else
+                    {
+                        DialogFactory df = new DialogFactory(stage);
+                        Dialog d = df.create(DialogMessageType.RESTRICTED_ACCESS);
+                        d.show();
+                    }
+                }
                 else
                 {
                     DialogFactory df = new DialogFactory(stage);
@@ -94,13 +105,16 @@ public class MainMenuController extends Controller
 
             buttonAnalytics.addEventHandler(ActionEvent.ACTION, e ->
             {
-                if(currentUser != null)
+                User user = UserControl.getInstance().getCurrentUser();
+                if(user != null)
                 {
-                    if(currentUser.getRole().getRoleID() == 2 || currentUser.getRole().getRoleID() == 3)
+                    if(user.getRole().getRoleID() == 2 || user.getRole().getRoleID() == 3)
                         viewManager.switchViews("AnalyticsController");
                     else
                     {
-
+                        DialogFactory df = new DialogFactory(stage);
+                        Dialog d = df.create(DialogMessageType.RESTRICTED_ACCESS);
+                        d.show();
                     }
                 }
                 else
@@ -120,11 +134,6 @@ public class MainMenuController extends Controller
     public void clear()
     {
 
-    }
-
-    public User getCurrentUser()
-    {
-        return currentUser;
     }
 
     private void setupComboName()
@@ -158,17 +167,17 @@ public class MainMenuController extends Controller
                 {
                     String pass = user.getPassword();
                     if(pdf.getPasswordField().getText().equals(pass))
-                        currentUser = user;
+                        UserControl.getInstance().setCurrentUser(user);
                     else
                     {
                         pdf.notifyIncorrectPassword();
-                        comboName.getSelectionModel().select(currentUser);
+                        comboName.getSelectionModel().select(UserControl.getInstance().getCurrentUser());
                     }
                 }
             }
 
             if(result.isPresent() && result.get() == ButtonType.CANCEL)
-                comboName.getSelectionModel().select(currentUser);
+                comboName.getSelectionModel().select(UserControl.getInstance().getCurrentUser());
 
         });
     }
