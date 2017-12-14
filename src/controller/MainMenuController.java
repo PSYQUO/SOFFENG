@@ -1,20 +1,21 @@
 package controller;
 
 import controller.viewmanager.ViewManagerException;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.StringConverter;
 import model.DatabaseModel;
 import model.User;
 import view.dialog.PasswordDialogFactory;
 
-import javax.swing.*;
 import java.io.IOException;
+import java.util.Optional;
 
 public class MainMenuController extends Controller
 {
@@ -25,7 +26,7 @@ public class MainMenuController extends Controller
     private ChoiceBox comboName;
 
     private DatabaseModel dbm;
-    private User user;
+    private User currentUser;
     private Stage stage;
 
     public MainMenuController(String fxmlpath, String csspath, Stage primaryStage) throws IOException
@@ -84,14 +85,32 @@ public class MainMenuController extends Controller
             }
         });
 
-        comboName.addEventHandler(ActionEvent.ACTION, event -> {
+        comboName.addEventHandler(ActionEvent.ACTION, event ->
+        {
             PasswordDialogFactory pdf = new PasswordDialogFactory(stage);
             Dialog d = pdf.create();
-            d.show();
-            if(pdf.getPasswordField().getText().equals("1234"))
+            Optional<ButtonType> result = d.showAndWait();
+
+            if(result.isPresent() && result.get() == ButtonType.OK)
             {
-                System.out.println("SUP BRO");
+                // Typecasting
+                User user = (User) comboName.getSelectionModel().getSelectedItem();
+                if(user != null)
+                {
+                    String pass = user.getPassword();
+                    if(pdf.getPasswordField().getText().equals(pass))
+                        currentUser = user;
+                    else
+                    {
+                        pdf.notifyIncorrectPassword();
+                        comboName.getSelectionModel().select(currentUser);
+                    }
+                }
             }
+
+            if(result.isPresent() && result.get() == ButtonType.CANCEL)
+                comboName.getSelectionModel().select(currentUser);
+
         });
     }
 
