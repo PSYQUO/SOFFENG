@@ -6,13 +6,13 @@ Label {
 #buttonClose {
     -fx-background-color: #e74c3c;
     -fx-text-fill: #ffffff;
-    -fx-font-size: 12px;
+    -fx-font-size: 10px;
 }
 
 #buttonSubtract {
     -fx-background-color: #e74c3c;
     -fx-text-fill: #ffffff;
-    -fx-font-size: 12px;
+    -fx-font-size: 10px;
 }
 
 #buttonSubtract:disabled #buttonSubtract:disabled > * {
