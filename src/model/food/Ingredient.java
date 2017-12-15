@@ -6,6 +6,7 @@ import model.food.RawItem;
  * The item/ingredient used as a component of a food item.
  */
 public class Ingredient {
+
     private RawItem rawItem;
     private int quantity; // The number of rawItems used as ingredient.
 

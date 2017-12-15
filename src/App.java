@@ -21,12 +21,12 @@ public class App extends Application
         setupDatabaseConfig();
 
         // Setup Controllers and ViewManager
-        MainMenuController mmc = new MainMenuController("/view/main-menu.fxml", "/view/main-menu.css", primaryStage);
+        MainMenuController mmc = new MainMenuController("/view/main-menu.fxml", "/view/main-menu.css");
         NewOrderController noc = new NewOrderController("/view/new-order.fxml", "/view/new-order.css");
         InventoryController ic = new InventoryController("/view/inventory.fxml", "/view/inventory.css");
         SettingsController sc = new SettingsController("/view/settings.fxml", "/view/settings.css", primaryStage);
         FilesController fc = new FilesController("/view/files.fxml", "/view/files.css");
-        AnalyticsController ac = new AnalyticsController("/view/analytics.fxml", "/view/analytics.css");
+        AnalyticsController ac = new AnalyticsController("/view/analytics-menu.fxml", "/view/analytics-menu.css");
 
         ViewManager vm = new ViewManager(mmc);
 
@@ -51,13 +51,6 @@ public class App extends Application
         primaryStage.setMinHeight(600);
         primaryStage.setMinWidth(800);
         primaryStage.setFullScreen(true);
-    }
-
-    @Override
-    public void stop()
-    {
-        DBConnection dbc = DBConnection.getInstance();
-        dbc.closeConnection();
     }
 
     private void setupDatabaseConfig()
@@ -105,8 +98,28 @@ public class App extends Application
         {
             DBConnection dbc = DBConnection.getInstance();
             dbc.setConnection(database, username, password);
+
+            // TODO: Initialize new database setup.
+            // DatabaseManager databaseManager = MySQLDatabase.getInstance();
+            // databaseManager.setConnection("127.0.0.1", "3306", database, username, password);
+
+            // DatabaseHelper.setDatabaseManager(databaseManager);
         }
         else
             System.err.println("Database connection was not set. Check dbconfig.ini at the default package.");
     }
+<<<<<<< HEAD
+
+    @Override
+    public void stop()
+    {
+        DBConnection dbc = DBConnection.getInstance();
+        dbc.closeConnection();
+
+        // TODO: Implement new database close operation.
+//         DatabaseManager databaseManager = MySQLDatabase.getInstance();
+//         databaseManager.close();
+    }
+=======
+>>>>>>> master
 }

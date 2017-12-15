@@ -10,6 +10,7 @@ import java.util.*;
  * to separate different classes of food or meals.
  */
 public class Consumable {
+    
     public int consumableID;
     private String name;
     private String codeName;

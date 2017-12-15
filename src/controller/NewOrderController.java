@@ -37,6 +37,12 @@ import receipt.Receipt;
 import receipt.ReceiptBuilder;
 import receipt.ReceiptPrinter;
 
+import model.database.helper.ConsumableHelper;
+import model.database.DatabaseManager;
+import model.database.DatabaseHelper;
+import model.database.MySQLDatabase;
+import model.food.Category;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
@@ -88,6 +94,9 @@ public class NewOrderController extends Controller
     private ReceiptBuilder receiptBuilder;
     private TransactionBuilder transactionBuilder;
 
+    // TODO: Declare DatabaseHelper
+    // private DatabaseHelper databaseHelper;
+
     private Receipt receipt;
 
     private int transactionId;
@@ -111,8 +120,10 @@ public class NewOrderController extends Controller
     {
         // Temporary hard-coded data
         transactionId = 10;
+        customerNo = 2;
 //        customerNo = 2;
         transactionMode = Transaction.MODE_DINE_IN;
+        cashier = new User("Bob", "bobthebuilder", "builder", null);
 //        cashier = new User("Bob", "bobthebuilder", "builder", null);
 
         cashier = UserControl.getInstance().getCurrentUser();
@@ -158,6 +169,8 @@ public class NewOrderController extends Controller
                 Button b = (Button) n;
                 b.addEventHandler(ActionEvent.ACTION, e ->
                 {
+                    if (b.getText().equals(".")) {
+                        if (textfieldPayment.getText().contains("."))
                     if (focusedNode == textfieldPayment) {
                         if (b.getText().equals(".")) {
                             if (textfieldPayment.getText().contains("."))
@@ -166,20 +179,34 @@ public class NewOrderController extends Controller
 
                         if (textfieldPayment.getText().length() >= 6)
                             return;
+                    }
 
+                    if (textfieldPayment.getText().length() >= 6)
+                        return;
                         if (textfieldPayment.getText().equals("0") && !b.getText().equals("."))
                             textfieldPayment.setText("");
 
+                    if (textfieldPayment.getText().equals("0") && !b.getText().equals("."))
+                        textfieldPayment.setText("");
+                    
+                    textfieldPayment.setText(textfieldPayment.getText() + b.getText());
                         textfieldPayment.setText(textfieldPayment.getText() + b.getText());
 
+                    if (Integer.parseInt(textfieldPayment.getText()) == 0)
+                        textfieldPayment.setText("0");
                         if (Double.parseDouble(textfieldPayment.getText()) == 0)
                             textfieldPayment.setText("0");
 
+                    double total = transactionBuilder.build().getTotal();
                         double total = transactionBuilder.build().getTotal();
 
+                    if (checkboxSenior.isSelected())
+                        total -= total * 0.20;
                         if (checkboxSenior.isSelected())
                             total -= total * 0.20;
 
+                    double change = Double.parseDouble(textfieldPayment.getText()) - total;
+                    labelChange.setText(df.format(change));
                         double change = Double.parseDouble(textfieldPayment.getText()) - total;
                         labelChange.setText(df.format(change));
                     }
@@ -268,6 +295,40 @@ public class NewOrderController extends Controller
                 transactionBuilder.setChange(Double.parseDouble(labelChange.getText()));
 
                 // TODO: at this point papasok na sa DB dapat
+<<<<<<< HEAD
+                // Transaction transaction = transactionBuilder.build();
+
+                // TODO: Implement transactionHelper.addTransaction(Transaction transaction).
+                // databaseHelper =  new TransactionHelper();
+                // databaseHelper.addTransaction(transaction);
+
+                // dbm.addTransaction(transactionBuilder.build());
+
+                // Decrease the inventory stocks after the transaction.
+                // RawItem rawItem;
+                // TODO: Do lazy initialization on Transaction for LineItems.
+                // if (transaction.getLineItems() == null) {
+                // TODO: Implement lineItemHelper.getLineItemByTransactions(Transaction transaction).
+                //      databaseHelper = new LineItemHelper();
+                //      databaseHelper.getLineItemsByTransaction(transaction);
+                //
+                // }
+                // for (LineItem li : transaction.getLineItems()) {
+                //      TODO: Do lazy initialization on LineItem for Consumable.
+                //      TODO: Implement consumableHelper.getConsumable(int id).
+                //
+                //      TODO: Do lazy initialization on Consumable for Ingredient.
+                //      TODO: Implement ingredientHelper.getIngredientsByConsumable(Consumable consumable).
+                //     for (Ingredient i : li.getConsumable().getIngredients()) {
+                //          TODO: Do lazy initialization on Ingredient for RawItem.
+                //          TODO: Implement rawItemHelper.getRawItem(int id).
+                //         rawItem = dbm.searchRawItem(i.getRawItem().rawItemID);
+                //         rawItem.setQuantity(rawItem.getQuantity() - i.getQuantity());
+                //          TODO: Implement rawItemHelper.editRawItem(RawItem rawItem).
+                //         dbm.updateRawItem(rawItem);
+                //     }
+                // }
+=======
                 Transaction transaction = transactionBuilder.build();
 
                  DatabaseModel dbm = new DatabaseModel();
@@ -282,14 +343,17 @@ public class NewOrderController extends Controller
                          dbm.updateRawItem(rawItem);
                      }
                  }
+>>>>>>> master
                 receiptBuilder.clear();
                 Receipt receipt = receiptBuilder.processTransaction(transactionBuilder.build()).build();
                 //System.out.println(receipt.customerReceipt());
                 //System.out.println(receipt.kitchenReceipt());
 
                 System.out.println(receipt.customerReceipt()+"\n"+receipt.kitchenReceipt());
+                ReceiptPrinter rp = new ReceiptPrinter();
 //                ReceiptPrinter rp = new ReceiptPrinter();
                 //rp.printReceipt(receipt.customerReceipt());
+                rp.printReceipt(receipt.customerReceipt()+"\n"+receipt.kitchenReceipt());
 //                rp.printReceipt(receipt.customerReceipt()+"\n"+receipt.kitchenReceipt());
 
 
@@ -299,6 +363,7 @@ public class NewOrderController extends Controller
                 borderpanePayment.setDisable(true);
                 borderpanePayment.setVisible(false);
                 splitpaneNewOrder.setDisable(false);
+                // spinnerCustNo.getEditor().clear(); // remove spinner content
                  spinnerCustNo.getEditor().setText("1"); // remove spinner content
                 textfieldPayment.clear(); // remove textfield content
                 
@@ -310,6 +375,12 @@ public class NewOrderController extends Controller
             // Backspace for payment input.
             buttonBackspace.addEventHandler(ActionEvent.ACTION, e ->
             {
+                // Override backspace function with set text to 0 if the current text is 1 character.
+                if (textfieldPayment.getText().length() == 1)
+                    textfieldPayment.setText("0");
+                else
+                    textfieldPayment.setText(
+                        textfieldPayment.getText().substring(0, textfieldPayment.getText().length() - 1));
                 if (focusedNode == textfieldPayment) {
                     // Override backspace function with set text to 0 if the current text is 1 character.
                     if (textfieldPayment.getText().length() == 1)
@@ -318,6 +389,14 @@ public class NewOrderController extends Controller
                         textfieldPayment.setText(
                                 textfieldPayment.getText().substring(0, textfieldPayment.getText().length() - 1));
 
+                // Get the current total of the transaction.
+                double total = transactionBuilder.build().getTotal();
+                if (checkboxSenior.isSelected())
+                    total -= total * 0.20;
+                
+                // Calculate the change given a payment and a total.
+                double change = Double.parseDouble(textfieldPayment.getText()) - total;
+                labelChange.setText(df.format(change) + "");
                     // Get the current total of the transaction.
                     double total = transactionBuilder.build().getTotal();
                     if (checkboxSenior.isSelected())
@@ -374,16 +453,28 @@ public class NewOrderController extends Controller
 //      flowpaneSandwich (para sa Sandwich, Appetizer, Pasta 'to)
 //      flowpaneExtras (Extras)
 
+        // TODO: Implement new database loading.
+        // DatabaseManager databaseManager = MySQLDatabase.getInstance();
+        // ConsumableHelper consumableHelper = new ConsumableHelper();
         DatabaseModel dbm = new DatabaseModel();
+
+        // TODO: Implement consumableHelper.getAllConsumables().
+        // List<Consumable> consumablesList = consumableHelper.getAllConsumables();
         ArrayList<Consumable> consumablesList = dbm.getConsumables();
+
 
         for(Consumable c : consumablesList)
         {
+            // TODO: Do lazy initialization on Consumable for Category and Meal.
+            // TODO: Implement categoryHelper.getCategory(int id).
+            // TODO: Implement mealHelper.getMeal(int id).
             NewOrderButton nob = new NewOrderButton(c);
             
             // Disables the button when there are not enough ingredients.
+            // TODO: Implement ingredientHelper.getIngredientsByConsumable(Consumable consumable).
             List<Ingredient> ingredients = dbm.searchIngredientByConsumableID(c.consumableID);
             for (Ingredient i : ingredients) {
+                // TODO: Do lazy intialization on Ingredient for the RawItem.
                 if (i.getRawItem().getQuantity() < i.getQuantity())
                     nob.setDisable(true);
             }
@@ -397,6 +488,8 @@ public class NewOrderController extends Controller
                 refreshSummary();
             });
 
+            // TODO: Do lazy intialization on Consumable for the Category.
+            // TODO: Implement categoryHelper.getCategory(int id).
             String category = c.getCategory().getCategoryName();
 
             // Segregate the food items by category tabs.
