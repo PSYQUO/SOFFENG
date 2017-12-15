@@ -125,9 +125,8 @@ public class MainMenuController extends Controller
                 }
             });
 
+            loadUsers();
         }
-
-        loadUsers();
     }
 
     @Override
